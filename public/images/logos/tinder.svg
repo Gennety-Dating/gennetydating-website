@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Tinder">
+  <defs>
+    <linearGradient id="tinder-grad" x1="120" y1="24" x2="120" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FD297B"/>
+      <stop offset="0.5" stop-color="#FF5864"/>
+      <stop offset="1" stop-color="#FF8A5B"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#tinder-grad)" d="M132 24c0 26 11 40 27 56 20 20 33 42 33 72 0 40-32 68-72 68S48 192 48 152c0-26 12-52 32-72-2 22 8 34 22 36-6-38 12-74 30-92Z"/>
+</svg>
