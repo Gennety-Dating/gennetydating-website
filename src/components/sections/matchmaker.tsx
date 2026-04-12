@@ -12,13 +12,12 @@ export function Matchmaker() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-[var(--section-y)] px-4 md:px-10">
-      <Heading as="h2" className="text-center mb-12 md:mb-20">
+    <section className="py-[120px] px-4 md:px-10">
+      <Heading as="h2" className="text-center mb-20">
         {t("matchmaker.title.pre")} <Highlight>{t("matchmaker.title.highlight")}</Highlight> {t("matchmaker.title.post")}
       </Heading>
 
-      {/* Mobile: 1 col | iPad portrait (md): 2 col | Desktop (lg): 3 col */}
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-8">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
         {featureKeys.map((num, i) => {
           const Icon = featureIcons[i];
 

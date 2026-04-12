@@ -19,9 +19,9 @@ export function Heading({
     <Tag
       className={cn(
         "font-serif lowercase tracking-tight text-white",
-        Tag === "h1" && "text-[clamp(2.25rem,7vw,6rem)] leading-[1.1]",
-        Tag === "h2" && "text-[clamp(1.75rem,5vw,3.75rem)] leading-[1.15]",
-        Tag === "h3" && "text-[clamp(1.25rem,3vw,1.875rem)] leading-[1.2]",
+        Tag === "h1" && "text-5xl md:text-7xl lg:text-8xl leading-[1.1]",
+        Tag === "h2" && "text-3xl md:text-5xl lg:text-6xl leading-[1.15]",
+        Tag === "h3" && "text-2xl md:text-3xl leading-[1.2]",
         className
       )}
     >

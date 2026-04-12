@@ -21,22 +21,19 @@ export function Footer() {
           </MessageBubble>
         </div>
 
-        {/* Large wordmark — fluid size */}
-        <h2
-          className="font-bold tracking-tight text-white mb-12"
-          style={{ fontSize: "clamp(2.5rem, 10vw, 6rem)" }}
-        >
+        {/* Large wordmark */}
+        <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-12">
           Gennety
         </h2>
 
         {/* Bottom links */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pt-8 border-t border-white/10">
-          <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-gray-400">
+          <div className="flex flex-wrap gap-6 text-sm text-gray-400">
             <a
               href={TELEGRAM_BOT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 min-h-[44px] hover:text-white hover:underline underline-offset-4 transition-colors focus-visible:outline-none focus-visible:text-white"
+              className="inline-flex items-center gap-1.5 hover:text-white hover:underline underline-offset-4 transition-colors"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -49,19 +46,19 @@ export function Footer() {
             </a>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="inline-flex items-center min-h-[44px] hover:text-white hover:underline underline-offset-4 transition-colors focus-visible:outline-none focus-visible:text-white"
+              className="hover:text-white hover:underline underline-offset-4 transition-colors"
             >
               {t("footer.contact")}
             </a>
-            <a href="#" className="inline-flex items-center min-h-[44px] hover:text-white hover:underline underline-offset-4 transition-colors focus-visible:outline-none focus-visible:text-white">
+            <a href="#" className="hover:text-white hover:underline underline-offset-4 transition-colors">
               {t("footer.terms")}
             </a>
-            <a href="#" className="inline-flex items-center min-h-[44px] hover:text-white hover:underline underline-offset-4 transition-colors focus-visible:outline-none focus-visible:text-white">
+            <a href="#" className="hover:text-white hover:underline underline-offset-4 transition-colors">
               {t("footer.privacy")}
             </a>
             <button
               onClick={withdrawConsent}
-              className="inline-flex items-center min-h-[44px] hover:text-white hover:underline underline-offset-4 transition-colors focus-visible:outline-none focus-visible:text-white"
+              className="hover:text-white hover:underline underline-offset-4 transition-colors"
             >
               {t("footer.cookie_preferences")}
             </button>

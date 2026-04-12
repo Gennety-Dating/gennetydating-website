@@ -87,14 +87,14 @@ export function CountdownTimer() {
   return (
     <div className="flex flex-col items-center gap-2">
       {/* Timer digits */}
-      <div className="flex items-baseline gap-1 font-mono text-3xl min-[375px]:text-4xl md:text-5xl font-bold neon-text tabular-nums">
+      <div className="flex items-baseline gap-1 font-mono text-4xl md:text-5xl font-bold neon-text tabular-nums">
         <span>{time.days}</span>
         <span className="text-magenta-dim">:</span>
         <span>{time.hours}</span>
         <span className="text-magenta-dim">:</span>
         <span>{time.minutes}</span>
         <span className="text-magenta-dim">:</span>
-        <span className="text-2xl min-[375px]:text-3xl md:text-4xl">{time.seconds}</span>
+        <span className="text-3xl md:text-4xl">{time.seconds}</span>
       </div>
 
       {/* Match day info — renders after first interval tick */}

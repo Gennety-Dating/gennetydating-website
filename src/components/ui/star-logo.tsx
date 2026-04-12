@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface StarLogoProps {
@@ -8,13 +7,13 @@ interface StarLogoProps {
 export function StarLogo({ className }: StarLogoProps) {
   return (
     <div className={cn("animate-pulse-glow", className)}>
-      <Image
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src="/images/star-mascot.png"
         alt="Gennety mascot"
         width={112}
         height={112}
-        className="w-20 h-20 md:w-28 md:h-28 object-contain"
-        priority
+        className="w-[112px] h-[112px] object-contain"
       />
     </div>
   );

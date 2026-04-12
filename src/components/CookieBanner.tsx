@@ -86,18 +86,17 @@ export function CookieBanner() {
 
   return (
     <>
-      {/* Cookie consent — bottom sheet on phone, thin bar on md+ */}
+      {/* Cookie consent footer bar */}
       <div
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-label={t("cookie.banner_title")}
         className="fixed bottom-0 left-0 right-0 z-[100]"
-        style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
       >
-        {/* Expandable customize panel */}
+        {/* Expandable customize panel — slides up above the bar */}
         {showCustomize && (
-          <div className="glass md:bg-midnight md:backdrop-blur-none border-t border-x border-glass-border rounded-t-xl mx-0 md:mx-8 p-4 mb-0 space-y-3">
+          <div className="glass md:bg-midnight md:backdrop-blur-none border-t border-x border-glass-border rounded-t-xl mx-4 md:mx-8 p-4 mb-0 space-y-3">
             <ToggleRow
               label={t("cookie.cat_necessary")}
               description={t("cookie.cat_necessary_desc")}
@@ -125,32 +124,31 @@ export function CookieBanner() {
           </div>
         )}
 
-        {/* Banner body */}
-        <div className="glass md:bg-midnight md:backdrop-blur-none border-t border-glass-border px-4 md:px-8 py-4 shadow-lg">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 max-w-screen-2xl mx-auto">
-            {/* Text */}
-            <p className="text-xs md:text-sm text-gray-400">
+        {/* Thin footer bar */}
+        <div className="glass md:bg-midnight md:backdrop-blur-none border-t border-glass-border px-4 md:px-8 py-3 shadow-lg">
+          <div className="flex items-center justify-between gap-4 max-w-screen-2xl mx-auto">
+            {/* Left: text */}
+            <p className="text-xs md:text-sm text-gray-400 flex-1 min-w-0">
               {t("cookie.banner_text")}
             </p>
 
-            {/* Buttons — vertical stack on phone, horizontal on md+ */}
-            <div className="flex flex-col min-[480px]:flex-row md:flex-row items-stretch min-[480px]:items-center gap-2 shrink-0">
+            {/* Right: buttons */}
+            <div className="flex items-center gap-2 shrink-0">
               <button
                 onClick={() => setShowCustomize((v) => !v)}
-                className="px-4 py-3 md:py-1.5 rounded-full border border-white/20 text-gray-400 text-xs md:text-sm font-medium hover:text-white hover:border-white/40 transition-colors min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
+                className="px-3 md:px-4 py-1.5 rounded-full border border-white/20 text-gray-400 text-xs md:text-sm font-medium hover:text-white hover:border-white/40 transition-colors whitespace-nowrap"
               >
                 {showCustomize ? t("cookie.cancel") : t("cookie.customize")}
               </button>
               <button
                 onClick={showCustomize ? handleSaveCustom : handleRejectNonEssential}
-                className="px-4 py-3 md:py-1.5 rounded-full border border-white/20 text-white text-xs md:text-sm font-medium hover:border-white/40 transition-colors min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
+                className="px-3 md:px-4 py-1.5 rounded-full border border-white/20 text-white text-xs md:text-sm font-medium hover:border-white/40 transition-colors whitespace-nowrap"
               >
                 {showCustomize ? t("cookie.save_preferences") : t("cookie.reject_non_essential")}
               </button>
               <button
-                ref={firstFocusRef}
                 onClick={handleAcceptAll}
-                className="px-4 py-3 md:py-1.5 rounded-full bg-magenta text-white text-xs md:text-sm font-medium hover:shadow-neon transition-shadow min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
+                className="px-4 md:px-6 py-1.5 rounded-full bg-magenta text-white text-xs md:text-sm font-medium hover:shadow-neon transition-shadow whitespace-nowrap"
               >
                 {t("cookie.accept_all")}
               </button>
@@ -159,8 +157,8 @@ export function CookieBanner() {
         </div>
       </div>
 
-      {/* Spotify widget — hidden on phones to avoid covering content */}
-      <div className="hidden md:block fixed bottom-16 right-6 z-[99] w-[320px]">
+      {/* Spotify widget — fixed bottom-right, sits above the cookie bar */}
+      <div className="fixed bottom-16 right-4 md:right-6 z-[99] w-[280px] md:w-[320px]">
         <iframe
           data-testid="embed-iframe"
           style={{ borderRadius: 12 }}
@@ -191,9 +189,8 @@ function ToggleRow({
   onChange?: (value: boolean) => void;
 }) {
   return (
-    <div className="flex items-start gap-3">
-      {/* Touch-target wrapper: 44px minimum */}
-      <div className="pt-0.5 flex-shrink-0">
+    <label className="flex items-start gap-3 cursor-pointer">
+      <div className="pt-0.5">
         <button
           role="switch"
           aria-checked={checked}
@@ -202,19 +199,17 @@ function ToggleRow({
             e.preventDefault();
             if (!disabled) onChange?.(!checked);
           }}
-          className={[
-            "relative w-10 h-6 rounded-full transition-colors",
-            "min-h-[44px] min-w-[44px] flex items-center justify-center",
-            checked ? "bg-magenta" : "bg-white/10",
-            disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-midnight",
-          ].join(" ")}
+          className={`
+            relative w-10 h-6 rounded-full transition-colors
+            ${checked ? "bg-magenta" : "bg-white/10"}
+            ${disabled ? "opacity-50 cursor-not-allowed" : ""}
+          `}
         >
           <span
-            className={[
-              "absolute top-1/2 -translate-y-1/2 left-1 w-4 h-4 rounded-full bg-white transition-transform",
-              checked ? "translate-x-4" : "translate-x-0",
-            ].join(" ")}
+            className={`
+              absolute top-1 left-1 w-4 h-4 rounded-full bg-white transition-transform
+              ${checked ? "translate-x-4" : "translate-x-0"}
+            `}
           />
         </button>
       </div>
@@ -222,6 +217,6 @@ function ToggleRow({
         <span className="text-sm font-medium text-white">{label}</span>
         <p className="text-xs text-gray-500">{description}</p>
       </div>
-    </div>
+    </label>
   );
 }

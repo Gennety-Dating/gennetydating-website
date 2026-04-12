@@ -9,8 +9,8 @@ export function Comparison() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-[var(--section-y)] px-4 md:px-10">
-      <Heading as="h2" className="text-center mb-12 md:mb-20">
+    <section className="py-[120px] px-4 md:px-10">
+      <Heading as="h2" className="text-center mb-20">
         {t("comparison.title")}
       </Heading>
 

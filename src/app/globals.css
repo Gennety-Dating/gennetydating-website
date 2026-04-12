@@ -4,15 +4,6 @@
    GENNETY DESIGN SYSTEM — Midnight Contrast
    ======================================== */
 
-/* --- Layout Tokens --- */
-:root {
-  --container-x: clamp(1rem, 5vw, 2.5rem);
-  --section-y: clamp(4rem, 10vw, 7.5rem);
-  --navbar-h: 56px;
-  --safe-top: env(safe-area-inset-top, 0px);
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
-}
-
 /* --- Theme Tokens (Tailwind v4) --- */
 @theme inline {
   /* Colors */
@@ -88,19 +79,7 @@ body {
   background-color: #050505;
   color: #FFFFFF;
   font-family: var(--font-sans);
-  /* Use clip instead of hidden so position:sticky is not broken */
-  overflow-x: clip;
-}
-
-/* --- Reduced Motion --- */
-@media (prefers-reduced-motion: reduce) {
-  /* Pause all CSS animations */
-  *,
-  *::before,
-  *::after {
-    animation-play-state: paused !important;
-    transition-duration: 0.01ms !important;
-  }
+  overflow-x: hidden;
 }
 
 /* --- Subtle Grain Texture Overlay --- */
