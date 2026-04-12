@@ -12,12 +12,13 @@ export function Safety() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-[120px] px-4 md:px-10">
-      <Heading as="h2" className="text-center mb-20">
+    <section className="py-[var(--section-y)] px-4 md:px-10">
+      <Heading as="h2" className="text-center mb-12 md:mb-20">
         {t("safety.title.pre")} <Highlight>{t("safety.title.highlight")}</Highlight>
       </Heading>
 
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+      {/* Mobile: 1 col | iPad portrait (md): 2 col | Desktop (lg): 3 col */}
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-8">
         {safetyKeys.map((num, i) => {
           const Icon = safetyIcons[i];
 

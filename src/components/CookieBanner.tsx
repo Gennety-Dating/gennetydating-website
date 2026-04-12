@@ -85,21 +85,19 @@ export function CookieBanner() {
   if (isLoading || hasConsented) return null;
 
   return (
-    <div
-      ref={dialogRef}
-      role="dialog"
-      aria-modal="true"
-      aria-label={t("cookie.banner_title")}
-      className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[100] w-[360px] max-w-[calc(100vw-2rem)]"
-    >
-      <div className="glass rounded-2xl p-6 shadow-lg border border-glass-border">
-        <p className="text-sm text-gray-400 mb-4">
-          {t("cookie.banner_text")}
-        </p>
-
-        {/* Expandable customize section */}
+    <>
+      {/* Cookie consent — bottom sheet on phone, thin bar on md+ */}
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label={t("cookie.banner_title")}
+        className="fixed bottom-0 left-0 right-0 z-[100]"
+        style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
+      >
+        {/* Expandable customize panel */}
         {showCustomize && (
-          <div className="space-y-3 mb-4 pb-4 border-b border-white/10">
+          <div className="glass md:bg-midnight md:backdrop-blur-none border-t border-x border-glass-border rounded-t-xl mx-0 md:mx-8 p-4 mb-0 space-y-3">
             <ToggleRow
               label={t("cookie.cat_necessary")}
               description={t("cookie.cat_necessary_desc")}
@@ -127,31 +125,55 @@ export function CookieBanner() {
           </div>
         )}
 
-        {/* Top row: two buttons side by side */}
-        <div className="flex gap-2 mb-2">
-          <button
-            onClick={() => setShowCustomize((v) => !v)}
-            className="flex-1 px-4 py-2 rounded-full border border-white/20 text-gray-400 text-sm font-medium hover:text-white hover:border-white/40 transition-colors"
-          >
-            {showCustomize ? t("cookie.cancel") : t("cookie.customize")}
-          </button>
-          <button
-            onClick={showCustomize ? handleSaveCustom : handleRejectNonEssential}
-            className="flex-1 px-4 py-2 rounded-full border border-white/20 text-white text-sm font-medium hover:border-white/40 transition-colors"
-          >
-            {showCustomize ? t("cookie.save_preferences") : t("cookie.reject_non_essential")}
-          </button>
-        </div>
+        {/* Banner body */}
+        <div className="glass md:bg-midnight md:backdrop-blur-none border-t border-glass-border px-4 md:px-8 py-4 shadow-lg">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 max-w-screen-2xl mx-auto">
+            {/* Text */}
+            <p className="text-xs md:text-sm text-gray-400">
+              {t("cookie.banner_text")}
+            </p>
 
-        {/* Bottom: full-width Accept All */}
-        <button
-          onClick={handleAcceptAll}
-          className="w-full px-5 py-2 rounded-full bg-magenta text-white text-sm font-medium hover:shadow-neon transition-shadow"
-        >
-          {t("cookie.accept_all")}
-        </button>
+            {/* Buttons — vertical stack on phone, horizontal on md+ */}
+            <div className="flex flex-col min-[480px]:flex-row md:flex-row items-stretch min-[480px]:items-center gap-2 shrink-0">
+              <button
+                onClick={() => setShowCustomize((v) => !v)}
+                className="px-4 py-3 md:py-1.5 rounded-full border border-white/20 text-gray-400 text-xs md:text-sm font-medium hover:text-white hover:border-white/40 transition-colors min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
+              >
+                {showCustomize ? t("cookie.cancel") : t("cookie.customize")}
+              </button>
+              <button
+                onClick={showCustomize ? handleSaveCustom : handleRejectNonEssential}
+                className="px-4 py-3 md:py-1.5 rounded-full border border-white/20 text-white text-xs md:text-sm font-medium hover:border-white/40 transition-colors min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
+              >
+                {showCustomize ? t("cookie.save_preferences") : t("cookie.reject_non_essential")}
+              </button>
+              <button
+                ref={firstFocusRef}
+                onClick={handleAcceptAll}
+                className="px-4 py-3 md:py-1.5 rounded-full bg-magenta text-white text-xs md:text-sm font-medium hover:shadow-neon transition-shadow min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
+              >
+                {t("cookie.accept_all")}
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+
+      {/* Spotify widget — hidden on phones to avoid covering content */}
+      <div className="hidden md:block fixed bottom-16 right-6 z-[99] w-[320px]">
+        <iframe
+          data-testid="embed-iframe"
+          style={{ borderRadius: 12 }}
+          src="https://open.spotify.com/embed/track/7BKLCZ1jbUBVqRi2FVlTVw?utm_source=generator"
+          width="100%"
+          height="152"
+          frameBorder="0"
+          allowFullScreen
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        />
+      </div>
+    </>
   );
 }
 
@@ -169,8 +191,9 @@ function ToggleRow({
   onChange?: (value: boolean) => void;
 }) {
   return (
-    <label className="flex items-start gap-3 cursor-pointer">
-      <div className="pt-0.5">
+    <div className="flex items-start gap-3">
+      {/* Touch-target wrapper: 44px minimum */}
+      <div className="pt-0.5 flex-shrink-0">
         <button
           role="switch"
           aria-checked={checked}
@@ -179,17 +202,19 @@ function ToggleRow({
             e.preventDefault();
             if (!disabled) onChange?.(!checked);
           }}
-          className={`
-            relative w-10 h-6 rounded-full transition-colors
-            ${checked ? "bg-magenta" : "bg-white/10"}
-            ${disabled ? "opacity-50 cursor-not-allowed" : ""}
-          `}
+          className={[
+            "relative w-10 h-6 rounded-full transition-colors",
+            "min-h-[44px] min-w-[44px] flex items-center justify-center",
+            checked ? "bg-magenta" : "bg-white/10",
+            disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-midnight",
+          ].join(" ")}
         >
           <span
-            className={`
-              absolute top-1 left-1 w-4 h-4 rounded-full bg-white transition-transform
-              ${checked ? "translate-x-4" : "translate-x-0"}
-            `}
+            className={[
+              "absolute top-1/2 -translate-y-1/2 left-1 w-4 h-4 rounded-full bg-white transition-transform",
+              checked ? "translate-x-4" : "translate-x-0",
+            ].join(" ")}
           />
         </button>
       </div>
@@ -197,6 +222,6 @@ function ToggleRow({
         <span className="text-sm font-medium text-white">{label}</span>
         <p className="text-xs text-gray-500">{description}</p>
       </div>
-    </label>
+    </div>
   );
 }

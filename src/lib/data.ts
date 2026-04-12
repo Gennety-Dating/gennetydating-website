@@ -15,7 +15,7 @@ export interface Step {
 export const steps: Step[] = [
   {
     number: 1,
-    title: "Tell Ditto Your Type",
+    title: "Tell Gennety Your Type",
     description: "Submit your preferences by Tuesday 11:59 PM.",
   },
   {
@@ -84,7 +84,7 @@ export const testimonials: Testimonial[] = [
     name: "Ali",
     school: "USC",
     quote:
-      "ditto makes it super easy to meet ppl i actually wanna see irl",
+      "gennety makes it super easy to meet ppl i actually wanna see irl",
   },
   {
     name: "Leo",

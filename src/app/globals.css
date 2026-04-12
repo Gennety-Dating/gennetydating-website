@@ -4,12 +4,22 @@
    GENNETY DESIGN SYSTEM — Midnight Contrast
    ======================================== */
 
+/* --- Layout Tokens --- */
+:root {
+  --container-x: clamp(1rem, 5vw, 2.5rem);
+  --section-y: clamp(4rem, 10vw, 7.5rem);
+  --navbar-h: 56px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
 /* --- Theme Tokens (Tailwind v4) --- */
 @theme inline {
   /* Colors */
   --color-midnight: #050505;
-  --color-magenta: #FF00FF;
-  --color-magenta-dim: rgba(255, 0, 255, 0.4);
+  --color-magenta: #d0adfc;
+  --color-magenta-dark: #7c3aed;
+  --color-magenta-dim: rgba(208, 173, 252, 0.4);
   --color-white: #FFFFFF;
   --color-gray-400: #9ca3af;
   --color-gray-500: #6b7280;
@@ -22,15 +32,15 @@
   --font-script: var(--font-caveat), "Caveat", cursive;
 
   /* Shadows — Neon Bloom */
-  --shadow-neon-sm: 0 0 10px rgba(255, 0, 255, 0.6);
-  --shadow-neon: 0 0 15px rgba(255, 0, 255, 0.8), 0 0 30px rgba(255, 0, 255, 0.4);
-  --shadow-neon-lg: 0 0 20px rgba(255, 0, 255, 0.8), 0 0 40px rgba(255, 0, 255, 0.5), 0 0 80px rgba(255, 0, 255, 0.3);
-  --shadow-neon-text: 0 0 15px rgba(255, 0, 255, 0.8), 0 0 30px rgba(255, 0, 255, 0.5);
+  --shadow-neon-sm: 0 0 10px rgba(208, 173, 252, 0.6);
+  --shadow-neon: 0 0 15px rgba(208, 173, 252, 0.8), 0 0 30px rgba(208, 173, 252, 0.4);
+  --shadow-neon-lg: 0 0 20px rgba(208, 173, 252, 0.8), 0 0 40px rgba(208, 173, 252, 0.5), 0 0 80px rgba(208, 173, 252, 0.3);
+  --shadow-neon-text: 0 0 15px rgba(208, 173, 252, 0.8), 0 0 30px rgba(208, 173, 252, 0.5);
 
   /* Drop Shadows — Neon Bloom */
-  --drop-shadow-neon-sm: 0 0 8px rgba(255, 0, 255, 0.6);
-  --drop-shadow-neon: 0 0 15px rgba(255, 0, 255, 0.8);
-  --drop-shadow-neon-lg: 0 0 25px rgba(255, 0, 255, 0.9);
+  --drop-shadow-neon-sm: 0 0 8px rgba(208, 173, 252, 0.6);
+  --drop-shadow-neon: 0 0 15px rgba(208, 173, 252, 0.8);
+  --drop-shadow-neon-lg: 0 0 25px rgba(208, 173, 252, 0.9);
 
   /* Spacing */
   --spacing-section: 120px;
@@ -55,8 +65,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 1; filter: drop-shadow(0 0 15px rgba(255, 0, 255, 0.8)); }
-  50% { opacity: 0.85; filter: drop-shadow(0 0 25px rgba(255, 0, 255, 1)); }
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 15px rgba(208, 173, 252, 0.8)); }
+  50% { opacity: 0.85; filter: drop-shadow(0 0 25px rgba(208, 173, 252, 1)); }
 }
 
 @keyframes float {
@@ -78,7 +88,19 @@ body {
   background-color: #050505;
   color: #FFFFFF;
   font-family: var(--font-sans);
-  overflow-x: hidden;
+  /* Use clip instead of hidden so position:sticky is not broken */
+  overflow-x: clip;
+}
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+  /* Pause all CSS animations */
+  *,
+  *::before,
+  *::after {
+    animation-play-state: paused !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* --- Subtle Grain Texture Overlay --- */
@@ -128,23 +150,23 @@ body::after {
 
 /* --- Neon Text Glow Utility --- */
 .neon-text {
-  color: #FF00FF;
-  text-shadow: 0 0 15px rgba(255, 0, 255, 0.8), 0 0 30px rgba(255, 0, 255, 0.5);
+  color: #d0adfc;
+  text-shadow: 0 0 15px rgba(208, 173, 252, 0.8), 0 0 30px rgba(208, 173, 252, 0.5);
 }
 
 .neon-text-sm {
-  color: #FF00FF;
-  text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
+  color: #d0adfc;
+  text-shadow: 0 0 10px rgba(208, 173, 252, 0.6);
 }
 
 /* --- Neon Box Glow Utility --- */
 .neon-box {
-  box-shadow: 0 0 15px rgba(255, 0, 255, 0.8), 0 0 30px rgba(255, 0, 255, 0.4);
+  box-shadow: 0 0 15px rgba(208, 173, 252, 0.8), 0 0 30px rgba(208, 173, 252, 0.4);
 }
 
 .neon-border {
-  border: 1px solid #FF00FF;
-  box-shadow: 0 0 10px rgba(255, 0, 255, 0.5), inset 0 0 10px rgba(255, 0, 255, 0.1);
+  border: 1px solid #d0adfc;
+  box-shadow: 0 0 10px rgba(208, 173, 252, 0.5), inset 0 0 10px rgba(208, 173, 252, 0.1);
 }
 
 /* --- Scrollbar (minimal) --- */
@@ -157,16 +179,16 @@ body::after {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 0, 255, 0.3);
+  background: rgba(208, 173, 252, 0.3);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 0, 255, 0.5);
+  background: rgba(208, 173, 252, 0.5);
 }
 
 /* --- Selection --- */
 ::selection {
-  background: rgba(255, 0, 255, 0.3);
+  background: rgba(208, 173, 252, 0.3);
   color: #FFFFFF;
 }

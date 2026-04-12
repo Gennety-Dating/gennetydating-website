@@ -28,7 +28,7 @@ export const translations = {
     // Hero
     "hero.headline": "go on a date with",
     "hero.highlight": "your type",
-    "hero.cta": "Message Ditto to Join",
+    "hero.cta": "Message Gennety to Join",
     "hero.disclaimer": "By continuing, you agree to our",
     "hero.terms": "Terms",
     "hero.privacy": "Privacy",
@@ -41,7 +41,7 @@ export const translations = {
     // How It Works
     "howItWorks.title": "How it",
     "howItWorks.highlight": "works",
-    "step.1.title": "Tell Ditto Your Type",
+    "step.1.title": "Tell Gennety Your Type",
     "step.1.desc": "Submit your preferences by Tuesday 11:59 PM.",
     "step.2.title": "The Thursday Drop",
     "step.2.desc":
@@ -168,7 +168,7 @@ export const translations = {
     // Hero
     "hero.headline": "сходи на побачення з",
     "hero.highlight": "твоїм типом",
-    "hero.cta": "Написати Ditto",
+    "hero.cta": "Написати Gennety",
     "hero.disclaimer": "Продовжуючи, ви погоджуєтесь з",
     "hero.terms": "Умовами",
     "hero.privacy": "Конфіденційністю",
@@ -181,7 +181,7 @@ export const translations = {
     // How It Works
     "howItWorks.title": "Як це",
     "howItWorks.highlight": "працює",
-    "step.1.title": "Розкажи Ditto свій тип",
+    "step.1.title": "Розкажи Gennety свій тип",
     "step.1.desc": "Надішли свої вподобання до вівторка 23:59.",
     "step.2.title": "Четверговий дроп",
     "step.2.desc":

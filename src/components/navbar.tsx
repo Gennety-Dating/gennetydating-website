@@ -1,38 +1,28 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { useLanguage } from "@/lib/language-context";
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const { t } = useLanguage();
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <nav
-      className={cn(
-        "fixed top-0 w-full z-40 flex items-center justify-between px-6 md:px-10 py-4 transition-all duration-300",
-        scrolled
-          ? "glass-strong shadow-lg"
-          : "bg-transparent"
-      )}
-    >
-      <Link href="/" className="text-xl font-bold tracking-tight text-white hover:text-magenta transition-colors">
+    <nav className="fixed top-0 w-full z-40 flex items-center justify-between gap-x-3 gap-y-2 flex-wrap px-4 md:px-10 py-2 backdrop-blur-sm">
+      {/* Logo — never shrinks */}
+      <Link
+        href="/"
+        className="shrink-0 text-xl font-bold tracking-tight text-white hover:text-magenta transition-colors"
+      >
         Gennety
       </Link>
 
-      <div className="flex items-center gap-3">
+      {/* Right controls — wrap on very narrow viewports */}
+      <div className="flex items-center gap-2">
         <LanguageSwitcher />
-        <Button variant="ghost" size="sm">
+        {/* Hide Login on xs screens (<375px) to prevent overflow */}
+        <Button variant="ghost" size="sm" className="hidden min-[375px]:inline-flex">
           {t("nav.login")}
         </Button>
         <Button variant="solid" size="sm">

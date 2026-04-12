@@ -16,7 +16,10 @@ function TestimonialCard({
   quote: string;
 }) {
   return (
-    <div className="relative flex-shrink-0 w-[280px] md:w-[320px]">
+    <div
+      className="relative flex-shrink-0 w-[260px] sm:w-[280px] md:w-[320px]"
+      style={{ scrollSnapAlign: "start" }}
+    >
       {/* Square photo placeholder */}
       <div className="w-full aspect-square rounded-lg overflow-hidden bg-gradient-to-br from-magenta/10 via-midnight to-magenta/5 flex items-center justify-center">
         <span className="text-6xl select-none opacity-60" aria-hidden="true">
@@ -45,7 +48,7 @@ function TestimonialsHeading() {
   return (
     <Heading as="h2">
       {t("testimonials.title.pre")}{" "}
-      <ScriptHighlight className="text-4xl md:text-6xl lg:text-7xl">
+      <ScriptHighlight className="text-[clamp(2rem,8vw,5rem)]">
         {t("testimonials.title.highlight")}
       </ScriptHighlight>
     </Heading>
@@ -56,44 +59,59 @@ export function TestimonialsCarousel() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>(0);
   const speedRef = useRef(0.5);
+  const isPausedRef = useRef(false);
 
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
 
+    // Respect prefers-reduced-motion — skip JS autoplay entirely
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) return;
+
     let scrollPos = 0;
 
     function animate() {
       if (!container) return;
-      scrollPos += speedRef.current;
-
-      // Reset when we've scrolled through the first set
-      const halfWidth = container.scrollWidth / 2;
-      if (scrollPos >= halfWidth) {
-        scrollPos = 0;
+      if (!isPausedRef.current) {
+        scrollPos += speedRef.current;
+        const halfWidth = container.scrollWidth / 2;
+        if (scrollPos >= halfWidth) scrollPos = 0;
+        container.scrollLeft = scrollPos;
       }
-
-      container.scrollLeft = scrollPos;
       animationRef.current = requestAnimationFrame(animate);
     }
 
     animationRef.current = requestAnimationFrame(animate);
 
     // Pause on hover
-    const handleMouseEnter = () => {
-      speedRef.current = 0;
+    const handleMouseEnter = () => { isPausedRef.current = true; };
+    const handleMouseLeave = () => { isPausedRef.current = false; };
+    // Pause on touch — let native scroll-snap take over
+    const handleTouchStart = () => { isPausedRef.current = true; };
+    const handleTouchEnd = () => {
+      // Resume after a short delay so snap can settle
+      setTimeout(() => { isPausedRef.current = false; }, 1500);
     };
-    const handleMouseLeave = () => {
-      speedRef.current = 0.5;
-    };
+    // Pause when any child receives focus (keyboard nav)
+    const handleFocusIn = () => { isPausedRef.current = true; };
+    const handleFocusOut = () => { isPausedRef.current = false; };
 
     container.addEventListener("mouseenter", handleMouseEnter);
     container.addEventListener("mouseleave", handleMouseLeave);
+    container.addEventListener("touchstart", handleTouchStart, { passive: true });
+    container.addEventListener("touchend", handleTouchEnd, { passive: true });
+    container.addEventListener("focusin", handleFocusIn);
+    container.addEventListener("focusout", handleFocusOut);
 
     return () => {
       cancelAnimationFrame(animationRef.current);
       container.removeEventListener("mouseenter", handleMouseEnter);
       container.removeEventListener("mouseleave", handleMouseLeave);
+      container.removeEventListener("touchstart", handleTouchStart);
+      container.removeEventListener("touchend", handleTouchEnd);
+      container.removeEventListener("focusin", handleFocusIn);
+      container.removeEventListener("focusout", handleFocusOut);
     };
   }, []);
 
@@ -101,15 +119,20 @@ export function TestimonialsCarousel() {
   const doubled = [...testimonials, ...testimonials];
 
   return (
-    <section className="py-[120px] overflow-hidden">
+    <section className="py-[var(--section-y)] overflow-hidden">
       <div className="text-center mb-16 px-4">
         <TestimonialsHeading />
       </div>
 
       <div
         ref={scrollRef}
-        className="flex gap-8 pb-12 pl-4 md:pl-10 overflow-x-hidden"
-        style={{ scrollbarWidth: "none" }}
+        className="flex gap-6 md:gap-8 pb-12 pl-4 md:pl-10 overflow-x-auto"
+        style={{
+          scrollbarWidth: "none",
+          /* Snap for touch devices — smooth swipe between cards */
+          scrollSnapType: "x mandatory",
+          WebkitOverflowScrolling: "touch",
+        } as React.CSSProperties}
       >
         {doubled.map((t, i) => (
           <TestimonialCard

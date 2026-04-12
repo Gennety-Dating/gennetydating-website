@@ -21,7 +21,8 @@ function AccordionItem({
     <div className="border-b border-white/10">
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between py-5 px-1 text-left cursor-pointer group"
+        aria-expanded={isOpen}
+        className="w-full flex items-center justify-between py-5 px-1 text-left cursor-pointer group min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-midnight rounded"
       >
         <span className="text-base md:text-lg font-medium text-white pr-4 group-hover:text-gray-200 transition-colors">
           {question}
@@ -35,8 +36,9 @@ function AccordionItem({
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           style={{
-            filter: "drop-shadow(0 0 6px rgba(255, 0, 255, 0.7))",
+            filter: "drop-shadow(0 0 6px rgba(208, 173, 252, 0.7))",
           }}
+          aria-hidden="true"
         >
           <path
             d="M5 7.5L10 12.5L15 7.5"
@@ -48,15 +50,22 @@ function AccordionItem({
         </svg>
       </button>
 
+      {/*
+        Grid-row expansion — animates to actual content height.
+        No fixed max-h means long answers open fully.
+      */}
       <div
-        className={cn(
-          "overflow-hidden transition-all duration-300",
-          isOpen ? "max-h-96 opacity-100 pb-5" : "max-h-0 opacity-0"
-        )}
+        className="grid overflow-hidden"
+        style={{
+          gridTemplateRows: isOpen ? "1fr" : "0fr",
+          transition: "grid-template-rows 0.3s ease",
+        }}
       >
-        <p className="text-sm md:text-base text-gray-400 leading-relaxed px-1">
-          {answer}
-        </p>
+        <div className="min-h-0">
+          <p className="text-sm md:text-base text-gray-400 leading-relaxed px-1 pb-5">
+            {answer}
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -69,9 +78,9 @@ export function FAQ() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-[120px] px-4">
+    <section className="py-[var(--section-y)] px-4">
       <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 md:mb-16">
           <Heading as="h2">{t("faq.title")}</Heading>
         </div>
 
