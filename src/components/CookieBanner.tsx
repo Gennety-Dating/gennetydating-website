@@ -125,30 +125,38 @@ export function CookieBanner() {
         )}
 
         {/* Thin footer bar */}
-        <div className="glass md:bg-midnight md:backdrop-blur-none border-t border-glass-border px-4 md:px-8 py-3 shadow-lg">
-          <div className="flex items-center justify-between gap-4 max-w-screen-2xl mx-auto">
-            {/* Left: text */}
-            <p className="text-xs md:text-sm text-gray-400 flex-1 min-w-0">
-              {t("cookie.banner_text")}
-            </p>
-
-            {/* Right: buttons */}
-            <div className="flex items-center gap-2 shrink-0">
+        <div className="glass md:bg-midnight md:backdrop-blur-none border-t border-glass-border px-3 md:px-8 py-2.5 md:py-3 shadow-lg">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4 max-w-screen-2xl mx-auto">
+            {/* Text + customize link (mobile header row) */}
+            <div className="flex items-start justify-between gap-3 md:flex-1 md:min-w-0">
+              <p className="text-[11px] leading-snug md:text-sm text-gray-400 flex-1 min-w-0 line-clamp-2 md:line-clamp-none">
+                {t("cookie.banner_text")}
+              </p>
               <button
                 onClick={() => setShowCustomize((v) => !v)}
-                className="px-3 md:px-4 py-1.5 rounded-full border border-white/20 text-gray-400 text-xs md:text-sm font-medium hover:text-white hover:border-white/40 transition-colors whitespace-nowrap"
+                className="md:hidden text-[11px] text-gray-400 hover:text-white underline underline-offset-2 whitespace-nowrap shrink-0"
+              >
+                {showCustomize ? t("cookie.cancel") : t("cookie.customize")}
+              </button>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex items-center gap-1.5 md:gap-2 shrink-0">
+              <button
+                onClick={() => setShowCustomize((v) => !v)}
+                className="hidden md:inline-flex px-4 py-1.5 rounded-full border border-white/20 text-gray-400 text-sm font-medium hover:text-white hover:border-white/40 transition-colors whitespace-nowrap"
               >
                 {showCustomize ? t("cookie.cancel") : t("cookie.customize")}
               </button>
               <button
                 onClick={showCustomize ? handleSaveCustom : handleRejectNonEssential}
-                className="px-3 md:px-4 py-1.5 rounded-full border border-white/20 text-white text-xs md:text-sm font-medium hover:border-white/40 transition-colors whitespace-nowrap"
+                className="flex-1 md:flex-none px-3 md:px-4 py-1.5 rounded-full border border-white/20 text-white text-[11px] md:text-sm font-medium leading-tight hover:border-white/40 transition-colors md:whitespace-nowrap"
               >
                 {showCustomize ? t("cookie.save_preferences") : t("cookie.reject_non_essential")}
               </button>
               <button
                 onClick={handleAcceptAll}
-                className="px-4 md:px-6 py-1.5 rounded-full bg-magenta text-white text-xs md:text-sm font-medium hover:shadow-neon transition-shadow whitespace-nowrap"
+                className="flex-1 md:flex-none px-3 md:px-6 py-1.5 rounded-full bg-magenta text-white text-[11px] md:text-sm font-medium leading-tight hover:shadow-neon transition-shadow md:whitespace-nowrap"
               >
                 {t("cookie.accept_all")}
               </button>

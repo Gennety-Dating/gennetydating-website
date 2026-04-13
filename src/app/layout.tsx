@@ -5,6 +5,7 @@ import { Caveat } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/language-context";
 import { CookieBanner } from "@/components/CookieBanner";
+import { FloatingLanguageSwitcher } from "@/components/ui/floating-language-switcher";
 
 const geist = Geist({
   variable: "--font-geist",
@@ -50,6 +51,7 @@ export default function RootLayout({
         <LanguageProvider>
           {children}
           <CookieBanner />
+          <FloatingLanguageSwitcher />
         </LanguageProvider>
       </body>
     </html>
