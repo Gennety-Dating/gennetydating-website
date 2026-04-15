@@ -92,11 +92,11 @@ export function CookieBanner() {
         role="dialog"
         aria-modal="true"
         aria-label={t("cookie.banner_title")}
-        className="fixed bottom-0 left-0 right-0 z-[100]"
+        className="fixed bottom-3 left-3 right-3 md:bottom-0 md:left-0 md:right-0 z-[100]"
       >
         {/* Expandable customize panel — slides up above the bar */}
         {showCustomize && (
-          <div className="glass md:bg-midnight md:backdrop-blur-none border-t border-x border-glass-border rounded-t-xl mx-4 md:mx-8 p-4 mb-0 space-y-3">
+          <div className="glass md:bg-midnight md:backdrop-blur-none border border-glass-border md:border-t md:border-x md:border-b-0 rounded-2xl md:rounded-t-xl md:rounded-b-none mx-0 md:mx-8 mb-2 md:mb-0 p-4 space-y-3">
             <ToggleRow
               label={t("cookie.cat_necessary")}
               description={t("cookie.cat_necessary_desc")}
@@ -125,7 +125,7 @@ export function CookieBanner() {
         )}
 
         {/* Thin footer bar */}
-        <div className="glass md:bg-midnight md:backdrop-blur-none border-t border-glass-border px-3 md:px-8 py-2.5 md:py-3 shadow-lg">
+        <div className="glass md:bg-midnight md:backdrop-blur-none border border-glass-border md:border-0 md:border-t rounded-2xl md:rounded-none px-3 md:px-8 py-2.5 md:py-3 shadow-lg">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4 max-w-screen-2xl mx-auto">
             {/* Text + customize link (mobile header row) */}
             <div className="flex items-start justify-between gap-3 md:flex-1 md:min-w-0">
@@ -133,8 +133,9 @@ export function CookieBanner() {
                 {t("cookie.banner_text")}
               </p>
               <button
+                type="button"
                 onClick={() => setShowCustomize((v) => !v)}
-                className="md:hidden text-[11px] text-gray-400 hover:text-white underline underline-offset-2 whitespace-nowrap shrink-0"
+                className="md:hidden text-[11px] text-gray-400 hover:text-white underline underline-offset-2 whitespace-nowrap shrink-0 relative z-10 touch-manipulation"
               >
                 {showCustomize ? t("cookie.cancel") : t("cookie.customize")}
               </button>
@@ -143,20 +144,23 @@ export function CookieBanner() {
             {/* Buttons */}
             <div className="flex items-center gap-1.5 md:gap-2 shrink-0">
               <button
+                type="button"
                 onClick={() => setShowCustomize((v) => !v)}
                 className="hidden md:inline-flex px-4 py-1.5 rounded-full border border-white/20 text-gray-400 text-sm font-medium hover:text-white hover:border-white/40 transition-colors whitespace-nowrap"
               >
                 {showCustomize ? t("cookie.cancel") : t("cookie.customize")}
               </button>
               <button
+                type="button"
                 onClick={showCustomize ? handleSaveCustom : handleRejectNonEssential}
-                className="flex-1 md:flex-none px-3 md:px-4 py-1.5 rounded-full border border-white/20 text-white text-[11px] md:text-sm font-medium leading-tight hover:border-white/40 transition-colors md:whitespace-nowrap"
+                className="flex-1 md:flex-none px-3 md:px-4 py-1.5 rounded-full border border-white/20 text-white text-[11px] md:text-sm font-medium leading-tight hover:border-white/40 transition-colors md:whitespace-nowrap relative z-10 touch-manipulation"
               >
                 {showCustomize ? t("cookie.save_preferences") : t("cookie.reject_non_essential")}
               </button>
               <button
+                type="button"
                 onClick={handleAcceptAll}
-                className="flex-1 md:flex-none px-3 md:px-6 py-1.5 rounded-full bg-magenta text-white text-[11px] md:text-sm font-medium leading-tight hover:shadow-neon transition-shadow md:whitespace-nowrap"
+                className="flex-1 md:flex-none px-3 md:px-6 py-1.5 rounded-full bg-magenta text-white text-[11px] md:text-sm font-medium leading-tight hover:shadow-neon transition-shadow md:whitespace-nowrap relative z-10 touch-manipulation"
               >
                 {t("cookie.accept_all")}
               </button>
@@ -165,8 +169,8 @@ export function CookieBanner() {
         </div>
       </div>
 
-      {/* Spotify widget — fixed bottom-right, sits above the cookie bar */}
-      <div className="fixed bottom-16 right-4 md:right-6 z-[99] w-[280px] md:w-[320px]">
+      {/* Spotify widget — fixed bottom-right, sits above the cookie bar (hidden on mobile) */}
+      <div className="hidden md:block fixed bottom-16 right-4 md:right-6 z-[99] w-[280px] md:w-[320px]">
         <iframe
           data-testid="embed-iframe"
           style={{ borderRadius: 12 }}
