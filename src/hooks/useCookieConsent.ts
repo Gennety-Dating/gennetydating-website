@@ -68,24 +68,7 @@ export function useCookieConsent() {
       action: "accepted" | "rejected" | "partial" | "withdrawn",
       consents: ConsentChoices
     ) => {
-      const sessionId = getSessionId();
-
-      const res = await fetch("/api/consent", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          session_id: sessionId,
-          policy_version: POLICY_VERSION,
-          action,
-          consents,
-        }),
-      });
-
-      if (!res.ok) {
-        console.error("Failed to submit consent");
-        return;
-      }
-
+      // Persist locally and dismiss banner immediately — server logging is best-effort.
       const stored: StoredConsent = {
         version: POLICY_VERSION,
         action,
@@ -94,6 +77,23 @@ export function useCookieConsent() {
       localStorage.setItem(LS_CONSENT_KEY, JSON.stringify(stored));
       setHasConsented(true);
       setCurrentConsents(consents);
+
+      const sessionId = getSessionId();
+      try {
+        const res = await fetch("/api/consent", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            session_id: sessionId,
+            policy_version: POLICY_VERSION,
+            action,
+            consents,
+          }),
+        });
+        if (!res.ok) console.error("Failed to log consent on server");
+      } catch (err) {
+        console.error("Consent server request failed", err);
+      }
     },
     []
   );
