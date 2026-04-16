@@ -17,7 +17,9 @@ export function Navbar() {
       </Link>
 
       <div className="flex items-center gap-2 md:gap-3">
-        <LanguageSwitcher />
+        <div className="hidden md:block">
+          <LanguageSwitcher />
+        </div>
         <Button
           variant="ghost"
           size="sm"
