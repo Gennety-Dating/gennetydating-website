@@ -18,6 +18,7 @@ interface StoredConsent {
 
 const LS_SESSION_KEY = "cookie_consent_session_id";
 const LS_CONSENT_KEY = "cookie_consent_given";
+const CONSENT_EVENT = "cookie-consent-changed";
 
 function generateUUID(): string {
   return crypto.randomUUID();
@@ -50,17 +51,27 @@ export function useCookieConsent() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const stored = getStoredConsent();
-    if (stored && stored.version === POLICY_VERSION) {
-      setHasConsented(true);
-      setCurrentConsents(stored.consents);
-    } else {
-      setHasConsented(false);
-      setCurrentConsents(null);
+    function refresh() {
+      const stored = getStoredConsent();
+      if (stored && stored.version === POLICY_VERSION) {
+        setHasConsented(true);
+        setCurrentConsents(stored.consents);
+      } else {
+        setHasConsented(false);
+        setCurrentConsents(null);
+      }
     }
-    // Ensure session ID exists
+
+    refresh();
     getSessionId();
     setIsLoading(false);
+
+    window.addEventListener(CONSENT_EVENT, refresh);
+    window.addEventListener("storage", refresh);
+    return () => {
+      window.removeEventListener(CONSENT_EVENT, refresh);
+      window.removeEventListener("storage", refresh);
+    };
   }, []);
 
   const submitConsent = useCallback(
@@ -77,6 +88,7 @@ export function useCookieConsent() {
       localStorage.setItem(LS_CONSENT_KEY, JSON.stringify(stored));
       setHasConsented(true);
       setCurrentConsents(consents);
+      window.dispatchEvent(new Event(CONSENT_EVENT));
 
       const sessionId = getSessionId();
       try {
@@ -121,6 +133,7 @@ export function useCookieConsent() {
     localStorage.removeItem(LS_CONSENT_KEY);
     setHasConsented(false);
     setCurrentConsents(null);
+    window.dispatchEvent(new Event(CONSENT_EVENT));
   }, []);
 
   return {
