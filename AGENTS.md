@@ -12,7 +12,7 @@ IMPORTANT FOR AGENT: Use the following variables whenever specific links, keys, 
 
 [TELEGRAM_BOT_URL]: <ВСТАВЬТЕ_ССЫЛКУ_НА_ВАШЕГО_БОТА> (e.g., https://www.google.com/search?q=https://t.me/GennetyBot) - Use this for the primary CTA buttons.
 
-[gennetydating@gmail.com]: <> - Use this for footer or FAQ contacts.
+[dating@gennety.com]: <> - Use this for footer or FAQ contacts.
 
 2. Tech Stack & Architecture
 

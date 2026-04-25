@@ -3,7 +3,7 @@
    ======================================== */
 
 export const TELEGRAM_BOT_URL = "https://t.me/GennetyBot";
-export const CONTACT_EMAIL = "gennetydating@gmail.com";
+export const CONTACT_EMAIL = "dating@gennety.com";
 
 // --- How It Works Steps ---
 export interface Step {
