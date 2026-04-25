@@ -50,10 +50,10 @@ export function Footer() {
             >
               {t("footer.contact")}
             </a>
-            <a href="#" className="hover:text-white hover:underline underline-offset-4 transition-colors">
+            <a href="/terms" className="hover:text-white hover:underline underline-offset-4 transition-colors">
               {t("footer.terms")}
             </a>
-            <a href="#" className="hover:text-white hover:underline underline-offset-4 transition-colors">
+            <a href="/privacy" className="hover:text-white hover:underline underline-offset-4 transition-colors">
               {t("footer.privacy")}
             </a>
             <button
