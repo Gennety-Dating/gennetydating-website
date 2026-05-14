@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
 import {
+  ArrowLeft,
   Check,
   CheckCircle2,
   ChevronDown,
@@ -35,6 +36,8 @@ const languageOptions: Array<{ value: RegistrationLanguage; label: string }> = [
   { value: "en", label: "English" },
   { value: "uk", label: "Українська" },
   { value: "ru", label: "Русский" },
+  { value: "de", label: "Deutsch" },
+  { value: "pl", label: "Polski" },
 ];
 
 function errorLabel(raw: string, fallback: string): string {
@@ -173,35 +176,44 @@ export function RegistrationButton({
       </Button>
 
       {open && (
-        <div className="fixed inset-0 z-[80] flex items-center justify-center px-4 py-6">
+        <div className="fixed inset-0 z-[80] flex items-center justify-center px-4 py-6 overflow-y-auto">
+          {/* Полноэкранный фактурный фон тусовки (эффект отдельной страницы) */}
+          <div
+            className="absolute inset-0 bg-cover bg-center animate-fade-in"
+            style={{ backgroundImage: `url('/images/party-bg.jpg')` }}
+          />
+          {/* Атмосферный слой затемнения/размытия поверх фона для премиального контраста */}
           <button
             type="button"
-            className="absolute inset-0 bg-black/75"
+            className="absolute inset-0 bg-midnight/65 backdrop-blur-[6px] cursor-default"
             aria-label={t("registration.close")}
             onClick={() => !loading && setOpen(false)}
           />
+
+          {/* Кнопка "Назад" в верхнем левом углу страницы */}
+          <button
+            type="button"
+            className="absolute top-8 left-8 z-20 flex items-center justify-center w-12 h-12 rounded-full bg-black/50 border border-white/10 text-white hover:bg-black/80 hover:scale-110 transition-all duration-300 backdrop-blur-md cursor-pointer"
+            aria-label="Go back"
+            onClick={() => !loading && setOpen(false)}
+          >
+            <ArrowLeft className="w-6 h-6" />
+          </button>
+
+          {/* Увеличенное безрамочное окно с глубокими скруглениями */}
           <div
             role="dialog"
             aria-modal="true"
             aria-labelledby="registration-title"
-            className="relative z-10 w-full max-w-[360px] rounded-2xl border border-white/10 bg-[#070707] py-8 px-6 text-left shadow-2xl"
+            className="relative z-10 w-full max-w-[400px] rounded-[32px] bg-[#070707]/95 py-10 px-8 text-center shadow-[0_20px_80px_rgba(0,0,0,0.9)] my-auto"
           >
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h2 id="registration-title" className="text-2xl font-semibold text-white">
-                  {title}
-                </h2>
-                <p className="mt-2 text-sm leading-6 text-gray-400">{description}</p>
-              </div>
-              <button
-                type="button"
-                className="grid h-9 w-9 shrink-0 place-items-center rounded-[8px] border border-white/15 text-white/80 hover:bg-white/10"
-                aria-label={t("registration.close")}
-                disabled={loading}
-                onClick={() => setOpen(false)}
-              >
-                <X className="h-4 w-4" aria-hidden="true" />
-              </button>
+            <div>
+              <h2 id="registration-title" className="text-3xl font-semibold text-white">
+                {title}
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-gray-400 max-w-[280px] mx-auto">
+                {description}
+              </p>
             </div>
 
             <div className="mt-5 grid grid-cols-3 gap-2" aria-hidden="true">

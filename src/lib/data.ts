@@ -44,8 +44,8 @@ export interface Metric {
 
 export const metrics: Metric[] = [
   { label: "1,000+ Dates arranged", color: "magenta" },
-  { label: "68% Success Rate", color: "gold" },
-  { label: "93% Want a 2nd Date", color: "sky" },
+  { label: "74% Success Rate", color: "gold" },
+  { label: "92% Want a 2nd Date", color: "sky" },
 ];
 
 // --- Matchmaker Features ---

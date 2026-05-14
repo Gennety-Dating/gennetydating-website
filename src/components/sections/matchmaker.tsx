@@ -4,19 +4,34 @@ import { motion } from "framer-motion";
 import { Heading, Highlight } from "@/components/ui/typography";
 import { useLanguage } from "@/lib/language-context";
 import type { TranslationKeys } from "@/lib/i18n";
+import { Brain, HeartHandshake, Radar } from "lucide-react";
 
 const featureKeys = [1, 2, 3] as const;
 
 export function Matchmaker() {
   const { t } = useLanguage();
 
+  const getIcon = (num: number) => {
+    switch (num) {
+      case 1:
+        return <Brain className="w-12 h-12 text-magenta drop-shadow-[0_0_15px_rgba(255,0,255,0.6)] transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />;
+      case 2:
+        return <HeartHandshake className="w-12 h-12 text-magenta drop-shadow-[0_0_15px_rgba(255,0,255,0.6)] transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />;
+      case 3:
+        return <Radar className="w-12 h-12 text-magenta drop-shadow-[0_0_15px_rgba(255,0,255,0.6)] transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <section className="py-[120px] px-4 md:px-10 relative">
-      <Heading as="h2" className="text-center mb-20 tracking-tight">
+    <section className="py-[120px] px-4 md:px-10 relative overflow-hidden">
+      <Heading as="h2" className="text-center mb-24 tracking-tight">
         {t("matchmaker.title.pre")} <Highlight>{t("matchmaker.title.highlight")}</Highlight> {t("matchmaker.title.post")}
       </Heading>
 
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* Безрамочная распределенная структура (Distributed Ambient Canvas) */}
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 relative z-10">
         {featureKeys.map((num, i) => (
           <motion.div
             key={num}
@@ -24,30 +39,27 @@ export function Matchmaker() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-            whileHover={{ y: -4, transition: { duration: 0.3 } }}
-            className="relative group rounded-2xl p-8 overflow-hidden bg-white/[0.03] border border-white/10 hover:border-white/20 transition-colors duration-500 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)] backdrop-blur-2xl"
+            className="group relative flex flex-col items-center text-center p-6 rounded-3xl transition-all duration-500 hover:bg-magenta/[0.02]"
           >
-            {/* Размытое «жидкое» пятно на фоне для эффекта преломления */}
-            <div className="absolute -top-12 -right-12 w-32 h-32 bg-magenta/15 rounded-full blur-2xl group-hover:bg-magenta/25 group-hover:scale-150 transition-all duration-700 pointer-events-none" />
+            {/* Мягкая подсветка негативного пространства, активируемая при наведении */}
+            <div className="absolute w-32 h-32 bg-magenta/0 group-hover:bg-magenta/10 rounded-full blur-2xl transition-all duration-700 pointer-events-none" />
 
-            {/* Элегантная фоновая нумерация */}
-            <div className="absolute bottom-2 right-4 text-8xl font-serif font-bold text-white/[0.03] select-none pointer-events-none">
-              0{num}
+            {/* Изолированная векторная скульптура без контейнерных границ */}
+            <div className="mb-8 relative flex items-center justify-center">
+              {getIcon(num)}
             </div>
 
-            {/* Контент */}
-            <div className="relative z-10 flex flex-col h-full justify-between">
-              {/* Минималистичный индикатор вместо ИИ-иконки */}
-              <div className="w-2 h-2 rounded-full bg-magenta mb-8 shadow-[0_0_8px_rgba(208,173,252,0.8)]" />
+            {/* Тонкая направляющая горизонталь (Spatial Horizon) для архитектурного ритма */}
+            <div className="w-8 h-[2px] bg-gradient-to-r from-transparent via-magenta/40 to-transparent mb-6 transition-all duration-500 group-hover:w-16 group-hover:via-magenta" />
 
-              <div>
-                <h3 className="font-sans font-bold text-xl text-white mb-3 tracking-tight">
-                  {t(`matchmaker.${num}.title` as TranslationKeys)}
-                </h3>
-                <p className="text-gray-400 text-sm md:text-base leading-relaxed text-balance">
-                  {t(`matchmaker.${num}.desc` as TranslationKeys)}
-                </p>
-              </div>
+            {/* Симметрично отцентрированная типографика */}
+            <div className="relative z-10">
+              <h3 className="font-sans font-bold text-xl text-white mb-4 tracking-tight">
+                {t(`matchmaker.${num}.title` as TranslationKeys)}
+              </h3>
+              <p className="text-gray-400 text-sm md:text-base leading-relaxed max-w-sm mx-auto text-balance">
+                {t(`matchmaker.${num}.desc` as TranslationKeys)}
+              </p>
             </div>
           </motion.div>
         ))}
