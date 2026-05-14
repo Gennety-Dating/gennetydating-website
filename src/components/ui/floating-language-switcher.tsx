@@ -9,7 +9,7 @@ export function FloatingLanguageSwitcher() {
   if (isLoading || !hasConsented) return null;
 
   return (
-    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-40">
+    <div className="fixed bottom-4 right-4 z-40 md:hidden">
       <LanguageSwitcher />
     </div>
   );

@@ -140,6 +140,35 @@ export const translations = {
     "footer.rights": "Gennety. All rights reserved.",
     "footer.cookie_preferences": "Cookie Preferences",
 
+    // Registration Modal
+    "registration.secure": "Verified handoff",
+    "registration.close": "Close",
+    "registration.joinTitle": "Join Gennety",
+    "registration.joinDescription":
+      "Verify your university email here, then continue the profile onboarding in Telegram.",
+    "registration.loginTitle": "Log in",
+    "registration.loginDescription":
+      "Confirm your university email and we will open the right Telegram flow for your account.",
+    "registration.emailLabel": "University email",
+    "registration.languageLabel": "Onboarding language",
+    "registration.termsPrefix": "I agree to the",
+    "registration.terms": "Terms",
+    "registration.and": "and",
+    "registration.privacy": "Privacy Policy",
+    "registration.researchOptIn": "Allow anonymized research use of my answers.",
+    "registration.sendCode": "Send code",
+    "registration.codeSent": "We sent a code to",
+    "registration.codeLabel": "Verification code",
+    "registration.continueTelegram": "Continue in Telegram",
+    "registration.changeEmail": "Change email",
+    "registration.resend": "Resend code",
+    "registration.readyTitle": "Email verified",
+    "registration.readyDescription":
+      "Opening Telegram now. Your email, consent, and language are saved.",
+    "registration.openTelegram": "Open Telegram",
+    "registration.errorTerms": "Accept both the Terms/Privacy Policy and Research Agreement to continue.",
+    "registration.errorGeneric": "Something went wrong. Try again in a moment.",
+
     // Cookie Banner
     "cookie.banner_title": "Cookie Consent",
     "cookie.banner_text":
@@ -166,8 +195,8 @@ export const translations = {
     "nav.join": "Приєднатися",
 
     // Hero
-    "hero.headline": "сходи на побачення з",
-    "hero.highlight": "твоїм типом",
+    "hero.headline": "обирай реальні",
+    "hero.highlight": "побачення",
     "hero.cta": "Написати Gennety",
     "hero.disclaimer": "Продовжуючи, ви погоджуєтесь з",
     "hero.terms": "Умовами",
@@ -193,7 +222,7 @@ export const translations = {
 
     // Real Dates
     "realDates.title.highlight": "Реальні",
-    "realDates.title.rest": "побачення доставлені",
+    "realDates.title.rest": "побачення організовані",
     "metric.1": "1 000+ організованих побачень",
     "metric.2": "68% успішних пар",
     "metric.3": "93% хочуть друге побачення",
@@ -201,10 +230,10 @@ export const translations = {
     // Matchmaker
     "matchmaker.title.pre": "твій",
     "matchmaker.title.highlight": "персональний",
-    "matchmaker.title.post": "мейкер",
+    "matchmaker.title.post": "метчмейкер",
     "matchmaker.1.title": "На основі найкращих AI-досліджень",
     "matchmaker.1.desc":
-      "Побудовано на інсайтах професійних зводників та провідних когнітивних дослідників.",
+      "Побудовано на інсайтах професійних метчмейкерів та провідних когнітивних дослідників.",
     "matchmaker.2.title": "Gennety вивчає твої вподобання",
     "matchmaker.2.desc":
       "Наш AI аналізує твої інтереси, особистість та стиль побачень для пошуку сумісних пар.",
@@ -226,7 +255,7 @@ export const translations = {
     "comparison.gennetyDesc": "Один підібраний матч. Одне повідомлення. Готово.",
     "comparison.unread": "1 000+ непрочитаних повідомлень",
     "comparison.competitorsDesc":
-      "Нескінченні свайпи. Нескінченні розмові ні про що. Жодних реальних побачень.",
+      "Нескінченні свайпи. Нескінченні розмови ні про що. Жодних реальних побачень.",
 
     // Safety
     "safety.title.pre": "верифіковано. приватно.",
@@ -280,6 +309,35 @@ export const translations = {
     "footer.privacy": "Конфіденційність",
     "footer.rights": "Gennety. Усі права захищені.",
     "footer.cookie_preferences": "Налаштування Cookie",
+
+    // Registration Modal
+    "registration.secure": "Безпечний перехід",
+    "registration.close": "Закрити",
+    "registration.joinTitle": "Приєднатися до Gennety",
+    "registration.joinDescription":
+      "Підтверди університетську пошту тут, а анкету продовжиш у Telegram.",
+    "registration.loginTitle": "Увійти",
+    "registration.loginDescription":
+      "Підтверди університетську пошту, і ми відкриємо потрібний Telegram-flow для твого акаунта.",
+    "registration.emailLabel": "Університетська пошта",
+    "registration.languageLabel": "Мова онбордингу",
+    "registration.termsPrefix": "Я погоджуюся з",
+    "registration.terms": "Умовами",
+    "registration.and": "та",
+    "registration.privacy": "Політикою конфіденційності",
+    "registration.researchOptIn": "Дозволити анонімне використання моїх відповідей для досліджень.",
+    "registration.sendCode": "Надіслати код",
+    "registration.codeSent": "Ми надіслали код на",
+    "registration.codeLabel": "Код підтвердження",
+    "registration.continueTelegram": "Продовжити в Telegram",
+    "registration.changeEmail": "Змінити пошту",
+    "registration.resend": "Надіслати ще раз",
+    "registration.readyTitle": "Пошту підтверджено",
+    "registration.readyDescription":
+      "Відкриваємо Telegram. Пошта, згода та мова вже збережені.",
+    "registration.openTelegram": "Відкрити Telegram",
+    "registration.errorTerms": "Погодься з Умовами, Політикою та участю в дослідженнях, щоб продовжити.",
+    "registration.errorGeneric": "Щось пішло не так. Спробуй ще раз за мить.",
 
     // Cookie Banner
     "cookie.banner_title": "Згода на Cookie",

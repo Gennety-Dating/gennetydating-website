@@ -1,33 +1,12 @@
 "use client";
 
 import { Heading, ScriptHighlight } from "@/components/ui/typography";
-import { Button } from "@/components/ui/button";
 import { StarLogo } from "@/components/ui/star-logo";
-import { PolaroidCard } from "@/components/ui/polaroid";
 import { CountdownTimer } from "@/components/countdown-timer";
-import { TELEGRAM_BOT_URL } from "@/lib/data";
+import { RegistrationButton } from "@/components/registration-button";
 import { useLanguage } from "@/lib/language-context";
 
-function HeartOverlay() {
-  return (
-    <svg
-      className="absolute -top-4 -right-4 w-16 h-16 drop-shadow-neon-sm"
-      viewBox="0 0 64 64"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <path
-        d="M32 56 C32 56 8 40 8 22 C8 14 14 8 22 8 C27 8 31 11 32 14 C33 11 37 8 42 8 C50 8 56 14 56 22 C56 40 32 56 32 56Z"
-        fill="#d0adfc"
-        stroke="#dcc4fd"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
+
 
 export function Hero() {
   const { t } = useLanguage();
@@ -46,28 +25,23 @@ export function Hero() {
       </Heading>
 
       {/* Polaroid photo */}
-      <div className="relative mt-10 mb-8">
-        <PolaroidCard rotation={-2} className="max-w-[280px] md:max-w-[320px]">
-          {/* Placeholder couple photo — replace with real image */}
-          <div className="w-full aspect-[4/5] bg-gradient-to-br from-magenta/20 via-midnight to-magenta/10 flex items-center justify-center">
-            <span className="text-5xl select-none" aria-hidden="true">
-              💑
-            </span>
-          </div>
-        </PolaroidCard>
-        <HeartOverlay />
+      <div className="relative mt-8 mb-6 flex justify-center z-10">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/polaroid-couple.png"
+          alt="Couple"
+          className="max-w-[100px] sm:max-w-[110px] md:max-w-[130px] w-full h-auto drop-shadow-xl transition-transform hover:scale-[1.02] -rotate-2 pointer-events-none"
+        />
       </div>
 
       {/* Countdown timer */}
       <CountdownTimer />
 
       {/* CTA button */}
-      <Button
+      <RegistrationButton
+        mode="join"
         variant="solid"
         size="lg"
-        href={TELEGRAM_BOT_URL}
-        target="_blank"
-        rel="noopener noreferrer"
         className="mt-8"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -78,7 +52,7 @@ export function Hero() {
           aria-hidden="true"
         />
         {t("hero.cta")}
-      </Button>
+      </RegistrationButton>
 
       {/* Disclaimer */}
       <p className="mt-4 text-xs text-gray-400">

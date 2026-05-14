@@ -2,6 +2,12 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+Set the backend API URL used by the registration modal:
+
+```bash
+NEXT_PUBLIC_GENNETY_API_URL=http://localhost:3101/v1
+```
+
 First, run the development server:
 
 ```bash

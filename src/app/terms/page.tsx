@@ -11,7 +11,7 @@ export default function TermsPage() {
       <Navbar />
       
       <div className="flex-grow pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
-        <h1 className="text-4xl md:text-5xl font-serif mb-8 neon-text-sm">Terms of Service for Gennety Dating</h1>
+        <h1 className="text-4xl md:text-5xl font-sans font-bold mb-8 neon-text-sm">Terms of Service for Gennety Dating</h1>
         
         <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
           <p><strong>Last Updated:</strong> April 12, 2026</p>

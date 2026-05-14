@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { RegistrationButton } from "@/components/registration-button";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { useLanguage } from "@/lib/language-context";
 
@@ -20,20 +20,22 @@ export function Navbar() {
         <div className="hidden md:block">
           <LanguageSwitcher />
         </div>
-        <Button
+        <RegistrationButton
+          mode="login"
           variant="ghost"
           size="sm"
           className="px-3 py-1.5 text-xs md:px-4 md:py-2 md:text-sm"
         >
           {t("nav.login")}
-        </Button>
-        <Button
+        </RegistrationButton>
+        <RegistrationButton
+          mode="join"
           variant="solid"
           size="sm"
           className="px-3 py-1.5 text-xs md:px-4 md:py-2 md:text-sm"
         >
           {t("nav.join")}
-        </Button>
+        </RegistrationButton>
       </div>
     </nav>
   );

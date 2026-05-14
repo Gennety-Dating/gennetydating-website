@@ -17,7 +17,7 @@ export function Comparison() {
       <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
         {/* Left — Gennety */}
         <div className="flex flex-col items-center text-center">
-          <h3 className="font-serif text-2xl lowercase tracking-tight text-white mb-8">
+          <h3 className="font-sans font-bold text-2xl tracking-tight text-white mb-8">
             {t("comparison.gennety")}
           </h3>
 
@@ -46,7 +46,7 @@ export function Comparison() {
 
         {/* Right — Competitors */}
         <div className="flex flex-col items-center text-center">
-          <h3 className="font-serif text-2xl lowercase tracking-tight text-white mb-8">
+          <h3 className="font-sans font-bold text-2xl tracking-tight text-white mb-8">
             {t("comparison.competitors")}
           </h3>
 

@@ -1,53 +1,41 @@
 import { cn } from "@/lib/utils";
 
 /* --- MessageBubble ---
-   Glassmorphic iMessage-style chat bubble.
-   Used for testimonials, comparison section, and footer slogan. */
+   Pure minimalist glassmorphic message container geometry.
+   Renders cleanly as a rounded rectangle without intrusive side tails. */
 
 interface MessageBubbleProps {
   children: React.ReactNode;
   variant?: "default" | "blue" | "dark";
-  tail?: "left" | "right" | "none";
+  tail?: "left" | "right" | "none"; // Kept for API compatibility
   className?: string;
 }
-
-const variantStyles: Record<string, string> = {
-  default: "glass text-white",
-  blue: "bg-[#007AFF]/90 backdrop-blur-xl text-white border border-white/10",
-  dark: "bg-white/10 backdrop-blur-xl text-white border border-white/10",
-};
 
 export function MessageBubble({
   children,
   variant = "default",
-  tail = "none",
   className,
 }: MessageBubbleProps) {
+  // Нативные фоновые классы
+  const baseBg = variant === "blue" 
+    ? "bg-[#007AFF]/90 text-white" 
+    : variant === "dark" 
+    ? "bg-white/10 text-white" 
+    : "glass text-white";
+
+  const hasBorder = variant === "blue" || variant === "dark";
+
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn("relative inline-block w-full", className)}>
       <div
         className={cn(
-          "rounded-2xl px-5 py-3.5 text-sm leading-relaxed",
-          variantStyles[variant]
+          "relative z-10 rounded-2xl px-5 py-3.5 text-sm leading-relaxed backdrop-blur-xl shadow-lg transition-all duration-300",
+          baseBg,
+          hasBorder && "border border-white/10"
         )}
       >
         {children}
       </div>
-
-      {/* iMessage-style tail */}
-      {tail !== "none" && (
-        <div
-          className={cn(
-            "absolute -bottom-1.5 w-4 h-4 rounded-br-xl",
-            tail === "left" && "left-4",
-            tail === "right" && "right-4",
-            variant === "default" && "bg-glass border-b border-r border-glass-border",
-            variant === "blue" && "bg-[#007AFF]/90",
-            variant === "dark" && "bg-white/10"
-          )}
-          style={{ transform: tail === "left" ? "skewX(20deg)" : "skewX(-20deg)" }}
-        />
-      )}
     </div>
   );
 }
