@@ -135,7 +135,7 @@ export const translations = {
 
     // Marquee
     "marquee.text": "Date Without Swiping",
-    "marquee.manifesto": "Our Manifesto",
+    "marquee.manifesto": "Our Thesis",
 
     // Footer
     "footer.slogan": "A friend that texts you ready-to-go dates.",
@@ -305,7 +305,7 @@ export const translations = {
 
     // Marquee
     "marquee.text": "Побачення без свайпів",
-    "marquee.manifesto": "Наш маніфест",
+    "marquee.manifesto": "Наша теза",
 
     // Footer
     "footer.slogan": "Друг, який пише тобі готові побачення.",
@@ -475,7 +475,7 @@ export const translations = {
 
     // Marquee
     "marquee.text": "Свидания без свайпов",
-    "marquee.manifesto": "Наш манифест",
+    "marquee.manifesto": "Наш тезис",
 
     // Footer
     "footer.slogan": "Друг, который пишет тебе готовые свидания.",
@@ -645,7 +645,7 @@ export const translations = {
 
     // Marquee
     "marquee.text": "Dates ohne Swipen",
-    "marquee.manifesto": "Unser Manifest",
+    "marquee.manifesto": "Unsere These",
 
     // Footer
     "footer.slogan": "Der Freund, der dir fertige Dates schreibt.",
@@ -815,7 +815,7 @@ export const translations = {
 
     // Marquee
     "marquee.text": "Randki bez swajpowania",
-    "marquee.manifesto": "Nasz manifest",
+    "marquee.manifesto": "Nasza teza",
 
     // Footer
     "footer.slogan": "Przyjaciel, który umawia Cię na gotowe randki.",

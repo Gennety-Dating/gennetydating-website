@@ -92,75 +92,63 @@ export function CookieBanner() {
         role="dialog"
         aria-modal="true"
         aria-label={t("cookie.banner_title")}
-        className="fixed bottom-3 left-3 right-3 md:bottom-0 md:left-0 md:right-0 z-[100]"
+        className="fixed bottom-3 left-3 right-3 z-[100] md:bottom-5 md:left-6 md:right-6"
       >
-        {/* Expandable customize panel — slides up above the bar */}
-        {showCustomize && (
-          <div className="glass md:bg-midnight md:backdrop-blur-none border border-glass-border md:border-t md:border-x md:border-b-0 rounded-2xl md:rounded-t-xl md:rounded-b-none mx-0 md:mx-8 mb-2 md:mb-0 p-4 space-y-3">
-            <ToggleRow
-              label={t("cookie.cat_necessary")}
-              description={t("cookie.cat_necessary_desc")}
-              checked={true}
-              disabled
-            />
-            <ToggleRow
-              label={t("cookie.cat_analytics")}
-              description={t("cookie.cat_analytics_desc")}
-              checked={choices.analytics}
-              onChange={(v) => setChoices((c) => ({ ...c, analytics: v }))}
-            />
-            <ToggleRow
-              label={t("cookie.cat_marketing")}
-              description={t("cookie.cat_marketing_desc")}
-              checked={choices.marketing}
-              onChange={(v) => setChoices((c) => ({ ...c, marketing: v }))}
-            />
-            <ToggleRow
-              label={t("cookie.cat_functional")}
-              description={t("cookie.cat_functional_desc")}
-              checked={choices.functional}
-              onChange={(v) => setChoices((c) => ({ ...c, functional: v }))}
-            />
-          </div>
-        )}
-
-        {/* Thin footer bar */}
-        <div className="glass md:bg-midnight md:backdrop-blur-none border border-glass-border md:border-0 md:border-t rounded-2xl md:rounded-none px-3 md:px-8 py-2.5 md:py-3 shadow-lg">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4 max-w-screen-2xl mx-auto">
-            {/* Text + customize link (mobile header row) */}
-            <div className="flex items-start justify-between gap-3 md:flex-1 md:min-w-0">
-              <p className="text-[11px] leading-snug md:text-sm text-gray-400 flex-1 min-w-0 line-clamp-2 md:line-clamp-none">
-                {t("cookie.banner_text")}
-              </p>
-              <button
-                type="button"
-                onClick={() => setShowCustomize((v) => !v)}
-                className="md:hidden text-[11px] text-gray-400 hover:text-white underline underline-offset-2 whitespace-nowrap shrink-0 relative z-10 touch-manipulation"
-              >
-                {showCustomize ? t("cookie.cancel") : t("cookie.customize")}
-              </button>
+        <div className="cookie-liquid-shell mx-auto max-w-screen-2xl overflow-hidden rounded-[24px] px-3 py-3 md:rounded-[28px] md:px-5 md:py-4">
+          {showCustomize && (
+            <div className="mb-3 grid gap-2.5 md:grid-cols-4">
+              <ToggleRow
+                label={t("cookie.cat_necessary")}
+                description={t("cookie.cat_necessary_desc")}
+                checked={true}
+                disabled
+              />
+              <ToggleRow
+                label={t("cookie.cat_analytics")}
+                description={t("cookie.cat_analytics_desc")}
+                checked={choices.analytics}
+                onChange={(v) => setChoices((c) => ({ ...c, analytics: v }))}
+              />
+              <ToggleRow
+                label={t("cookie.cat_marketing")}
+                description={t("cookie.cat_marketing_desc")}
+                checked={choices.marketing}
+                onChange={(v) => setChoices((c) => ({ ...c, marketing: v }))}
+              />
+              <ToggleRow
+                label={t("cookie.cat_functional")}
+                description={t("cookie.cat_functional_desc")}
+                checked={choices.functional}
+                onChange={(v) => setChoices((c) => ({ ...c, functional: v }))}
+              />
             </div>
+          )}
 
-            {/* Buttons */}
-            <div className="flex items-center gap-1.5 md:gap-2 shrink-0">
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <p className="min-w-0 flex-1 text-[12px] leading-5 text-white/[0.68] md:text-sm md:leading-6">
+              {t("cookie.banner_text")}
+            </p>
+
+            <div className="grid grid-cols-3 gap-2 md:flex md:items-center md:gap-2">
               <button
+                ref={firstFocusRef}
                 type="button"
                 onClick={() => setShowCustomize((v) => !v)}
-                className="hidden md:inline-flex px-4 py-1.5 rounded-full border border-white/20 text-gray-400 text-sm font-medium hover:text-white hover:border-white/40 transition-colors whitespace-nowrap"
+                className="cookie-liquid-button text-white/[0.68] hover:text-white"
               >
                 {showCustomize ? t("cookie.cancel") : t("cookie.customize")}
               </button>
               <button
                 type="button"
                 onClick={showCustomize ? handleSaveCustom : handleRejectNonEssential}
-                className="flex-1 md:flex-none px-3 md:px-4 py-1.5 rounded-full border border-white/20 text-white text-[11px] md:text-sm font-medium leading-tight hover:border-white/40 transition-colors md:whitespace-nowrap relative z-10 touch-manipulation"
+                className="cookie-liquid-button text-white hover:bg-white/[0.13]"
               >
                 {showCustomize ? t("cookie.save_preferences") : t("cookie.reject_non_essential")}
               </button>
               <button
                 type="button"
                 onClick={handleAcceptAll}
-                className="flex-1 md:flex-none px-3 md:px-6 py-1.5 rounded-full bg-magenta text-white text-[11px] md:text-sm font-medium leading-tight hover:shadow-neon transition-shadow md:whitespace-nowrap relative z-10 touch-manipulation"
+                className="cookie-liquid-primary"
               >
                 {t("cookie.accept_all")}
               </button>
@@ -170,19 +158,21 @@ export function CookieBanner() {
       </div>
 
       {/* Spotify widget — fixed bottom-right, sits above the cookie bar (hidden on mobile) */}
-      <div className="hidden md:block fixed bottom-16 right-4 md:right-6 z-[99] w-[280px] md:w-[320px]">
-        <iframe
-          data-testid="embed-iframe"
-          style={{ borderRadius: 12 }}
-          src="https://open.spotify.com/embed/track/7BKLCZ1jbUBVqRi2FVlTVw?utm_source=generator"
-          width="100%"
-          height="152"
-          frameBorder="0"
-          allowFullScreen
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-        />
-      </div>
+      {!showCustomize && (
+        <div className="hidden md:block fixed bottom-[104px] right-4 md:right-6 z-[99] w-[280px] md:w-[320px]">
+          <iframe
+            data-testid="embed-iframe"
+            style={{ borderRadius: 12 }}
+            src="https://open.spotify.com/embed/track/7BKLCZ1jbUBVqRi2FVlTVw?utm_source=generator"
+            width="100%"
+            height="152"
+            frameBorder="0"
+            allowFullScreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+          />
+        </div>
+      )}
     </>
   );
 }
@@ -201,8 +191,8 @@ function ToggleRow({
   onChange?: (value: boolean) => void;
 }) {
   return (
-    <label className="flex items-start gap-3 cursor-pointer">
-      <div className="pt-0.5">
+    <label className="cookie-consent-tile cursor-pointer">
+      <div className="shrink-0 pt-0.5">
         <button
           role="switch"
           aria-checked={checked}
@@ -211,23 +201,20 @@ function ToggleRow({
             e.preventDefault();
             if (!disabled) onChange?.(!checked);
           }}
-          className={`
-            relative w-10 h-6 rounded-full transition-colors
-            ${checked ? "bg-magenta" : "bg-white/10"}
-            ${disabled ? "opacity-50 cursor-not-allowed" : ""}
-          `}
+          className={`relative h-6 w-10 rounded-full transition-all duration-200 ${
+            checked ? "bg-magenta shadow-[0_0_18px_rgba(208,173,252,0.26)]" : "bg-white/[0.14]"
+          } ${disabled ? "cursor-not-allowed opacity-[0.55]" : "hover:bg-white/[0.20]"}`}
         >
           <span
-            className={`
-              absolute top-1 left-1 w-4 h-4 rounded-full bg-white transition-transform
-              ${checked ? "translate-x-4" : "translate-x-0"}
-            `}
+            className={`absolute left-1 top-1 h-4 w-4 rounded-full bg-white shadow-sm transition-transform duration-200 ${
+              checked ? "translate-x-4" : "translate-x-0"
+            }`}
           />
         </button>
       </div>
-      <div>
-        <span className="text-sm font-medium text-white">{label}</span>
-        <p className="text-xs text-gray-500">{description}</p>
+      <div className="min-w-0">
+        <span className="block text-sm font-semibold text-white">{label}</span>
+        <p className="mt-1 text-xs leading-5 text-white/[0.48]">{description}</p>
       </div>
     </label>
   );
