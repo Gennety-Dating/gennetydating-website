@@ -57,6 +57,7 @@ export function CookieBanner() {
   }, [showCustomize]);
 
   const handleAcceptAll = useCallback(() => {
+    setShowCustomize(false);
     submitConsent("accepted", {
       necessary: true,
       analytics: true,
@@ -66,6 +67,7 @@ export function CookieBanner() {
   }, [submitConsent]);
 
   const handleRejectNonEssential = useCallback(() => {
+    setShowCustomize(false);
     submitConsent("rejected", {
       necessary: true,
       analytics: false,
@@ -82,98 +84,104 @@ export function CookieBanner() {
     setShowCustomize(false);
   }, [choices, submitConsent]);
 
-  if (isLoading || hasConsented) return null;
+  const showBanner = !isLoading && !hasConsented;
 
   return (
     <>
-      {/* Cookie consent footer bar */}
-      <div
-        ref={dialogRef}
-        role="dialog"
-        aria-modal="true"
-        aria-label={t("cookie.banner_title")}
-        className="fixed bottom-3 left-3 right-3 z-[100] md:bottom-5 md:left-6 md:right-6"
-      >
-        <div className="cookie-liquid-shell mx-auto max-w-screen-2xl overflow-hidden rounded-[24px] px-3 py-3 md:rounded-[28px] md:px-5 md:py-4">
-          {showCustomize && (
-            <div className="mb-3 grid gap-2.5 md:grid-cols-4">
-              <ToggleRow
-                label={t("cookie.cat_necessary")}
-                description={t("cookie.cat_necessary_desc")}
-                checked={true}
-                disabled
-              />
-              <ToggleRow
-                label={t("cookie.cat_analytics")}
-                description={t("cookie.cat_analytics_desc")}
-                checked={choices.analytics}
-                onChange={(v) => setChoices((c) => ({ ...c, analytics: v }))}
-              />
-              <ToggleRow
-                label={t("cookie.cat_marketing")}
-                description={t("cookie.cat_marketing_desc")}
-                checked={choices.marketing}
-                onChange={(v) => setChoices((c) => ({ ...c, marketing: v }))}
-              />
-              <ToggleRow
-                label={t("cookie.cat_functional")}
-                description={t("cookie.cat_functional_desc")}
-                checked={choices.functional}
-                onChange={(v) => setChoices((c) => ({ ...c, functional: v }))}
-              />
-            </div>
-          )}
+      {showBanner && showCustomize && <div aria-hidden className="cookie-spotify-cover" />}
 
-          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <p className="min-w-0 flex-1 text-[12px] leading-5 text-white/[0.68] md:text-sm md:leading-6">
-              {t("cookie.banner_text")}
-            </p>
+      {showBanner && (
+        <div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label={t("cookie.banner_title")}
+          className="fixed bottom-3 left-3 right-3 z-[101] md:bottom-5 md:left-6 md:right-6"
+        >
+          <div className="cookie-liquid-shell mx-auto max-w-screen-2xl overflow-hidden rounded-[24px] px-3 py-3 md:rounded-[28px] md:px-5 md:py-4">
+            {showCustomize && (
+              <div className="mb-3 grid gap-2.5 md:grid-cols-4">
+                <ToggleRow
+                  label={t("cookie.cat_necessary")}
+                  description={t("cookie.cat_necessary_desc")}
+                  checked={true}
+                  disabled
+                />
+                <ToggleRow
+                  label={t("cookie.cat_analytics")}
+                  description={t("cookie.cat_analytics_desc")}
+                  checked={choices.analytics}
+                  onChange={(v) => setChoices((c) => ({ ...c, analytics: v }))}
+                />
+                <ToggleRow
+                  label={t("cookie.cat_marketing")}
+                  description={t("cookie.cat_marketing_desc")}
+                  checked={choices.marketing}
+                  onChange={(v) => setChoices((c) => ({ ...c, marketing: v }))}
+                />
+                <ToggleRow
+                  label={t("cookie.cat_functional")}
+                  description={t("cookie.cat_functional_desc")}
+                  checked={choices.functional}
+                  onChange={(v) => setChoices((c) => ({ ...c, functional: v }))}
+                />
+              </div>
+            )}
 
-            <div className="grid grid-cols-3 gap-2 md:flex md:items-center md:gap-2">
-              <button
-                ref={firstFocusRef}
-                type="button"
-                onClick={() => setShowCustomize((v) => !v)}
-                className="cookie-liquid-button text-white/[0.68] hover:text-white"
-              >
-                {showCustomize ? t("cookie.cancel") : t("cookie.customize")}
-              </button>
-              <button
-                type="button"
-                onClick={showCustomize ? handleSaveCustom : handleRejectNonEssential}
-                className="cookie-liquid-button text-white hover:bg-white/[0.13]"
-              >
-                {showCustomize ? t("cookie.save_preferences") : t("cookie.reject_non_essential")}
-              </button>
-              <button
-                type="button"
-                onClick={handleAcceptAll}
-                className="cookie-liquid-primary"
-              >
-                {t("cookie.accept_all")}
-              </button>
+            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+              <p className="min-w-0 flex-1 text-[12px] leading-5 text-white/[0.68] md:text-sm md:leading-6">
+                {t("cookie.banner_text")}
+              </p>
+
+              <div className="grid grid-cols-3 gap-2 md:flex md:items-center md:gap-2">
+                <button
+                  ref={firstFocusRef}
+                  type="button"
+                  onClick={() => setShowCustomize((v) => !v)}
+                  className="cookie-liquid-button text-white/[0.68] hover:text-white"
+                >
+                  {showCustomize ? t("cookie.cancel") : t("cookie.customize")}
+                </button>
+                <button
+                  type="button"
+                  onClick={showCustomize ? handleSaveCustom : handleRejectNonEssential}
+                  className="cookie-liquid-button text-white hover:bg-white/[0.13]"
+                >
+                  {showCustomize ? t("cookie.save_preferences") : t("cookie.reject_non_essential")}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleAcceptAll}
+                  className="cookie-liquid-primary"
+                >
+                  {t("cookie.accept_all")}
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Spotify widget — fixed bottom-right, sits above the cookie bar (hidden on mobile) */}
-      {!showCustomize && (
-        <div className="hidden md:block fixed bottom-[104px] right-4 md:right-6 z-[99] w-[280px] md:w-[320px]">
-          <iframe
-            data-testid="embed-iframe"
-            style={{ borderRadius: 12 }}
-            src="https://open.spotify.com/embed/track/7BKLCZ1jbUBVqRi2FVlTVw?utm_source=generator"
-            width="100%"
-            height="152"
-            frameBorder="0"
-            allowFullScreen
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-          />
-        </div>
       )}
+
+      <SpotifyWidget />
     </>
+  );
+}
+
+function SpotifyWidget() {
+  return (
+    <div className="hidden md:block fixed bottom-[104px] right-4 md:right-6 z-[99] w-[280px] md:w-[320px]">
+      <iframe
+        data-testid="embed-iframe"
+        style={{ borderRadius: 12 }}
+        src="https://open.spotify.com/embed/track/7BKLCZ1jbUBVqRi2FVlTVw?utm_source=generator"
+        width="100%"
+        height="152"
+        frameBorder="0"
+        allowFullScreen
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+      />
+    </div>
   );
 }
 
