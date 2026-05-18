@@ -2,6 +2,15 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/lib/language-context";
+import type { Locale } from "@/lib/i18n";
+
+const dateLocales: Record<Locale, string> = {
+  en: "en-US",
+  uk: "uk-UA",
+  ru: "ru-RU",
+  de: "de-DE",
+  pl: "pl-PL",
+};
 
 function getNextThursdayKyiv(): Date {
   const now = new Date();
@@ -24,8 +33,8 @@ function getNextThursdayKyiv(): Date {
   return new Date(targetKyiv.getTime() + offset);
 }
 
-function formatDate(date: Date, locale: string): string {
-  return date.toLocaleDateString(locale === "uk" ? "uk-UA" : "en-US", {
+function formatDate(date: Date, locale: Locale): string {
+  return date.toLocaleDateString(dateLocales[locale], {
     weekday: "long",
     month: "long",
     day: "numeric",

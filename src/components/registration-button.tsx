@@ -10,7 +10,6 @@ import {
   Loader2,
   Mail,
   Send,
-  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/language-context";
@@ -20,6 +19,7 @@ import {
   type RegistrationLanguage,
   type RegistrationPurpose,
 } from "@/lib/registration-api";
+import type { Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 type RegistrationStep = "email" | "code" | "done";
@@ -39,6 +39,12 @@ const languageOptions: Array<{ value: RegistrationLanguage; label: string }> = [
   { value: "de", label: "Deutsch" },
   { value: "pl", label: "Polski" },
 ];
+
+function registrationLanguageFromLocale(locale: Locale): RegistrationLanguage {
+  return languageOptions.some((option) => option.value === locale)
+    ? (locale as RegistrationLanguage)
+    : "en";
+}
 
 function errorLabel(raw: string, fallback: string): string {
   const value = raw.toLowerCase();
@@ -63,7 +69,7 @@ export function RegistrationButton({
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [language, setLanguage] = useState<RegistrationLanguage>(
-    locale === "uk" ? "uk" : "en",
+    registrationLanguageFromLocale(locale),
   );
   const [languageOpen, setLanguageOpen] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
@@ -85,7 +91,7 @@ export function RegistrationButton({
 
   useEffect(() => {
     if (!open) return;
-    setLanguage(locale === "uk" ? "uk" : "en");
+    setLanguage(registrationLanguageFromLocale(locale));
   }, [locale, open]);
 
   useEffect(() => {

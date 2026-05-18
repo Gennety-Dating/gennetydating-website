@@ -6,7 +6,7 @@ export type UserStatus = "onboarding" | "active" | "paused";
 export type OnboardingStep = "consent" | "language" | "conversational" | "completed";
 export type Gender = "male" | "female";
 export type GenderPreference = "men" | "women" | "both";
-export type Language = "en" | "ru" | "uk";
+export type Language = "en" | "ru" | "uk" | "de" | "pl";
 
 export interface UserProfile {
   height: number | null;
