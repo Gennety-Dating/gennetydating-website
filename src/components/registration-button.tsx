@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
 import {
   ArrowLeft,
   Check,
@@ -94,6 +94,41 @@ export function RegistrationButton({
     setLanguage(registrationLanguageFromLocale(locale));
   }, [locale, open]);
 
+  useLayoutEffect(() => {
+    if (!open) return;
+    const scrollY = window.scrollY;
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousBodyPosition = document.body.style.position;
+    const previousBodyTop = document.body.style.top;
+    const previousBodyLeft = document.body.style.left;
+    const previousBodyRight = document.body.style.right;
+    const previousBodyWidth = document.body.style.width;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+
+    document.body.dataset.registrationModalOpen = "true";
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+    window.dispatchEvent(new Event("gennety:registration-modal"));
+
+    return () => {
+      delete document.body.dataset.registrationModalOpen;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+      document.body.style.overflow = previousBodyOverflow;
+      document.body.style.position = previousBodyPosition;
+      document.body.style.top = previousBodyTop;
+      document.body.style.left = previousBodyLeft;
+      document.body.style.right = previousBodyRight;
+      document.body.style.width = previousBodyWidth;
+      window.dispatchEvent(new Event("gennety:registration-modal"));
+      window.scrollTo(0, scrollY);
+    };
+  }, [open]);
+
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (event: KeyboardEvent) => {
@@ -182,16 +217,16 @@ export function RegistrationButton({
       </Button>
 
       {open && (
-        <div className="fixed inset-0 z-[80] flex items-center justify-center px-4 py-6 overflow-y-auto">
+        <div className="fixed inset-0 z-[80] overflow-y-auto overscroll-contain bg-midnight px-4 py-0 md:flex md:items-center md:justify-center md:py-6">
           {/* Полноэкранный фактурный фон тусовки (эффект отдельной страницы) */}
           <div
-            className="absolute inset-0 bg-cover bg-center animate-fade-in"
+            className="fixed inset-0 bg-cover bg-center animate-fade-in"
             style={{ backgroundImage: `url('/images/party-bg.jpg')` }}
           />
           {/* Атмосферный слой затемнения/размытия поверх фона для премиального контраста */}
           <button
             type="button"
-            className="absolute inset-0 bg-midnight/65 backdrop-blur-[6px] cursor-default"
+            className="fixed inset-0 bg-midnight/65 backdrop-blur-[6px] cursor-default"
             aria-label={t("registration.close")}
             onClick={() => !loading && setOpen(false)}
           />
@@ -199,20 +234,21 @@ export function RegistrationButton({
           {/* Кнопка "Назад" в верхнем левом углу страницы */}
           <button
             type="button"
-            className="absolute top-8 left-8 z-20 flex items-center justify-center w-12 h-12 rounded-full bg-black/50 border border-white/10 text-white hover:bg-black/80 hover:scale-110 transition-all duration-300 backdrop-blur-md cursor-pointer"
+            className="fixed top-5 left-4 z-20 flex items-center justify-center w-12 h-12 rounded-full bg-black/50 border border-white/10 text-white hover:bg-black/80 hover:scale-110 transition-all duration-300 backdrop-blur-md cursor-pointer md:top-8 md:left-8"
             aria-label="Go back"
             onClick={() => !loading && setOpen(false)}
           >
             <ArrowLeft className="w-6 h-6" />
           </button>
 
-          {/* Увеличенное безрамочное окно с глубокими скруглениями */}
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="registration-title"
-            className="relative z-10 w-full max-w-[400px] rounded-[32px] bg-[#070707]/95 py-10 px-8 text-center shadow-[0_20px_80px_rgba(0,0,0,0.9)] my-auto"
-          >
+          <div className="relative z-10 flex min-h-[100svh] w-full items-center justify-center py-20 md:min-h-0 md:py-0">
+            {/* Увеличенное безрамочное окно с глубокими скруглениями */}
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="registration-title"
+              className="w-full max-w-[400px] rounded-[32px] bg-[#070707]/95 py-10 px-8 text-center shadow-[0_20px_80px_rgba(0,0,0,0.9)]"
+            >
             <div>
               <h2 id="registration-title" className="text-3xl font-semibold text-white">
                 {title}
@@ -444,6 +480,7 @@ export function RegistrationButton({
                 </Button>
               </div>
             )}
+            </div>
           </div>
         </div>
       )}

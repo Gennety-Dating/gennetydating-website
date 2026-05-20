@@ -113,6 +113,10 @@ body::after {
   );
 }
 
+body[data-registration-modal-open="true"] .floating-language-switcher {
+  display: none;
+}
+
 /* --- Glassmorphism Utility --- */
 .glass {
   background: rgba(255, 255, 255, 0.06);

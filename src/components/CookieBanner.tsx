@@ -7,6 +7,7 @@ import { useLanguage } from "@/lib/language-context";
 export function CookieBanner() {
   const { hasConsented, isLoading, submitConsent } = useCookieConsent();
   const [showCustomize, setShowCustomize] = useState(false);
+  const [registrationModalOpen, setRegistrationModalOpen] = useState(false);
   const [choices, setChoices] = useState<ConsentChoices>({
     necessary: true,
     analytics: false,
@@ -17,6 +18,20 @@ export function CookieBanner() {
   const dialogRef = useRef<HTMLDivElement>(null);
   const firstFocusRef = useRef<HTMLButtonElement>(null);
   const { t } = useLanguage();
+
+  useEffect(() => {
+    const syncRegistrationModalState = () => {
+      const isOpen = document.body.dataset.registrationModalOpen === "true";
+      setRegistrationModalOpen(isOpen);
+      if (isOpen) setShowCustomize(false);
+    };
+
+    syncRegistrationModalState();
+    window.addEventListener("gennety:registration-modal", syncRegistrationModalState);
+    return () => {
+      window.removeEventListener("gennety:registration-modal", syncRegistrationModalState);
+    };
+  }, []);
 
   // Focus trap for customize modal
   useEffect(() => {
@@ -85,6 +100,8 @@ export function CookieBanner() {
   }, [choices, submitConsent]);
 
   const showBanner = !isLoading && !hasConsented;
+
+  if (registrationModalOpen) return null;
 
   return (
     <>
