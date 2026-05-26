@@ -104,10 +104,10 @@ export function Matchmaker() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
               className={cn(
-                "flex max-w-[85%] rounded-[20px] px-5 py-3 text-sm md:text-base leading-relaxed text-left backdrop-blur-md border",
+                "flex max-w-[85%] rounded-[20px] px-5 py-3 text-sm md:text-base leading-relaxed text-left",
                 msg.sender === "agent"
-                  ? "bg-white/10 text-white border-white/10 self-start rounded-tl-sm"
-                  : "bg-magenta/20 text-white border-magenta/30 shadow-neon-sm self-end rounded-tr-sm font-medium"
+                  ? "bg-[#e9e9eb] text-black self-start rounded-tl-sm"
+                  : "bg-black text-white self-end rounded-tr-sm font-medium"
               )}
             >
               {t(msg.translationKey)}
