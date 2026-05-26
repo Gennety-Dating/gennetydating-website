@@ -78,9 +78,13 @@ export function Matchmaker() {
   return (
     <section
       ref={containerRef}
-      className="py-[120px] px-4 md:px-10 bg-midnight text-white relative overflow-hidden z-10"
+      className="py-[120px] px-4 md:px-10 relative overflow-hidden bg-cover bg-center"
+      style={{ backgroundImage: "url('/images/matchmaker-bg.jpg')" }}
     >
-      <div className="max-w-3xl mx-auto text-center mb-16">
+      {/* Затемняющий оверлей для идеального контраста и интеграции в темную тему */}
+      <div className="absolute inset-0 bg-[#050505]/75 z-0" />
+
+      <div className="relative z-10 max-w-3xl mx-auto text-center mb-12">
         <h2 className="text-3xl md:text-5xl font-sans font-bold tracking-tight text-white leading-[1.15] mb-4">
           {t("matchmaker.title")}
         </h2>
@@ -89,8 +93,8 @@ export function Matchmaker() {
         </p>
       </div>
 
-      {/* Стеклянный интерактивный контейнер чата (Glassmorphic chat device container) */}
-      <div className="w-full max-w-[480px] mx-auto min-h-[380px] p-6 bg-white/[0.01] border border-white/5 rounded-[32px] flex flex-col gap-4 justify-start shadow-[0_24px_80px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.03)] backdrop-blur-sm">
+      {/* Прозрачный и безрамочный контейнер чата (Chat screen container) */}
+      <div className="relative z-10 w-full max-w-[480px] mx-auto min-h-[380px] p-6 bg-transparent flex flex-col gap-4 justify-start">
         <AnimatePresence>
           {chatMessages.slice(0, visibleCount).map((msg) => (
             <motion.div
@@ -100,10 +104,10 @@ export function Matchmaker() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
               className={cn(
-                "flex max-w-[85%] rounded-[20px] px-5 py-3 text-sm md:text-base leading-relaxed text-left",
+                "flex max-w-[85%] rounded-[20px] px-5 py-3 text-sm md:text-base leading-relaxed text-left backdrop-blur-md border",
                 msg.sender === "agent"
-                  ? "bg-white/[0.06] border border-white/5 text-white/90 self-start rounded-tl-sm"
-                  : "bg-magenta text-midnight font-semibold shadow-neon-sm self-end rounded-tr-sm"
+                  ? "bg-white/10 text-white border-white/10 self-start rounded-tl-sm"
+                  : "bg-magenta/20 text-white border-magenta/30 shadow-neon-sm self-end rounded-tr-sm font-medium"
               )}
             >
               {t(msg.translationKey)}
