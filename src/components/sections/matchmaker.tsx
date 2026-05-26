@@ -1,68 +1,115 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Heading, Highlight } from "@/components/ui/typography";
+import { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/lib/language-context";
+import { cn } from "@/lib/utils";
 import type { TranslationKeys } from "@/lib/i18n";
-import { Brain, HeartHandshake, Radar } from "lucide-react";
 
-const featureKeys = [1, 2, 3] as const;
+const chatMessages = [
+  { id: 1, sender: "agent" as const, translationKey: "matchmaker.chat.msg1" as TranslationKeys },
+  { id: 2, sender: "user" as const, translationKey: "matchmaker.chat.msg2" as TranslationKeys },
+  { id: 3, sender: "agent" as const, translationKey: "matchmaker.chat.msg3" as TranslationKeys },
+  { id: 4, sender: "user" as const, translationKey: "matchmaker.chat.msg4" as TranslationKeys },
+  { id: 5, sender: "agent" as const, translationKey: "matchmaker.chat.msg5" as TranslationKeys },
+];
 
 export function Matchmaker() {
   const { t } = useLanguage();
+  const [visibleCount, setVisibleCount] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const getIcon = (num: number) => {
-    switch (num) {
-      case 1:
-        return <Brain className="w-12 h-12 text-magenta drop-shadow-[0_0_15px_rgba(255,0,255,0.6)] transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />;
-      case 2:
-        return <HeartHandshake className="w-12 h-12 text-magenta drop-shadow-[0_0_15px_rgba(255,0,255,0.6)] transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />;
-      case 3:
-        return <Radar className="w-12 h-12 text-magenta drop-shadow-[0_0_15px_rgba(255,0,255,0.6)] transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />;
-      default:
-        return null;
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    let sequenceActive = false;
+
+    const runSequence = () => {
+      sequenceActive = true;
+      let count = 0;
+      setVisibleCount(0);
+
+      const next = () => {
+        if (!sequenceActive) return;
+        if (count < chatMessages.length) {
+          count++;
+          setVisibleCount(count);
+          // 1200ms delay between bubbles
+          timer = setTimeout(next, 1200);
+        } else {
+          // Once all 5 messages are shown, wait 5000ms and reset
+          timer = setTimeout(() => {
+            if (!sequenceActive) return;
+            setVisibleCount(0);
+            timer = setTimeout(runSequence, 400);
+          }, 5000);
+        }
+      };
+
+      // Start first bubble after 800ms
+      timer = setTimeout(next, 800);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          if (!sequenceActive) {
+            runSequence();
+          }
+        } else {
+          sequenceActive = false;
+          clearTimeout(timer);
+          setVisibleCount(0);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
     }
-  };
+
+    return () => {
+      sequenceActive = false;
+      clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, []);
 
   return (
-    <section className="py-[120px] px-4 md:px-10 relative overflow-hidden">
-      <Heading as="h2" className="text-center mb-24 tracking-tight">
-        {t("matchmaker.title.pre")} <Highlight>{t("matchmaker.title.highlight")}</Highlight> {t("matchmaker.title.post")}
-      </Heading>
+    <section
+      ref={containerRef}
+      className="py-[120px] px-4 md:px-10 bg-[#f9f9fb] text-black relative z-10"
+    >
+      <div className="max-w-3xl mx-auto text-center mb-12">
+        <h2 className="text-3xl md:text-5xl font-sans font-bold tracking-tight text-gray-900 leading-[1.15] mb-4">
+          {t("matchmaker.title")}
+        </h2>
+        <p className="text-base md:text-lg text-gray-500 font-normal leading-relaxed max-w-xl mx-auto text-balance">
+          {t("matchmaker.subheadline")}
+        </p>
+      </div>
 
-      {/* Безрамочная распределенная структура (Distributed Ambient Canvas) */}
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 relative z-10">
-        {featureKeys.map((num, i) => (
-          <motion.div
-            key={num}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="group relative flex flex-col items-center text-center p-6 rounded-3xl transition-all duration-500 hover:bg-magenta/[0.02]"
-          >
-            {/* Мягкая подсветка негативного пространства, активируемая при наведении */}
-            <div className="absolute w-32 h-32 bg-magenta/0 group-hover:bg-magenta/10 rounded-full blur-2xl transition-all duration-700 pointer-events-none" />
-
-            {/* Изолированная векторная скульптура без контейнерных границ */}
-            <div className="mb-8 relative flex items-center justify-center">
-              {getIcon(num)}
-            </div>
-
-            {/* Тонкая направляющая горизонталь (Spatial Horizon) для архитектурного ритма */}
-            <div className="w-8 h-[2px] bg-gradient-to-r from-transparent via-magenta/40 to-transparent mb-6 transition-all duration-500 group-hover:w-16 group-hover:via-magenta" />
-
-            {/* Симметрично отцентрированная типографика */}
-            <div className="relative z-10">
-              <h3 className="font-sans font-bold text-xl text-white mb-4 tracking-tight">
-                {t(`matchmaker.${num}.title` as TranslationKeys)}
-              </h3>
-              <p className="text-gray-400 text-sm md:text-base leading-relaxed max-w-sm mx-auto text-balance">
-                {t(`matchmaker.${num}.desc` as TranslationKeys)}
-              </p>
-            </div>
-          </motion.div>
-        ))}
+      {/* Прозрачный и безрамочный контейнер чата (Chat screen container) */}
+      <div className="w-full max-w-[480px] mx-auto min-h-[380px] p-6 bg-transparent flex flex-col gap-4 justify-start">
+        <AnimatePresence>
+          {chatMessages.slice(0, visibleCount).map((msg) => (
+            <motion.div
+              key={msg.id}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className={cn(
+                "flex max-w-[85%] rounded-[20px] px-5 py-3 text-sm md:text-base leading-relaxed text-left",
+                msg.sender === "agent"
+                  ? "bg-[#e9e9eb] text-black self-start rounded-tl-sm"
+                  : "bg-black text-white self-end rounded-tr-sm font-medium"
+              )}
+            >
+              {t(msg.translationKey)}
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </section>
   );
