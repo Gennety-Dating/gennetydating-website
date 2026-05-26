@@ -19,8 +19,9 @@ import {
   type RegistrationLanguage,
   type RegistrationPurpose,
 } from "@/lib/registration-api";
-import type { Locale } from "@/lib/i18n";
+import { localeFlagEmoji, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 type RegistrationStep = "email" | "code" | "done";
 
@@ -247,10 +248,10 @@ export function RegistrationButton({
               role="dialog"
               aria-modal="true"
               aria-labelledby="registration-title"
-              className="w-full max-w-[400px] rounded-[32px] bg-[#070707]/95 py-10 px-8 text-center shadow-[0_20px_80px_rgba(0,0,0,0.9)]"
+              className="w-full max-w-[400px] rounded-[32px] border border-white/10 bg-[#070708]/96 py-10 px-8 text-center shadow-[0_24px_80px_rgba(0,0,0,0.95),0_0_80px_rgba(208,173,252,0.03)] backdrop-blur-2xl"
             >
             <div>
-              <h2 id="registration-title" className="text-3xl font-semibold text-white">
+              <h2 id="registration-title" className="text-2xl font-bold tracking-tight text-white md:text-3xl">
                 {title}
               </h2>
               <p className="mt-3 text-sm leading-6 text-gray-400 max-w-[280px] mx-auto">
@@ -258,228 +259,283 @@ export function RegistrationButton({
               </p>
             </div>
 
-            <div className="mt-5 grid grid-cols-3 gap-2" aria-hidden="true">
+            <div className="mt-6 flex items-center justify-between gap-1.5" aria-hidden="true">
               {[1, 2, 3].map((item) => (
                 <div
                   key={item}
                   className={cn(
-                    "h-1 rounded-full",
-                    item <= progress ? "bg-magenta" : "bg-white/15",
+                    "h-[3px] flex-1 rounded-full transition-all duration-500",
+                    item <= progress ? "bg-magenta shadow-neon-sm" : "bg-white/10",
                   )}
                 />
               ))}
             </div>
 
-            {step === "email" && (
-              <form className="mt-6 space-y-5" onSubmit={handleRequestOtp}>
-                <label className="block">
-                  <span className="mb-2 flex items-center gap-2 text-sm font-medium text-white">
-                    <Mail className="h-4 w-4 text-magenta" aria-hidden="true" />
-                    {t("registration.emailLabel")}
-                  </span>
-                  <input
-                    required
-                    type="email"
-                    value={email}
-                    autoComplete="email"
-                    placeholder="you@university.edu"
-                    className="h-12 w-full rounded-[8px] border border-white/15 bg-white/5 px-3 text-base text-white outline-none transition focus:border-magenta"
-                    onChange={(event) => setEmail(event.target.value)}
-                  />
-                </label>
-
-                <div
-                  className="relative"
-                  onBlur={(event) => {
-                    if (!event.currentTarget.contains(event.relatedTarget)) {
-                      setLanguageOpen(false);
-                    }
-                  }}
+            <AnimatePresence mode="wait">
+              {step === "email" && (
+                <motion.form
+                  key="email"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  className="mt-6 space-y-5"
+                  onSubmit={handleRequestOtp}
                 >
-                  <span className="mb-2 flex items-center gap-2 text-sm font-medium text-white">
-                    <Languages className="h-4 w-4 text-magenta" aria-hidden="true" />
-                    {t("registration.languageLabel")}
-                  </span>
-                  <button
-                    type="button"
-                    className={cn(
-                      "flex h-12 w-full items-center justify-between rounded-[8px] border bg-white/5 px-3 text-left text-base text-white outline-none transition",
-                      languageOpen ? "border-magenta shadow-neon-sm" : "border-white/15 hover:border-white/30",
-                    )}
-                    aria-haspopup="listbox"
-                    aria-expanded={languageOpen}
-                    onClick={() => setLanguageOpen((value) => !value)}
-                    onKeyDown={(event) => {
-                      if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
-                        event.preventDefault();
-                        setLanguageOpen(true);
+                  <div>
+                    <span className="mb-2 block text-left text-xs font-semibold uppercase tracking-wider text-white/40">
+                      {t("registration.emailLabel")}
+                    </span>
+                    <div className="relative group">
+                      <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-white/30 group-focus-within:text-magenta transition-colors duration-300">
+                        <Mail className="h-5 w-5" aria-hidden="true" />
+                      </div>
+                      <input
+                        required
+                        type="email"
+                        value={email}
+                        autoComplete="email"
+                        placeholder="you@university.edu"
+                        className="h-[52px] w-full rounded-2xl border border-white/10 bg-white/[0.02] pl-12 pr-4 text-base text-white placeholder:text-white/20 outline-none transition-all duration-300 focus:border-magenta/50 focus:bg-white/[0.04] focus:ring-[3px] focus:ring-magenta/10 hover:border-white/20"
+                        onChange={(event) => setEmail(event.target.value)}
+                      />
+                    </div>
+                  </div>
+
+                  <div
+                    className="relative"
+                    onBlur={(event) => {
+                      if (!event.currentTarget.contains(event.relatedTarget)) {
+                        setLanguageOpen(false);
                       }
                     }}
                   >
-                    <span>{selectedLanguage?.label}</span>
-                    <ChevronDown
-                      className={cn(
-                        "h-4 w-4 text-magenta transition-transform",
-                        languageOpen && "rotate-180",
-                      )}
-                      aria-hidden="true"
-                    />
-                  </button>
-
-                  {languageOpen && (
-                    <div
-                      role="listbox"
-                      aria-label={t("registration.languageLabel")}
-                      className="absolute left-0 right-0 top-[calc(100%+8px)] z-20 overflow-hidden rounded-[8px] border border-white/15 bg-[#111] p-1 shadow-2xl"
-                    >
-                      {languageOptions.map((option) => {
-                        const selected = option.value === language;
-                        return (
-                          <button
-                            key={option.value}
-                            type="button"
-                            role="option"
-                            aria-selected={selected}
-                            className={cn(
-                              "flex h-11 w-full items-center justify-between rounded-[6px] px-3 text-left text-sm transition",
-                              selected
-                                ? "bg-magenta text-midnight"
-                                : "text-white hover:bg-white/10",
-                            )}
-                            onClick={() => {
-                              setLanguage(option.value);
-                              setLanguageOpen(false);
-                            }}
-                          >
-                            <span>{option.label}</span>
-                            {selected && <Check className="h-4 w-4" aria-hidden="true" />}
-                          </button>
-                        );
-                      })}
+                    <span className="mb-2 block text-left text-xs font-semibold uppercase tracking-wider text-white/40">
+                      {t("registration.languageLabel")}
+                    </span>
+                    <div className="relative group">
+                      <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-white/30 group-focus-within:text-magenta transition-colors duration-300">
+                        <Languages className="h-5 w-5" aria-hidden="true" />
+                      </div>
+                      <button
+                        type="button"
+                        className={cn(
+                          "flex h-[52px] w-full items-center justify-between rounded-2xl border bg-white/[0.02] pl-12 pr-4 text-left text-base text-white outline-none transition-all duration-300 hover:border-white/20 cursor-pointer",
+                          languageOpen ? "border-magenta/50 bg-white/[0.04] ring-[3px] ring-magenta/10" : "border-white/10",
+                        )}
+                        aria-haspopup="listbox"
+                        aria-expanded={languageOpen}
+                        onClick={() => setLanguageOpen((value) => !value)}
+                        onKeyDown={(event) => {
+                          if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
+                            event.preventDefault();
+                            setLanguageOpen(true);
+                          }
+                        }}
+                      >
+                        <span className="flex items-center gap-2">
+                          {selectedLanguage && (
+                            <>
+                              <span className="text-lg leading-none">
+                                {localeFlagEmoji[selectedLanguage.value as Locale] || "🌐"}
+                              </span>
+                              <span>{selectedLanguage.label}</span>
+                            </>
+                          )}
+                        </span>
+                        <ChevronDown
+                          className={cn(
+                            "h-5 w-5 text-white/30 transition-transform duration-300 group-hover:text-white/60",
+                            languageOpen && "rotate-180 text-magenta",
+                          )}
+                          aria-hidden="true"
+                        />
+                      </button>
                     </div>
-                  )}
-                </div>
 
-                <label className="flex items-start gap-3 text-sm leading-5 text-gray-400 select-none cursor-pointer hover:text-gray-300 transition-colors">
-                  <input
-                    required
-                    type="checkbox"
-                    checked={termsAccepted}
-                    className="mt-1 h-4 w-4 accent-magenta cursor-pointer"
-                    onChange={(event) => setTermsAccepted(event.target.checked)}
-                  />
-                  <span>
-                    {t("registration.termsPrefix")}{" "}
-                    <a href="/terms" className="text-white underline underline-offset-4 hover:text-magenta transition-colors" onClick={(e) => e.stopPropagation()}>
-                      {t("registration.terms")}
-                    </a>{" "}
-                    {t("registration.and")}{" "}
-                    <a href="/privacy" className="text-white underline underline-offset-4 hover:text-magenta transition-colors" onClick={(e) => e.stopPropagation()}>
-                      {t("registration.privacy")}
-                    </a>
-                  </span>
-                </label>
+                    <AnimatePresence>
+                      {languageOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 6, scale: 0.96 }}
+                          transition={{ duration: 0.15, ease: "easeOut" }}
+                          role="listbox"
+                          aria-label={t("registration.languageLabel")}
+                          className="absolute left-0 right-0 top-[calc(100%+8px)] z-30 overflow-hidden rounded-2xl border border-white/10 bg-[#0c0c0e]/95 p-1.5 shadow-[0_12px_40px_rgba(0,0,0,0.85)] backdrop-blur-xl"
+                        >
+                          {languageOptions.map((option) => {
+                            const selected = option.value === language;
+                            return (
+                              <button
+                                key={option.value}
+                                type="button"
+                                role="option"
+                                aria-selected={selected}
+                                className={cn(
+                                  "flex h-11 w-full items-center justify-between rounded-xl px-3 text-left text-sm transition-all duration-200 cursor-pointer",
+                                  selected
+                                    ? "bg-magenta/15 text-magenta font-semibold"
+                                    : "text-white/70 hover:bg-white/[0.06] hover:text-white",
+                                )}
+                                onClick={() => {
+                                  setLanguage(option.value);
+                                  setLanguageOpen(false);
+                                }}
+                              >
+                                <span className="flex items-center gap-2.5">
+                                  <span className="text-lg leading-none">
+                                    {localeFlagEmoji[option.value as Locale] || "🌐"}
+                                  </span>
+                                  <span>{option.label}</span>
+                                </span>
+                                {selected && (
+                                  <div className="w-1.5 h-1.5 rounded-full bg-magenta shadow-neon-sm" />
+                                )}
+                              </button>
+                            );
+                          })}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
 
-                <label className="flex items-start gap-3 text-sm leading-5 text-gray-400 select-none cursor-pointer hover:text-gray-300 transition-colors">
-                  <input
-                    required
-                    type="checkbox"
-                    checked={researchOptIn}
-                    className="mt-1 h-4 w-4 accent-magenta cursor-pointer"
-                    onChange={(event) => setResearchOptIn(event.target.checked)}
-                  />
-                  <span>{t("registration.researchOptIn")}</span>
-                </label>
+                  <label className="flex items-start gap-3 text-sm leading-5 text-gray-400 select-none cursor-pointer hover:text-gray-300 transition-colors">
+                    <input
+                      required
+                      type="checkbox"
+                      checked={termsAccepted}
+                      className="mt-1 h-4 w-4 rounded border-white/10 bg-white/5 text-magenta accent-magenta focus:ring-magenta/20 cursor-pointer transition-colors duration-200"
+                      onChange={(event) => setTermsAccepted(event.target.checked)}
+                    />
+                    <span>
+                      {t("registration.termsPrefix")}{" "}
+                      <a href="/terms" className="text-white underline underline-offset-4 hover:text-magenta transition-colors" onClick={(e) => e.stopPropagation()}>
+                        {t("registration.terms")}
+                      </a>{" "}
+                      {t("registration.and")}{" "}
+                      <a href="/privacy" className="text-white underline underline-offset-4 hover:text-magenta transition-colors" onClick={(e) => e.stopPropagation()}>
+                        {t("registration.privacy")}
+                      </a>
+                    </span>
+                  </label>
 
-                {error && <p className="text-sm text-red-300">{error}</p>}
+                  <label className="flex items-start gap-3 text-sm leading-5 text-gray-400 select-none cursor-pointer hover:text-gray-300 transition-colors">
+                    <input
+                      required
+                      type="checkbox"
+                      checked={researchOptIn}
+                      className="mt-1 h-4 w-4 rounded border-white/10 bg-white/5 text-magenta accent-magenta focus:ring-magenta/20 cursor-pointer transition-colors duration-200"
+                      onChange={(event) => setResearchOptIn(event.target.checked)}
+                    />
+                    <span>{t("registration.researchOptIn")}</span>
+                  </label>
 
-                <Button 
-                  type="submit" 
-                  size="md" 
-                  className="w-full mt-2" 
-                  disabled={loading || !termsAccepted || !researchOptIn}
+                  {error && <p className="text-sm text-red-300">{error}</p>}
+
+                  <Button 
+                    type="submit" 
+                    size="md" 
+                    className="w-full mt-2" 
+                    disabled={loading || !termsAccepted || !researchOptIn}
+                  >
+                    {loading && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
+                    {t("registration.sendCode")}
+                  </Button>
+                </motion.form>
+              )}
+
+              {step === "code" && (
+                <motion.form
+                  key="code"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  className="mt-6 space-y-4"
+                  onSubmit={handleComplete}
                 >
-                  {loading && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
-                  {t("registration.sendCode")}
-                </Button>
-              </form>
-            )}
+                  <div className="rounded-2xl border border-white/5 bg-white/[0.02] px-4 py-3 text-sm text-gray-400 leading-relaxed">
+                    {t("registration.codeSent")} <span className="text-white font-medium">{email}</span>
+                  </div>
+                  <div>
+                    <span className="mb-2 block text-left text-xs font-semibold uppercase tracking-wider text-white/40">
+                      {t("registration.codeLabel")}
+                    </span>
+                    <div className="relative">
+                      <input
+                        required
+                        inputMode="numeric"
+                        pattern="[0-9]{4,8}"
+                        value={otp}
+                        autoComplete="one-time-code"
+                        placeholder="123456"
+                        className="h-[52px] w-full rounded-2xl border border-white/10 bg-white/[0.02] px-4 text-center text-xl font-mono tracking-[0.24em] text-white placeholder:text-white/10 outline-none transition-all duration-300 focus:border-magenta/50 focus:bg-white/[0.04] focus:ring-[3px] focus:ring-magenta/10 hover:border-white/20"
+                        onChange={(event) => setOtp(event.target.value.replace(/\D/g, ""))}
+                      />
+                    </div>
+                  </div>
 
-            {step === "code" && (
-              <form className="mt-6 space-y-4" onSubmit={handleComplete}>
-                <div className="rounded-[8px] border border-white/10 bg-white/5 px-3 py-3 text-sm text-gray-300">
-                  {t("registration.codeSent")} <span className="text-white">{email}</span>
-                </div>
-                <label className="block">
-                  <span className="mb-2 flex items-center gap-2 text-sm font-medium text-white">
-                    <Mail className="h-4 w-4 text-magenta" aria-hidden="true" />
-                    {t("registration.codeLabel")}
-                  </span>
-                  <input
-                    required
-                    inputMode="numeric"
-                    pattern="[0-9]{4,8}"
-                    value={otp}
-                    autoComplete="one-time-code"
-                    placeholder="123456"
-                    className="h-12 w-full rounded-[8px] border border-white/15 bg-white/5 px-3 text-center text-xl tracking-[0.24em] text-white outline-none transition focus:border-magenta"
-                    onChange={(event) => setOtp(event.target.value.replace(/\D/g, ""))}
-                  />
-                </label>
+                  {error && <p className="text-sm text-red-300">{error}</p>}
 
-                {error && <p className="text-sm text-red-300">{error}</p>}
+                  <Button type="submit" size="md" className="w-full" disabled={loading}>
+                    {loading ? (
+                      <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                    ) : (
+                      <Send className="h-4 w-4" aria-hidden="true" />
+                    )}
+                    {t("registration.continueTelegram")}
+                  </Button>
 
-                <Button type="submit" size="md" className="w-full" disabled={loading}>
-                  {loading ? (
-                    <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                  ) : (
+                  <div className="flex items-center justify-between gap-3 text-sm">
+                    <button
+                      type="button"
+                      className="text-gray-400 hover:text-white cursor-pointer transition-colors duration-200"
+                      disabled={loading}
+                      onClick={() => {
+                        setStep("email");
+                        setOtp("");
+                        setError("");
+                      }}
+                    >
+                      {t("registration.changeEmail")}
+                    </button>
+                    <button
+                      type="button"
+                      className="text-gray-400 hover:text-white cursor-pointer transition-colors duration-200"
+                      disabled={loading}
+                      onClick={handleResend}
+                    >
+                      {t("registration.resend")}
+                    </button>
+                  </div>
+                </motion.form>
+              )}
+
+              {step === "done" && (
+                <motion.div
+                  key="done"
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                  className="mt-6 space-y-5"
+                >
+                  <div className="rounded-2xl border border-magenta/25 bg-magenta/[0.03] px-4 py-5 text-center">
+                    <CheckCircle2 className="mx-auto h-10 w-10 text-magenta filter drop-shadow-neon-sm" aria-hidden="true" />
+                    <p className="mt-4 text-base font-semibold text-white">
+                      {t("registration.readyTitle")}
+                    </p>
+                    <p className="mt-2 text-sm leading-6 text-gray-400">
+                      {t("registration.readyDescription")}
+                    </p>
+                  </div>
+                  <Button href={telegramUrl} size="md" className="w-full">
                     <Send className="h-4 w-4" aria-hidden="true" />
-                  )}
-                  {t("registration.continueTelegram")}
-                </Button>
-
-                <div className="flex items-center justify-between gap-3 text-sm">
-                  <button
-                    type="button"
-                    className="text-gray-400 hover:text-white"
-                    disabled={loading}
-                    onClick={() => {
-                      setStep("email");
-                      setOtp("");
-                      setError("");
-                    }}
-                  >
-                    {t("registration.changeEmail")}
-                  </button>
-                  <button
-                    type="button"
-                    className="text-gray-400 hover:text-white"
-                    disabled={loading}
-                    onClick={handleResend}
-                  >
-                    {t("registration.resend")}
-                  </button>
-                </div>
-              </form>
-            )}
-
-            {step === "done" && (
-              <div className="mt-6 space-y-5">
-                <div className="rounded-[8px] border border-magenta/40 bg-magenta/10 px-4 py-5 text-center">
-                  <CheckCircle2 className="mx-auto h-10 w-10 text-magenta" aria-hidden="true" />
-                  <p className="mt-3 text-base font-semibold text-white">
-                    {t("registration.readyTitle")}
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-gray-300">
-                    {t("registration.readyDescription")}
-                  </p>
-                </div>
-                <Button href={telegramUrl} size="md" className="w-full">
-                  <Send className="h-4 w-4" aria-hidden="true" />
-                  {t("registration.openTelegram")}
-                </Button>
-              </div>
-            )}
+                    {t("registration.openTelegram")}
+                  </Button>
+                </motion.div>
+              )}
+            </AnimatePresence>
             </div>
           </div>
         </div>
