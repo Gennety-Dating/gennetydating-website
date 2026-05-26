@@ -279,15 +279,15 @@ export function RegistrationButton({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2, ease: "easeInOut" }}
-                  className="mt-6 space-y-5"
+                  className="mt-6 space-y-7"
                   onSubmit={handleRequestOtp}
                 >
                   <div>
-                    <span className="mb-2 block text-left text-xs font-semibold uppercase tracking-wider text-white/40">
+                    <span className="mb-2.5 block text-left text-xs font-semibold uppercase tracking-wider text-white/40">
                       {t("registration.emailLabel")}
                     </span>
                     <div className="relative group">
-                      <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-white/30 group-focus-within:text-magenta transition-colors duration-300">
+                      <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-white/30 group-focus-within:text-white/60 transition-colors duration-300">
                         <Mail className="h-5 w-5" aria-hidden="true" />
                       </div>
                       <input
@@ -296,7 +296,7 @@ export function RegistrationButton({
                         value={email}
                         autoComplete="email"
                         placeholder="you@university.edu"
-                        className="h-[52px] w-full rounded-2xl border border-white/10 bg-white/[0.02] pl-12 pr-4 text-base text-white placeholder:text-white/20 outline-none transition-all duration-300 focus:border-magenta/50 focus:bg-white/[0.04] focus:ring-[3px] focus:ring-magenta/10 hover:border-white/20"
+                        className="h-[54px] w-full rounded-2xl border border-white/10 bg-white/[0.02] pl-12 pr-4 text-base text-white placeholder:text-white/20 outline-none transition-all duration-300 focus:border-white/30 focus:bg-white/[0.04] focus:ring-[3px] focus:ring-white/5 hover:border-white/20"
                         onChange={(event) => setEmail(event.target.value)}
                       />
                     </div>
@@ -310,18 +310,18 @@ export function RegistrationButton({
                       }
                     }}
                   >
-                    <span className="mb-2 block text-left text-xs font-semibold uppercase tracking-wider text-white/40">
+                    <span className="mb-2.5 block text-left text-xs font-semibold uppercase tracking-wider text-white/40">
                       {t("registration.languageLabel")}
                     </span>
                     <div className="relative group">
-                      <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-white/30 group-focus-within:text-magenta transition-colors duration-300">
+                      <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-white/30 group-focus-within:text-white/60 transition-colors duration-300">
                         <Languages className="h-5 w-5" aria-hidden="true" />
                       </div>
                       <button
                         type="button"
                         className={cn(
-                          "flex h-[52px] w-full items-center justify-between rounded-2xl border bg-white/[0.02] pl-12 pr-4 text-left text-base text-white outline-none transition-all duration-300 hover:border-white/20 cursor-pointer",
-                          languageOpen ? "border-magenta/50 bg-white/[0.04] ring-[3px] ring-magenta/10" : "border-white/10",
+                          "flex h-[54px] w-full items-center justify-between rounded-2xl border bg-white/[0.02] pl-12 pr-4 text-left text-base text-white outline-none transition-all duration-300 hover:border-white/20 cursor-pointer",
+                          languageOpen ? "border-white/30 bg-white/[0.04] ring-[3px] ring-white/5" : "border-white/10",
                         )}
                         aria-haspopup="listbox"
                         aria-expanded={languageOpen}
@@ -346,7 +346,7 @@ export function RegistrationButton({
                         <ChevronDown
                           className={cn(
                             "h-5 w-5 text-white/30 transition-transform duration-300 group-hover:text-white/60",
-                            languageOpen && "rotate-180 text-magenta",
+                            languageOpen && "rotate-180 text-white/80",
                           )}
                           aria-hidden="true"
                         />
@@ -375,8 +375,8 @@ export function RegistrationButton({
                                 className={cn(
                                   "flex h-11 w-full items-center justify-between rounded-xl px-3 text-left text-sm transition-all duration-200 cursor-pointer",
                                   selected
-                                    ? "bg-magenta/15 text-magenta font-semibold"
-                                    : "text-white/70 hover:bg-white/[0.06] hover:text-white",
+                                    ? "bg-white/[0.08] text-white font-semibold"
+                                    : "text-white/70 hover:bg-white/[0.04] hover:text-white",
                                 )}
                                 onClick={() => {
                                   setLanguage(option.value);
@@ -390,7 +390,7 @@ export function RegistrationButton({
                                   <span>{option.label}</span>
                                 </span>
                                 {selected && (
-                                  <div className="w-1.5 h-1.5 rounded-full bg-magenta shadow-neon-sm" />
+                                  <Check className="h-4 w-4 text-white/70" aria-hidden="true" />
                                 )}
                               </button>
                             );
@@ -452,14 +452,14 @@ export function RegistrationButton({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2, ease: "easeInOut" }}
-                  className="mt-6 space-y-4"
+                  className="mt-6 space-y-5"
                   onSubmit={handleComplete}
                 >
                   <div className="rounded-2xl border border-white/5 bg-white/[0.02] px-4 py-3 text-sm text-gray-400 leading-relaxed">
                     {t("registration.codeSent")} <span className="text-white font-medium">{email}</span>
                   </div>
                   <div>
-                    <span className="mb-2 block text-left text-xs font-semibold uppercase tracking-wider text-white/40">
+                    <span className="mb-2.5 block text-left text-xs font-semibold uppercase tracking-wider text-white/40">
                       {t("registration.codeLabel")}
                     </span>
                     <div className="relative">
@@ -470,7 +470,7 @@ export function RegistrationButton({
                         value={otp}
                         autoComplete="one-time-code"
                         placeholder="123456"
-                        className="h-[52px] w-full rounded-2xl border border-white/10 bg-white/[0.02] px-4 text-center text-xl font-mono tracking-[0.24em] text-white placeholder:text-white/10 outline-none transition-all duration-300 focus:border-magenta/50 focus:bg-white/[0.04] focus:ring-[3px] focus:ring-magenta/10 hover:border-white/20"
+                        className="h-[54px] w-full rounded-2xl border border-white/10 bg-white/[0.02] px-4 text-center text-xl font-mono tracking-[0.24em] text-white placeholder:text-white/10 outline-none transition-all duration-300 focus:border-white/30 focus:bg-white/[0.04] focus:ring-[3px] focus:ring-white/5 hover:border-white/20"
                         onChange={(event) => setOtp(event.target.value.replace(/\D/g, ""))}
                       />
                     </div>
