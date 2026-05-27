@@ -169,7 +169,7 @@ export interface SafetyPoint {
 
 export const safetyPoints: SafetyPoint[] = [
   {
-    title: "Verified students at your school only",
+    title: "Verified students only",
     description: "Every user is verified through their university email.",
   },
   {

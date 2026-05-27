@@ -102,9 +102,9 @@ export const translations = {
       "Endless swiping. Endless small talk. No real dates.",
 
     // Safety
-    "safety.title.pre": "verified students",
-    "safety.title.highlight": "only.",
-    "safety.1.title": "Verified students at your school only",
+    "safety.title.pre": "verified. private.",
+    "safety.title.highlight": "safe.",
+    "safety.1.title": "Verified students only",
     "safety.1.desc": "Every user is verified through their university email.",
     "safety.2.title": "Only your date sees you",
     "safety.2.desc":
@@ -278,9 +278,9 @@ export const translations = {
       "Нескінченні свайпи. Нескінченні розмови ні про що. Жодних реальних побачень.",
 
     // Safety
-    "safety.title.pre": "тільки верифіковані",
-    "safety.title.highlight": "студенти.",
-    "safety.1.title": "Тільки верифіковані студенти твого ВНЗ",
+    "safety.title.pre": "верифіковано. приватно.",
+    "safety.title.highlight": "безпечно.",
+    "safety.1.title": "Тільки верифіковані студенти",
     "safety.1.desc":
       "Кожен користувач верифікується через університетську пошту.",
     "safety.2.title": "Тільки твій матч бачить тебе",
@@ -455,9 +455,9 @@ export const translations = {
       "Бесконечные свайпы. Бесконечные разговоры ни о чем. Никаких реальных свиданий.",
 
     // Safety
-    "safety.title.pre": "только верифицированные",
-    "safety.title.highlight": "студенты.",
-    "safety.1.title": "Только верифицированные студенты твоего ВУЗа",
+    "safety.title.pre": "верифицировано. приватно.",
+    "safety.title.highlight": "безопасно.",
+    "safety.1.title": "Только верифицированные студенты",
     "safety.1.desc":
       "Каждый пользователь верифицируется через университетскую почту.",
     "safety.2.title": "Только твой матч видит тебя",
@@ -632,9 +632,9 @@ export const translations = {
       "Endloses Swipen. Endlose Gespräche über nichts. Keine echten Dates.",
 
     // Safety
-    "safety.title.pre": "nur verifizierte",
-    "safety.title.highlight": "Studierende.",
-    "safety.1.title": "Nur verifizierte Studierende deiner Uni",
+    "safety.title.pre": "verifiziert. privat.",
+    "safety.title.highlight": "sicher.",
+    "safety.1.title": "Nur verifizierte Studierende",
     "safety.1.desc":
       "Jeder Nutzer wird über die Universitäts-E-Mail verifiziert.",
     "safety.2.title": "Nur dein Match sieht dich",
@@ -809,9 +809,9 @@ export const translations = {
       "Nieskończone swajpowanie. Rozmowy o niczym. Brak prawdziwych randek.",
 
     // Safety
-    "safety.title.pre": "tylko zweryfikowani",
-    "safety.title.highlight": "studenci.",
-    "safety.1.title": "Tylko zweryfikowani studenci Twojej uczelni",
+    "safety.title.pre": "zweryfikowane. prywatne.",
+    "safety.title.highlight": "bezpieczne.",
+    "safety.1.title": "Tylko zweryfikowani studenci",
     "safety.1.desc":
       "Każdy użytkownik jest weryfikowany przez e-mail uniwersytecki.",
     "safety.2.title": "Tylko Twoje dopasowanie Cię widzi",
