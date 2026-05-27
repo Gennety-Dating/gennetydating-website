@@ -87,8 +87,8 @@ export function Matchmaker() {
       {/* Верхний волнообразный край (Postage Stamp Wavy Top Edge) */}
       <svg className="absolute top-0 left-0 right-0 w-full h-[16px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <pattern id="stamp-teeth-top" width="32" height="16" patternUnits="userSpaceOnUse">
-            <path d="M 0 0 L 32 0 C 24 0, 24 16, 16 16 C 8 16, 8 0, 0 0 Z" fill="#050505" />
+          <pattern id="stamp-teeth-top" width="40" height="16" patternUnits="userSpaceOnUse">
+            <path d="M 0 0 L 40 0 C 33 0, 27 16, 20 16 C 13 16, 7 0, 0 0 Z" fill="#050505" />
           </pattern>
         </defs>
         <rect width="100%" height="16" fill="url(#stamp-teeth-top)" />
@@ -97,8 +97,8 @@ export function Matchmaker() {
       {/* Нижний волнообразный край (Postage Stamp Wavy Bottom Edge) */}
       <svg className="absolute bottom-0 left-0 right-0 w-full h-[16px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <pattern id="stamp-teeth-bottom" width="32" height="16" patternUnits="userSpaceOnUse">
-            <path d="M 0 16 L 32 16 C 24 16, 24 0, 16 0 C 8 0, 8 16, 0 16 Z" fill="#050505" />
+          <pattern id="stamp-teeth-bottom" width="40" height="16" patternUnits="userSpaceOnUse">
+            <path d="M 0 16 L 40 16 C 33 16, 27 0, 20 0 C 13 0, 7 16, 0 16 Z" fill="#050505" />
           </pattern>
         </defs>
         <rect width="100%" height="16" fill="url(#stamp-teeth-bottom)" />
