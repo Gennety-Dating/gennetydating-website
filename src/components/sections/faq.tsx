@@ -22,8 +22,8 @@ function AccordionItem({
       className={cn(
         "mb-4 rounded-2xl border transition-all duration-300 overflow-hidden",
         isOpen
-          ? "border-magenta/40 bg-black/60 shadow-[0_0_15px_rgba(255,0,255,0.15)]"
-          : "border-white/5 bg-black/30 hover:border-magenta/20 hover:bg-black/45"
+          ? "border-white/10 bg-black/60"
+          : "border-white/5 bg-black/30 hover:border-white/10 hover:bg-black/45"
       )}
       style={{
         backdropFilter: "blur(12px)",
@@ -34,7 +34,7 @@ function AccordionItem({
         onClick={onToggle}
         className="w-full flex items-center justify-between py-5 px-6 text-left cursor-pointer group"
       >
-        <span className="text-base md:text-lg font-medium text-white pr-4 group-hover:text-magenta transition-colors">
+        <span className="text-base md:text-lg font-medium text-white pr-4 group-hover:text-white/80 transition-colors">
           {question}
         </span>
         <svg
