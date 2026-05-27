@@ -84,21 +84,21 @@ export function Matchmaker() {
       {/* Затемняющий оверлей для идеального контраста и интеграции в темную тему */}
       <div className="absolute inset-0 bg-[#050505]/75 z-0" />
 
-      {/* Верхний пилообразный край (Postage Stamp Zigzag Top Edge) */}
+      {/* Верхний волнообразный край (Postage Stamp Wavy Top Edge) */}
       <svg className="absolute top-0 left-0 right-0 w-full h-[16px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <pattern id="stamp-teeth-top" width="20" height="16" patternUnits="userSpaceOnUse">
-            <path d="M0 0 L10 16 L20 0 Z" fill="#050505" />
+          <pattern id="stamp-teeth-top" width="32" height="16" patternUnits="userSpaceOnUse">
+            <path d="M 0 0 L 32 0 C 24 0, 24 16, 16 16 C 8 16, 8 0, 0 0 Z" fill="#050505" />
           </pattern>
         </defs>
         <rect width="100%" height="16" fill="url(#stamp-teeth-top)" />
       </svg>
 
-      {/* Нижний пилообразный край (Postage Stamp Zigzag Bottom Edge) */}
+      {/* Нижний волнообразный край (Postage Stamp Wavy Bottom Edge) */}
       <svg className="absolute bottom-0 left-0 right-0 w-full h-[16px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <pattern id="stamp-teeth-bottom" width="20" height="16" patternUnits="userSpaceOnUse">
-            <path d="M0 16 L10 0 L20 16 Z" fill="#050505" />
+          <pattern id="stamp-teeth-bottom" width="32" height="16" patternUnits="userSpaceOnUse">
+            <path d="M 0 16 L 32 16 C 24 16, 24 0, 16 0 C 8 0, 8 16, 0 16 Z" fill="#050505" />
           </pattern>
         </defs>
         <rect width="100%" height="16" fill="url(#stamp-teeth-bottom)" />
