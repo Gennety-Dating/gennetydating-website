@@ -11,19 +11,19 @@ export function Comparison() {
   return (
     <section className="py-[120px] px-4 md:px-10 relative overflow-hidden">
       {/* Organic White Puddle/Blob Background */}
-      <div className="absolute inset-0 flex items-center justify-center p-4 md:p-8 select-none pointer-events-none">
+      <div className="absolute -inset-x-10 -inset-y-6 md:-inset-x-20 md:-inset-y-10 flex items-center justify-center select-none pointer-events-none">
         <svg
           viewBox="0 0 1000 600"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full max-w-5xl opacity-100"
+          className="w-full h-full max-w-6xl scale-105 md:scale-110"
           style={{
-            filter: "drop-shadow(0 20px 45px rgba(0,0,0,0.65)) drop-shadow(0 6px 12px rgba(0,0,0,0.4))",
+            filter: "blur(12px) drop-shadow(0 25px 55px rgba(0,0,0,0.7)) drop-shadow(0 8px 16px rgba(0,0,0,0.45))",
           }}
           preserveAspectRatio="none"
         >
           <path
-            d="M 120,100 C 250,60 310,180 480,120 C 650,60 740,90 850,160 C 960,230 890,380 930,450 C 970,520 830,550 730,530 C 630,510 570,610 420,590 C 270,570 210,480 140,460 C 70,440 90,320 70,240 C 50,160 80,140 120,100 Z"
+            d="M 150,150 C 300,80 450,80 600,120 C 750,160 880,180 920,300 C 960,420 850,480 750,520 C 650,560 350,550 220,500 C 90,450 60,350 80,260 C 100,170 120,160 150,150 Z"
             fill="#FFFFFF"
           />
         </svg>
