@@ -84,6 +84,24 @@ export function Matchmaker() {
       {/* Затемняющий оверлей для идеального контраста и интеграции в темную тему */}
       <div className="absolute inset-0 bg-[#050505]/75 z-0" />
 
+      {/* Верхний зубчатый край марки (Postage Stamp Top Edge) */}
+      <div
+        className="absolute top-0 left-0 right-0 h-[10px] bg-repeat-x z-20 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle at 8px 0px, transparent 5px, #050505 5px)",
+          backgroundSize: "16px 10px",
+        }}
+      />
+
+      {/* Нижний зубчатый край марки (Postage Stamp Bottom Edge) */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-[10px] bg-repeat-x z-20 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle at 8px 10px, transparent 5px, #050505 5px)",
+          backgroundSize: "16px 10px",
+        }}
+      />
+
       <div className="relative z-10 max-w-3xl mx-auto text-center mb-12">
         <h2 className="text-3xl md:text-5xl font-sans font-bold tracking-tight text-white leading-[1.15] mb-4">
           {t("matchmaker.title")}
