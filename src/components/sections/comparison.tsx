@@ -18,7 +18,7 @@ export function Comparison() {
           xmlns="http://www.w3.org/2000/svg"
           className="w-full h-full max-w-6xl scale-105 md:scale-110"
           style={{
-            filter: "blur(12px) drop-shadow(0 25px 55px rgba(0,0,0,0.7)) drop-shadow(0 8px 16px rgba(0,0,0,0.45))",
+            filter: "drop-shadow(0 25px 55px rgba(0,0,0,0.7)) drop-shadow(0 8px 16px rgba(0,0,0,0.45))",
           }}
           preserveAspectRatio="none"
         >
