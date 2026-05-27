@@ -18,12 +18,23 @@ function AccordionItem({
   onToggle: () => void;
 }) {
   return (
-    <div className="border-b border-white/10">
+    <div
+      className={cn(
+        "mb-4 rounded-2xl border transition-all duration-300 overflow-hidden",
+        isOpen
+          ? "border-magenta/40 bg-black/60 shadow-[0_0_15px_rgba(255,0,255,0.15)]"
+          : "border-white/5 bg-black/30 hover:border-magenta/20 hover:bg-black/45"
+      )}
+      style={{
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+      }}
+    >
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between py-5 px-1 text-left cursor-pointer group"
+        className="w-full flex items-center justify-between py-5 px-6 text-left cursor-pointer group"
       >
-        <span className="text-base md:text-lg font-medium text-white pr-4 group-hover:text-gray-200 transition-colors">
+        <span className="text-base md:text-lg font-medium text-white pr-4 group-hover:text-magenta transition-colors">
           {question}
         </span>
         <svg
@@ -35,7 +46,7 @@ function AccordionItem({
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           style={{
-            filter: "drop-shadow(0 0 6px rgba(208, 173, 252, 0.7))",
+            filter: "drop-shadow(0 0 6px rgba(255, 0, 255, 0.8))",
           }}
         >
           <path
@@ -51,12 +62,12 @@ function AccordionItem({
       <div
         className={cn(
           "overflow-hidden transition-all duration-300",
-          isOpen ? "max-h-96 opacity-100 pb-5" : "max-h-0 opacity-0"
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         )}
       >
-        <p className="text-sm md:text-base text-gray-400 leading-relaxed px-1">
+        <div className="px-6 pb-6 pt-1 text-sm md:text-base text-gray-300 leading-relaxed">
           {answer}
-        </p>
+        </div>
       </div>
     </div>
   );
@@ -69,13 +80,39 @@ export function FAQ() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-[120px] px-4">
-      <div className="max-w-3xl mx-auto">
+    <section
+      className="py-[120px] px-4 md:px-10 relative overflow-hidden bg-cover bg-center"
+      style={{ backgroundImage: "url('/images/faq-bg.jpg')" }}
+    >
+      {/* Затемняющий оверлей для идеального контраста и интеграции в темную тему */}
+      <div className="absolute inset-0 bg-[#050505]/80 z-0" />
+
+      {/* Верхний волнообразный край (Postage Stamp Wavy Top Edge) */}
+      <svg className="absolute top-0 left-0 right-0 w-full h-[16px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="faq-stamp-teeth-top" width="40" height="16" patternUnits="userSpaceOnUse">
+            <path d="M 0 0 L 40 0 C 33 0, 27 16, 20 16 C 13 16, 7 0, 0 0 Z" fill="#050505" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="16" fill="url(#faq-stamp-teeth-top)" />
+      </svg>
+
+      {/* Нижний волнообразный край (Postage Stamp Wavy Bottom Edge) */}
+      <svg className="absolute bottom-0 left-0 right-0 w-full h-[16px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="faq-stamp-teeth-bottom" width="40" height="16" patternUnits="userSpaceOnUse">
+            <path d="M 0 16 L 40 16 C 33 16, 27 0, 20 0 C 13 0, 7 16, 0 16 Z" fill="#050505" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="16" fill="url(#faq-stamp-teeth-bottom)" />
+      </svg>
+
+      <div className="relative z-10 max-w-3xl mx-auto">
         <div className="text-center mb-16">
           <Heading as="h2">{t("faq.title")}</Heading>
         </div>
 
-        <div className="border-t border-white/10">
+        <div className="flex flex-col">
           {faqKeys.map((num, index) => (
             <AccordionItem
               key={num}
