@@ -88,23 +88,23 @@ export function FAQ() {
       <div className="absolute inset-0 bg-[#050505]/80 z-0" />
 
       {/* Верхний волнообразный край (Postage Stamp Wavy Top Edge) */}
-      <svg className="absolute top-0 left-0 right-0 w-full h-[16px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+      <svg className="absolute top-0 left-0 right-0 w-full h-[15px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <pattern id="faq-stamp-teeth-top" width="40" height="16" patternUnits="userSpaceOnUse">
-            <path d="M 0 0 L 40 0 C 33 0, 27 16, 20 16 C 13 16, 7 0, 0 0 Z" fill="#050505" />
+          <pattern id="faq-stamp-teeth-top" width="37" height="15" patternUnits="userSpaceOnUse">
+            <path d="M 0 0 L 37 0 C 30.5 0, 25 15, 18.5 15 C 12 15, 6.5 0, 0 0 Z" fill="#050505" />
           </pattern>
         </defs>
-        <rect width="100%" height="16" fill="url(#faq-stamp-teeth-top)" />
+        <rect width="100%" height="15" fill="url(#faq-stamp-teeth-top)" />
       </svg>
 
       {/* Нижний волнообразный край (Postage Stamp Wavy Bottom Edge) */}
-      <svg className="absolute bottom-0 left-0 right-0 w-full h-[16px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+      <svg className="absolute bottom-0 left-0 right-0 w-full h-[15px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <pattern id="faq-stamp-teeth-bottom" width="40" height="16" patternUnits="userSpaceOnUse">
-            <path d="M 0 16 L 40 16 C 33 16, 27 0, 20 0 C 13 0, 7 16, 0 16 Z" fill="#050505" />
+          <pattern id="faq-stamp-teeth-bottom" width="37" height="15" patternUnits="userSpaceOnUse">
+            <path d="M 0 15 L 37 15 C 30.5 15, 25 0, 18.5 0 C 12 0, 6.5 15, 0 15 Z" fill="#050505" />
           </pattern>
         </defs>
-        <rect width="100%" height="16" fill="url(#faq-stamp-teeth-bottom)" />
+        <rect width="100%" height="15" fill="url(#faq-stamp-teeth-bottom)" />
       </svg>
 
       <div className="relative z-10 max-w-3xl mx-auto">
