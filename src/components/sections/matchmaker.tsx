@@ -85,28 +85,24 @@ export function Matchmaker() {
       <div className="absolute inset-0 bg-[#050505]/75 z-0" />
 
       {/* Верхний пилообразный край (Postage Stamp Zigzag Top Edge) */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[8px] bg-repeat-x z-20 pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(135deg, #050505 25%, transparent 25%),
-            linear-gradient(225deg, #050505 25%, transparent 25%)
-          `,
-          backgroundSize: "16px 8px",
-        }}
-      />
+      <svg className="absolute top-0 left-0 right-0 w-full h-[16px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="stamp-teeth-top" width="20" height="16" patternUnits="userSpaceOnUse">
+            <path d="M0 0 L10 16 L20 0 Z" fill="#050505" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="16" fill="url(#stamp-teeth-top)" />
+      </svg>
 
       {/* Нижний пилообразный край (Postage Stamp Zigzag Bottom Edge) */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-[8px] bg-repeat-x z-20 pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(45deg, #050505 25%, transparent 25%),
-            linear-gradient(315deg, #050505 25%, transparent 25%)
-          `,
-          backgroundSize: "16px 8px",
-        }}
-      />
+      <svg className="absolute bottom-0 left-0 right-0 w-full h-[16px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="stamp-teeth-bottom" width="20" height="16" patternUnits="userSpaceOnUse">
+            <path d="M0 16 L10 0 L20 16 Z" fill="#050505" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="16" fill="url(#stamp-teeth-bottom)" />
+      </svg>
 
       <div className="relative z-10 max-w-3xl mx-auto text-center mb-12">
         <h2 className="text-3xl md:text-5xl font-sans font-bold tracking-tight text-white leading-[1.15] mb-4">
