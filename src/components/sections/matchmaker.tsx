@@ -84,21 +84,27 @@ export function Matchmaker() {
       {/* Затемняющий оверлей для идеального контраста и интеграции в темную тему */}
       <div className="absolute inset-0 bg-[#050505]/75 z-0" />
 
-      {/* Верхний зубчатый край марки (Postage Stamp Top Edge) */}
+      {/* Верхний пилообразный край (Postage Stamp Zigzag Top Edge) */}
       <div
-        className="absolute top-0 left-0 right-0 h-[10px] bg-repeat-x z-20 pointer-events-none"
+        className="absolute top-0 left-0 right-0 h-[8px] bg-repeat-x z-20 pointer-events-none"
         style={{
-          backgroundImage: "radial-gradient(circle at 8px 0px, transparent 5px, #050505 5px)",
-          backgroundSize: "16px 10px",
+          backgroundImage: `
+            linear-gradient(135deg, #050505 25%, transparent 25%),
+            linear-gradient(225deg, #050505 25%, transparent 25%)
+          `,
+          backgroundSize: "16px 8px",
         }}
       />
 
-      {/* Нижний зубчатый край марки (Postage Stamp Bottom Edge) */}
+      {/* Нижний пилообразный край (Postage Stamp Zigzag Bottom Edge) */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-[10px] bg-repeat-x z-20 pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 h-[8px] bg-repeat-x z-20 pointer-events-none"
         style={{
-          backgroundImage: "radial-gradient(circle at 8px 10px, transparent 5px, #050505 5px)",
-          backgroundSize: "16px 10px",
+          backgroundImage: `
+            linear-gradient(45deg, #050505 25%, transparent 25%),
+            linear-gradient(315deg, #050505 25%, transparent 25%)
+          `,
+          backgroundSize: "16px 8px",
         }}
       />
 
