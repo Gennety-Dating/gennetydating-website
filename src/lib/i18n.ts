@@ -109,9 +109,9 @@ export const translations = {
     "safety.2.title": "Only your date sees you",
     "safety.2.desc":
       "Your profile is never browsed. Only your match gets to see you.",
-    "safety.3.title": "Coffee dates on campus",
+    "safety.3.title": "Coffee meetups",
     "safety.3.desc":
-      "All dates happen at safe, familiar on-campus locations.",
+      "All dates take place in verified, busy, and safe venues.",
 
     // FAQ
     "faq.title": "FAQ",
@@ -286,9 +286,9 @@ export const translations = {
     "safety.2.title": "Тільки твій матч бачить тебе",
     "safety.2.desc":
       "Твій профіль ніхто не переглядає. Тільки твій матч бачить тебе.",
-    "safety.3.title": "Кавові побачення на кампусі",
+    "safety.3.title": "Зустрічі за кавою",
     "safety.3.desc":
-      "Всі побачення проходять у безпечних, знайомих місцях на кампусі.",
+      "Усі побачення проходять у перевірених, людних і безпечних закладах.",
 
     // FAQ
     "faq.title": "Часті питання",
@@ -463,9 +463,9 @@ export const translations = {
     "safety.2.title": "Только твой матч видит тебя",
     "safety.2.desc":
       "Твой профиль никто не просматривает. Только твой матч видит тебя.",
-    "safety.3.title": "Кофейные свидания на кампусе",
+    "safety.3.title": "Встречи за кофе",
     "safety.3.desc":
-      "Все свидания проходят в безопасных, знакомых местах на кампусе.",
+      "Все свидания проходят в проверенных, людных и безопасных заведениях.",
 
     // FAQ
     "faq.title": "Частые вопросы",
@@ -640,9 +640,9 @@ export const translations = {
     "safety.2.title": "Nur dein Match sieht dich",
     "safety.2.desc":
       "Dein Profil ist nicht öffentlich. Nur dein Match kann dich sehen.",
-    "safety.3.title": "Kaffee-Dates am Campus",
+    "safety.3.title": "Kaffeetreffen",
     "safety.3.desc":
-      "Alle Dates finden an sicheren, vertrauten Orten direkt am Campus statt.",
+      "Alle Dates finden in geprüften, belebten und sicheren Locations statt.",
 
     // FAQ
     "faq.title": "Häufige Fragen",
@@ -817,9 +817,9 @@ export const translations = {
     "safety.2.title": "Tylko Twoje dopasowanie Cię widzi",
     "safety.2.desc":
       "Twój profil nie jest publiczny. Tylko wybrane dopasowanie widzi Twój profil.",
-    "safety.3.title": "Randki przy kawie na kampusie",
+    "safety.3.title": "Spotkania przy kawie",
     "safety.3.desc":
-      "Wszystkie randki odbywają się w bezpiecznych, znanych miejscach na kampusie.",
+      "Wszystkie randki odbywają się w sprawdzonych, ludnych i bezpiecznych lokalach.",
 
     // FAQ
     "faq.title": "Częste pytania",
