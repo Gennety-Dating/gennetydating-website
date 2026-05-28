@@ -186,10 +186,10 @@ export function CookieBanner() {
 
 function SpotifyWidget() {
   return (
-    <div className="fixed bottom-[104px] right-4 md:right-6 z-[99] w-[260px] md:w-[300px]">
+    <div className="fixed bottom-[104px] right-4 md:right-6 z-[99] w-[280px] md:w-[320px]">
       <iframe
         data-testid="embed-iframe"
-        style={{ borderRadius: 12 }}
+        style={{ borderRadius: 12, display: "block" }}
         src="https://open.spotify.com/embed/track/7BKLCZ1jbUBVqRi2FVlTVw?utm_source=generator"
         width="100%"
         height="80"
@@ -197,6 +197,7 @@ function SpotifyWidget() {
         allowFullScreen
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"
+        scrolling="no"
       />
     </div>
   );
