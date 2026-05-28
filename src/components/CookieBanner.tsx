@@ -186,7 +186,7 @@ export function CookieBanner() {
 
 function SpotifyWidget() {
   return (
-    <div className="hidden md:block fixed bottom-[104px] right-4 md:right-6 z-[99] w-[280px] md:w-[320px]">
+    <div className="fixed bottom-[104px] right-4 md:right-6 z-[99] w-[280px] md:w-[320px]">
       <iframe
         data-testid="embed-iframe"
         style={{ borderRadius: 12 }}

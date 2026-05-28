@@ -170,7 +170,7 @@ body[data-registration-modal-open="true"] .floating-language-switcher {
   right: 1rem;
   bottom: 104px;
   z-index: 100;
-  display: none;
+  display: block;
   width: 280px;
   height: 152px;
   pointer-events: none;
@@ -186,7 +186,6 @@ body[data-registration-modal-open="true"] .floating-language-switcher {
 @media (min-width: 768px) {
   .cookie-spotify-cover {
     right: 1.5rem;
-    display: block;
     width: 320px;
   }
 }
