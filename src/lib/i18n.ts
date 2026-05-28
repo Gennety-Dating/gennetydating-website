@@ -322,7 +322,7 @@ export const translations = {
     "marquee.manifesto": "Наша теза",
 
     // Footer
-    "footer.slogan": "Друг, який пише тобі готові побачення.",
+    "footer.slogan": "Друг, який організує для тебе побачення.",
     "footer.telegram": "Telegram",
     "footer.contact": "Контакти",
     "footer.terms": "Умови",
@@ -499,7 +499,7 @@ export const translations = {
     "marquee.manifesto": "Наш тезис",
 
     // Footer
-    "footer.slogan": "Друг, который пишет тебе готовые свидания.",
+    "footer.slogan": "Друг, который организует для тебя свидание.",
     "footer.telegram": "Telegram",
     "footer.contact": "Контакты",
     "footer.terms": "Условия",
