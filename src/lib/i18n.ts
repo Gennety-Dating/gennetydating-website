@@ -562,8 +562,8 @@ export const translations = {
     "nav.join": "Mitmachen",
 
     // Hero
-    "hero.headline": "gehe auf ein date mit",
-    "hero.highlight": "deinem typ",
+    "hero.headline": "wähle echte",
+    "hero.highlight": "dates",
     "hero.cta": "Gennety schreiben",
     "hero.disclaimer": "Mit dem Fortfahren stimmst du unseren zu:",
     "hero.terms": "AGB",
@@ -739,8 +739,8 @@ export const translations = {
     "nav.join": "Dołącz teraz",
 
     // Hero
-    "hero.headline": "umów się na randkę z",
-    "hero.highlight": "twoim typem",
+    "hero.headline": "wybieraj prawdziwe",
+    "hero.highlight": "randki",
     "hero.cta": "Napisz do Gennety",
     "hero.disclaimer": "Kontynuując, akceptujesz nasz",
     "hero.terms": "Regulamin",
