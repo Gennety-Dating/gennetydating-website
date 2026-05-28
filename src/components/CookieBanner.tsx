@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useCookieConsent, type ConsentChoices } from "@/hooks/useCookieConsent";
 import { useLanguage } from "@/lib/language-context";
-import SpotifyMobilePlayer from "./SpotifyMobilePlayer";
 
 export function CookieBanner() {
   const { hasConsented, isLoading, submitConsent } = useCookieConsent();
@@ -187,32 +186,19 @@ export function CookieBanner() {
 
 function SpotifyWidget() {
   return (
-    <div className="fixed bottom-[104px] right-4 md:right-6 z-[99] w-[280px] md:w-[320px]">
-      {/* Desktop Spotify embed widget */}
-      <div className="hidden md:block">
-        <iframe
-          data-testid="embed-iframe"
-          style={{ borderRadius: 12, display: "block" }}
-          src="https://open.spotify.com/embed/track/7BKLCZ1jbUBVqRi2FVlTVw?utm_source=generator"
-          width="100%"
-          height="80"
-          frameBorder="0"
-          allowFullScreen
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-          scrolling="no"
-        />
-      </div>
-
-      {/* Mobile Custom Spotify player wrapping official API controller */}
-      <div className="block md:hidden">
-        <SpotifyMobilePlayer
-          spotifyUri="spotify:track:7BKLCZ1jbUBVqRi2FVlTVw"
-          spotifyUrl="https://open.spotify.com/track/7BKLCZ1jbUBVqRi2FVlTVw"
-          trackTitle="Closer"
-          artistName="The Chainsmokers"
-        />
-      </div>
+    <div className="hidden md:block fixed bottom-[104px] right-4 md:right-6 z-[99] w-[280px] md:w-[320px]">
+      <iframe
+        data-testid="embed-iframe"
+        style={{ borderRadius: 12, display: "block" }}
+        src="https://open.spotify.com/embed/track/7BKLCZ1jbUBVqRi2FVlTVw?utm_source=generator"
+        width="100%"
+        height="80"
+        frameBorder="0"
+        allowFullScreen
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+        scrolling="no"
+      />
     </div>
   );
 }
