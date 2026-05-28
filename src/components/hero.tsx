@@ -30,7 +30,7 @@ export function Hero() {
         <img
           src="/images/polaroid-couple.png"
           alt="Couple"
-          className="max-w-[100px] sm:max-w-[110px] md:max-w-[130px] w-full h-auto drop-shadow-xl transition-transform hover:scale-[1.02] -rotate-2 pointer-events-none"
+          className="max-w-[110px] sm:max-w-[125px] md:max-w-[147px] w-full h-auto drop-shadow-xl transition-transform hover:scale-[1.02] -rotate-2 pointer-events-none"
         />
       </div>
 
