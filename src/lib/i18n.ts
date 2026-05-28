@@ -278,14 +278,14 @@ export const translations = {
       "Нескінченні свайпи. Нескінченні розмови ні про що. Жодних реальних побачень.",
 
     // Safety
-    "safety.title.pre": "верифіковано. приватно.",
+    "safety.title.pre": "перевірено. приватно.",
     "safety.title.highlight": "безпечно.",
-    "safety.1.title": "Тільки верифіковані студенти",
+    "safety.1.title": "Тільки перевірені студенти",
     "safety.1.desc":
-      "Кожен користувач верифікується через університетську пошту.",
-    "safety.2.title": "Тільки твій матч бачить тебе",
+      "Кожен проходить перевірку через університетську пошту.",
+    "safety.2.title": "Тебе бачить твій match",
     "safety.2.desc":
-      "Твій профіль ніхто не переглядає. Тільки твій матч бачить тебе.",
+      "Твій профіль нікому не видно, крім того, з ким тебе познайомить Gennety.",
     "safety.3.title": "Зустрічі за кавою",
     "safety.3.desc":
       "Усі побачення проходять у перевірених, людних і безпечних закладах.",
@@ -306,7 +306,7 @@ export const translations = {
       "Ти завжди можеш написати Gennety причину та будь-який зворотний зв'язок. Gennety організує інше побачення з урахуванням твого фідбеку. Також можна оновити свій профіль та вподобання.",
     "faq.5.q": "Хто бере участь?",
     "faq.5.a":
-      "Наразі в цьому досвіді беруть участь тільки студенти коледжів віком від 18 років.",
+      "Наразі Gennety можуть користуватися лише студенти від 18 років.",
     "faq.6.q": "Що якщо я не зможу прийти в останній момент?",
     "faq.6.a":
       "Якщо ти дійсно не можеш прийти в останній момент, будь ласка, скасуй побачення, написавши своєму матчу якнайшвидше, щоб уникнути бану.",
@@ -319,7 +319,7 @@ export const translations = {
 
     // Marquee
     "marquee.text": "Побачення без свайпів",
-    "marquee.manifesto": "Наша теза",
+    "marquee.manifesto": "Наша ідея",
 
     // Footer
     "footer.slogan": "Друг, який організує для тебе побачення.",
@@ -455,14 +455,14 @@ export const translations = {
       "Бесконечные свайпы. Бесконечные разговоры ни о чем. Никаких реальных свиданий.",
 
     // Safety
-    "safety.title.pre": "верифицировано. приватно.",
+    "safety.title.pre": "проверено. приватно.",
     "safety.title.highlight": "безопасно.",
     "safety.1.title": "Только верифицированные студенты",
     "safety.1.desc":
-      "Каждый пользователь верифицируется через университетскую почту.",
-    "safety.2.title": "Только твой матч видит тебя",
+      "Каждый проходит проверку через университетскую почту.",
+    "safety.2.title": "Тебя видит твой match",
     "safety.2.desc":
-      "Твой профиль никто не просматривает. Только твой матч видит тебя.",
+      "Твой профиль никому не виден, кроме того, с кем тебя познакомит Gennety.",
     "safety.3.title": "Встречи за кофе",
     "safety.3.desc":
       "Все свидания проходят в проверенных, людных и безопасных заведениях.",
@@ -480,10 +480,10 @@ export const translations = {
       "Когда мы найдем для тебя хороший матч, ты получишь постер с фотографиями и кратким объяснением, почему вы подходите друг другу.",
     "faq.4.q": "Что если мне не понравился мой матч?",
     "faq.4.a":
-      "Ты всегда можешь написать Gennety причину и любой обратный связь. Gennety организует другое свидание с учетом твоего фидбэка.",
+      "Ты всегда можешь написать Gennety, если что-то пошло не так, и поделиться обратной связью. Gennety организует другое свидание с учётом твоих пожеланий.",
     "faq.5.q": "Кто участвует?",
     "faq.5.a":
-      "Сейчас в этом опыте участвуют только студенты колледжей старше 18 лет.",
+      "Сейчас Gennety могут пользоваться только студенты старше 18 лет.",
     "faq.6.q": "Что если я не смогу прийти в последний момент?",
     "faq.6.a":
       "Если ты действительно не можешь прийти в последний момент, пожалуйста, отмени свидание, написав своему матчу как можно скорее, чтобы избежать бана.",
@@ -496,7 +496,7 @@ export const translations = {
 
     // Marquee
     "marquee.text": "Свидания без свайпов",
-    "marquee.manifesto": "Наш тезис",
+    "marquee.manifesto": "Наша идея",
 
     // Footer
     "footer.slogan": "Друг, который организует для тебя свидание.",
@@ -565,7 +565,7 @@ export const translations = {
     "hero.headline": "wähle echte",
     "hero.highlight": "dates",
     "hero.cta": "Gennety schreiben",
-    "hero.disclaimer": "Mit dem Fortfahren stimmst du unseren zu:",
+    "hero.disclaimer": "Durch das Fortfahren stimmst du unseren AGB und unserem Datenschutz zu.",
     "hero.terms": "AGB",
     "hero.privacy": "Datenschutz",
 
@@ -579,9 +579,9 @@ export const translations = {
     "howItWorks.highlight": "funktioniert",
     "step.1.title": "Sag Gennety deinen Typ",
     "step.1.desc": "Gib deine Vorlieben bis Dienstag 23:59 Uhr an.",
-    "step.2.title": "Der Donnerstag-Drop",
+    "step.2.title": "Der Donnerstags-Match",
     "step.2.desc":
-      "Checke Telegram um 19 Uhr. Wir senden dir ein personalisiertes Match und kuratieren dein Date!",
+      "Checke Telegram um 19 Uhr. Wir senden dir ein personalisiertes Match und organisieren dein Date!",
     "step.3.title": "Date planen",
     "step.3.desc": "Findet eine Zeit, die für euch beide passt.",
     "step.4.title": "Viel Spaß!",
@@ -642,7 +642,7 @@ export const translations = {
       "Dein Profil ist nicht öffentlich. Nur dein Match kann dich sehen.",
     "safety.3.title": "Kaffeetreffen",
     "safety.3.desc":
-      "Alle Dates finden in geprüften, belebten und sicheren Locations statt.",
+      "Alle Dates finden in geprüften, belebten und sicheren Orten statt.",
 
     // FAQ
     "faq.title": "Häufige Fragen",
@@ -673,10 +673,10 @@ export const translations = {
 
     // Marquee
     "marquee.text": "Dates ohne Swipen",
-    "marquee.manifesto": "Unsere These",
+    "marquee.manifesto": "Unsere Idee",
 
     // Footer
-    "footer.slogan": "Der Freund, der dir fertige Dates schreibt.",
+    "footer.slogan": "Der Freund, der dir perfekte Dates organisiert.",
     "footer.telegram": "Telegram",
     "footer.contact": "Kontakt",
     "footer.terms": "AGB",
@@ -756,9 +756,9 @@ export const translations = {
     "howItWorks.highlight": "działa",
     "step.1.title": "Powiedz Gennety, jaki jest Twój typ",
     "step.1.desc": "Prześlij swoje preferencje do wtorku do 23:59.",
-    "step.2.title": "Czwartkowy Drop",
+    "step.2.title": "Czwartkowy Wynik",
     "step.2.desc":
-      "Sprawdź Telegram o 19:00. Wyślemy Ci jedno spersonalizowane dopasowanie i zorganizujemy randkę!",
+      "Sprawdź Telegram o 19:00. Wyślemy Ci dopasowanie i zorganizujemy randkę!",
     "step.3.title": "Zaplanuj randkę",
     "step.3.desc": "Znajdźcie czas, który pasuje Wam obojgu.",
     "step.4.title": "Baw się dobrze!",
@@ -837,7 +837,7 @@ export const translations = {
       "Zawsze możesz przekazać nam opinię. Gennety uwzględni ją przy kolejnym dopasowaniu.",
     "faq.5.q": "Kto może wziąć udział?",
     "faq.5.a":
-      "Obecnie w programie mogą uczestniczyć wyłącznie zweryfikowani studenci od 18 roku życia.",
+      "Z Gennety mogą korzystać wyłącznie studenci w wieku od 18 lat.",
     "faq.6.q": "Co jeśli muszę odwołać randkę w ostatniej chwili?",
     "faq.6.a":
       "Poinformuj swoje dopasowanie jak najszybciej, aby uniknąć blokady konta.",
@@ -850,10 +850,10 @@ export const translations = {
 
     // Marquee
     "marquee.text": "Randki bez swajpowania",
-    "marquee.manifesto": "Nasza teza",
+    "marquee.manifesto": "Nasza idea",
 
     // Footer
-    "footer.slogan": "Przyjaciel, który umawia Cię na gotowe randki.",
+    "footer.slogan": "Przyjaciel, który organizuje Ci randki.",
     "footer.telegram": "Telegram",
     "footer.contact": "Kontakt",
     "footer.terms": "Regulamin",
