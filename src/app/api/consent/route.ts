@@ -1,121 +1,220 @@
-import { NextRequest, NextResponse } from "next/server";
 import { createHash } from "crypto";
-import { createServiceClient } from "@/utils/supabase/service";
 import { cookies } from "next/headers";
+import { NextRequest, NextResponse } from "next/server";
+import { pgQuery } from "@/lib/postgres";
 import { createClient } from "@/utils/supabase/server";
+import {
+  CONSENT_ACTIONS,
+  type ConsentAction,
+  type ConsentCategories,
+} from "@/types/consent";
 
-const VALID_ACTIONS = ["accepted", "rejected", "partial", "withdrawn"] as const;
-type ConsentAction = (typeof VALID_ACTIONS)[number];
+export const runtime = "nodejs";
 
-interface ConsentBody {
-  session_id: string;
-  policy_version: string;
+const MAX_REQUEST_BYTES = 16_384;
+const MAX_CATEGORIES_JSON_LENGTH = 4_096;
+const MAX_SESSION_ID_LENGTH = 200;
+const MAX_PAGE_URL_LENGTH = 2_048;
+const MAX_USER_AGENT_LENGTH = 1_024;
+
+interface ValidatedConsentPayload {
   action: ConsentAction;
-  consents: {
-    necessary: boolean;
-    analytics: boolean;
-    marketing: boolean;
-    functional: boolean;
+  categories: ConsentCategories | null;
+  sessionId: string | null;
+  pageUrl: string | null;
+}
+
+type ValidationResult =
+  | { ok: true; data: ValidatedConsentPayload }
+  | { ok: false; error: string };
+
+function isObjectRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function isConsentAction(value: unknown): value is ConsentAction {
+  return typeof value === "string" && CONSENT_ACTIONS.includes(value as ConsentAction);
+}
+
+function optionalString(
+  value: unknown,
+  fieldName: string,
+  maxLength: number,
+): { ok: true; value: string | null } | { ok: false; error: string } {
+  if (value === undefined || value === null) return { ok: true, value: null };
+  if (typeof value !== "string") return { ok: false, error: `${fieldName} must be a string` };
+
+  const trimmed = value.trim();
+  if (!trimmed) return { ok: true, value: null };
+  if (trimmed.length > maxLength) return { ok: false, error: `${fieldName} is too long` };
+
+  return { ok: true, value: trimmed };
+}
+
+function validatePayload(body: unknown): ValidationResult {
+  if (!isObjectRecord(body)) {
+    return { ok: false, error: "Payload must be an object" };
+  }
+
+  if (!isConsentAction(body.action)) {
+    return { ok: false, error: "Invalid action" };
+  }
+
+  const categories = body.categories === undefined ? null : body.categories;
+  if (categories !== null && !isObjectRecord(categories)) {
+    return { ok: false, error: "categories must be an object or null" };
+  }
+
+  const categoriesJson = JSON.stringify(categories);
+  if (categoriesJson.length > MAX_CATEGORIES_JSON_LENGTH) {
+    return { ok: false, error: "categories is too large" };
+  }
+
+  const sessionId = optionalString(body.sessionId, "sessionId", MAX_SESSION_ID_LENGTH);
+  if (!sessionId.ok) return sessionId;
+
+  const pageUrl = optionalString(body.pageUrl, "pageUrl", MAX_PAGE_URL_LENGTH);
+  if (!pageUrl.ok) return pageUrl;
+
+  return {
+    ok: true,
+    data: {
+      action: body.action,
+      categories: categories as ConsentCategories | null,
+      sessionId: sessionId.value,
+      pageUrl: pageUrl.value,
+    },
   };
 }
 
-function hashIp(rawIp: string): string {
-  const salt = process.env.CONSENT_IP_SALT;
-  if (!salt) throw new Error("Missing CONSENT_IP_SALT");
+function requiredEnv(name: string): string {
+  const value = process.env[name];
+  if (!value) throw new Error(`Missing ${name}`);
+  return value;
+}
+
+function getClientIp(request: NextRequest): string | null {
+  const forwarded = request.headers.get("x-forwarded-for");
+  const firstForwarded = forwarded?.split(",")[0]?.trim();
+  if (firstForwarded) return firstForwarded;
+
+  return (
+    request.headers.get("x-real-ip")?.trim() ||
+    request.headers.get("cf-connecting-ip")?.trim() ||
+    null
+  );
+}
+
+function hashIp(rawIp: string | null, salt: string): string | null {
+  if (!rawIp) return null;
   return createHash("sha256").update(rawIp + salt).digest("hex");
 }
 
-function hashPolicyVersion(version: string): string {
-  return createHash("sha256").update(version).digest("hex");
+async function getAuthenticatedUserId(): Promise<string | null> {
+  if (
+    !process.env.NEXT_PUBLIC_SUPABASE_URL ||
+    !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY
+  ) {
+    return null;
+  }
+
+  try {
+    const cookieStore = await cookies();
+    const supabaseAuth = createClient(cookieStore);
+    const {
+      data: { user },
+    } = await supabaseAuth.auth.getUser();
+
+    return user?.id ?? null;
+  } catch {
+    return null;
+  }
+}
+
+function isOversizedRequest(request: NextRequest): boolean {
+  const contentLength = request.headers.get("content-length");
+  if (!contentLength) return false;
+
+  const bytes = Number(contentLength);
+  return Number.isFinite(bytes) && bytes > MAX_REQUEST_BYTES;
+}
+
+function getPgErrorCode(error: unknown): string | undefined {
+  if (!isObjectRecord(error)) return undefined;
+  return typeof error.code === "string" ? error.code : undefined;
 }
 
 export async function POST(request: NextRequest) {
-  try {
-    const body: ConsentBody = await request.json();
-
-    // Validate required fields
-    if (!body.session_id || !body.policy_version || !body.action || !body.consents) {
-      return NextResponse.json(
-        { success: false, error: "Missing required fields" },
-        { status: 400 }
-      );
-    }
-
-    if (!VALID_ACTIONS.includes(body.action)) {
-      return NextResponse.json(
-        { success: false, error: "Invalid action" },
-        { status: 400 }
-      );
-    }
-
-    // Ensure necessary cookies are always true
-    if (!body.consents.necessary) {
-      return NextResponse.json(
-        { success: false, error: "Necessary cookies must be accepted" },
-        { status: 400 }
-      );
-    }
-
-    // Extract and hash IP — never log raw IP
-    const forwarded = request.headers.get("x-forwarded-for");
-    const rawIp = forwarded?.split(",")[0]?.trim() ?? request.headers.get("x-real-ip") ?? null;
-    const ipHash = rawIp ? hashIp(rawIp) : null;
-
-    // User agent
-    const userAgent = request.headers.get("user-agent") ?? null;
-
-    // Country from CDN headers
-    const country =
-      request.headers.get("cf-ipcountry") ??
-      request.headers.get("x-vercel-ip-country") ??
-      null;
-
-    // Authenticated user (optional)
-    let userId: string | null = null;
-    try {
-      const cookieStore = await cookies();
-      const supabaseAuth = createClient(cookieStore);
-      const { data: { user } } = await supabaseAuth.auth.getUser();
-      userId = user?.id ?? null;
-    } catch {
-      // Not authenticated — that's fine
-    }
-
-    // Banner text hash
-    const bannerTextHash = hashPolicyVersion(body.policy_version);
-
-    // Insert using service role client
-    const supabase = createServiceClient();
-    const { data, error } = await supabase
-      .from("cookie_consents")
-      .insert({
-        session_id: body.session_id,
-        policy_version: body.policy_version,
-        action: body.action,
-        consents: body.consents,
-        ip_hash: ipHash,
-        user_agent: userAgent,
-        country: country?.substring(0, 2) ?? null,
-        user_id: userId,
-        banner_text_hash: bannerTextHash,
-      })
-      .select("id")
-      .single();
-
-    if (error) {
-      console.error("Consent insert error:", error.message);
-      return NextResponse.json(
-        { success: false, error: "Failed to record consent" },
-        { status: 500 }
-      );
-    }
-
-    return NextResponse.json({ success: true, consent_id: data.id });
-  } catch (err) {
-    console.error("Consent endpoint error:", err);
+  if (isOversizedRequest(request)) {
     return NextResponse.json(
-      { success: false, error: "Internal server error" },
-      { status: 500 }
+      { success: false, error: "Payload is too large" },
+      { status: 413 },
+    );
+  }
+
+  let body: unknown;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ success: false, error: "Invalid JSON" }, { status: 400 });
+  }
+
+  const validated = validatePayload(body);
+  if (!validated.ok) {
+    return NextResponse.json({ success: false, error: validated.error }, { status: 400 });
+  }
+
+  let policyVersion: string;
+  let ipSalt: string;
+  try {
+    policyVersion = requiredEnv("POLICY_VERSION");
+    ipSalt = requiredEnv("CONSENT_IP_SALT");
+  } catch {
+    return NextResponse.json(
+      { success: false, error: "Consent service is not configured" },
+      { status: 500 },
+    );
+  }
+
+  const rawIp = getClientIp(request);
+  const ipHash = hashIp(rawIp, ipSalt);
+  const userAgent = request.headers.get("user-agent")?.slice(0, MAX_USER_AGENT_LENGTH) ?? null;
+  const userId = await getAuthenticatedUserId();
+
+  try {
+    const result = await pgQuery<{ id: string }>(
+      `
+        INSERT INTO public.cookie_consents (
+          action,
+          policy_version,
+          categories,
+          ip_hash,
+          user_agent,
+          user_id,
+          session_id,
+          page_url
+        )
+        VALUES ($1, $2, $3::jsonb, $4, $5, $6, $7, $8)
+        RETURNING id
+      `,
+      [
+        validated.data.action,
+        policyVersion,
+        validated.data.categories === null ? null : JSON.stringify(validated.data.categories),
+        ipHash,
+        userAgent,
+        userId,
+        validated.data.sessionId,
+        validated.data.pageUrl,
+      ],
+    );
+
+    return NextResponse.json({ success: true, id: result.rows[0].id });
+  } catch (error) {
+    console.error("Consent DB insert failed", { code: getPgErrorCode(error) });
+    return NextResponse.json(
+      { success: false, error: "Failed to record consent" },
+      { status: 500 },
     );
   }
 }

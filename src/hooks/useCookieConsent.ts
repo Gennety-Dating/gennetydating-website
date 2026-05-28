@@ -1,48 +1,32 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { POLICY_VERSION } from "@/constants/consent";
+import {
+  CONSENT_EVENT,
+  createConsentCache,
+  getSessionId,
+  isConsentCacheUsable,
+  readConsentCache,
+  syncConsentCache,
+  writeConsentCache,
+} from "@/lib/consent-cache";
+import type { CookieConsentCategories } from "@/types/consent";
 
-export interface ConsentChoices {
-  necessary: true;
-  analytics: boolean;
-  marketing: boolean;
-  functional: boolean;
-}
+export type ConsentChoices = CookieConsentCategories;
 
-interface StoredConsent {
-  version: string;
-  action: string;
-  consents: ConsentChoices;
-}
-
-const LS_SESSION_KEY = "cookie_consent_session_id";
-const LS_CONSENT_KEY = "cookie_consent_given";
-const CONSENT_EVENT = "cookie-consent-changed";
-
-function generateUUID(): string {
-  return crypto.randomUUID();
-}
-
-function getSessionId(): string {
-  if (typeof window === "undefined") return "";
-  let id = localStorage.getItem(LS_SESSION_KEY);
-  if (!id) {
-    id = generateUUID();
-    localStorage.setItem(LS_SESSION_KEY, id);
-  }
-  return id;
-}
-
-function getStoredConsent(): StoredConsent | null {
-  if (typeof window === "undefined") return null;
-  try {
-    const raw = localStorage.getItem(LS_CONSENT_KEY);
-    if (!raw) return null;
-    return JSON.parse(raw) as StoredConsent;
-  } catch {
+function normalizeChoices(categories: unknown): ConsentChoices | null {
+  if (typeof categories !== "object" || categories === null || Array.isArray(categories)) {
     return null;
   }
+
+  const record = categories as Record<string, unknown>;
+
+  return {
+    necessary: true,
+    analytics: record.analytics === true,
+    marketing: record.marketing === true,
+    functional: record.functional === true,
+  };
 }
 
 export function useCookieConsent() {
@@ -52,10 +36,10 @@ export function useCookieConsent() {
 
   useEffect(() => {
     function refresh() {
-      const stored = getStoredConsent();
-      if (stored && stored.version === POLICY_VERSION) {
+      const stored = readConsentCache();
+      if (isConsentCacheUsable(stored)) {
         setHasConsented(true);
-        setCurrentConsents(stored.consents);
+        setCurrentConsents(normalizeChoices(stored.categories));
       } else {
         setHasConsented(false);
         setCurrentConsents(null);
@@ -64,7 +48,12 @@ export function useCookieConsent() {
 
     refresh();
     getSessionId();
-    setIsLoading(false);
+    queueMicrotask(() => setIsLoading(false));
+
+    const stored = readConsentCache();
+    if (isConsentCacheUsable(stored) && stored.pendingSync) {
+      void syncConsentCache(stored);
+    }
 
     window.addEventListener(CONSENT_EVENT, refresh);
     window.addEventListener("storage", refresh);
@@ -77,35 +66,18 @@ export function useCookieConsent() {
   const submitConsent = useCallback(
     async (
       action: "accepted" | "rejected" | "partial" | "withdrawn",
-      consents: ConsentChoices
+      categories: ConsentChoices
     ) => {
-      // Persist locally and dismiss banner immediately — server logging is best-effort.
-      const stored: StoredConsent = {
-        version: POLICY_VERSION,
-        action,
-        consents,
-      };
-      localStorage.setItem(LS_CONSENT_KEY, JSON.stringify(stored));
+      const sessionId = getSessionId();
+      const cache = createConsentCache(action, categories, sessionId);
+
+      // Persist locally and dismiss banner immediately. Database sync is best-effort.
+      writeConsentCache(cache);
       setHasConsented(true);
-      setCurrentConsents(consents);
+      setCurrentConsents(categories);
       window.dispatchEvent(new Event(CONSENT_EVENT));
 
-      const sessionId = getSessionId();
-      try {
-        const res = await fetch("/api/consent", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            session_id: sessionId,
-            policy_version: POLICY_VERSION,
-            action,
-            consents,
-          }),
-        });
-        if (!res.ok) console.error("Failed to log consent on server");
-      } catch (err) {
-        console.error("Consent server request failed", err);
-      }
+      void syncConsentCache(cache);
     },
     []
   );
@@ -118,22 +90,13 @@ export function useCookieConsent() {
       functional: false,
     };
     const sessionId = getSessionId();
+    const cache = createConsentCache("withdrawn", allFalse, sessionId);
 
-    await fetch("/api/consent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        session_id: sessionId,
-        policy_version: POLICY_VERSION,
-        action: "withdrawn",
-        consents: allFalse,
-      }),
-    });
-
-    localStorage.removeItem(LS_CONSENT_KEY);
-    setHasConsented(false);
-    setCurrentConsents(null);
+    writeConsentCache(cache);
+    setHasConsented(true);
+    setCurrentConsents(allFalse);
     window.dispatchEvent(new Event(CONSENT_EVENT));
+    void syncConsentCache(cache);
   }, []);
 
   return {
