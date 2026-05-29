@@ -57,9 +57,6 @@ export function RealDates() {
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 className="w-full max-w-[260px] p-5 rounded-2xl bg-black/40 backdrop-blur-md shadow-[0_10px_40px_rgba(0,0,0,0.6)] flex flex-col items-center justify-center text-center relative transition-all duration-500 group-hover:bg-black/50"
               >
-                {/* Ненавязчивый внутренний блик */}
-                <div className="absolute -top-1 w-12 h-[2px] bg-white/10 rounded-full blur-[0.5px] group-hover:bg-magenta/40 transition-colors" />
-
                 {/* Значение метрики с нативным свечением */}
                 <span className={cn(
                   "font-sans font-bold text-xl md:text-2xl tracking-tight block mb-1",

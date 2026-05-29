@@ -31,11 +31,8 @@ function TestimonialCard({
       <div className="absolute inset-x-4 bottom-4 z-10">
         <motion.div 
           whileHover={{ y: -4, transition: { duration: 0.2 } }}
-          className="w-full p-4 rounded-2xl bg-black/50 border border-white/10 backdrop-blur-md shadow-[0_10px_40px_rgba(0,0,0,0.7)] flex flex-col relative transition-all duration-500 group-hover:bg-black/60"
+          className="w-full p-4 rounded-2xl bg-black/50 backdrop-blur-md shadow-[0_10px_40px_rgba(0,0,0,0.7)] flex flex-col relative transition-all duration-500 group-hover:bg-black/60"
         >
-          {/* Subtle internal glare/highlight that blooms magenta on hover */}
-          <div className="absolute -top-[1px] left-1/2 -translate-x-1/2 w-12 h-[2px] bg-white/10 rounded-full blur-[0.5px] group-hover:bg-magenta/50 transition-colors duration-300" />
-
           {/* Quote text */}
           <p className="text-white text-xs md:text-sm leading-relaxed mb-3 font-normal italic">
             &ldquo;{quote}&rdquo;
