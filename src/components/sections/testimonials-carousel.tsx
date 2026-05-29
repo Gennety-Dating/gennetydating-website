@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import { testimonials } from "@/lib/data";
 import { Heading, ScriptHighlight } from "@/components/ui/typography";
 import { MessageBubble } from "@/components/ui/message-bubble";
@@ -16,25 +17,36 @@ function TestimonialCard({
   quote: string;
 }) {
   return (
-    <div className="relative flex-shrink-0 w-[280px] md:w-[320px]">
-      {/* Square photo placeholder */}
-      <div className="w-full aspect-square rounded-lg overflow-hidden bg-gradient-to-br from-magenta/10 via-midnight to-magenta/5 flex items-center justify-center">
-        <span className="text-6xl select-none opacity-60" aria-hidden="true">
+    <div className="group relative flex-shrink-0 w-[280px] md:w-[320px] aspect-square rounded-3xl overflow-hidden bg-midnight select-none">
+      {/* Photo/Gradient background container */}
+      <div className="absolute inset-0 bg-gradient-to-br from-magenta/10 via-midnight to-magenta/5 flex items-center justify-center">
+        <span className="text-6xl select-none opacity-40 group-hover:scale-105 transition-transform duration-700 ease-out" aria-hidden="true">
           😊
         </span>
+        {/* Soft vignette/shadow overlay for readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
       </div>
 
-      {/* iMessage bubble overlapping photo */}
-      <div className="absolute -bottom-8 left-3 right-3">
-        <MessageBubble variant="dark" tail="left">
-          <p className="text-white text-sm leading-relaxed">
+      {/* Floating premium badge */}
+      <div className="absolute inset-x-4 bottom-4 z-10">
+        <motion.div 
+          whileHover={{ y: -4, transition: { duration: 0.2 } }}
+          className="w-full p-4 rounded-2xl bg-black/50 border border-white/10 backdrop-blur-md shadow-[0_10px_40px_rgba(0,0,0,0.7)] flex flex-col relative transition-all duration-500 group-hover:bg-black/60"
+        >
+          {/* Subtle internal glare/highlight that blooms magenta on hover */}
+          <div className="absolute -top-[1px] left-1/2 -translate-x-1/2 w-12 h-[2px] bg-white/10 rounded-full blur-[0.5px] group-hover:bg-magenta/50 transition-colors duration-300" />
+
+          {/* Quote text */}
+          <p className="text-white text-xs md:text-sm leading-relaxed mb-3 font-normal italic">
             &ldquo;{quote}&rdquo;
           </p>
-          <p className="mt-2 text-xs text-gray-400 font-medium">
+
+          {/* Author info */}
+          <p className="text-[10px] md:text-xs text-gray-400 font-medium tracking-wide">
             {name}{" "}
-            <span className="text-magenta">@{school}</span>
+            <span className="text-magenta drop-shadow-[0_0_10px_rgba(255,0,255,0.4)] font-semibold">@{school}</span>
           </p>
-        </MessageBubble>
+        </motion.div>
       </div>
     </div>
   );
