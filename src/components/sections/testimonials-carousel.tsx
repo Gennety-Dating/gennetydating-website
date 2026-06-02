@@ -4,7 +4,6 @@ import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { testimonials } from "@/lib/data";
 import { Heading, ScriptHighlight } from "@/components/ui/typography";
-import { MessageBubble } from "@/components/ui/message-bubble";
 import { useLanguage } from "@/lib/language-context";
 
 function TestimonialCard({

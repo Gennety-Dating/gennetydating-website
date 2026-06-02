@@ -1,90 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gennety Dating Landing Page
 
-## Getting Started
+Premium high-fidelity landing page for **Gennety** — an AI-driven romantic matchmaking service for university students. Gennety removes traditional swipe mechanics and endless messaging, opting to curate real in-person dates based on LLM-derived profiles, calendar availability, and location compatibility.
 
-Set the backend API URL used by the registration modal:
+This repository hosts the public-facing promotional website and cookie consent logging system.
+
+## 🚀 Tech Stack
+
+- **Framework:** [Next.js 16 (App Router)](https://nextjs.org/)
+- **Libraries:** React 19, [Framer Motion](https://www.framer.com/motion/) (marquee, countdown, animations), [Lucide React](https://lucide.dev/) (icons)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **Database/Consent Storage:** Neon Postgres (via `pg` pool) & Supabase auth/client utilities (for consent logging)
+- **Testing:** [Vitest](https://vitest.dev/)
+
+---
+
+## 🎨 Visual Identity ("Midnight Contrast")
+
+The landing page follows a digital scrapbook aesthetic, consisting of:
+- **Base Background:** Deep Pitch Black (`#050505`) with a subtle grain/noise overlay and CRT scanlines texture.
+- **Accents:** Electric Magenta (`#FF00FF`) with a signature **Neon Bloom** drop-shadow/outer-glow effect.
+- **Typography:** Sleek white copy using editorial serif headings, handwritten accents, and Geist/Inter body fonts.
+- **Elements:** Polaroid film snapshots, physical-looking stickers, crumpled paper comparisons, and custom SVGs.
+
+---
+
+## 📂 Key Features & Structure
+
+1. **Navbar:** Translucent, glassmorphic floating menu with responsive mobile toggles.
+2. **Hero Section:** Centered minimalist purple star with the script headline `"go on a date with your type"`, a live countdown timer, and the primary Telegram CTA (`Message Ditto to Join`).
+3. **How It Works:** A staggered 4-step timeline outlining preference submission, the Thursday match drop, scheduling, and meeting up.
+4. **Real Dates Delivered:** Student engagement statistics presented as overlapping metric stickers.
+5. **Personalized Matchmaker:** 3-column feature grid explaining the AI research backing, user profiling, and pool matching mechanism.
+6. **Unforgettable Great Times:** Responsive testimonial cards with auto-scrolling motion animations and overlapping iMessage-styled quotes.
+7. **Tired of Tinder & Badoo?:** Visual comparison of Gennety's clean notification flow against messy competitor interfaces.
+8. **Verified. Private. Safe.:** Highlight of key trust structures (university domain domain gating, absolute privacy, on-campus dates).
+9. **FAQ Accordion:** Custom black accordion list with animated magenta arrows.
+10. **Marquee + Manifesto:** Infinite scrolling text banner overlaying campus imagery with links to the team manifesto.
+11. **Consent Banner:** Standard-compliant cookie consent drawer linked to a secure serverless storage endpoint.
+
+---
+
+## ⚙️ Environment Configuration
+
+Create a `.env.local` file in the root directory:
 
 ```bash
-NEXT_PUBLIC_GENNETY_API_URL=http://localhost:3101/v1
-```
+# Public API Endpoint for Registration Modals (Backend Bot/API)
+NEXT_PUBLIC_GENNETY_API_URL=https://dating-api.gennety.com/v1
 
-Set cookie consent logging env vars:
+# Primary Telegram Bot URI
+NEXT_PUBLIC_TELEGRAM_BOT_URL=https://t.me/GennetyBot
 
-```bash
+# Neon Postgres (Pooled connection for Next.js runtime API)
 DATABASE_URL=postgresql://user:password@ep-example-pooler.region.aws.neon.tech/dbname?sslmode=require
+
+# Neon Postgres (Direct connection for migrations/scripts)
 DATABASE_URL_DIRECT=postgresql://user:password@ep-example.region.aws.neon.tech/dbname?sslmode=require
-CONSENT_IP_SALT=replace-with-a-long-random-secret
+
+# Cryptographic Salt for Privacy-Preserving Consent IP Hashing
+CONSENT_IP_SALT=your-long-random-salt-here
+
+# Cookie Policy Version Tracker
 POLICY_VERSION=2026-04-01
 NEXT_PUBLIC_POLICY_VERSION=2026-04-01
 ```
 
-`DATABASE_URL` is the pooled Neon connection string used by the Next.js runtime.
-`DATABASE_URL_DIRECT` is the direct Neon connection string used only for migrations/admin tasks.
-`POLICY_VERSION` and `NEXT_PUBLIC_POLICY_VERSION` must match.
+---
 
-## Cookie Consent Storage
+## 🗄️ Consent Storage & Migrations
 
-Cookie banner consent events are logged to Neon Postgres through `POST /api/consent`.
-Supabase auth/admin code is still present for other app features, but consent storage uses ordinary PostgreSQL only.
+Consent events are safely logged to Neon Postgres via `POST /api/consent` to protect user privacy according to GDPR standards.
 
-Create a Neon project manually:
-
-1. Open the Neon Console and create a new project.
-2. Create or select the database and role for this website.
-3. In the connection details, copy the pooled connection string for `DATABASE_URL`.
-4. Copy the direct connection string for `DATABASE_URL_DIRECT`.
-5. Store both values in local/Vercel environment variables. Do not expose either value to client code.
-
-Run the consent migration only after confirming the target Neon project:
-
+To run migrations against the Neon target database:
 ```bash
 npm run db:migrate:consent
 ```
 
-The script uses `DATABASE_URL_DIRECT` and runs:
-
-```bash
-psql "$DATABASE_URL_DIRECT" -f migrations/20260520000000_cookie_consents.sql
-```
-
-Verify records are being written:
-
+This runs the SQL file located in [migrations/20260520000000_cookie_consents.sql](file:///Users/pro/Desktop/Gennety%20dating%20website/migrations/20260520000000_cookie_consents.sql):
 ```sql
-select id, created_at, action, policy_version, session_id, page_url
-from public.cookie_consents
-order by created_at desc
-limit 10;
+CREATE TABLE IF NOT EXISTS public.cookie_consents (
+    id SERIAL PRIMARY KEY,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    action VARCHAR(50) NOT NULL,
+    policy_version VARCHAR(50) NOT NULL,
+    session_id VARCHAR(255),
+    page_url TEXT,
+    ip_hash VARCHAR(64)
+);
 ```
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+You can verify that records are correctly logged using this SQL command:
+```sql
+SELECT id, created_at, action, policy_version, session_id, page_url FROM public.cookie_consents ORDER BY created_at DESC LIMIT 10;
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Development & Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Commands
 
-## Learn More
+- **Install dependencies:**
+  ```bash
+  npm install
+  ```
+- **Start development server:**
+  ```bash
+  npm run dev
+  ```
+- **Compile production build:**
+  ```bash
+  npm run build
+  ```
+- **Run linting & type checks:**
+  ```bash
+  npm run lint
+  ```
+- **Run tests:**
+  ```bash
+  npm run test
+  ```
 
-To learn more about Next.js, take a look at the following resources:
+### Vercel Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Import the repository in Vercel.
+2. Bind the environment variables listed in the configuration section.
+3. Vercel will automatically run `npm run build` and provision serverless edge nodes for `app/api/consent`.
