@@ -1,8 +1,6 @@
 import { createHash } from "crypto";
-import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { pgQuery } from "@/lib/postgres";
-import { createClient } from "@/utils/supabase/server";
 import {
   CONSENT_ACTIONS,
   type ConsentAction,
@@ -110,27 +108,6 @@ function hashIp(rawIp: string | null, salt: string): string | null {
   return createHash("sha256").update(rawIp + salt).digest("hex");
 }
 
-async function getAuthenticatedUserId(): Promise<string | null> {
-  if (
-    !process.env.NEXT_PUBLIC_SUPABASE_URL ||
-    !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY
-  ) {
-    return null;
-  }
-
-  try {
-    const cookieStore = await cookies();
-    const supabaseAuth = createClient(cookieStore);
-    const {
-      data: { user },
-    } = await supabaseAuth.auth.getUser();
-
-    return user?.id ?? null;
-  } catch {
-    return null;
-  }
-}
-
 function isOversizedRequest(request: NextRequest): boolean {
   const contentLength = request.headers.get("content-length");
   if (!contentLength) return false;
@@ -179,7 +156,7 @@ export async function POST(request: NextRequest) {
   const rawIp = getClientIp(request);
   const ipHash = hashIp(rawIp, ipSalt);
   const userAgent = request.headers.get("user-agent")?.slice(0, MAX_USER_AGENT_LENGTH) ?? null;
-  const userId = await getAuthenticatedUserId();
+  const userId = null;
 
   try {
     const result = await pgQuery<{ id: string }>(

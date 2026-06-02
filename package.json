@@ -11,8 +11,6 @@
     "db:migrate:consent": "sh -c 'test -n \"$DATABASE_URL_DIRECT\" || (echo \"DATABASE_URL_DIRECT is required\" >&2; exit 1); psql \"$DATABASE_URL_DIRECT\" -f migrations/20260520000000_cookie_consents.sql'"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.10.0",
-    "@supabase/supabase-js": "^2.102.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.7.0",
