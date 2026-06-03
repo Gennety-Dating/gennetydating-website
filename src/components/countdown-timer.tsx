@@ -113,10 +113,6 @@ export function CountdownTimer() {
             {t("countdown.nextMatch")}{" "}
             <span className="text-white font-medium">{matchDay}</span>
           </p>
-          <p className="text-sm text-gray-400">
-            {t("countdown.joined")}{" "}
-            <span className="text-magenta font-semibold neon-text-sm">1,247</span> {t("countdown.students")}
-          </p>
         </>
       )}
     </div>
