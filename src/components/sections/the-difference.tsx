@@ -56,8 +56,23 @@ interface ActiveProfile extends Profile {
   uniqueId: string;
 }
 
+const messageTimeline: Message[] = [
+  { id: 1, sender: "bot", textKey: "difference.chat.msg1" },
+  { id: 2, sender: "user", textKey: "difference.chat.msg2" },
+  { id: 3, sender: "bot", textKey: "difference.chat.msg3" },
+  { id: 4, sender: "user", textKey: "difference.chat.msg4" },
+  { id: 5, sender: "bot", textKey: "difference.chat.msg5" },
+  { id: 6, sender: "bot", textKey: "difference.chat.msg6" },
+  { id: 7, sender: "ticket" },
+];
+
 export function TheDifference() {
   const { t } = useLanguage();
+
+  const tickerText = t("difference.status.ticker");
+  const [tickerTitle, tickerSubtitle] = tickerText.includes("|")
+    ? tickerText.split("|").map(s => s.trim())
+    : ["Agent Active", tickerText];
 
   // --- Tinder Swiping Logic (AnimatePresence list) ---
   const [activeCards, setActiveCards] = useState<ActiveProfile[]>([]);
@@ -104,25 +119,17 @@ export function TheDifference() {
   const [isTyping, setIsTyping] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  const messageTimeline: Message[] = [
-    { id: 1, sender: "bot", textKey: "difference.chat.msg1" },
-    { id: 2, sender: "user", textKey: "difference.chat.msg2" },
-    { id: 3, sender: "bot", textKey: "difference.chat.msg3" },
-    { id: 4, sender: "user", textKey: "difference.chat.msg4" },
-    { id: 5, sender: "bot", textKey: "difference.chat.msg5" },
-    { id: 6, sender: "bot", textKey: "difference.chat.msg6" },
-    { id: 7, sender: "ticket" },
-  ];
-
   useEffect(() => {
     let timelineIndex = 0;
     setChatMessages([]);
     setIsTyping(false);
+    let activeTimeout: NodeJS.Timeout | null = null;
+    let loopTimeout: NodeJS.Timeout | null = null;
 
     const playNextMessage = () => {
       if (timelineIndex >= messageTimeline.length) {
         // Conversation finished, pause then restart loop
-        setTimeout(() => {
+        loopTimeout = setTimeout(() => {
           setChatMessages([]);
           timelineIndex = 0;
           playNextMessage();
@@ -139,20 +146,24 @@ export function TheDifference() {
         setIsTyping(true);
       }
 
-      setTimeout(() => {
+      activeTimeout = setTimeout(() => {
         setIsTyping(false);
         setChatMessages((prev) => [...prev, nextMsg]);
         timelineIndex++;
 
         // Schedule next message
-        setTimeout(playNextMessage, 1200);
+        activeTimeout = setTimeout(playNextMessage, 1200);
       }, typingDelay);
     };
 
     // Start chat loop
     const initialDelay = setTimeout(playNextMessage, 1000);
 
-    return () => clearTimeout(initialDelay);
+    return () => {
+      clearTimeout(initialDelay);
+      if (activeTimeout) clearTimeout(activeTimeout);
+      if (loopTimeout) clearTimeout(loopTimeout);
+    };
   }, []);
 
   // Auto scroll chat container internally
@@ -176,6 +187,7 @@ export function TheDifference() {
         <Heading as="h2" className="text-center mb-16 tracking-tight">
           <Highlight>{t("difference.title.highlight")}</Highlight> {t("difference.title.rest")}
         </Heading>
+
 
         {/* Comparison Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-stretch">
@@ -272,11 +284,11 @@ export function TheDifference() {
             </div>
 
             {/* Chatbot Telegram Frame */}
-            <div className="w-full max-w-[360px] h-[440px] bg-black/40 border border-white/10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.7)] backdrop-blur-lg flex flex-col overflow-hidden relative">
+            <div className="w-full max-w-[360px] h-[440px] bg-black/60 border border-white/10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-xl flex flex-col overflow-hidden relative">
               {/* Header */}
-              <div className="px-4 py-3 bg-white/5 border-b border-white/10 flex items-center justify-between">
+              <div className="px-4 py-3 bg-white/[0.03] border-b border-white/10 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-magenta/20 border border-magenta/40 flex items-center justify-center relative overflow-hidden">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-magenta-dark/30 to-magenta/20 border border-magenta/30 flex items-center justify-center relative overflow-hidden shadow-neon-sm">
                     <Image
                       src="/images/star-mascot.png"
                       alt="Gennety Mascot"
@@ -288,7 +300,9 @@ export function TheDifference() {
                   <div>
                     <h4 className="text-sm font-bold text-white flex items-center gap-1.5">
                       Gennety Bot
-                      <Check className="w-3.5 h-3.5 text-magenta bg-white rounded-full p-0.5" />
+                      <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-magenta text-midnight flex-shrink-0">
+                        <Check className="w-2.5 h-2.5 stroke-[3]" />
+                      </span>
                     </h4>
                     <span className="text-[10px] text-emerald-400 font-medium flex items-center gap-1">
                       <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
@@ -298,8 +312,32 @@ export function TheDifference() {
                 </div>
               </div>
 
-              {/* Message History area */}
-              <div ref={chatContainerRef} className="flex-1 p-4 overflow-y-auto space-y-3 scrollbar-thin select-none">
+              {/* Telegram-style Pinned Message active bar */}
+              <div className="bg-white/[0.02] border-b border-white/10 py-2.5 px-4 text-xs flex items-center gap-3 select-none">
+                <div className="relative flex h-2 w-2 flex-shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-magenta opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-magenta"></span>
+                </div>
+                <div className="w-[2px] h-8 bg-magenta/40 rounded-full" />
+                <div className="flex-1 min-w-0">
+                  <p className="text-[10px] text-magenta font-bold uppercase tracking-wider leading-tight">
+                    {tickerTitle}
+                  </p>
+                  <p className="text-[11px] text-gray-400 truncate leading-tight">
+                    {tickerSubtitle}
+                  </p>
+                </div>
+              </div>
+
+              {/* Message History area with Grid Wallpaper */}
+              <div 
+                ref={chatContainerRef} 
+                className="flex-1 p-4 overflow-y-auto space-y-4 scrollbar-thin select-none"
+                style={{ 
+                  backgroundImage: "radial-gradient(rgba(208, 173, 252, 0.04) 1px, transparent 1px)", 
+                  backgroundSize: "12px 12px" 
+                }}
+              >
                 <AnimatePresence initial={false}>
                   {chatMessages.map((msg, index) => {
                     if (msg.sender === "ticket") {
@@ -312,7 +350,7 @@ export function TheDifference() {
                           className="flex justify-center py-2"
                         >
                           {/* Wednesday Drop / Thursday Drop Ticket Container */}
-                          <div className="relative w-full max-w-[280px] bg-gradient-to-b from-[#1b081b] to-[#0d040d] border border-magenta/30 rounded-2xl overflow-hidden shadow-[0_0_25px_rgba(255,0,255,0.25)] flex flex-col">
+                          <div className="relative w-full max-w-[280px] bg-white/[0.02] backdrop-blur-md border border-magenta/20 rounded-2xl overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.5)] flex flex-col">
                             {/* Neon glowing dash design element */}
                             <div className="absolute top-0 inset-x-0 h-1 bg-magenta" />
                             
@@ -369,8 +407,8 @@ export function TheDifference() {
                         <div
                           className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-xs md:text-sm shadow-md leading-relaxed ${
                             isBot
-                              ? "bg-white/10 text-white rounded-tl-xs border border-white/5"
-                              : "bg-magenta text-white rounded-tr-xs shadow-[0_4px_12px_rgba(255,0,255,0.3)]"
+                              ? "bg-white/[0.06] text-white rounded-tl-sm border border-white/5"
+                              : "bg-magenta text-midnight font-medium rounded-tr-sm shadow-[0_4px_12px_rgba(208,173,252,0.25)]"
                           }`}
                         >
                           {msg.textKey ? t(msg.textKey) : ""}
@@ -387,7 +425,7 @@ export function TheDifference() {
                     animate={{ opacity: 1, y: 0 }}
                     className="flex justify-start"
                   >
-                    <div className="bg-white/10 text-white rounded-2xl rounded-tl-xs px-4 py-3 flex gap-1 items-center border border-white/5">
+                    <div className="bg-white/[0.06] text-white rounded-2xl rounded-tl-sm px-4 py-2.5 flex gap-1 items-center border border-white/5">
                       <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
                       <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
                       <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />

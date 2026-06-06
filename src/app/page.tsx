@@ -15,8 +15,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <HowItWorks />
-      <TheDifference />
       <Matchmaker />
+      <TheDifference />
       <Comparison />
       <Safety />
       <FAQ />
