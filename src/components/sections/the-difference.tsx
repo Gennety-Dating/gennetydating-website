@@ -151,7 +151,7 @@ export function TheDifference() {
           },
         ];
       });
-    }, 400); // Allow time for card exit animation
+    }, 300); // Synchronized with 0.3s GPU exit transition
   };
 
   const handleRewind = () => {
@@ -295,6 +295,7 @@ export function TheDifference() {
                       style={{
                         transformOrigin: "bottom center",
                         zIndex: stackIndex,
+                        willChange: "transform, opacity",
                       }}
                       initial={{ scale: 0.92, y: -20, opacity: 0 }}
                       animate={{
@@ -304,16 +305,24 @@ export function TheDifference() {
                         opacity: stackIndex === 0 ? 0.4 : 1,
                       }}
                       exit={{
-                        x: profile.action === "like" ? 450 : profile.action === "nope" ? -450 : 0,
-                        y: profile.action === "superlike" ? -600 : 40,
-                        rotate: profile.action === "like" ? 20 : profile.action === "nope" ? -20 : 0,
+                        x: profile.action === "like" ? 480 : profile.action === "nope" ? -480 : 0,
+                        y: profile.action === "superlike" ? -650 : 0,
+                        rotate: profile.action === "like" ? 25 : profile.action === "nope" ? -25 : 0,
                         opacity: 0,
                       }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 90,
-                        damping: 17,
-                      }}
+                      transition={
+                        isTop && profile.action
+                          ? {
+                              type: "tween",
+                              ease: [0.32, 0, 0.67, 0], // easeInCubic
+                              duration: 0.3,
+                            }
+                          : {
+                              type: "spring",
+                              stiffness: 110,
+                              damping: 22,
+                            }
+                      }
                     >
                       {/* Portrait Image */}
                       <div className="absolute inset-0 w-full h-full bg-[#111111]">
