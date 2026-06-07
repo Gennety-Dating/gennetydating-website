@@ -282,85 +282,66 @@ export function TheDifference() {
             </div>
 
             {/* Tinder Stack Container */}
-            <div className="relative w-full max-w-[320px] h-[520px] flex flex-col justify-between select-none z-10">
-              {/* Stack Area */}
-              <div className="relative w-full h-[430px]">
-                <AnimatePresence>
-                  {activeCards.slice(0, 3).reverse().map((profile) => {
-                    const isTop = profile.uniqueId === activeCards[0]?.uniqueId;
-                    const stackIndex = isTop ? 2 : (profile.uniqueId === activeCards[1]?.uniqueId ? 1 : 0);
+            <div className="relative w-full max-w-[320px] h-[550px] flex items-center justify-center select-none z-10">
+              <AnimatePresence>
+                {activeCards.slice(0, 3).reverse().map((profile) => {
+                  const isTop = profile.uniqueId === activeCards[0]?.uniqueId;
+                  const stackIndex = isTop ? 2 : (profile.uniqueId === activeCards[1]?.uniqueId ? 1 : 0);
 
-                    return (
-                      <motion.div
-                        key={profile.uniqueId}
-                        className="absolute inset-0 bg-[#1e1e1e] rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.5)] border border-white/5 flex flex-col justify-end"
-                        style={{
-                          transformOrigin: "bottom center",
-                          zIndex: stackIndex,
-                        }}
-                        initial={{ scale: 0.92, y: -20, opacity: 0 }}
-                        animate={{
-                          scale: stackIndex === 2 ? 1 : stackIndex === 1 ? 0.96 : 0.92,
-                          y: stackIndex === 2 ? 0 : stackIndex === 1 ? -12 : -24,
-                          rotate: stackIndex === 2 ? 0 : stackIndex === 1 ? -1.5 : 1.5,
-                          opacity: stackIndex === 0 ? 0.4 : 1,
-                        }}
-                        exit={{
-                          x: profile.action === "like" ? 450 : profile.action === "nope" ? -450 : 0,
-                          y: profile.action === "superlike" ? -600 : 40,
-                          rotate: profile.action === "like" ? 20 : profile.action === "nope" ? -20 : 0,
-                          opacity: 0,
-                        }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 90,
-                          damping: 17,
-                        }}
-                      >
-                        {/* Portrait Image */}
-                        <div className="absolute inset-0 w-full h-full bg-[#111111]">
-                          <Image
-                            src={profile.image}
-                            alt="Student profile"
-                            fill
-                            sizes="320px"
-                            priority={isTop}
-                            className="object-cover pointer-events-none"
-                          />
-                          {/* Dark Vignette Overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
-                        </div>
+                  return (
+                    <motion.div
+                      key={profile.uniqueId}
+                      className="absolute inset-0 bg-[#1e1e1e] rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.5)] border border-white/5 flex flex-col justify-end"
+                      style={{
+                        transformOrigin: "bottom center",
+                        zIndex: stackIndex,
+                      }}
+                      initial={{ scale: 0.92, y: -20, opacity: 0 }}
+                      animate={{
+                        scale: stackIndex === 2 ? 1 : stackIndex === 1 ? 0.96 : 0.92,
+                        y: stackIndex === 2 ? 0 : stackIndex === 1 ? -12 : -24,
+                        rotate: stackIndex === 2 ? 0 : stackIndex === 1 ? -1.5 : 1.5,
+                        opacity: stackIndex === 0 ? 0.4 : 1,
+                      }}
+                      exit={{
+                        x: profile.action === "like" ? 450 : profile.action === "nope" ? -450 : 0,
+                        y: profile.action === "superlike" ? -600 : 40,
+                        rotate: profile.action === "like" ? 20 : profile.action === "nope" ? -20 : 0,
+                        opacity: 0,
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 90,
+                        damping: 17,
+                      }}
+                    >
+                      {/* Portrait Image */}
+                      <div className="absolute inset-0 w-full h-full bg-[#111111]">
+                        <Image
+                          src={profile.image}
+                          alt="Student profile"
+                          fill
+                          sizes="320px"
+                          priority={isTop}
+                          className="object-cover pointer-events-none"
+                        />
+                        {/* Dark Vignette Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none" />
+                      </div>
 
-                        {/* Top Stories-like pagination lines */}
-                        <div className="absolute top-3 inset-x-3 z-30 flex gap-1 px-1 opacity-60">
-                          <div className={`h-1 flex-1 rounded-full ${profile.id === 1 ? 'bg-white' : 'bg-white/30'}`} />
-                          <div className={`h-1 flex-1 rounded-full ${profile.id === 2 ? 'bg-white' : 'bg-white/30'}`} />
-                          <div className={`h-1 flex-1 rounded-full ${profile.id === 3 ? 'bg-white' : 'bg-white/30'}`} />
-                          <div className={`h-1 flex-1 rounded-full ${profile.id === 4 ? 'bg-white' : 'bg-white/30'}`} />
-                          <div className={`h-1 flex-1 rounded-full ${profile.id === 5 ? 'bg-white' : 'bg-white/30'}`} />
-                        </div>
+                      {/* Top Stories-like pagination lines */}
+                      <div className="absolute top-3 inset-x-3 z-30 flex gap-1 px-1 opacity-60">
+                        <div className={`h-1 flex-1 rounded-full ${profile.id === 1 ? 'bg-white' : 'bg-white/30'}`} />
+                        <div className={`h-1 flex-1 rounded-full ${profile.id === 2 ? 'bg-white' : 'bg-white/30'}`} />
+                        <div className={`h-1 flex-1 rounded-full ${profile.id === 3 ? 'bg-white' : 'bg-white/30'}`} />
+                        <div className={`h-1 flex-1 rounded-full ${profile.id === 4 ? 'bg-white' : 'bg-white/30'}`} />
+                        <div className={`h-1 flex-1 rounded-full ${profile.id === 5 ? 'bg-white' : 'bg-white/30'}`} />
+                      </div>
 
-                        {/* Tinder Stamp Overlay (LIKE / NOPE / SUPER LIKE) */}
-                        {isTop && profile.action && (
-                          <div
-                            className={`absolute top-8 z-30 border-4 rounded-lg px-3 py-1 font-black text-2xl uppercase tracking-widest bg-black/10 backdrop-blur-[1px] ${
-                              profile.action === "like"
-                                ? "left-6 -rotate-12 border-emerald-500 text-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.4)]"
-                                : profile.action === "nope"
-                                ? "right-6 rotate-12 border-rose-500 text-rose-500 shadow-[0_0_15px_rgba(244,63,94,0.4)]"
-                                : "left-1/2 -translate-x-1/2 -rotate-6 border-sky-400 text-sky-400 shadow-[0_0_15px_rgba(56,189,248,0.4)]"
-                            }`}
-                          >
-                            {profile.action === "like"
-                              ? t("difference.tinder.like")
-                              : profile.action === "nope"
-                              ? t("difference.tinder.nope")
-                              : "SUPER LIKE"}
-                          </div>
-                        )}
-
-                        {/* Profile text info at bottom */}
-                        <div className="relative z-20 p-5 text-left pointer-events-none space-y-2 select-none">
+                      {/* Profile text info and buttons at bottom */}
+                      <div className="relative z-20 text-left space-y-3 select-none w-full px-5 pb-5 pt-16">
+                        {/* Details Stack */}
+                        <div className="space-y-1.5 pointer-events-none">
                           {/* Name, Age, Verified badge */}
                           <div className="flex items-center gap-2 flex-wrap">
                             <span className="font-sans font-extrabold text-2xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
@@ -372,7 +353,7 @@ export function TheDifference() {
                           </div>
 
                           {/* College and Distance */}
-                          <div className="flex flex-col gap-1 text-xs text-gray-300 font-semibold drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+                          <div className="flex flex-col gap-0.5 text-xs text-gray-300 font-semibold drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
                             <div className="flex items-center gap-1.5">
                               <GraduationCap className="w-4 h-4 text-magenta" />
                               <span>{t(profile.collegeKey)}</span>
@@ -400,63 +381,63 @@ export function TheDifference() {
                             ))}
                           </div>
                         </div>
-                      </motion.div>
-                    );
-                  })}
-                </AnimatePresence>
-              </div>
 
-              {/* Action Buttons Row */}
-              <div className="flex items-center justify-center gap-4 mt-2 z-30 pointer-events-auto">
-                {/* Rewind Button */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleRewind();
-                  }}
-                  disabled={history.length === 0}
-                  className="w-11 h-11 rounded-full border border-amber-400/30 bg-black/40 flex items-center justify-center text-amber-400 hover:bg-amber-400/10 hover:border-amber-400 hover:shadow-[0_0_15px_rgba(251,191,36,0.4)] active:scale-95 transition-all duration-200 disabled:opacity-30 disabled:pointer-events-none"
-                  aria-label="Rewind"
-                >
-                  <RotateCcw className="w-5 h-5 stroke-[2.5]" />
-                </button>
+                        {/* Action Buttons Row (Only interactive on top card) */}
+                        <div className={`flex items-center justify-center gap-3.5 pt-2 ${isTop ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-40'}`}>
+                          {/* Rewind Button */}
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleRewind();
+                            }}
+                            disabled={history.length === 0}
+                            className="w-10 h-10 rounded-full border border-amber-400/30 bg-black/60 flex items-center justify-center text-amber-400 hover:bg-amber-400/20 hover:border-amber-400 hover:shadow-[0_0_15px_rgba(251,191,36,0.4)] active:scale-95 transition-all duration-200 disabled:opacity-20 disabled:pointer-events-none"
+                            aria-label="Rewind"
+                          >
+                            <RotateCcw className="w-4.5 h-4.5 stroke-[2.5]" />
+                          </button>
 
-                {/* Nope Button */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    swipeTopCard("nope");
-                  }}
-                  className="w-13 h-13 rounded-full border border-rose-500/30 bg-black/40 flex items-center justify-center text-rose-500 hover:bg-rose-500/10 hover:border-rose-500 hover:shadow-[0_0_15px_rgba(244,63,94,0.4)] active:scale-95 transition-all duration-200"
-                  aria-label="Nope"
-                >
-                  <X className="w-6 h-6 stroke-[3]" />
-                </button>
+                          {/* Nope Button */}
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              swipeTopCard("nope");
+                            }}
+                            className="w-12 h-12 rounded-full border border-rose-500/30 bg-black/60 flex items-center justify-center text-rose-500 hover:bg-rose-500/20 hover:border-rose-500 hover:shadow-[0_0_15px_rgba(244,63,94,0.4)] active:scale-95 transition-all duration-200"
+                            aria-label="Nope"
+                          >
+                            <X className="w-5.5 h-5.5 stroke-[3]" />
+                          </button>
 
-                {/* Superlike Button */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    swipeTopCard("superlike");
-                  }}
-                  className="w-11 h-11 rounded-full border border-sky-400/30 bg-black/40 flex items-center justify-center text-sky-400 hover:bg-sky-400/10 hover:border-sky-400 hover:shadow-[0_0_15px_rgba(56,189,248,0.4)] active:scale-95 transition-all duration-200"
-                  aria-label="Super Like"
-                >
-                  <Star className="w-5 h-5 fill-sky-400/10 stroke-[2.5]" />
-                </button>
+                          {/* Superlike Button */}
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              swipeTopCard("superlike");
+                            }}
+                            className="w-10 h-10 rounded-full border border-sky-400/30 bg-black/60 flex items-center justify-center text-sky-400 hover:bg-sky-400/20 hover:border-sky-400 hover:shadow-[0_0_15px_rgba(56,189,248,0.4)] active:scale-95 transition-all duration-200"
+                            aria-label="Super Like"
+                          >
+                            <Star className="w-4.5 h-4.5 fill-sky-400/10 stroke-[2.5]" />
+                          </button>
 
-                {/* Like Button */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    swipeTopCard("like");
-                  }}
-                  className="w-13 h-13 rounded-full border border-emerald-400/30 bg-black/40 flex items-center justify-center text-emerald-400 hover:bg-emerald-400/10 hover:border-emerald-400 hover:shadow-[0_0_15px_rgba(52,211,153,0.4)] active:scale-95 transition-all duration-200"
-                  aria-label="Like"
-                >
-                  <Heart className="w-6 h-6 fill-emerald-400/5 stroke-[2.5]" />
-                </button>
-              </div>
+                          {/* Like Button */}
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              swipeTopCard("like");
+                            }}
+                            className="w-12 h-12 rounded-full border border-emerald-400/30 bg-black/60 flex items-center justify-center text-emerald-400 hover:bg-emerald-400/20 hover:border-emerald-400 hover:shadow-[0_0_15px_rgba(52,211,153,0.4)] active:scale-95 transition-all duration-200"
+                            aria-label="Like"
+                          >
+                            <Heart className="w-5.5 h-5.5 fill-emerald-400/5 stroke-[2.5]" />
+                          </button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
             </div>
           </div>
 
