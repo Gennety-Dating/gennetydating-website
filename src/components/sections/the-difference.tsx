@@ -391,7 +391,7 @@ export function TheDifference() {
                               handleRewind();
                             }}
                             disabled={history.length === 0}
-                            className="w-10 h-10 rounded-full border border-amber-400/30 bg-black/60 flex items-center justify-center text-amber-400 hover:bg-amber-400/20 hover:border-amber-400 hover:shadow-[0_0_15px_rgba(251,191,36,0.4)] active:scale-95 transition-all duration-200 disabled:opacity-20 disabled:pointer-events-none"
+                            className="w-10 h-10 rounded-full bg-amber-400/10 flex items-center justify-center text-amber-400 hover:bg-amber-400/20 hover:shadow-[0_0_15px_rgba(251,191,36,0.3)] active:scale-95 transition-all duration-200 disabled:opacity-20 disabled:pointer-events-none backdrop-blur-sm"
                             aria-label="Rewind"
                           >
                             <RotateCcw className="w-4.5 h-4.5 stroke-[2.5]" />
@@ -403,7 +403,7 @@ export function TheDifference() {
                               e.stopPropagation();
                               swipeTopCard("nope");
                             }}
-                            className="w-12 h-12 rounded-full border border-rose-500/30 bg-black/60 flex items-center justify-center text-rose-500 hover:bg-rose-500/20 hover:border-rose-500 hover:shadow-[0_0_15px_rgba(244,63,94,0.4)] active:scale-95 transition-all duration-200"
+                            className="w-12 h-12 rounded-full bg-rose-500/10 flex items-center justify-center text-rose-500 hover:bg-rose-500/20 hover:shadow-[0_0_15px_rgba(244,63,94,0.3)] active:scale-95 transition-all duration-200 backdrop-blur-sm"
                             aria-label="Nope"
                           >
                             <X className="w-5.5 h-5.5 stroke-[3]" />
@@ -415,7 +415,7 @@ export function TheDifference() {
                               e.stopPropagation();
                               swipeTopCard("superlike");
                             }}
-                            className="w-10 h-10 rounded-full border border-sky-400/30 bg-black/60 flex items-center justify-center text-sky-400 hover:bg-sky-400/20 hover:border-sky-400 hover:shadow-[0_0_15px_rgba(56,189,248,0.4)] active:scale-95 transition-all duration-200"
+                            className="w-10 h-10 rounded-full bg-sky-400/10 flex items-center justify-center text-sky-400 hover:bg-sky-400/20 hover:shadow-[0_0_15px_rgba(56,189,248,0.3)] active:scale-95 transition-all duration-200 backdrop-blur-sm"
                             aria-label="Super Like"
                           >
                             <Star className="w-4.5 h-4.5 fill-sky-400/10 stroke-[2.5]" />
@@ -427,7 +427,7 @@ export function TheDifference() {
                               e.stopPropagation();
                               swipeTopCard("like");
                             }}
-                            className="w-12 h-12 rounded-full border border-emerald-400/30 bg-black/60 flex items-center justify-center text-emerald-400 hover:bg-emerald-400/20 hover:border-emerald-400 hover:shadow-[0_0_15px_rgba(52,211,153,0.4)] active:scale-95 transition-all duration-200"
+                            className="w-12 h-12 rounded-full bg-emerald-400/10 flex items-center justify-center text-emerald-400 hover:bg-emerald-400/20 hover:shadow-[0_0_15px_rgba(52,211,153,0.3)] active:scale-95 transition-all duration-200 backdrop-blur-sm"
                             aria-label="Like"
                           >
                             <Heart className="w-5.5 h-5.5 fill-emerald-400/5 stroke-[2.5]" />
