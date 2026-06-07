@@ -300,8 +300,15 @@ export function TheDifference() {
                       initial={{ scale: 0.92, y: -20, opacity: 0 }}
                       animate={{
                         scale: stackIndex === 2 ? 1 : stackIndex === 1 ? 0.96 : 0.92,
-                        y: stackIndex === 2 ? 0 : stackIndex === 1 ? -12 : -24,
-                        rotate: stackIndex === 2 ? 0 : stackIndex === 1 ? -1.5 : 1.5,
+                        y: stackIndex === 2
+                          ? (profile.action === "superlike" ? -650 : 0)
+                          : (stackIndex === 1 ? -12 : -24),
+                        x: stackIndex === 2
+                          ? (profile.action === "like" ? 480 : profile.action === "nope" ? -480 : 0)
+                          : 0,
+                        rotate: stackIndex === 2
+                          ? (profile.action === "like" ? 25 : profile.action === "nope" ? -25 : 0)
+                          : (stackIndex === 1 ? -1.5 : 1.5),
                         opacity: stackIndex === 0 ? 0.4 : 1,
                       }}
                       exit={{
@@ -617,6 +624,21 @@ export function TheDifference() {
         <div className="max-w-3xl mx-auto mt-16 text-center text-gray-400 text-base md:text-lg leading-relaxed px-4">
           <p>{t("difference.description")}</p>
         </div>
+      </div>
+
+      {/* Hidden preloader for all profile images to eliminate decode jank */}
+      <div className="absolute w-1 h-1 opacity-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        {profiles.map((p) => (
+          <div key={p.id} className="relative w-[320px] h-[430px]">
+            <Image
+              src={p.image}
+              alt="preloader"
+              fill
+              sizes="320px"
+              priority
+            />
+          </div>
+        ))}
       </div>
     </section>
   );
