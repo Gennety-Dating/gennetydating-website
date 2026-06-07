@@ -82,11 +82,11 @@ export function Matchmaker() {
     >
       {/* Размытый фоновый рисунок (Blur background image) */}
       <div 
-        className="absolute inset-0 bg-[url('/images/matchmaker-bg.jpg')] bg-cover bg-center pointer-events-none filter blur-[6px] scale-105 opacity-30 z-0" 
+        className="absolute inset-0 bg-[url('/images/matchmaker-bg.jpg')] bg-cover bg-center pointer-events-none filter blur-[6px] scale-105 opacity-50 z-0" 
         aria-hidden="true"
       />
       {/* Затемняющий оверлей для идеального контраста и интеграции в темную тему */}
-      <div className="absolute inset-0 bg-[#050505]/70 z-0" />
+      <div className="absolute inset-0 bg-[#050505]/60 z-0" />
 
       {/* Верхний волнообразный край (Postage Stamp Wavy Top Edge) */}
       <svg className="absolute top-0 left-0 right-0 w-full h-[15px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
