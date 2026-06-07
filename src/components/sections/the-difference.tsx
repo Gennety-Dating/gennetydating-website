@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Heading, Highlight } from "@/components/ui/typography";
 import { useLanguage } from "@/lib/language-context";
 import { type TranslationKeys } from "@/lib/i18n";
-import { Sparkles, MapPin, Calendar, Flame, Check } from "lucide-react";
+import { Sparkles, MapPin, Calendar, Flame, Check, RotateCcw, X, Star, Heart, GraduationCap } from "lucide-react";
 
 // Tinder profiles data structure
 interface Profile {
@@ -15,33 +15,55 @@ interface Profile {
   nameKey: TranslationKeys;
   bioKey: TranslationKeys;
   collegeKey: TranslationKeys;
-  action: "like" | "nope";
+  action?: "like" | "nope" | "superlike";
+  tags: string[];
 }
 
 const profiles: Profile[] = [
   {
     id: 1,
-    image: "/images/tinder-profile-1.png",
+    image: "/images/tinder-photo-1.jpg",
     nameKey: "difference.tinder.profile1.name",
     bioKey: "difference.tinder.profile1.bio",
     collegeKey: "difference.tinder.profile1.college",
     action: "like",
+    tags: ["🎵 Music", "☕ Coffee", "💿 Vinyl"],
   },
   {
     id: 2,
-    image: "/images/tinder-profile-2.png",
+    image: "/images/tinder-photo-2.jpg",
     nameKey: "difference.tinder.profile2.name",
     bioKey: "difference.tinder.profile2.bio",
     collegeKey: "difference.tinder.profile2.college",
     action: "nope",
+    tags: ["🚗 Travel", "🍵 Matcha", "🏃‍♀️ Running"],
   },
   {
     id: 3,
-    image: "/images/tinder-profile-3.png",
+    image: "/images/tinder-photo-3.jpg",
     nameKey: "difference.tinder.profile3.name",
     bioKey: "difference.tinder.profile3.bio",
     collegeKey: "difference.tinder.profile3.college",
+    action: "like",
+    tags: ["🎾 Tennis", "🎸 Rock", "🍻 Gigs"],
+  },
+  {
+    id: 4,
+    image: "/images/tinder-photo-4.jpg",
+    nameKey: "difference.tinder.profile4.name",
+    bioKey: "difference.tinder.profile4.bio",
+    collegeKey: "difference.tinder.profile4.college",
     action: "nope",
+    tags: ["💻 Coding", "☕ Coffee", "📚 Study"],
+  },
+  {
+    id: 5,
+    image: "/images/tinder-photo-5.jpg",
+    nameKey: "difference.tinder.profile5.name",
+    bioKey: "difference.tinder.profile5.bio",
+    collegeKey: "difference.tinder.profile5.college",
+    action: "superlike",
+    tags: ["🎨 Art", "🏛️ Museums", "📸 Photo"],
   },
 ];
 
@@ -76,11 +98,13 @@ export function TheDifference() {
 
   // --- Tinder Swiping Logic (AnimatePresence list) ---
   const [activeCards, setActiveCards] = useState<ActiveProfile[]>([]);
+  const [history, setHistory] = useState<ActiveProfile[]>([]);
+  const [isProcessingSwipe, setIsProcessingSwipe] = useState(false);
   const nextIndexRef = useRef(0);
 
   useEffect(() => {
     const initial: ActiveProfile[] = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < profiles.length; i++) {
       const proto = profiles[i % profiles.length];
       initial.push({
         ...proto,
@@ -91,16 +115,34 @@ export function TheDifference() {
     setActiveCards(initial);
   }, []);
 
-  useEffect(() => {
-    if (activeCards.length === 0) return;
+  const swipeTopCard = (direction: "like" | "nope" | "superlike") => {
+    if (isProcessingSwipe || activeCards.length === 0) return;
+    setIsProcessingSwipe(true);
 
-    const timer = setTimeout(() => {
-      // Swipe the top card immediately (triggers Framer Motion exit animation)
+    // 1. Update the top card's action to animate exit correctly
+    setActiveCards((prev) => {
+      if (prev.length === 0) return prev;
+      const updated = [...prev];
+      updated[0] = { ...updated[0], action: direction };
+      return updated;
+    });
+
+    // 2. Remove the card and add a new one at the bottom
+    setTimeout(() => {
       setActiveCards((prev) => {
-        if (prev.length === 0) return prev;
-        const [, ...rest] = prev;
+        if (prev.length === 0) {
+          setIsProcessingSwipe(false);
+          return prev;
+        }
+        const [topCard, ...rest] = prev;
+        
+        // Push to history
+        setHistory((h) => [...h.slice(-9), topCard]);
+
         const nextProto = profiles[nextIndexRef.current % profiles.length];
         nextIndexRef.current++;
+
+        setIsProcessingSwipe(false);
         return [
           ...rest,
           {
@@ -109,10 +151,40 @@ export function TheDifference() {
           },
         ];
       });
+    }, 400); // Allow time for card exit animation
+  };
+
+  const handleRewind = () => {
+    if (history.length === 0 || isProcessingSwipe) return;
+    setIsProcessingSwipe(true);
+
+    const lastCard = history[history.length - 1];
+    setHistory((h) => h.slice(0, -1));
+
+    setActiveCards((prev) => {
+      const rest = prev.slice(0, -1);
+      setIsProcessingSwipe(false);
+      return [
+        {
+          ...lastCard,
+          action: undefined, // reset the swipe action
+        },
+        ...rest,
+      ];
+    });
+  };
+
+  useEffect(() => {
+    if (activeCards.length === 0 || isProcessingSwipe) return;
+
+    const timer = setTimeout(() => {
+      const topCard = activeCards[0];
+      const action = topCard.action || "like";
+      swipeTopCard(action);
     }, 3000); // Swipe every 3 seconds
 
     return () => clearTimeout(timer);
-  }, [activeCards]);
+  }, [activeCards, isProcessingSwipe]);
 
   // --- Telegram Bot Mockup Logic ---
   const [chatMessages, setChatMessages] = useState<Message[]>([]);
@@ -178,6 +250,15 @@ export function TheDifference() {
 
   return (
     <section className="py-[120px] px-4 md:px-10 relative overflow-hidden bg-midnight">
+      {/* Blurred background image of airplane view */}
+      <div 
+        className="absolute inset-0 bg-[url('/images/difference-bg.jpg')] bg-cover bg-center bg-fixed opacity-20 pointer-events-none filter blur-[12px] scale-110" 
+        aria-hidden="true"
+      />
+      {/* Edge blending gradients */}
+      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-midnight to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-midnight to-transparent pointer-events-none" />
+
       {/* Decorative neon gradient overlays */}
       <div className="absolute top-1/4 left-0 w-80 h-80 bg-magenta/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
@@ -195,89 +276,193 @@ export function TheDifference() {
           {/* LEFT COLUMN: Tinder Mockup */}
           <div className="flex flex-col items-center">
             <div className="text-center mb-6">
-              <span className="text-xs uppercase tracking-widest text-gray-400 block mb-1">
-                Tinder / Badoo
-              </span>
               <h3 className="text-xl md:text-2xl font-bold font-sans text-gray-400/90">
                 {t("difference.insteadOfThis")}
               </h3>
             </div>
 
             {/* Tinder Stack Container */}
-            <div className="relative w-full max-w-[320px] aspect-[3/4] flex items-center justify-center select-none z-10">
-              <AnimatePresence>
-                {activeCards.slice(0, 3).reverse().map((profile) => {
-                  const isTop = profile.uniqueId === activeCards[0]?.uniqueId;
-                  const stackIndex = isTop ? 2 : (profile.uniqueId === activeCards[1]?.uniqueId ? 1 : 0);
+            <div className="relative w-full max-w-[320px] h-[520px] flex flex-col justify-between select-none z-10">
+              {/* Stack Area */}
+              <div className="relative w-full h-[430px]">
+                <AnimatePresence>
+                  {activeCards.slice(0, 3).reverse().map((profile) => {
+                    const isTop = profile.uniqueId === activeCards[0]?.uniqueId;
+                    const stackIndex = isTop ? 2 : (profile.uniqueId === activeCards[1]?.uniqueId ? 1 : 0);
 
-                  return (
-                    <motion.div
-                      key={profile.uniqueId}
-                      className="absolute inset-0 bg-[#1e1e1e] rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.5)] border border-white/5 flex flex-col justify-end"
-                      style={{
-                        transformOrigin: "bottom center",
-                        zIndex: stackIndex,
-                      }}
-                      initial={{ scale: 0.92, y: -20, opacity: 0 }}
-                      animate={{
-                        scale: stackIndex === 2 ? 1 : stackIndex === 1 ? 0.96 : 0.92,
-                        y: stackIndex === 2 ? 0 : stackIndex === 1 ? -12 : -24,
-                        rotate: stackIndex === 2 ? 0 : stackIndex === 1 ? -1.5 : 1.5,
-                        opacity: stackIndex === 0 ? 0.4 : 1,
-                      }}
-                      exit={{
-                        x: profile.action === "like" ? 450 : -450,
-                        y: 40, // Slight downward drift for a natural path
-                        rotate: profile.action === "like" ? 20 : -20,
-                        opacity: 0,
-                      }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 90,
-                        damping: 17,
-                      }}
-                    >
-                      {/* Portrait Image */}
-                      <div className="absolute inset-0 w-full h-full bg-[#111111]">
-                        <Image
-                          src={profile.image}
-                          alt="Student profile"
-                          fill
-                          sizes="320px"
-                          priority={isTop}
-                          className="object-cover pointer-events-none"
-                        />
-                        {/* Dark Vignette Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent pointer-events-none" />
-                      </div>
-
-                      {/* Profile text info at bottom */}
-                      <div className="relative z-20 p-5 text-left pointer-events-none">
-                        <div className="flex items-baseline gap-2 mb-1.5">
-                          <span className="font-sans font-bold text-2xl text-white">
-                            {t(profile.nameKey)}
-                          </span>
-                          <span className="text-sm font-semibold text-gray-300 bg-white/10 px-2 py-0.5 rounded-full">
-                            {t(profile.collegeKey)}
-                          </span>
+                    return (
+                      <motion.div
+                        key={profile.uniqueId}
+                        className="absolute inset-0 bg-[#1e1e1e] rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.5)] border border-white/5 flex flex-col justify-end"
+                        style={{
+                          transformOrigin: "bottom center",
+                          zIndex: stackIndex,
+                        }}
+                        initial={{ scale: 0.92, y: -20, opacity: 0 }}
+                        animate={{
+                          scale: stackIndex === 2 ? 1 : stackIndex === 1 ? 0.96 : 0.92,
+                          y: stackIndex === 2 ? 0 : stackIndex === 1 ? -12 : -24,
+                          rotate: stackIndex === 2 ? 0 : stackIndex === 1 ? -1.5 : 1.5,
+                          opacity: stackIndex === 0 ? 0.4 : 1,
+                        }}
+                        exit={{
+                          x: profile.action === "like" ? 450 : profile.action === "nope" ? -450 : 0,
+                          y: profile.action === "superlike" ? -600 : 40,
+                          rotate: profile.action === "like" ? 20 : profile.action === "nope" ? -20 : 0,
+                          opacity: 0,
+                        }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 90,
+                          damping: 17,
+                        }}
+                      >
+                        {/* Portrait Image */}
+                        <div className="absolute inset-0 w-full h-full bg-[#111111]">
+                          <Image
+                            src={profile.image}
+                            alt="Student profile"
+                            fill
+                            sizes="320px"
+                            priority={isTop}
+                            className="object-cover pointer-events-none"
+                          />
+                          {/* Dark Vignette Overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
                         </div>
-                        <p className="text-gray-300 text-sm font-medium line-clamp-2">
-                          {t(profile.bioKey)}
-                        </p>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </AnimatePresence>
+
+                        {/* Top Stories-like pagination lines */}
+                        <div className="absolute top-3 inset-x-3 z-30 flex gap-1 px-1 opacity-60">
+                          <div className={`h-1 flex-1 rounded-full ${profile.id === 1 ? 'bg-white' : 'bg-white/30'}`} />
+                          <div className={`h-1 flex-1 rounded-full ${profile.id === 2 ? 'bg-white' : 'bg-white/30'}`} />
+                          <div className={`h-1 flex-1 rounded-full ${profile.id === 3 ? 'bg-white' : 'bg-white/30'}`} />
+                          <div className={`h-1 flex-1 rounded-full ${profile.id === 4 ? 'bg-white' : 'bg-white/30'}`} />
+                          <div className={`h-1 flex-1 rounded-full ${profile.id === 5 ? 'bg-white' : 'bg-white/30'}`} />
+                        </div>
+
+                        {/* Tinder Stamp Overlay (LIKE / NOPE / SUPER LIKE) */}
+                        {isTop && profile.action && (
+                          <div
+                            className={`absolute top-8 z-30 border-4 rounded-lg px-3 py-1 font-black text-2xl uppercase tracking-widest bg-black/10 backdrop-blur-[1px] ${
+                              profile.action === "like"
+                                ? "left-6 -rotate-12 border-emerald-500 text-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.4)]"
+                                : profile.action === "nope"
+                                ? "right-6 rotate-12 border-rose-500 text-rose-500 shadow-[0_0_15px_rgba(244,63,94,0.4)]"
+                                : "left-1/2 -translate-x-1/2 -rotate-6 border-sky-400 text-sky-400 shadow-[0_0_15px_rgba(56,189,248,0.4)]"
+                            }`}
+                          >
+                            {profile.action === "like"
+                              ? t("difference.tinder.like")
+                              : profile.action === "nope"
+                              ? t("difference.tinder.nope")
+                              : "SUPER LIKE"}
+                          </div>
+                        )}
+
+                        {/* Profile text info at bottom */}
+                        <div className="relative z-20 p-5 text-left pointer-events-none space-y-2 select-none">
+                          {/* Name, Age, Verified badge */}
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="font-sans font-extrabold text-2xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                              {t(profile.nameKey)}
+                            </span>
+                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 text-white shadow-md flex-shrink-0">
+                              <Check className="w-3.5 h-3.5 stroke-[3.5]" />
+                            </span>
+                          </div>
+
+                          {/* College and Distance */}
+                          <div className="flex flex-col gap-1 text-xs text-gray-300 font-semibold drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+                            <div className="flex items-center gap-1.5">
+                              <GraduationCap className="w-4 h-4 text-magenta" />
+                              <span>{t(profile.collegeKey)}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5">
+                              <MapPin className="w-3.5 h-3.5 text-gray-400" />
+                              <span>{t("difference.tinder.distance")}</span>
+                            </div>
+                          </div>
+
+                          {/* Bio description */}
+                          <p className="text-gray-200 text-sm font-medium leading-snug line-clamp-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+                            {t(profile.bioKey)}
+                          </p>
+
+                          {/* Interests Tags */}
+                          <div className="flex flex-wrap gap-1.5 pt-1">
+                            {profile.tags.map((tag, idx) => (
+                              <span
+                                key={idx}
+                                className="text-[10px] font-bold text-white bg-black/40 border border-white/10 px-2 py-0.5 rounded-full backdrop-blur-sm shadow-sm"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </AnimatePresence>
+              </div>
+
+              {/* Action Buttons Row */}
+              <div className="flex items-center justify-center gap-4 mt-2 z-30 pointer-events-auto">
+                {/* Rewind Button */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleRewind();
+                  }}
+                  disabled={history.length === 0}
+                  className="w-11 h-11 rounded-full border border-amber-400/30 bg-black/40 flex items-center justify-center text-amber-400 hover:bg-amber-400/10 hover:border-amber-400 hover:shadow-[0_0_15px_rgba(251,191,36,0.4)] active:scale-95 transition-all duration-200 disabled:opacity-30 disabled:pointer-events-none"
+                  aria-label="Rewind"
+                >
+                  <RotateCcw className="w-5 h-5 stroke-[2.5]" />
+                </button>
+
+                {/* Nope Button */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    swipeTopCard("nope");
+                  }}
+                  className="w-13 h-13 rounded-full border border-rose-500/30 bg-black/40 flex items-center justify-center text-rose-500 hover:bg-rose-500/10 hover:border-rose-500 hover:shadow-[0_0_15px_rgba(244,63,94,0.4)] active:scale-95 transition-all duration-200"
+                  aria-label="Nope"
+                >
+                  <X className="w-6 h-6 stroke-[3]" />
+                </button>
+
+                {/* Superlike Button */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    swipeTopCard("superlike");
+                  }}
+                  className="w-11 h-11 rounded-full border border-sky-400/30 bg-black/40 flex items-center justify-center text-sky-400 hover:bg-sky-400/10 hover:border-sky-400 hover:shadow-[0_0_15px_rgba(56,189,248,0.4)] active:scale-95 transition-all duration-200"
+                  aria-label="Super Like"
+                >
+                  <Star className="w-5 h-5 fill-sky-400/10 stroke-[2.5]" />
+                </button>
+
+                {/* Like Button */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    swipeTopCard("like");
+                  }}
+                  className="w-13 h-13 rounded-full border border-emerald-400/30 bg-black/40 flex items-center justify-center text-emerald-400 hover:bg-emerald-400/10 hover:border-emerald-400 hover:shadow-[0_0_15px_rgba(52,211,153,0.4)] active:scale-95 transition-all duration-200"
+                  aria-label="Like"
+                >
+                  <Heart className="w-6 h-6 fill-emerald-400/5 stroke-[2.5]" />
+                </button>
+              </div>
             </div>
           </div>
 
           {/* RIGHT COLUMN: Gennety Bot Mockup */}
           <div className="flex flex-col items-center">
             <div className="text-center mb-6">
-              <span className="text-xs uppercase tracking-widest text-magenta drop-shadow-[0_0_8px_rgba(255,0,255,0.4)] block mb-1">
-                Gennety AI
-              </span>
               <h3 className="text-xl md:text-2xl font-bold font-sans text-white">
                 {t("difference.doThis")}
               </h3>
