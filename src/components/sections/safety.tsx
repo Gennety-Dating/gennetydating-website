@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ShieldCheck } from "lucide-react";
 import { Heading, Highlight } from "@/components/ui/typography";
 import { useLanguage } from "@/lib/language-context";
 import type { TranslationKeys } from "@/lib/i18n";
@@ -38,12 +37,23 @@ export function Safety() {
                 <div className="absolute w-24 h-24 bg-magenta/[0.02] group-hover:bg-magenta/[0.06] rounded-full blur-2xl transition-colors duration-500 pointer-events-none" />
 
                 {num === 1 && (
-                  /* Изолированный узел верификации с полноразмерным нативным щитом без рамок */
+                  /* Sleek, unified shield node in signature magenta matching the location pin's style */
                   <div className="relative flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
-                    <ShieldCheck 
-                      className="w-12 h-12 text-emerald-400 relative z-10 drop-shadow-[0_0_12px_rgba(52,211,153,0.4)]" 
-                      strokeWidth={1.5} 
-                    />
+                    <svg 
+                      className="w-14 h-14 text-magenta relative z-10" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth={1.5}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path 
+                        d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" 
+                        fill="rgba(255,0,255,0.02)" 
+                      />
+                      <path d="m9 11 2 2 4-4" />
+                    </svg>
                   </div>
                 )}
 
