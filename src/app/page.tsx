@@ -17,8 +17,19 @@ export default function Home() {
       <HowItWorks />
       <Matchmaker />
       <TheDifference />
-      <Comparison />
-      <Safety />
+      <div className="relative overflow-hidden">
+        {/* Blurred background image for Comparison & Safety sections */}
+        <div 
+          className="absolute inset-0 bg-[url('/images/verified-safety-bg.jpg')] bg-cover bg-center bg-fixed opacity-20 pointer-events-none filter blur-[12px] scale-110" 
+          aria-hidden="true"
+        />
+        {/* Edge blending gradients */}
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-midnight to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-midnight to-transparent pointer-events-none" />
+        
+        <Comparison />
+        <Safety />
+      </div>
       <FAQ />
       <Marquee />
       <Footer />
