@@ -10,10 +10,18 @@ export default function ThesisPage() {
   const { t } = useLanguage();
 
   return (
-    <main className="min-h-screen bg-midnight text-white flex flex-col font-sans relative">
+    <main className="min-h-screen bg-midnight text-white flex flex-col font-sans relative overflow-hidden">
+      {/* Background image */}
+      <div 
+        className="fixed inset-0 bg-[url('/images/thesis-bg.jpg')] bg-cover bg-center pointer-events-none filter blur-[8px] scale-105 opacity-30 z-0" 
+        aria-hidden="true"
+      />
+      {/* Dark overlay for contrast */}
+      <div className="fixed inset-0 bg-midnight/70 z-0 pointer-events-none" />
+
       <Navbar />
 
-      <div className="flex-grow pt-32 pb-24 px-6 md:px-10 max-w-4xl mx-auto w-full flex flex-col justify-start">
+      <div className="flex-grow pt-32 pb-24 px-6 md:px-10 max-w-4xl mx-auto w-full flex flex-col justify-start relative z-10">
         {/* Back Link */}
         <Link
           href="/"
