@@ -13,11 +13,11 @@ export default function ThesisPage() {
     <main className="min-h-screen bg-midnight text-white flex flex-col font-sans relative overflow-hidden">
       {/* Background image */}
       <div 
-        className="fixed inset-0 bg-[url('/images/thesis-bg.jpg')] bg-cover bg-center pointer-events-none filter blur-[8px] scale-105 opacity-30 z-0" 
+        className="fixed inset-0 bg-[url('/images/thesis-bg.jpg')] bg-cover bg-center pointer-events-none filter blur-[2px] opacity-45 z-0" 
         aria-hidden="true"
       />
       {/* Dark overlay for contrast */}
-      <div className="fixed inset-0 bg-midnight/70 z-0 pointer-events-none" />
+      <div className="fixed inset-0 bg-midnight/50 z-0 pointer-events-none" />
 
       <Navbar />
 
@@ -46,19 +46,19 @@ export default function ThesisPage() {
             <h3 className="font-semibold text-white text-xl md:text-2xl">{t("thesis.list.title")}</h3>
             <ul className="list-none space-y-4 pl-2">
               <li className="flex items-start gap-4">
-                <span className="text-magenta font-mono font-bold mt-1 text-xl">1.</span>
+                <span className="text-gray-400 font-mono font-bold mt-1 text-xl">1.</span>
                 <span>{t("thesis.list.item1").replace(/^\d+\.\s*/, "")}</span>
               </li>
               <li className="flex items-start gap-4">
-                <span className="text-magenta font-mono font-bold mt-1 text-xl">2.</span>
+                <span className="text-gray-400 font-mono font-bold mt-1 text-xl">2.</span>
                 <span>{t("thesis.list.item2").replace(/^\d+\.\s*/, "")}</span>
               </li>
               <li className="flex items-start gap-4">
-                <span className="text-magenta font-mono font-bold mt-1 text-xl">3.</span>
+                <span className="text-gray-400 font-mono font-bold mt-1 text-xl">3.</span>
                 <span>{t("thesis.list.item3").replace(/^\d+\.\s*/, "")}</span>
               </li>
               <li className="flex items-start gap-4">
-                <span className="text-magenta font-mono font-bold mt-1 text-xl">4.</span>
+                <span className="text-gray-400 font-mono font-bold mt-1 text-xl">4.</span>
                 <span>{t("thesis.list.item4").replace(/^\d+\.\s*/, "")}</span>
               </li>
             </ul>
@@ -67,13 +67,13 @@ export default function ThesisPage() {
           <p>{t("thesis.p4")}</p>
           <p>{t("thesis.p5")}</p>
           
-          {/* Big Question Highlight as a blockquote with neon magenta border */}
-          <blockquote className="border-l-2 border-magenta pl-6 py-3 my-10 italic text-white text-xl md:text-2xl font-serif">
+          {/* Big Question Highlight as a blockquote with subtle gray border */}
+          <blockquote className="border-l-2 border-white/20 pl-6 py-3 my-10 italic text-white text-xl md:text-2xl font-serif">
             {t("thesis.p6")}
           </blockquote>
 
           {/* Scam Market Stats Highlight Card */}
-          <div className="p-8 rounded-2xl bg-white/5 border border-white/10 my-10 shadow-neon-sm backdrop-blur-md">
+          <div className="p-8 rounded-2xl bg-white/5 border border-white/10 my-10 backdrop-blur-md">
             <p className="font-sans text-gray-300 leading-relaxed">
               {t("thesis.p7")}
             </p>
