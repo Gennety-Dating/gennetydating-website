@@ -19,7 +19,7 @@ import {
   type RegistrationLanguage,
   type RegistrationPurpose,
 } from "@/lib/registration-api";
-import { localeFlagEmoji, type Locale } from "@/lib/i18n";
+import { type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -335,12 +335,7 @@ export function RegistrationButton({
                       >
                         <span className="flex items-center gap-2">
                           {selectedLanguage && (
-                            <>
-                              <span className="text-lg leading-none">
-                                {localeFlagEmoji[selectedLanguage.value as Locale] || "🌐"}
-                              </span>
-                              <span>{selectedLanguage.label}</span>
-                            </>
+                            <span>{selectedLanguage.label}</span>
                           )}
                         </span>
                         <ChevronDown
@@ -383,10 +378,7 @@ export function RegistrationButton({
                                   setLanguageOpen(false);
                                 }}
                               >
-                                <span className="flex items-center gap-2.5">
-                                  <span className="text-lg leading-none">
-                                    {localeFlagEmoji[option.value as Locale] || "🌐"}
-                                  </span>
+                                <span className="flex items-center gap-2">
                                   <span>{option.label}</span>
                                 </span>
                                 {selected && (
