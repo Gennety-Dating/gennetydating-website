@@ -16,9 +16,8 @@ export default function Home() {
       <Hero />
       <HowItWorks />
       <Matchmaker />
-      <TheDifference />
       <div className="relative overflow-hidden">
-        {/* Blurred background image for Comparison & Safety sections */}
+        {/* Blurred background image for TheDifference, Comparison & Safety sections */}
         <div 
           className="absolute inset-0 bg-[url('/images/verified-safety-bg.jpg')] bg-cover bg-center bg-fixed opacity-20 pointer-events-none filter blur-[12px] scale-110" 
           aria-hidden="true"
@@ -27,6 +26,7 @@ export default function Home() {
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-midnight to-transparent pointer-events-none" />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-midnight to-transparent pointer-events-none" />
         
+        <TheDifference />
         <Comparison />
         <Safety />
       </div>

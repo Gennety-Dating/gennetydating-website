@@ -249,16 +249,7 @@ export function TheDifference() {
   }, [chatMessages, isTyping]);
 
   return (
-    <section className="py-[120px] px-4 md:px-10 relative overflow-hidden bg-midnight">
-      {/* Blurred background image of airplane view */}
-      <div 
-        className="absolute inset-0 bg-[url('/images/difference-bg.jpg')] bg-cover bg-center bg-fixed opacity-20 pointer-events-none filter blur-[12px] scale-110" 
-        aria-hidden="true"
-      />
-      {/* Edge blending gradients */}
-      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-midnight to-transparent pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-midnight to-transparent pointer-events-none" />
-
+    <section className="py-[120px] px-4 md:px-10 relative overflow-hidden bg-transparent">
       {/* Decorative neon gradient overlays */}
       <div className="absolute top-1/4 left-0 w-80 h-80 bg-magenta/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
