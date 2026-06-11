@@ -75,10 +75,10 @@ export function LanguageSwitcher({ menuPlacement = "bottom" }: LanguageSwitcherP
                     setIsOpen(false);
                   }}
                   className={cn(
-                    "w-full h-8 flex items-center justify-center rounded-xl text-xs font-mono tracking-wider font-semibold transition-all duration-200 cursor-pointer",
+                    "w-full h-8 flex items-center justify-center rounded-xl text-xs font-mono tracking-wider transition-all duration-200 cursor-pointer",
                     locale === l
-                      ? "bg-magenta/20 text-magenta border border-magenta/30 shadow-[0_0_15px_rgba(255,0,255,0.2)]"
-                      : "text-white/40 hover:text-white hover:bg-white/[0.08]"
+                      ? "bg-white/[0.08] text-white font-bold"
+                      : "text-white/40 hover:text-white hover:bg-white/[0.05]"
                   )}
                 >
                   {localeNames[l]}
