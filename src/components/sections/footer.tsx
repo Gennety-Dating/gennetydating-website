@@ -4,6 +4,7 @@ import { MessageBubble } from "@/components/ui/message-bubble";
 import { CONTACT_EMAIL, TELEGRAM_BOT_URL } from "@/lib/data";
 import { useLanguage } from "@/lib/language-context";
 import { useCookieConsent } from "@/hooks/useCookieConsent";
+import Link from "next/link";
 
 export function Footer() {
   const { t } = useLanguage();
@@ -95,12 +96,15 @@ export function Footer() {
             >
               {t("footer.contact")}
             </a>
-            <a href="/terms" className="hover:text-white hover:underline underline-offset-4 transition-colors">
+            <Link href="/thesis" className="hover:text-white hover:underline underline-offset-4 transition-colors">
+              {t("footer.thesis")}
+            </Link>
+            <Link href="/terms" className="hover:text-white hover:underline underline-offset-4 transition-colors">
               {t("footer.terms")}
-            </a>
-            <a href="/privacy" className="hover:text-white hover:underline underline-offset-4 transition-colors">
+            </Link>
+            <Link href="/privacy" className="hover:text-white hover:underline underline-offset-4 transition-colors">
               {t("footer.privacy")}
-            </a>
+            </Link>
             <button
               onClick={withdrawConsent}
               className="hover:text-white hover:underline underline-offset-4 transition-colors"

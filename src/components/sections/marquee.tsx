@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/language-context";
+import Link from "next/link";
 
 const REPEAT_COUNT = 8;
 
@@ -50,9 +51,11 @@ export function Marquee() {
 
         {/* Manifesto button */}
         <div className="flex justify-center mt-16">
-          <Button variant="outline" size="lg" href="#">
-            {t("marquee.manifesto")}
-          </Button>
+          <Link href="/thesis">
+            <Button variant="outline" size="lg">
+              {t("marquee.manifesto")}
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
