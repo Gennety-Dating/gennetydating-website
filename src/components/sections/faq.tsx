@@ -11,28 +11,25 @@ function AccordionItem({
   answer,
   isOpen,
   onToggle,
+  isLast,
 }: {
   question: string;
   answer: string;
   isOpen: boolean;
   onToggle: () => void;
+  isLast: boolean;
 }) {
   return (
     <div
       className={cn(
-        "mb-4 rounded-2xl border transition-all duration-300 overflow-hidden",
-        isOpen
-          ? "border-white/10 bg-black/60"
-          : "border-white/5 bg-black/30 hover:border-white/10 hover:bg-black/45"
+        "transition-all duration-300",
+        !isLast && "border-b border-white/10",
+        isOpen ? "bg-white/[0.03]" : "hover:bg-white/[0.015]"
       )}
-      style={{
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-      }}
     >
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between py-5 px-6 text-left cursor-pointer group"
+        className="w-full flex items-center justify-between py-5 px-6 md:px-8 text-left cursor-pointer group"
       >
         <span className="text-base md:text-lg font-medium text-white pr-4 group-hover:text-white/80 transition-colors">
           {question}
@@ -65,7 +62,7 @@ function AccordionItem({
           isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         )}
       >
-        <div className="px-6 pb-6 pt-1 text-sm md:text-base text-gray-300 leading-relaxed">
+        <div className="px-6 md:px-8 pb-6 pt-1 text-sm md:text-base text-gray-300 leading-relaxed">
           {answer}
         </div>
       </div>
@@ -116,7 +113,8 @@ export function FAQ() {
           <Heading as="h2">{t("faq.title")}</Heading>
         </div>
 
-        <div className="flex flex-col">
+        {/* Unified FAQ Accordion Block */}
+        <div className="rounded-[32px] border border-white/10 bg-black/40 backdrop-blur-xl shadow-[0_24px_80px_rgba(0,0,0,0.95)] overflow-hidden">
           {faqKeys.map((num, index) => (
             <AccordionItem
               key={num}
@@ -126,6 +124,7 @@ export function FAQ() {
               onToggle={() =>
                 setOpenIndex(openIndex === index ? null : index)
               }
+              isLast={index === faqKeys.length - 1}
             />
           ))}
         </div>
@@ -133,3 +132,4 @@ export function FAQ() {
     </section>
   );
 }
+
