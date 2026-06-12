@@ -252,7 +252,7 @@ export function TheDifference() {
     <section className="py-[120px] px-4 md:px-10 relative overflow-hidden bg-transparent">
       {/* Decorative neon gradient overlays */}
       <div className="absolute top-1/4 left-0 w-80 h-80 bg-magenta/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-white/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto">
         {/* Title */}
@@ -347,7 +347,7 @@ export function TheDifference() {
                             <span className="font-sans font-extrabold text-2xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                               {t(profile.nameKey)}
                             </span>
-                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 text-white shadow-md flex-shrink-0">
+                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-white text-black shadow-md flex-shrink-0">
                               <Check className="w-3.5 h-3.5 stroke-[3.5]" />
                             </span>
                           </div>
