@@ -175,34 +175,42 @@ export default function PlacesPage() {
             
             {/* Borderless tab switcher in liquid glass style */}
             <div className="relative p-1 rounded-full bg-white/[0.03] backdrop-blur-md border border-white/5 flex w-full max-w-[280px]">
-              {/* Sliding highlight indicator */}
-              <div className="absolute inset-y-1 left-1 w-[calc(50%-4px)] z-0 rounded-full overflow-hidden">
-                <motion.div
-                  layoutId="activeCityTab"
-                  transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                  className="w-full h-full bg-gradient-to-r from-magenta-dark/40 to-magenta-dark/25 border border-magenta-dim/30 rounded-full"
-                />
-              </div>
-
+              
               {/* Warsaw Button */}
               <button
+                type="button"
                 onClick={() => setSelectedCity("warsaw")}
                 className={cn(
-                  "relative z-10 w-1/2 py-2 text-sm font-semibold tracking-wide rounded-full transition-colors cursor-pointer",
+                  "relative z-10 w-1/2 py-2 text-sm font-semibold tracking-wide rounded-full transition-colors cursor-pointer outline-none",
                   selectedCity === "warsaw" ? "text-white" : "text-gray-500 hover:text-white/80"
                 )}
               >
+                {selectedCity === "warsaw" && (
+                  <motion.div
+                    layoutId="activeCityTab"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    className="absolute inset-0 bg-gradient-to-r from-magenta-dark/40 to-magenta-dark/25 border border-magenta-dim/30 rounded-full z-[-1]"
+                  />
+                )}
                 {currentCityNames.warsaw}
               </button>
 
               {/* Kyiv Button */}
               <button
+                type="button"
                 onClick={() => setSelectedCity("kyiv")}
                 className={cn(
-                  "relative z-10 w-1/2 py-2 text-sm font-semibold tracking-wide rounded-full transition-colors cursor-pointer",
+                  "relative z-10 w-1/2 py-2 text-sm font-semibold tracking-wide rounded-full transition-colors cursor-pointer outline-none",
                   selectedCity === "kyiv" ? "text-white" : "text-gray-500 hover:text-white/80"
                 )}
               >
+                {selectedCity === "kyiv" && (
+                  <motion.div
+                    layoutId="activeCityTab"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    className="absolute inset-0 bg-gradient-to-r from-magenta-dark/40 to-magenta-dark/25 border border-magenta-dim/30 rounded-full z-[-1]"
+                  />
+                )}
                 {currentCityNames.kyiv}
               </button>
             </div>
