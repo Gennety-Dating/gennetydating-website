@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/sections/footer";
@@ -62,47 +61,20 @@ export default function PlacesPage() {
 
         {/* Centerpiece "Soon" Announcement */}
         <div className="flex-grow flex flex-col items-center justify-center py-20 relative">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center relative select-none"
-          >
+          <div className="text-center relative select-none">
             {/* Ambient Magenta Glow */}
             <div className="absolute inset-0 bg-magenta/10 rounded-full blur-3xl scale-150 opacity-40 pointer-events-none" />
             
             {/* Soon text in brand handwritten script font with brand magenta neon glow */}
-            <motion.h1
-              animate={{
-                y: [0, -8, 0],
-                rotate: [-3, -1, -3],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="font-script text-8xl md:text-[10rem] text-magenta neon-text select-none leading-none"
-            >
+            <h1 className="font-script text-8xl md:text-[10rem] text-magenta neon-text select-none leading-none">
               soon
-            </motion.h1>
+            </h1>
             
             {/* Localized brand-style clean subtitle */}
-            <motion.p
-              animate={{
-                y: [0, -4, 0],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.2,
-              }}
-              className="font-sans text-xs md:text-sm tracking-[0.2em] uppercase text-gray-400 mt-8 select-none leading-none"
-            >
+            <p className="font-sans text-xs md:text-sm tracking-[0.2em] uppercase text-gray-400 mt-8 select-none leading-none">
               {soonSubtitle}
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
         </div>
       </div>
 
