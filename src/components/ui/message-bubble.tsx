@@ -29,7 +29,7 @@ export function MessageBubble({
     <div className={cn("relative inline-block w-full", className)}>
       <div
         className={cn(
-          "relative z-10 rounded-2xl px-5 py-3.5 text-sm leading-relaxed backdrop-blur-xl shadow-lg transition-all duration-300",
+          "relative z-10 rounded-3xl px-5 py-3.5 text-sm leading-relaxed backdrop-blur-xl shadow-lg transition-all duration-300",
           baseBg,
           hasBorder && "border border-white/10"
         )}
