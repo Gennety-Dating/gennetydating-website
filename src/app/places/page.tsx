@@ -57,7 +57,7 @@ function PlaceGallery({ images, name }: PlaceGalleryProps) {
   };
 
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl group/gallery">
+    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl group/gallery border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
       {/* Active Image */}
       <div className="absolute inset-0 bg-neutral-900">
         <Image
@@ -68,7 +68,7 @@ function PlaceGallery({ images, name }: PlaceGalleryProps) {
           className="object-cover transition-transform duration-700 ease-out group-hover/gallery:scale-105"
         />
         {/* Soft Vignette Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent pointer-events-none" />
       </div>
 
       {/* Navigation Arrows */}
@@ -76,14 +76,14 @@ function PlaceGallery({ images, name }: PlaceGalleryProps) {
         <>
           <button
             onClick={handlePrev}
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white hover:bg-black/60 hover:scale-105 transition-all opacity-0 group-hover/gallery:opacity-100 focus:opacity-100 transition-opacity duration-300 z-10 cursor-pointer"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:scale-105 transition-all opacity-0 group-hover/gallery:opacity-100 focus:opacity-100 transition-opacity duration-300 z-10 cursor-pointer"
             aria-label="Previous image"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={handleNext}
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white hover:bg-black/60 hover:scale-105 transition-all opacity-0 group-hover/gallery:opacity-100 focus:opacity-100 transition-opacity duration-300 z-10 cursor-pointer"
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:scale-105 transition-all opacity-0 group-hover/gallery:opacity-100 focus:opacity-100 transition-opacity duration-300 z-10 cursor-pointer"
             aria-label="Next image"
           >
             <ChevronRight className="w-5 h-5" />
@@ -104,7 +104,7 @@ function PlaceGallery({ images, name }: PlaceGalleryProps) {
               }}
               className={cn(
                 "w-1.5 h-1.5 rounded-full transition-all duration-300 cursor-pointer",
-                i === index ? "bg-white w-3" : "bg-white/40 hover:bg-white/60"
+                i === index ? "bg-white w-3.5 shadow-[0_0_8px_rgba(255,255,255,0.8)]" : "bg-white/30 hover:bg-white/60"
               )}
               aria-label={`Go to slide ${i + 1}`}
             />
@@ -225,7 +225,7 @@ export default function PlacesPage() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className="group relative flex flex-col rounded-3xl bg-white/[0.02] border border-white/5 p-5 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+                    className="group relative flex flex-col rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-md p-5 transition-all duration-500 hover:-translate-y-1.5 hover:border-white/20 hover:shadow-[0_30px_70px_-15px_rgba(0,0,0,0.7)]"
                   >
                     {/* Interactive Slideshow */}
                     <PlaceGallery images={place.images} name={place.name[locale] || place.name.en} />
@@ -233,12 +233,12 @@ export default function PlacesPage() {
                     {/* Place Info */}
                     <div className="flex-grow flex flex-col mt-5">
                       {/* Title */}
-                      <h3 className="font-sans font-bold text-xl text-white tracking-tight mb-2">
+                      <h3 className="font-sans font-extrabold text-lg md:text-xl text-white tracking-tight leading-tight mb-2 transition-colors duration-300">
                         {place.name[locale] || place.name.en}
                       </h3>
 
                       {/* Description */}
-                      <p className="text-gray-400 text-sm leading-relaxed flex-grow text-balance mb-6">
+                      <p className="text-white/60 text-xs md:text-sm leading-relaxed flex-grow text-balance mb-6 font-medium">
                         {place.description[locale] || place.description.en}
                       </p>
 
@@ -248,7 +248,7 @@ export default function PlacesPage() {
                           href={place.mapsUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-white/10 bg-white/[0.02] text-xs font-bold text-white tracking-wide hover:bg-white/5 hover:border-white/20 transition-all duration-300 cursor-pointer"
+                          className="inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-white/10 hover:border-white/20 bg-white/[0.04] hover:bg-white/[0.08] text-xs font-bold text-white tracking-wide hover:shadow-[0_4px_12px_rgba(255,255,255,0.05)] transition-all duration-300 cursor-pointer"
                         >
                           <span>Google Maps</span>
                           <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
