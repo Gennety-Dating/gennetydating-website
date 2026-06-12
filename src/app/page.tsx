@@ -5,6 +5,7 @@ import { TheDifference } from "@/components/sections/the-difference";
 import { Matchmaker } from "@/components/sections/matchmaker";
 import { Comparison } from "@/components/sections/comparison";
 import { Safety } from "@/components/sections/safety";
+import { DatePlaces } from "@/components/sections/date-places";
 import { FAQ } from "@/components/sections/faq";
 import { Marquee } from "@/components/sections/marquee";
 import { Footer } from "@/components/sections/footer";
@@ -29,6 +30,7 @@ export default function Home() {
         <TheDifference />
         <Comparison />
         <Safety />
+        <DatePlaces />
       </div>
       <FAQ />
       <Marquee />

@@ -275,6 +275,11 @@ export const translations = {
     "cookie.cat_marketing_desc": "Used to show relevant ads and measure campaigns.",
     "cookie.cat_functional": "Functional",
     "cookie.cat_functional_desc": "Enable enhanced features like preferences and chat.",
+    "places.title.pre": "Real places for",
+    "places.title.highlight": "real dates",
+    "places.cta": "Choose your city to see where dates usually happen",
+    "places.subtitle": "These places",
+    "places.desc": "These locations show the real picture: specific venues and spots approved by our team for dates that are actively integrated into our matchmaking algorithm.",
   },
 
   uk: {
@@ -527,6 +532,11 @@ export const translations = {
     "cookie.cat_marketing_desc": "Використовуються для показу релевантної реклами.",
     "cookie.cat_functional": "Функціональні",
     "cookie.cat_functional_desc": "Дозволяють розширені функції, як-от вподобання та чат.",
+    "places.title.pre": "Справжні місця для",
+    "places.title.highlight": "реальних побачень",
+    "places.cta": "Оберіть місто, щоб побачити, де проходять побачення",
+    "places.subtitle": "Ці місця",
+    "places.desc": "Ці локації відображають реальну картину: які саме заклади та місця загалом схвалені нашою командою для проведення побачень і реально беруть участь в алгоритмі підбору.",
   },
 
   ru: {
@@ -779,6 +789,11 @@ export const translations = {
     "cookie.cat_marketing_desc": "Используются для показа релевантной рекламы.",
     "cookie.cat_functional": "Функциональные",
     "cookie.cat_functional_desc": "Позволяют расширенные функции, такие как настройки и чат.",
+    "places.title.pre": "Настоящие места для",
+    "places.title.highlight": "реальных свиданий",
+    "places.cta": "Выберите город, чтобы увидеть, где проходят свидания",
+    "places.subtitle": "Эти места",
+    "places.desc": "Эти локации отображают реальную картину: какие конкретно заведения и места в целом одобрены нашей командой для проведения свиданий и реально участвуют в алгоритме подбора.",
   },
 
   de: {
@@ -1031,6 +1046,11 @@ export const translations = {
     "cookie.cat_marketing_desc": "Wird für relevante Werbung verwendet.",
     "cookie.cat_functional": "Funktional",
     "cookie.cat_functional_desc": "Ermöglicht erweiterte Funktionen.",
+    "places.title.pre": "Echte Orte für",
+    "places.title.highlight": "echte Dates",
+    "places.cta": "Wähle deine Stadt, um zu sehen, wo Dates stattfinden",
+    "places.subtitle": "Diese Orte",
+    "places.desc": "Diese Orte zeigen das echte Bild: bestimmte Locations und Plätze, die von unserem Team für Dates genehmigt wurden und aktiv in unserem Matchmaking-Algorithmus verwendet werden.",
   },
 
   pl: {
@@ -1283,6 +1303,11 @@ export const translations = {
     "cookie.cat_marketing_desc": "Służą do wyświetlania odpowiednich reklam.",
     "cookie.cat_functional": "Funkcjonalne",
     "cookie.cat_functional_desc": "Umożliwiają zaawansowane funkcje i personalizację.",
+    "places.title.pre": "Prawdziwe miejsca na",
+    "places.title.highlight": "prawdziwe randki",
+    "places.cta": "Wybierz swoje miasto, aby zobaczyć, gdzie odbywają się randki",
+    "places.subtitle": "Te miejsca",
+    "places.desc": "Te lokalizacje pokazują rzeczywisty obraz: konkretne lokale i miejsca zatwierdzone przez nasz zespół do randek, które aktywnie uczestniczą w algorytmie dopasowywania.",
   },
 } as const;
 
