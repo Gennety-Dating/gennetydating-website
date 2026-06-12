@@ -5,7 +5,6 @@ import { ArrowLeft } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/sections/footer";
 import { useLanguage } from "@/lib/language-context";
-import { Heading, Highlight } from "@/components/ui/typography";
 
 // Back to Home Translations
 const backTexts = {
@@ -53,12 +52,6 @@ export default function PlacesPage() {
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           <span>{backText}</span>
         </Link>
-
-        {/* Header Title */}
-        <Heading as="h2" className="text-center mb-8 tracking-tight">
-          {t("places.title.pre") as string} <Highlight>{t("places.title.highlight") as string}</Highlight>
-        </Heading>
-
         {/* Centerpiece "Soon" Announcement */}
         <div className="flex-grow flex flex-col items-center justify-center py-20 relative">
           <div className="text-center relative select-none">
