@@ -5,15 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  MapPin, 
   ExternalLink, 
-  Coffee, 
-  Trees, 
-  Library, 
-  Utensils, 
   ChevronLeft, 
   ChevronRight,
-  Compass,
   ArrowLeft
 } from "lucide-react";
 import { Navbar } from "@/components/navbar";
@@ -39,13 +33,6 @@ const backTexts = {
   ru: "Назад на главную",
   de: "Zurück zur Startseite",
   pl: "Powrót do strony głównej",
-};
-
-const typeIcons = {
-  cafe: Coffee,
-  restaurant: Utensils,
-  park: Trees,
-  museum: Library,
 };
 
 // Mini-Gallery Sub-component
@@ -217,36 +204,19 @@ export default function PlacesPage() {
           </div>
 
           {/* Explain Card: "These Places" (Informational Block) */}
-          <motion.div
-            animate={{ y: [0, -4, 0] }}
-            transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
-            className="w-full max-w-3xl mb-16 relative rounded-3xl p-6 md:p-8 bg-white/[0.02] backdrop-blur-lg border border-white/5 overflow-hidden select-none"
-          >
-            {/* Neon Bloom Light behind the card */}
-            <div className="absolute -top-12 -left-12 w-48 h-48 bg-magenta/[0.03] rounded-full blur-3xl pointer-events-none" />
-            
-            <div className="relative flex flex-col md:flex-row items-center md:items-start gap-5 text-center md:text-left">
-              <div className="w-12 h-12 rounded-full bg-magenta/10 flex items-center justify-center flex-shrink-0 border border-magenta-dim/20 shadow-neon-sm">
-                <Compass className="w-6 h-6 text-magenta" />
-              </div>
-              <div>
-                <h4 className="font-sans font-bold text-lg text-white mb-2 tracking-tight flex items-center justify-center md:justify-start gap-2">
-                  <span>{t("places.subtitle") as string}</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-magenta animate-ping" />
-                </h4>
-                <p className="text-gray-400 text-sm leading-relaxed text-balance">
-                  {t("places.desc") as string}
-                </p>
-              </div>
-            </div>
-          </motion.div>
+          <div className="w-full max-w-2xl mb-16 rounded-2xl p-6 bg-white/[0.01] border border-white/5 text-center select-none">
+            <h4 className="font-sans font-bold text-base text-white mb-2 tracking-tight">
+              {t("places.subtitle") as string}
+            </h4>
+            <p className="text-gray-400 text-sm leading-relaxed max-w-xl mx-auto text-balance">
+              {t("places.desc") as string}
+            </p>
+          </div>
 
           {/* Places Grid */}
           <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
             <AnimatePresence mode="popLayout">
               {filteredPlaces.map((place, idx) => {
-                const Icon = typeIcons[place.type] || MapPin;
-                
                 return (
                   <motion.div
                     key={place.id}
@@ -255,26 +225,15 @@ export default function PlacesPage() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className="group relative flex flex-col rounded-3xl bg-white/[0.02] border border-white/5 hover:border-white/10 p-5 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+                    className="group relative flex flex-col rounded-3xl bg-white/[0.02] border border-white/5 p-5 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
                   >
-                    {/* Neon Glow Hover Effect */}
-                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-magenta/[0.01] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
                     {/* Interactive Slideshow */}
                     <PlaceGallery images={place.images} name={place.name[locale] || place.name.en} />
 
                     {/* Place Info */}
                     <div className="flex-grow flex flex-col mt-5">
-                      {/* Header: Vibe Badge & Type */}
-                      <div className="flex items-center justify-between gap-4 mb-2">
-                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/5 text-[10px] md:text-xs font-semibold tracking-wide text-gray-300">
-                          <Icon className="w-3.5 h-3.5 text-magenta" />
-                          <span>{place.vibe[locale] || place.vibe.en}</span>
-                        </div>
-                      </div>
-
                       {/* Title */}
-                      <h3 className="font-sans font-bold text-xl text-white tracking-tight group-hover:text-magenta transition-colors duration-300 mb-2">
+                      <h3 className="font-sans font-bold text-xl text-white tracking-tight mb-2">
                         {place.name[locale] || place.name.en}
                       </h3>
 
