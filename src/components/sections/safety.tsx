@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Heading, Highlight } from "@/components/ui/typography";
+import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/language-context";
 import type { TranslationKeys } from "@/lib/i18n";
 
@@ -88,6 +89,18 @@ export function Safety() {
               </p>
             </motion.div>
           ))}
+        </div>
+
+        {/* Small CTA Button redirecting to /places */}
+        <div className="mt-16 flex justify-center relative z-10">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            href="/places"
+            className="cursor-pointer text-xs md:text-sm font-semibold tracking-wide border-white/10 hover:border-white/20 text-gray-400 hover:text-white bg-white/[0.01] hover:bg-white/[0.03] shadow-neon-sm hover:shadow-neon transition-all duration-300"
+          >
+            {t("places.cta")}
+          </Button>
         </div>
       </div>
     </section>
