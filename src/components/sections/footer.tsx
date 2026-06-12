@@ -17,7 +17,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 mb-16">
           {/* Left: iMessage slogan */}
           <div className="max-w-md w-full">
-            <MessageBubble variant="blue" tail="left">
+            <MessageBubble variant="liquid-glass" tail="left">
               <p className="text-base md:text-lg font-medium">
                 {t("footer.slogan")}
               </p>

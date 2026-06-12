@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 interface MessageBubbleProps {
   children: React.ReactNode;
-  variant?: "default" | "blue" | "dark";
+  variant?: "default" | "blue" | "dark" | "liquid-glass";
   tail?: "left" | "right" | "none"; // Kept for API compatibility
   className?: string;
 }
@@ -17,13 +17,13 @@ export function MessageBubble({
   className,
 }: MessageBubbleProps) {
   // Нативные фоновые классы
-  const baseBg = variant === "blue" 
-    ? "bg-[#007AFF]/90 text-white" 
+  const baseBg = variant === "blue" || variant === "liquid-glass"
+    ? "liquid-glass text-white" 
     : variant === "dark" 
     ? "bg-white/10 text-white" 
     : "glass text-white";
 
-  const hasBorder = variant === "blue" || variant === "dark";
+  const hasBorder = variant === "dark";
 
   return (
     <div className={cn("relative inline-block w-full", className)}>

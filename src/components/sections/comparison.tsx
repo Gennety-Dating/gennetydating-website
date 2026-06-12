@@ -22,7 +22,7 @@ export function Comparison() {
           </h3>
 
           <div className="w-full max-w-sm">
-            <MessageBubble variant="blue" tail="left">
+            <MessageBubble variant="liquid-glass" tail="left">
               <div className="flex items-start gap-3">
                 <Bell className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <div className="text-left">

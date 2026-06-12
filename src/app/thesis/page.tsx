@@ -32,64 +32,60 @@ export default function ThesisPage() {
         </Link>
 
         {/* Title */}
-        <h1 className="text-4xl md:text-6xl font-serif text-white mb-16 tracking-tight lowercase">
+        <h1 className="text-4xl md:text-6xl font-sans font-extrabold text-white mb-16 tracking-tight lowercase">
           {t("thesis.title")}
         </h1>
 
         {/* Content Container (beautifully left-aligned) */}
-        <div className="space-y-10 text-gray-300 text-lg md:text-xl leading-relaxed max-w-3xl">
-          <p>{t("thesis.p1")}</p>
-          <p>{t("thesis.p2")}</p>
+        <div className="space-y-10 text-gray-300 text-lg md:text-xl leading-relaxed max-w-3xl font-sans">
+          <p dangerouslySetInnerHTML={{ __html: t("thesis.p1") }} />
+          <p dangerouslySetInnerHTML={{ __html: t("thesis.p2") }} />
 
           {/* List Section */}
           <div className="space-y-6 py-4">
-            <h3 className="font-semibold text-white text-xl md:text-2xl">{t("thesis.list.title")}</h3>
+            <h3 className="font-bold text-white text-xl md:text-2xl">{t("thesis.list.title")}</h3>
             <ul className="list-none space-y-4 pl-2">
               <li className="flex items-start gap-4">
-                <span className="text-gray-400 font-mono font-bold mt-1 text-xl">1.</span>
-                <span>{t("thesis.list.item1").replace(/^\d+\.\s*/, "")}</span>
+                <span className="text-white font-sans font-extrabold mt-1 text-xl">1.</span>
+                <span dangerouslySetInnerHTML={{ __html: t("thesis.list.item1").replace(/^\d+\.\s*/, "") }} />
               </li>
               <li className="flex items-start gap-4">
-                <span className="text-gray-400 font-mono font-bold mt-1 text-xl">2.</span>
-                <span>{t("thesis.list.item2").replace(/^\d+\.\s*/, "")}</span>
+                <span className="text-white font-sans font-extrabold mt-1 text-xl">2.</span>
+                <span dangerouslySetInnerHTML={{ __html: t("thesis.list.item2").replace(/^\d+\.\s*/, "") }} />
               </li>
               <li className="flex items-start gap-4">
-                <span className="text-gray-400 font-mono font-bold mt-1 text-xl">3.</span>
-                <span>{t("thesis.list.item3").replace(/^\d+\.\s*/, "")}</span>
+                <span className="text-white font-sans font-extrabold mt-1 text-xl">3.</span>
+                <span dangerouslySetInnerHTML={{ __html: t("thesis.list.item3").replace(/^\d+\.\s*/, "") }} />
               </li>
               <li className="flex items-start gap-4">
-                <span className="text-gray-400 font-mono font-bold mt-1 text-xl">4.</span>
-                <span>{t("thesis.list.item4").replace(/^\d+\.\s*/, "")}</span>
+                <span className="text-white font-sans font-extrabold mt-1 text-xl">4.</span>
+                <span dangerouslySetInnerHTML={{ __html: t("thesis.list.item4").replace(/^\d+\.\s*/, "") }} />
               </li>
             </ul>
           </div>
 
-          <p>{t("thesis.p4")}</p>
-          <p>{t("thesis.p5")}</p>
+          <p dangerouslySetInnerHTML={{ __html: t("thesis.p4") }} />
+          <p dangerouslySetInnerHTML={{ __html: t("thesis.p5") }} />
           
           {/* Big Question Highlight as a blockquote with subtle gray border */}
-          <blockquote className="border-l-2 border-white/20 pl-6 py-3 my-10 italic text-white text-xl md:text-2xl font-serif">
+          <blockquote className="border-l-2 border-white/30 pl-6 py-3 my-10 text-white text-xl md:text-2xl font-sans font-bold tracking-tight">
             {t("thesis.p6")}
           </blockquote>
 
           {/* Scam Market Stats Highlight Card */}
           <div className="p-8 rounded-2xl bg-white/5 border border-white/10 my-10 backdrop-blur-md">
-            <p className="font-sans text-gray-300 leading-relaxed">
-              {t("thesis.p7")}
-            </p>
+            <p className="font-sans text-gray-300 leading-relaxed" dangerouslySetInnerHTML={{ __html: t("thesis.p7") }} />
           </div>
 
-          <p>{t("thesis.p8")}</p>
-          <p>{t("thesis.p9")}</p>
-          <p>{t("thesis.p10")}</p>
-          <p>{t("thesis.p11")}</p>
-          <p>{t("thesis.p12")}</p>
-          <p>{t("thesis.p13")}</p>
+          <p dangerouslySetInnerHTML={{ __html: t("thesis.p8") }} />
+          <p dangerouslySetInnerHTML={{ __html: t("thesis.p9") }} />
+          <p dangerouslySetInnerHTML={{ __html: t("thesis.p10") }} />
+          <p dangerouslySetInnerHTML={{ __html: t("thesis.p11") }} />
+          <p dangerouslySetInnerHTML={{ __html: t("thesis.p12") }} />
+          <p dangerouslySetInnerHTML={{ __html: t("thesis.p13") }} />
           
           {/* Final Callout */}
-          <p className="font-medium text-white text-xl md:text-2xl border-t border-white/10 pt-10 mt-16 leading-relaxed">
-            {t("thesis.p14")}
-          </p>
+          <p className="font-bold text-white text-xl md:text-2xl border-t border-white/10 pt-10 mt-16 leading-relaxed font-sans" dangerouslySetInnerHTML={{ __html: t("thesis.p14") }} />
         </div>
       </div>
 
