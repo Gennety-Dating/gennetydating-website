@@ -33,8 +33,8 @@ export function Comparison() {
             </MessageBubble>
 
             {/* Badge */}
-            <div className="mt-4 inline-flex items-center gap-1.5 bg-white/10 text-white border border-white/20 backdrop-blur-md text-xs font-semibold px-3 py-1 rounded-full">
-              <span className="w-2 h-2 bg-white rounded-full" />
+            <div className="mt-4 inline-flex items-center gap-1.5 bg-white text-midnight text-xs font-bold px-3 py-1 rounded-full">
+              <span className="w-2 h-2 bg-midnight rounded-full" />
               {t("comparison.newMessage")}
             </div>
           </div>
