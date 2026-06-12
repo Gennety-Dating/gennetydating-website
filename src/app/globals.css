@@ -11,8 +11,6 @@
   --color-magenta: #d0adfc;
   --color-magenta-dark: #7c3aed;
   --color-magenta-dim: rgba(208, 173, 252, 0.4);
-  --color-electric-magenta: #FF00FF;
-  --color-electric-magenta-dim: rgba(255, 0, 255, 0.4);
   --color-white: #FFFFFF;
   --color-gray-400: #9ca3af;
   --color-gray-500: #6b7280;
@@ -34,9 +32,6 @@
   --drop-shadow-neon-sm: 0 0 8px rgba(208, 173, 252, 0.6);
   --drop-shadow-neon: 0 0 15px rgba(208, 173, 252, 0.8);
   --drop-shadow-neon-lg: 0 0 25px rgba(208, 173, 252, 0.9);
-  --drop-shadow-neon-electric-sm: 0 0 8px rgba(255, 0, 255, 0.6);
-  --drop-shadow-neon-electric: 0 0 15px rgba(255, 0, 255, 0.8);
-  --drop-shadow-neon-electric-lg: 0 0 25px rgba(255, 0, 255, 0.9);
 
   /* Spacing */
   --spacing-section: 120px;
