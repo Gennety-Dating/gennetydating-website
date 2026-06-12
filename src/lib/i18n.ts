@@ -280,6 +280,7 @@ export const translations = {
     "places.cta": "Choose your city to see where dates usually happen",
     "places.subtitle": "These places",
     "places.desc": "These locations show the real picture: specific venues and spots approved by our team for dates that are actively integrated into our matchmaking algorithm.",
+    "places.view_all": "Explore all approved places",
   },
 
   uk: {
@@ -537,6 +538,7 @@ export const translations = {
     "places.cta": "Оберіть місто, щоб побачити, де проходять побачення",
     "places.subtitle": "Ці місця",
     "places.desc": "Ці локації відображають реальну картину: які саме заклади та місця загалом схвалені нашою командою для проведення побачень і реально беруть участь в алгоритмі підбору.",
+    "places.view_all": "Переглянути всі схвалені місця",
   },
 
   ru: {
@@ -794,6 +796,7 @@ export const translations = {
     "places.cta": "Выберите город, чтобы увидеть, где проходят свидания",
     "places.subtitle": "Эти места",
     "places.desc": "Эти локации отображают реальную картину: какие конкретно заведения и места в целом одобрены нашей командой для проведения свиданий и реально участвуют в алгоритме подбора.",
+    "places.view_all": "Посмотреть все одобренные места",
   },
 
   de: {
@@ -1051,6 +1054,7 @@ export const translations = {
     "places.cta": "Wähle deine Stadt, um zu sehen, wo Dates stattfinden",
     "places.subtitle": "Diese Orte",
     "places.desc": "Diese Orte zeigen das echte Bild: bestimmte Locations und Plätze, die von unserem Team für Dates genehmigt wurden und aktiv in unserem Matchmaking-Algorithmus verwendet werden.",
+    "places.view_all": "Alle genehmigten Orte ansehen",
   },
 
   pl: {
@@ -1308,6 +1312,7 @@ export const translations = {
     "places.cta": "Wybierz swoje miasto, aby zobaczyć, gdzie odbywają się randki",
     "places.subtitle": "Te miejsca",
     "places.desc": "Te lokalizacje pokazują rzeczywisty obraz: konkretne lokale i miejsca zatwierdzone przez nasz zespół do randek, które aktywnie uczestniczą w algorytmie dopasowywania.",
+    "places.view_all": "Zobacz wszystkie zatwierdzone miejsca",
   },
 } as const;
 

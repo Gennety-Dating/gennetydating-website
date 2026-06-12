@@ -2,14 +2,11 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { motion } from "framer-motion";
 import { 
   MapPin, 
-  ExternalLink, 
   Coffee, 
-  Trees, 
-  Library, 
-  Utensils, 
   ChevronLeft, 
   ChevronRight,
   Compass
@@ -17,25 +14,10 @@ import {
 import { useLanguage } from "@/lib/language-context";
 import { datePlaces, type DatePlace } from "@/lib/data";
 import { Heading, Highlight } from "@/components/ui/typography";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-// City Name Translations
-const cityNames = {
-  en: { warsaw: "Warsaw", kyiv: "Kyiv" },
-  uk: { warsaw: "Варшава", kyiv: "Київ" },
-  ru: { warsaw: "Варшава", kyiv: "Киев" },
-  de: { warsaw: "Warschau", kyiv: "Kiew" },
-  pl: { warsaw: "Warszawa", kyiv: "Kijów" },
-};
-
-const typeIcons = {
-  cafe: Coffee,
-  restaurant: Utensils,
-  park: Trees,
-  museum: Library,
-};
-
-// Mini-Gallery Sub-component
+// Mini-Gallery Sub-component for teaser
 interface PlaceGalleryProps {
   images: string[];
   name: string;
@@ -117,10 +99,12 @@ function PlaceGallery({ images, name }: PlaceGalleryProps) {
 
 export function DatePlaces() {
   const { t, locale } = useLanguage();
-  const [selectedCity, setSelectedCity] = useState<"warsaw" | "kyiv">("warsaw");
 
-  const filteredPlaces = datePlaces.filter((p) => p.city === selectedCity);
-  const currentCityNames = cityNames[locale] || cityNames.en;
+  // Get exactly 2 high-profile highlight locations (1 Warsaw, 1 Kyiv)
+  const teaserPlaces = [
+    datePlaces.find((p) => p.id === "warsaw-charlotte"),
+    datePlaces.find((p) => p.id === "kyiv-milk-bar")
+  ].filter(Boolean) as DatePlace[];
 
   return (
     <section className="py-[120px] px-4 md:px-10 relative overflow-hidden">
@@ -131,47 +115,6 @@ export function DatePlaces() {
 
       <div className="max-w-5xl mx-auto flex flex-col items-center">
         
-        {/* City Toggle & Interactive Buttons */}
-        <div className="w-full max-w-md mb-12 flex flex-col items-center">
-          <p className="text-gray-400 text-xs md:text-sm tracking-wider font-semibold uppercase mb-4 text-center">
-            {t("places.cta") as string}
-          </p>
-          
-          {/* Borderless tab switcher in liquid glass style */}
-          <div className="relative p-1 rounded-full bg-white/[0.03] backdrop-blur-md border border-white/5 flex w-full max-w-[280px]">
-            {/* Sliding highlight indicator */}
-            <div className="absolute inset-y-1 left-1 w-[calc(50%-4px)] z-0 rounded-full overflow-hidden">
-              <motion.div
-                layoutId="activeCityTab"
-                transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                className="w-full h-full bg-gradient-to-r from-magenta-dark/40 to-magenta-dark/25 border border-magenta-dim/30 rounded-full"
-              />
-            </div>
-
-            {/* Warsaw Button */}
-            <button
-              onClick={() => setSelectedCity("warsaw")}
-              className={cn(
-                "relative z-10 w-1/2 py-2 text-sm font-semibold tracking-wide rounded-full transition-colors cursor-pointer",
-                selectedCity === "warsaw" ? "text-white" : "text-gray-500 hover:text-white/80"
-              )}
-            >
-              {currentCityNames.warsaw}
-            </button>
-
-            {/* Kyiv Button */}
-            <button
-              onClick={() => setSelectedCity("kyiv")}
-              className={cn(
-                "relative z-10 w-1/2 py-2 text-sm font-semibold tracking-wide rounded-full transition-colors cursor-pointer",
-                selectedCity === "kyiv" ? "text-white" : "text-gray-500 hover:text-white/80"
-              )}
-            >
-              {currentCityNames.kyiv}
-            </button>
-          </div>
-        </div>
-
         {/* Explain Card: "These Places" (Informational Block) */}
         <motion.div
           animate={{ y: [0, -4, 0] }}
@@ -197,65 +140,52 @@ export function DatePlaces() {
           </div>
         </motion.div>
 
-        {/* Places Grid */}
+        {/* Highlight Teaser Grid */}
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-          <AnimatePresence mode="popLayout">
-            {filteredPlaces.map((place, idx) => {
-              const Icon = typeIcons[place.type] || MapPin;
-              
-              return (
-                <motion.div
-                  key={place.id}
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="group relative flex flex-col rounded-3xl bg-white/[0.02] border border-white/5 hover:border-white/10 p-5 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
-                >
-                  {/* Neon Glow Hover Effect */}
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-magenta/[0.01] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+          {teaserPlaces.map((place) => (
+            <div
+              key={place.id}
+              className="group relative flex flex-col rounded-3xl bg-white/[0.02] border border-white/5 p-5 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            >
+              {/* Slideshow */}
+              <PlaceGallery images={place.images} name={place.name[locale] || place.name.en} />
 
-                  {/* Interactive Slideshow */}
-                  <PlaceGallery images={place.images} name={place.name[locale] || place.name.en} />
-
-                  {/* Place Info */}
-                  <div className="flex-grow flex flex-col mt-5">
-                    {/* Header: Vibe Badge & Type */}
-                    <div className="flex items-center justify-between gap-4 mb-2">
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/5 text-[10px] md:text-xs font-semibold tracking-wide text-gray-300">
-                        <Icon className="w-3.5 h-3.5 text-magenta" />
-                        <span>{place.vibe[locale] || place.vibe.en}</span>
-                      </div>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="font-sans font-bold text-xl text-white tracking-tight group-hover:text-magenta transition-colors duration-300 mb-2">
-                      {place.name[locale] || place.name.en}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-gray-400 text-sm leading-relaxed flex-grow text-balance mb-6">
-                      {place.description[locale] || place.description.en}
-                    </p>
-
-                    {/* Footer / CTA Actions: Maps Link */}
-                    <div className="mt-auto">
-                      <a
-                        href={place.mapsUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-white/10 bg-white/[0.02] text-xs font-bold text-white tracking-wide hover:bg-white/5 hover:border-white/20 transition-all duration-300 cursor-pointer"
-                      >
-                        <span>Google Maps</span>
-                        <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                      </a>
-                    </div>
+              {/* Info */}
+              <div className="flex-grow flex flex-col mt-5">
+                <div className="flex items-center justify-between gap-4 mb-2">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/5 text-[10px] md:text-xs font-semibold tracking-wide text-gray-300">
+                    <Coffee className="w-3.5 h-3.5 text-magenta" />
+                    <span>{place.vibe[locale] || place.vibe.en}</span>
                   </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
+                  
+                  {/* City Label badge */}
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-magenta/80">
+                    {place.city === "warsaw" ? (locale === "ru" || locale === "uk" ? "Варшава" : "Warsaw") : (locale === "ru" ? "Киев" : locale === "uk" ? "Київ" : "Kyiv")}
+                  </span>
+                </div>
+
+                <h3 className="font-sans font-bold text-xl text-white tracking-tight group-hover:text-magenta transition-colors duration-300 mb-2">
+                  {place.name[locale] || place.name.en}
+                </h3>
+
+                <p className="text-gray-400 text-sm leading-relaxed flex-grow text-balance mb-2">
+                  {place.description[locale] || place.description.en}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Call to Action to view the full catalog page */}
+        <div className="mt-12 flex justify-center">
+          <Button
+            variant="solid"
+            size="md"
+            href="/places"
+            className="cursor-pointer font-bold shadow-neon-sm hover:shadow-neon"
+          >
+            {t("places.view_all") as string}
+          </Button>
         </div>
       </div>
     </section>
