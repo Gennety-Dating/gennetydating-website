@@ -204,7 +204,7 @@ export default function PlacesPage() {
           </div>
 
           {/* Explain Card: "These Places" (Informational Block) */}
-          <div className="w-full max-w-2xl mb-16 rounded-2xl p-6 bg-white/[0.01] border border-white/5 text-center select-none">
+          <div className="w-full max-w-2xl mb-16 rounded-2xl p-6 bg-[#0c0c0e] border border-white/[0.06] text-center select-none">
             <h4 className="font-sans font-bold text-base text-white mb-2 tracking-tight">
               {t("places.subtitle") as string}
             </h4>
@@ -225,7 +225,7 @@ export default function PlacesPage() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className="group relative flex flex-col rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-md p-5 transition-all duration-500 hover:-translate-y-1.5 hover:border-white/20 hover:shadow-[0_30px_70px_-15px_rgba(0,0,0,0.7)]"
+                    className="group relative flex flex-col rounded-3xl bg-[#0c0c0e] border border-white/[0.08] p-5 transition-all duration-500 hover:-translate-y-1.5 hover:border-white/20 hover:shadow-[0_30px_70px_-15px_rgba(0,0,0,0.7)]"
                   >
                     {/* Interactive Slideshow */}
                     <PlaceGallery images={place.images} name={place.name[locale] || place.name.en} />
