@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { useLanguage } from "@/lib/language-context";
 import { type Locale, locales, localeNames } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import { Globe, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface LanguageSwitcherProps {
@@ -30,25 +30,18 @@ export function LanguageSwitcher({ menuPlacement = "bottom" }: LanguageSwitcherP
 
   return (
     <div ref={dropdownRef} className="relative inline-block text-left">
-      {/* Liquid Glass Capsule Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="group flex items-center gap-2 h-9 px-3.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md shadow-[0_4px_12px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.15)] hover:bg-white/[0.1] hover:border-white/20 active:scale-95 transition-all duration-300 cursor-pointer"
+        className="group inline-flex items-center justify-center gap-2 rounded-full font-medium cursor-pointer select-none bg-transparent text-white border border-white/60 hover:bg-white/10 active:scale-95 px-3 py-1.5 text-xs md:px-4 md:py-2 md:text-sm transition-all duration-300"
         aria-expanded={isOpen}
       >
-        <Globe
-          className={cn(
-            "w-3.5 h-3.5 text-white/60 group-hover:text-white transition-colors duration-300",
-            isOpen && "text-white"
-          )}
-        />
-        <span className="font-mono text-xs font-semibold tracking-wider text-white/70 group-hover:text-white transition-colors duration-300 uppercase">
+        <span>
           {localeNames[locale]}
         </span>
         <ChevronDown
           className={cn(
-            "w-3.5 h-3.5 text-white/30 group-hover:text-white/50 transition-transform duration-300",
-            isOpen ? "rotate-180 text-white/80" : ""
+            "w-3.5 h-3.5 text-white/60 transition-transform duration-300",
+            isOpen ? "rotate-180" : ""
           )}
         />
       </button>
