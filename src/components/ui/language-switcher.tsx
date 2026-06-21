@@ -55,7 +55,7 @@ export function LanguageSwitcher({ menuPlacement = "bottom" }: LanguageSwitcherP
             exit={{ opacity: 0, y: opensUp ? -4 : 4, scale: 0.97 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             className={cn(
-              "absolute right-0 w-20 max-h-[calc(100vh-6rem)] overflow-hidden rounded-2xl bg-black/50 border border-white/10 p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.1)] backdrop-blur-xl z-50",
+              "absolute right-0 w-20 max-h-[calc(100vh-6rem)] overflow-hidden rounded-2xl bg-[#050505]/95 border border-white/60 p-1 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-xl z-50",
               opensUp ? "bottom-[calc(100%+8px)] origin-bottom-right" : "top-[calc(100%+8px)] origin-top-right",
             )}
           >
@@ -68,10 +68,10 @@ export function LanguageSwitcher({ menuPlacement = "bottom" }: LanguageSwitcherP
                     setIsOpen(false);
                   }}
                   className={cn(
-                    "w-full h-8 flex items-center justify-center rounded-xl text-xs font-mono tracking-wider transition-all duration-200 cursor-pointer",
+                    "w-full h-8 flex items-center justify-center rounded-full text-xs font-medium transition-all duration-200 cursor-pointer select-none",
                     locale === l
-                      ? "bg-white/[0.08] text-white font-bold"
-                      : "text-white/40 hover:text-white hover:bg-white/[0.05]"
+                      ? "bg-white text-[#050505] font-semibold"
+                      : "text-white/60 hover:text-white hover:bg-white/10"
                   )}
                 >
                   {localeNames[l]}
