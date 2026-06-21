@@ -55,8 +55,8 @@ export function LanguageSwitcher({ menuPlacement = "bottom" }: LanguageSwitcherP
             exit={{ opacity: 0, y: opensUp ? -4 : 4, scale: 0.97 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             className={cn(
-              "absolute right-0 w-20 max-h-[calc(100vh-6rem)] overflow-hidden rounded-2xl bg-[#050505]/95 border border-white/60 p-1 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-xl z-50",
-              opensUp ? "bottom-[calc(100%+8px)] origin-bottom-right" : "top-[calc(100%+8px)] origin-top-right",
+              "absolute left-0 w-full max-h-[calc(100vh-6rem)] overflow-hidden rounded-2xl bg-[#050505]/95 border border-white/60 p-1 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-xl z-50",
+              opensUp ? "bottom-[calc(100%+8px)] origin-bottom" : "top-[calc(100%+8px)] origin-top",
             )}
           >
             <div className="flex flex-col gap-1">
