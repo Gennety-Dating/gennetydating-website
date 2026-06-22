@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Heading, Highlight } from "@/components/ui/typography";
 import { useLanguage } from "@/lib/language-context";
 import { type TranslationKeys } from "@/lib/i18n";
-import { Sparkles, MapPin, Calendar, Flame, Check, RotateCcw, X, Star, Heart, GraduationCap } from "lucide-react";
+import { Sparkles, MapPin, Calendar, Flame, Check, RotateCcw, X, Star, Heart, GraduationCap, ChevronLeft, MoreHorizontal, Paperclip, Mic, CheckCheck } from "lucide-react";
 
 // Tinder profiles data structure
 interface Profile {
@@ -450,112 +450,103 @@ export function TheDifference() {
             </div>
 
             {/* Chatbot Telegram Frame */}
-            <div className="w-full max-w-[360px] h-[440px] bg-black/60 border border-white/10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-xl flex flex-col overflow-hidden relative">
+            <div className="w-full max-w-[360px] h-[550px] bg-[#FDF8E7] border border-white/10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col overflow-hidden relative">
               {/* Header */}
-              <div className="px-4 py-3 bg-white/[0.03] border-b border-white/10 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-magenta-dark/30 to-magenta/20 border border-magenta/30 flex items-center justify-center relative overflow-hidden shadow-neon-sm">
-                    <Image
-                      src="/images/star-mascot.png"
-                      alt="Gennety Mascot"
-                      width={32}
-                      height={32}
-                      className="object-contain"
-                    />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-white flex items-center gap-1.5">
-                      Gennety Bot
-                      <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-magenta text-midnight flex-shrink-0">
-                        <Check className="w-2.5 h-2.5 stroke-[3]" />
+              <div className="px-3 py-2.5 bg-[#FDF8E7]/95 backdrop-blur-md border-b border-black/5 flex items-center justify-between z-20">
+                <div className="flex items-center gap-2">
+                  <button className="text-blue-500 hover:bg-black/5 p-1 rounded-full transition-colors">
+                    <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
+                  </button>
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-[#FFFDF7] border border-black/5 flex items-center justify-center shadow-sm">
+                      <Image
+                        src="/images/star-mascot.png"
+                        alt="Gennety Mascot"
+                        width={28}
+                        height={28}
+                        className="object-contain"
+                      />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-gray-900 flex items-center gap-1.5 leading-none">
+                        Gennety Bot
+                        <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-blue-500 text-white flex-shrink-0">
+                          <Check className="w-2.5 h-2.5 stroke-[3]" />
+                        </span>
+                      </h4>
+                      <span className="text-[10px] text-gray-500 font-medium mt-0.5 block">
+                        bot
                       </span>
-                    </h4>
-                    <span className="text-[10px] text-emerald-400 font-medium flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
-                      {t("difference.chat.status")}
-                    </span>
+                    </div>
                   </div>
                 </div>
+                <button className="hover:bg-black/5 p-2 rounded-full transition-colors">
+                  <MoreHorizontal className="w-5 h-5 text-gray-500" />
+                </button>
               </div>
 
-              {/* Telegram-style Pinned Message active bar */}
-              <div className="bg-white/[0.02] border-b border-white/10 py-2.5 px-4 text-xs flex items-center gap-3 select-none">
-                <div className="relative flex h-2 w-2 flex-shrink-0">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-magenta opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-magenta"></span>
-                </div>
-                <div className="w-[2px] h-8 bg-magenta/40 rounded-full" />
-                <div className="flex-1 min-w-0">
-                  <p className="text-[10px] text-magenta font-bold uppercase tracking-wider leading-tight">
-                    {tickerTitle}
-                  </p>
-                  <p className="text-[11px] text-gray-400 truncate leading-tight">
-                    {tickerSubtitle}
-                  </p>
-                </div>
-              </div>
-
-              {/* Message History area with Grid Wallpaper */}
+              {/* Message History area */}
               <div 
                 ref={chatContainerRef} 
-                className="flex-1 p-4 overflow-y-auto space-y-4 scrollbar-thin select-none"
+                className="flex-1 p-4 overflow-y-auto space-y-4 scrollbar-thin select-none relative z-0"
                 style={{ 
-                  backgroundImage: "radial-gradient(rgba(208, 173, 252, 0.04) 1px, transparent 1px)", 
+                  backgroundImage: "radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px)", 
                   backgroundSize: "12px 12px" 
                 }}
               >
+                <div className="text-center w-full my-2">
+                  <span className="bg-black/5 text-gray-500 text-[10px] font-medium px-2.5 py-1 rounded-full">
+                    Today
+                  </span>
+                </div>
+
                 <AnimatePresence initial={false}>
                   {chatMessages.map((msg, index) => {
                     if (msg.sender === "ticket") {
                       return (
                         <motion.div
                           key={`msg-${msg.id}`}
-                          initial={{ opacity: 0, y: 15, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          transition={{ duration: 0.4, type: "spring", stiffness: 100 }}
-                          className="flex justify-center py-2"
+                          initial={{ opacity: 0, scale: 0.9, transformOrigin: "bottom left" }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.4, type: "spring", stiffness: 200, damping: 20 }}
+                          className="flex justify-start py-2"
                         >
-                          {/* Wednesday Drop / Thursday Drop Ticket Container */}
-                          <div className="relative w-full max-w-[280px] bg-white/[0.02] backdrop-blur-md border border-magenta/20 rounded-2xl overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.5)] flex flex-col">
-                            {/* Neon glowing dash design element */}
-                            <div className="absolute top-0 inset-x-0 h-1 bg-magenta" />
-                            
+                          <div className="relative w-full max-w-[260px] bg-[#FFFDF7] border border-black/5 rounded-2xl rounded-tl-sm overflow-hidden shadow-sm flex flex-col">
                             {/* Ticket header */}
-                            <div className="p-4 border-b border-white/5 bg-white/5 flex items-center justify-between">
-                              <span className="text-[10px] font-bold tracking-wider text-magenta uppercase flex items-center gap-1">
-                                <Flame className="w-3 h-3 text-magenta" />
+                            <div className="p-3 border-b border-black/5 bg-black/[0.02] flex items-center justify-between">
+                              <span className="text-[10px] font-bold tracking-wider text-gray-800 uppercase flex items-center gap-1">
+                                <Flame className="w-3.5 h-3.5 text-blue-500" />
                                 {t("difference.chat.ticket.title")}
                               </span>
-                              <span className="text-[9px] bg-white/10 px-2 py-0.5 rounded text-gray-300 font-bold uppercase">
+                              <span className="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-bold uppercase">
                                 NYU ONLY
                               </span>
                             </div>
 
                             {/* Ticket Body */}
-                            <div className="p-4 space-y-3">
-                              {/* Match Name */}
+                            <div className="p-3 space-y-3">
                               <div className="flex items-center gap-2">
-                                <div className="w-8 h-8 rounded-full border border-magenta bg-magenta/10 flex items-center justify-center font-bold text-xs text-white">
+                                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center font-bold text-xs text-blue-600 border border-blue-200">
                                   S
                                 </div>
                                 <div>
-                                  <p className="text-xs text-gray-400 font-semibold">{t("difference.chat.ticket.match")}</p>
-                                  <p className="text-[10px] text-magenta font-black">{t("difference.chat.ticket.desc")}</p>
+                                  <p className="text-[10px] text-gray-500 font-semibold">{t("difference.chat.ticket.match")}</p>
+                                  <p className="text-[11px] text-gray-900 font-bold">{t("difference.chat.ticket.desc")}</p>
                                 </div>
                               </div>
 
-                              {/* Details */}
-                              <div className="space-y-2 pt-1 border-t border-white/5 text-[11px]">
-                                <div className="flex items-center gap-2 text-gray-300">
-                                  <MapPin className="w-3.5 h-3.5 text-magenta flex-shrink-0" />
+                              <div className="space-y-1.5 pt-2 border-t border-black/5 text-[11px]">
+                                <div className="flex items-center gap-2 text-gray-600">
+                                  <MapPin className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
                                   <span>{t("difference.chat.ticket.venue")}</span>
                                 </div>
-                                <div className="flex items-center gap-2 text-gray-300">
-                                  <Calendar className="w-3.5 h-3.5 text-magenta flex-shrink-0" />
+                                <div className="flex items-center gap-2 text-gray-600">
+                                  <Calendar className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
                                   <span>{t("difference.chat.ticket.time")}</span>
                                 </div>
                               </div>
                             </div>
+                            <span className="absolute bottom-2 right-2 text-[9px] text-gray-400 font-medium">22:42</span>
                           </div>
                         </motion.div>
                       );
@@ -565,40 +556,56 @@ export function TheDifference() {
                     return (
                       <motion.div
                         key={`msg-${msg.id}`}
-                        initial={{ opacity: 0, x: isBot ? -15 : 15, y: 5 }}
-                        animate={{ opacity: 1, x: 0, y: 0 }}
-                        transition={{ duration: 0.3 }}
+                        initial={{ opacity: 0, scale: 0.9, transformOrigin: isBot ? "bottom left" : "bottom right" }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.3, type: "spring", stiffness: 260, damping: 20 }}
                         className={`flex ${isBot ? "justify-start" : "justify-end"}`}
                       >
                         <div
-                          className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-xs md:text-sm shadow-md leading-relaxed ${
+                          className={`max-w-[75%] rounded-2xl px-3.5 py-2 text-[13px] leading-snug relative ${
                             isBot
-                              ? "bg-white/[0.06] text-white rounded-tl-sm border border-white/5"
-                              : "bg-magenta text-midnight font-medium rounded-tr-sm shadow-[0_4px_12px_rgba(208,173,252,0.25)]"
+                              ? "bg-[#FFFDF7] text-gray-800 rounded-tl-sm border border-black/[0.02] shadow-[0_1px_2px_rgba(0,0,0,0.05)]"
+                              : "bg-[#2A2A28] text-[#FDF8E7] rounded-tr-sm shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
                           }`}
                         >
-                          {msg.textKey ? t(msg.textKey) : ""}
+                          <span className="break-words">{msg.textKey ? t(msg.textKey) : ""}</span>
+                          <div className={`flex items-center gap-0.5 justify-end mt-1 ${isBot ? 'text-gray-400' : 'text-white/60'}`}>
+                            <span className="text-[9px] font-medium leading-none">22:42</span>
+                            {!isBot && <CheckCheck className="w-3 h-3 text-blue-400" />}
+                          </div>
                         </div>
                       </motion.div>
                     );
                   })}
                 </AnimatePresence>
 
-                {/* Bouncing Typing Indicator */}
+                {/* Typing Indicator */}
                 {isTyping && (
                   <motion.div
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, scale: 0.9, transformOrigin: "bottom left" }}
+                    animate={{ opacity: 1, scale: 1 }}
                     className="flex justify-start"
                   >
-                    <div className="bg-white/[0.06] text-white rounded-2xl rounded-tl-sm px-4 py-2.5 flex gap-1 items-center border border-white/5">
-                      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                    <div className="bg-[#FFFDF7] text-gray-500 rounded-2xl rounded-tl-sm px-4 py-2.5 flex gap-1 items-center border border-black/[0.02] shadow-[0_1px_2px_rgba(0,0,0,0.05)] h-[34px]">
+                      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-[bounce_1.4s_infinite_ease-in-out_both]" style={{ animationDelay: "-0.32s" }} />
+                      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-[bounce_1.4s_infinite_ease-in-out_both]" style={{ animationDelay: "-0.16s" }} />
+                      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-[bounce_1.4s_infinite_ease-in-out_both]" />
                     </div>
                   </motion.div>
                 )}
+              </div>
 
+              {/* Chat Input Bar */}
+              <div className="bg-[#FDF8E7]/95 backdrop-blur-md border-t border-black/5 px-3 py-2 flex items-center gap-2 z-20">
+                <button className="text-gray-400 hover:text-gray-600 transition-colors">
+                  <Paperclip className="w-5 h-5" />
+                </button>
+                <div className="flex-1 bg-black/[0.03] rounded-full px-4 py-2 border border-black/5">
+                  <span className="text-sm text-gray-400 select-none">Message...</span>
+                </div>
+                <button className="text-blue-500 hover:text-blue-600 transition-colors p-1.5 hover:bg-black/5 rounded-full">
+                  <Mic className="w-4 h-4" />
+                </button>
               </div>
             </div>
           </div>
