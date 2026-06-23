@@ -11,94 +11,425 @@ export default function PrivacyPage() {
       <Navbar />
       
       <div className="flex-grow pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
-        <h1 className="text-4xl md:text-5xl font-sans font-bold mb-8 neon-text-sm">Privacy Policy for Gennety Dating (GDPR &amp; App Store Compliant)</h1>
+        <h1 className="text-4xl md:text-5xl font-sans font-bold mb-8 neon-text-sm">
+          Privacy Policy for Gennety
+        </h1>
         
-        <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
-          <p><strong>Last Updated:</strong> April 26, 2026</p>
-          <p>Gennety (&quot;we,&quot; &quot;us,&quot; &quot;our&quot;) is committed to protecting the privacy of our users. This Privacy Policy explains how we collect, use, process, and share information in compliance with the General Data Protection Regulation (GDPR) and Apple’s App Store privacy guidelines.</p>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">1. DATA CONTROLLER</h2>
-            <p>The developer of the application and the Data Controller is an individual developer, Gleb Gosha.</p>
-            <p>Contact Email for privacy inquiries: <a href="mailto:legal@gennety.com" className="text-magenta hover:underline">legal@gennety.com</a></p>
-            <p>Developer&apos;s Address: Kiev</p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">2. DATA WE COLLECT</h2>
-            <p>To operate the platform and provide our matchmaking service, we collect the following data:</p>
-            <ul className="list-disc pl-6 space-y-2 mt-2">
-              <li><strong>Account &amp; Identification Data:</strong> Name, age, phone number, email address, and university affiliation.</li>
-              <li><strong>Biometric Data &amp; Photos (Sensitive Data):</strong> Profile photos and facial liveness verification data. This is strictly used to ensure the absence of fake accounts and verify your identity.</li>
-              <li><strong>Psychological &amp; Vector Data (Sensitive Data):</strong> Answers provided during onboarding regarding your personality, values, and dating preferences. This may include &quot;special categories of data&quot; under Art. 9 GDPR.</li>
-              <li><strong>Geolocation:</strong> Location data to match you with a partner and select the optimal venue for your offline date.</li>
-              <li><strong>Technical &amp; Interaction Data:</strong> IP address, device information, OS version, and your interaction logs with the AI matchmaking agents.</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">3. LEGAL BASES FOR PROCESSING</h2>
-            <p>Under GDPR, we rely on the following legal bases to process your data:</p>
-            <ul className="list-disc pl-6 space-y-2 mt-2">
-              <li><strong>Contractual Necessity (Art. 6(1)(b)):</strong> To provide the core functionality of the app, including AI matchmaking and autonomously scheduling dates (&quot;Meet for a date every Thursday&quot; concept).</li>
-              <li><strong>Explicit Consent (Art. 9(2)(a)):</strong> For processing sensitive data, including biometric liveness checks and psychological profiling.</li>
-              <li><strong>Legitimate Interests (Art. 6(1)(f)):</strong> To prevent fraud, ensure platform security, and improve our matchmaking stability.</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">4. HOW WE PROCESS AND STORE DATA (PRIVACY BY DESIGN)</h2>
-            <ul className="list-disc pl-6 space-y-2 mt-2">
-              <li><strong>Vectorization:</strong> Your identity and psychological profile are converted into high-dimensional mathematical representations (embeddings) using pgvector. This allows for high-privacy AI matching without exposing raw text to administrators.</li>
-              <li><strong>Storage and Security:</strong> User data is stored in a secure cloud infrastructure (Supabase), with servers physically located in the European Union (Frankfurt, Germany). We use industry-standard encryption for data in transit and at rest.</li>
-              <li><strong>Cascading Deletion:</strong> We do not retain active user data longer than necessary. Upon requesting account deletion via the app settings, all your personal data (including your profile, match history, photos, and active sessions) is immediately and permanently deleted from our primary database via a cascading delete operation.</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">5. THIRD-PARTY PROCESSORS (SDKs &amp; APIs)</h2>
-            <p>We do not sell your data or share it with third-party advertising networks. To provide the service, we share strictly necessary data with the following infrastructure providers:</p>
-            <ul className="list-disc pl-6 space-y-2 mt-2">
-              <li><strong>Persona:</strong> For mandatory KYC, identity verification, and biometric Liveness verification.</li>
-              <li><strong>OpenAI API:</strong> For analyzing psychological profiles and visual scoring. We use the Enterprise/API tier, which by contract ensures your data is <strong>not used</strong> to train public AI models.</li>
-              <li><strong>Supabase:</strong> Cloud database (PostgreSQL) and file storage hosting.</li>
-              <li><strong>Resend:</strong> For sending One-Time Passwords (OTP) to university email addresses.</li>
-              <li><strong>Expo:</strong> For delivering push notifications to your mobile device.</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">6. USER TRACKING (NO TRACKING)</h2>
-            <p>The Gennety Dating app <strong>does not use</strong> cross-app or cross-site tracking technologies to display targeted advertising. We do not use third-party behavioral analytics SDKs. Your data is used exclusively within our platform for app functionality.</p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">7. YOUR GDPR RIGHTS</h2>
-            <p>You have the following rights regarding your personal data:</p>
-            <ul className="list-disc pl-6 space-y-2 mt-2">
-              <li><strong>Right to Access (Art. 15):</strong> Request a copy of the data we hold about you.</li>
-              <li><strong>Right to Rectification (Art. 16):</strong> Update or correct inaccurate data directly in your profile.</li>
-              <li><strong>Right to Erasure (Art. 17):</strong> Request immediate deletion via the &quot;Delete Account&quot; button in the app settings.</li>
-              <li><strong>Right to Withdraw Consent:</strong> Revoke your consent for biometric and sensitive data processing at any time by deleting your account.</li>
-              <li><strong>Automated Decision-Making (Art. 22):</strong> You have the right to contest matchmaking decisions made solely by our AI algorithms and request human intervention.</li>
-            </ul>
-            <p className="mt-4">For exercising any of these rights, please contact us at <a href="mailto:legal@gennety.com" className="text-magenta hover:underline">legal@gennety.com</a>.</p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">8. CHILDREN&apos;S PRIVACY</h2>
-            <p>The platform is strictly intended for individuals over 18 years of age. We intentionally do not collect data from minors. Our mandatory Persona biometric verification procedure automatically blocks account creation by anyone under 18.</p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">9. CHANGES TO THIS POLICY</h2>
-            <p>We may update this Privacy Policy from time to time. In the event of material changes, we will notify you via a push notification in the app or by email.</p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">10. COMPLAINTS</h2>
-            <p>If you believe we have violated your privacy rights, you have the right to lodge a complaint with a Data Protection Authority in your country of residence.</p>
-          </section>
+        <div className="prose prose-invert max-w-none text-gray-300">
+          <p className="text-gray-300 leading-relaxed my-4"><strong>Last Updated: 23 June 2026</strong></p>
+<p className="text-gray-300 leading-relaxed my-4">This Privacy Policy explains how Gennety (&quot;<strong>Gennety</strong>&quot;, &quot;<strong>we</strong>&quot;, &quot;<strong>us</strong>&quot;, or &quot;<strong>our</strong>&quot;) collects, uses, shares, and protects your personal data when you use the Gennety matchmaking service through our Telegram bot (<code className="bg-gray-800 px-1 py-0.5 rounded text-magenta font-mono text-sm">@gennetybot</code>), our Telegram Mini Apps, our mobile application, and our website at <code className="bg-gray-800 px-1 py-0.5 rounded text-magenta font-mono text-sm">gennety.com</code> (together, the &quot;<strong>Service</strong>&quot;).</p>
+<p className="text-gray-300 leading-relaxed my-4">Gennety is an AI-first matchmaking service for university students. By design we process more context about you than a traditional dating app — including psychological context and biometric data used for identity verification — so please read this Policy carefully. Where we process <strong>special categories</strong> of personal data (such as biometric data), we do so only with your <strong>explicit consent</strong>, as described in Section 9.</p>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">1. Data Controller</h2>
+<p className="text-gray-300 leading-relaxed my-4">The data controller responsible for your personal data is:</p>
+<ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
+<li><strong>Gennety</strong> — operated by Gleb Gosha, Kyiv, Ukraine.</li>
+<li>Privacy contact: <strong>legal@gennety.com</strong></li>
+</ul>
+<blockquote className="border-l-4 border-magenta bg-magenta/5 p-4 my-6 rounded text-sm italic text-gray-400">*To be confirmed before publication: full legal entity name, registration number, and registered address. If a separate EU representative is appointed under Article 27 GDPR, their details will be added here.*</blockquote>
+<p className="text-gray-300 leading-relaxed my-4">Although Gennety is established in Ukraine, where we offer the Service to users located in the European Economic Area (EEA) or the United Kingdom, we apply the EU General Data Protection Regulation (GDPR) and the UK GDPR to that processing.</p>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">2. Scope</h2>
+<p className="text-gray-300 leading-relaxed my-4">This Policy applies to all personal data we process about:</p>
+<ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
+<li>users and prospective users of the Service (including during onboarding, before an account is fully created);</li>
+<li>people who verify a corporate/university email on our website before opening the bot;</li>
+<li>visitors to <code className="bg-gray-800 px-1 py-0.5 rounded text-magenta font-mono text-sm">gennety.com</code>.</li>
+</ul>
+<p className="text-gray-300 leading-relaxed my-4">It does <strong>not</strong> cover third-party services you reach through our links (for example, your own personal AI assistant such as ChatGPT or Claude). Those services have their own privacy policies.</p>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">3. The Data We Collect</h2>
+<p className="text-gray-300 leading-relaxed my-4">We collect data in three ways: data you give us, data generated by your use of the Service, and data we derive or infer to power matchmaking.</p>
+<h3 className="text-xl font-semibold text-white mt-6 mb-3">3.1 Data you provide</h3>
+<div className="overflow-x-auto my-6">
+<table className="w-full border-collapse border border-gray-800 text-left text-sm text-gray-300">
+<thead className="bg-gray-900/80 text-white font-semibold">
+<tr>
+<th className="border border-gray-800 px-4 py-3 font-semibold">Category</th>
+<th className="border border-gray-800 px-4 py-3 font-semibold">Examples</th>
+</tr>
+</thead>
+<tbody className="divide-y divide-gray-800">
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Account &amp; identity</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">First name (and optionally surname), age, gender, gender preference, language, your Telegram user ID and public <code className="bg-gray-800 px-1 py-0.5 rounded text-magenta font-mono text-sm">@username</code> (if any), platform (Telegram / mobile).</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Corporate/university email</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">The email address you verify and its domain (used to confirm student eligibility). A one-time passcode (OTP) is sent to verify it.</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Profile details</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">Height, hobbies/interests, nationality/ethnicity (optional), partner preferences, age range, the city where you want to receive matches, and free-text &quot;vibe&quot; answers (e.g. your ideal Friday night).</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Photos &amp; video</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">Profile photos (including the static frame of a Telegram &quot;Live Photo&quot;) and an optional short profile video.</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>AI memory export (optional)</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">If you choose to enrich onboarding, the psychological analysis you paste from your personal AI assistant (the &quot;Magic Prompt&quot; response).</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Identity verification (biometric)</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">A liveness selfie captured by our verification provider, used to confirm you are a real person and match your profile photos. See Section 9.</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Location</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">The dating city you select; coordinates resolved from your browser geolocation or a place you pick on a map; and, for arranging a date, the departure point you mark and (optionally) a raw location pin you share.</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Communications &amp; feedback</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">Messages and voice notes you send to our bot or AI concierge, post-date feedback, free-text reasons (for declining a match, cancelling a date, changing a venue, or reporting a user), and messages you send through the optional pre-date anonymous proxy chat.</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Payments (premium features)</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">If you buy a premium Date Ticket, your purchase record. Card/payment-instrument details are handled by our payment processor; <strong>we do not store your full card number.</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 className="text-xl font-semibold text-white mt-6 mb-3">3.2 Data generated automatically</h3>
+<div className="overflow-x-auto my-6">
+<table className="w-full border-collapse border border-gray-800 text-left text-sm text-gray-300">
+<thead className="bg-gray-900/80 text-white font-semibold">
+<tr>
+<th className="border border-gray-800 px-4 py-3 font-semibold">Category</th>
+<th className="border border-gray-800 px-4 py-3 font-semibold">Examples</th>
+</tr>
+</thead>
+<tbody className="divide-y divide-gray-800">
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Usage &amp; interaction logs</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">Onboarding progress, actions in the bot and Mini Apps, match decisions (accept/decline), scheduling availability, timestamps.</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Technical data</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">IP address, device and operating-system information, and diagnostic logs.</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Voice transcripts</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">Text transcriptions of voice notes you send (transcribed by our AI provider).</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 className="text-xl font-semibold text-white mt-6 mb-3">3.3 Data we derive or generate</h3>
+<div className="overflow-x-auto my-6">
+<table className="w-full border-collapse border border-gray-800 text-left text-sm text-gray-300">
+<thead className="bg-gray-900/80 text-white font-semibold">
+<tr>
+<th className="border border-gray-800 px-4 py-3 font-semibold">Category</th>
+<th className="border border-gray-800 px-4 py-3 font-semibold">Examples</th>
+</tr>
+</thead>
+<tbody className="divide-y divide-gray-800">
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Psychological summary</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">A free-text summary of your personality, values, and preferences, generated from your onboarding answers and/or your AI memory export.</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Vector embedding</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">A numeric representation (embedding) of your psychological summary, used to compute compatibility. It is derived from your prose, not stored as readable text.</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Compatibility &amp; rating signals</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">A &quot;league&quot;/attractiveness score (Elo) seeded from an automated visual assessment of your photos, structured &quot;vibe&quot; axes, match scores, and standby/priority counters.</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Face-match scores</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">Similarity scores between your verification selfie and each profile photo.</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Safety signals</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">Strikes, reports about you, suspension status.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p className="text-gray-300 leading-relaxed my-4">We <strong>do not</strong> create per-message embeddings of your conversations, and we do not sell your data.</p>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">4. How We Use Your Data and Legal Bases</h2>
+<p className="text-gray-300 leading-relaxed my-4">We process your data for the following purposes. &quot;Legal basis&quot; refers to GDPR Article 6 (and Article 9 for special-category data).</p>
+<div className="overflow-x-auto my-6">
+<table className="w-full border-collapse border border-gray-800 text-left text-sm text-gray-300">
+<thead className="bg-gray-900/80 text-white font-semibold">
+<tr>
+<th className="border border-gray-800 px-4 py-3 font-semibold">Purpose</th>
+<th className="border border-gray-800 px-4 py-3 font-semibold">Data used</th>
+<th className="border border-gray-800 px-4 py-3 font-semibold">Legal basis</th>
+</tr>
+</thead>
+<tbody className="divide-y divide-gray-800">
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Create and operate your account; deliver onboarding</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Account, profile, email</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Performance of a <strong>contract</strong> (Art. 6(1)(b))</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Verify student eligibility</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Corporate/university email, OTP</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Contract; <strong>legal/eligibility requirement</strong> of the Service</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Match you with compatible people</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Profile, psychological summary, embedding, vibe axes, location, rating signals</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Contract; <strong>legitimate interests</strong> (Art. 6(1)(f)) in providing effective matchmaking</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Identity &amp; anti-fraud verification (biometric)</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Liveness selfie, profile photos, face-match scores</td>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Explicit consent</strong> (Art. 9(2)(a)); Art. 6(1)(f) for fraud prevention</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Generate icebreakers, date hints, pitches, venue choice</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Profile, psychological/Profiler answers, location, vibe</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Contract; legitimate interests</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Arrange and confirm dates; venue selection</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Availability, departure point, vibe, agreed time</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Contract</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Process premium Date Ticket purchases</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Purchase record, processor payment confirmation</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Contract</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Trust &amp; safety, moderation, content validation</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Reports, photos/video (safety scan), proxy-chat logs, strikes</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Legitimate interests; <strong>legal obligation</strong></td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Send service messages, reminders, push/DMs</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Account, usage, push token</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Contract; legitimate interests</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Improve and develop the Service using <strong>anonymised</strong> data</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Aggregated/anonymised data</td>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Consent</strong> (the optional &quot;research&quot; opt-in) and/or legitimate interests once anonymised</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Comply with law and respond to lawful requests</td>
+<td className="border border-gray-800 px-4 py-3 align-top">As required</td>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Legal obligation</strong> (Art. 6(1)(c))</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p className="text-gray-300 leading-relaxed my-4">You can withdraw any consent at any time (Section 15). Withdrawing consent for biometric verification does not delete data already lawfully processed but stops further processing and may limit your match eligibility.</p>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">5. Automated Decision-Making and Profiling</h2>
+<p className="text-gray-300 leading-relaxed my-4">Matchmaking is <strong>automated</strong>. We use algorithms and AI to:</p>
+<ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
+<li>build a psychological profile and embedding of you;</li>
+<li>estimate compatibility and a &quot;league&quot;/attractiveness rating from your photos and answers;</li>
+<li>decide which person (if any) you are matched with each week;</li>
+<li>bucket your photos as pass/borderline/fail/no-face during identity verification, which can route your account to verified, manual review, or rejected status.</li>
+</ul>
+<p className="text-gray-300 leading-relaxed my-4">These automated steps can affect whether and with whom you are matched, and whether your identity verification passes. <strong>No automated decision produces a legal or similarly significant effect that you cannot question.</strong> You have the right to obtain human intervention, to express your point of view, and to contest these decisions (Section 15). Identity verification failures and safety decisions are subject to human review on request, and our verification pipeline routes infrastructure failures to manual review rather than auto-rejecting you.</p>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">6. AI Processing and Your Personal AI Export</h2>
+<p className="text-gray-300 leading-relaxed my-4">To generate your psychological summary and matchmaking signals, we send relevant profile text (and, if you provide it, your pasted AI memory export) to our AI provider for analysis, embedding, transcription, moderation, and visual scoring.</p>
+<ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
+<li>Providing an AI memory export is <strong>optional</strong>. If you decline, we generate a fallback summary from your ordinary onboarding answers instead.</li>
+<li>Your pasted export is treated as your personal data and processed only to build your profile and matches.</li>
+<li>We use AI providers on terms that do not permit them to train their public models on our API data.</li>
+</ul>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">7. Third-Party Processors (Sub-processors)</h2>
+<p className="text-gray-300 leading-relaxed my-4">We share personal data with the following service providers strictly to operate the Service. Each acts as our processor under a data-processing agreement and may process data outside Ukraine/your country (see Section 8).</p>
+<div className="overflow-x-auto my-6">
+<table className="w-full border-collapse border border-gray-800 text-left text-sm text-gray-300">
+<thead className="bg-gray-900/80 text-white font-semibold">
+<tr>
+<th className="border border-gray-800 px-4 py-3 font-semibold">Processor</th>
+<th className="border border-gray-800 px-4 py-3 font-semibold">Purpose</th>
+<th className="border border-gray-800 px-4 py-3 font-semibold">Data shared</th>
+</tr>
+</thead>
+<tbody className="divide-y divide-gray-800">
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Persona</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">Identity / liveness (KYC) verification</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Verification selfie, basic identity signals</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Amazon Web Services (AWS Rekognition)</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">Face comparison, face detection, and content-safety analysis of photos/video</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Profile photos, verification selfie, video frames (transient)</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>OpenAI</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">Psychological analysis, embeddings, voice/video-audio transcription, content moderation, visual attractiveness scoring</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Profile text, AI export, voice/video transcripts, photos</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Google Places</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">Venue search for arranging dates</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Approximate midpoint coordinates of a matched pair</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Supabase</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">Database hosting and file storage (selfies, mobile photos, chat images)</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Account, profile, photos, embeddings</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Resend (email provider)</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">Delivering verification OTP emails</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Email address, OTP</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Expo / Apple (APNs) / Google (FCM)</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">Mobile push notifications</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Push token, notification content</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Payment processors</strong> (currently planned: <strong>Fondy</strong> and <strong>Telegram Payments</strong> / <strong>Telegram Stars</strong>)</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Processing premium Date Ticket payments</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Purchase amount, payment confirmation, transaction identifiers. The processor (and/or Telegram) — not Gennety — handles payment credentials and card data.</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>Telegram</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">The messaging platform the bot runs on</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Messages and media you exchange with the bot are processed by Telegram under its own policy.</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>DigitalOcean / Vercel (hosting &amp; CDN)</strong></td>
+<td className="border border-gray-800 px-4 py-3 align-top">Running our servers, hosting frontend applications, and serving the website/Mini Apps</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Technical data</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p className="text-gray-300 leading-relaxed my-4">We update this list as our processors change. A current list is available on request at legal@gennety.com.</p>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">8. International Data Transfers</h2>
+<p className="text-gray-300 leading-relaxed my-4">Some processors are located outside Ukraine, the EEA, or the UK (for example, in the United States). Where we transfer personal data internationally, we rely on appropriate safeguards such as the European Commission&apos;s Standard Contractual Clauses, UK addenda, or adequacy decisions, as applicable. You can request a copy of the relevant safeguards at legal@gennety.com.</p>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">9. Photos, Video, and Biometric Data (Special Category)</h2>
+<p className="text-gray-300 leading-relaxed my-4">Identity verification and face-matching involve <strong>biometric data</strong>, which is a special category of personal data under GDPR Article 9. We process it <strong>only with your explicit consent</strong>, which you give when you start verification.</p>
+<ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
+<li><strong>Liveness selfie.</strong> Captured by Persona, stored as your verification reference, and compared against your profile photos using AWS Rekognition.</li>
+<li><strong>Face-match scores.</strong> A similarity score is stored per profile photo to decide verification outcome.</li>
+<li><strong>Selfie retention.</strong> Your verification selfie is automatically <strong>deleted 90 days after verification</strong> (GDPR Article 9 minimisation). You remain verified; only the reference image is erased. If you re-verify later, a new selfie is fetched.</li>
+<li><strong>Profile video.</strong> An optional profile video is scanned for safety only: a small number of frames and the audio are analysed transiently for prohibited content. The extracted frames, audio, and transcript are <strong>not retained</strong> — only a validation timestamp/version is kept. The video itself is display-only.</li>
+<li><strong>Photo safety &amp; duplicate checks.</strong> Uploaded photos are checked for safety, for the presence of a usable face, and for duplicates (using a perceptual hash). Rejections are logged without retaining the rejected media or biometric material.</li>
+<li><strong>Partner photo protection.</strong> When you are matched, your photos are shown to your match in a forward/save-protected form, and shareable date cards blur the partner&apos;s face before they can leave the platform. (Note: operating-system screenshots cannot be technically blocked in a normal chat.)</li>
+</ul>
+<p className="text-gray-300 leading-relaxed my-4">Skipping verification is allowed but carries a rating penalty and limits match eligibility, as described in our Terms.</p>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">10. Location Data</h2>
+<p className="text-gray-300 leading-relaxed my-4">We use location data to find matches in your city and to arrange convenient date venues:</p>
+<ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
+<li>Your selected <strong>dating city</strong> and its coordinates determine your match pool.</li>
+<li>For a confirmed date, the <strong>departure point</strong> you mark (and any raw location pin you choose to share) is used to compute a fair midpoint and search for a venue near both of you.</li>
+</ul>
+<p className="text-gray-300 leading-relaxed my-4">We do not continuously track your location. A raw coordinate alone does not make you eligible for matching — you must set a dating city.</p>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">11. Payments</h2>
+<p className="text-gray-300 leading-relaxed my-4">Premium <strong>Date Tickets</strong> are an optional paid feature. When you make a purchase:</p>
+<ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
+<li>Payment is processed by our third-party payment processor. <strong>We do not receive or store your full card number.</strong></li>
+<li>We retain a record of the transaction (amount, status, time, and which match/bundle it relates to) for accounting, support, and fraud prevention.</li>
+<li>Refunds are handled as described in our Terms of Service.</li>
+</ul>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">12. Communications and the No-Chat Model</h2>
+<p className="text-gray-300 leading-relaxed my-4">Gennety does <strong>not</strong> provide open user-to-user chat. Your conversations are with our bot and AI concierge, plus the structured pitch, scheduling, safety, and report flows.</p>
+<p className="text-gray-300 leading-relaxed my-4">There is one narrow, optional exception: a <strong>pre-date anonymous proxy chat</strong> that relays text between an already-matched, already-scheduled pair to help you find each other. When enabled and used:</p>
+<ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
+<li>it is time-boxed (opens shortly before the date, auto-closes after it);</li>
+<li>it is text-only (media is rejected);</li>
+<li><strong>every relayed message is logged</strong> to provide a moderation/safety trail and to support the in-line report function;</li>
+<li>those logs are deleted if the related match is deleted.</li>
+</ul>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">13. Data Retention</h2>
+<p className="text-gray-300 leading-relaxed my-4">We keep personal data only as long as necessary for the purposes above.</p>
+<div className="overflow-x-auto my-6">
+<table className="w-full border-collapse border border-gray-800 text-left text-sm text-gray-300">
+<thead className="bg-gray-900/80 text-white font-semibold">
+<tr>
+<th className="border border-gray-800 px-4 py-3 font-semibold">Data</th>
+<th className="border border-gray-800 px-4 py-3 font-semibold">Retention</th>
+</tr>
+</thead>
+<tbody className="divide-y divide-gray-800">
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Account &amp; profile data</td>
+<td className="border border-gray-800 px-4 py-3 align-top">While your account exists; deleted on account deletion</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Verification selfie</td>
+<td className="border border-gray-800 px-4 py-3 align-top"><strong>90 days</strong> after verification, then auto-deleted</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Profile video frames/audio/transcript</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Not retained (transient validation only)</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Rejected-media records</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Minimal audit record (reason, type, time) — no media kept</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Proxy-chat message logs</td>
+<td className="border border-gray-800 px-4 py-3 align-top">While the related match exists; deleted with the match</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Payment records</td>
+<td className="border border-gray-800 px-4 py-3 align-top">As required for accounting/legal obligations</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Frozen accounts (soft-delete)</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Retained intact while frozen; reactivated on your next start, or deleted on request</td>
+</tr>
+<tr>
+<td className="border border-gray-800 px-4 py-3 align-top">Diagnostic/technical logs</td>
+<td className="border border-gray-800 px-4 py-3 align-top">Short-term, then rotated</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p className="text-gray-300 leading-relaxed my-4">On account deletion, we perform a cascading deletion of your data across our database. Some records may be retained where required by law (e.g. financial records) or in anonymised form.</p>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">14. Data Security</h2>
+<p className="text-gray-300 leading-relaxed my-4">We apply technical and organisational measures appropriate to the sensitivity of the data, including: encrypted transport (TLS), access controls, signed/verified requests for sensitive endpoints, private storage buckets with short-lived signed access, hashing of one-time codes, and minimisation of biometric retention. No system is perfectly secure, but we work to protect your data and to notify you and the relevant authority of a qualifying personal-data breach where the law requires.</p>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">15. Your Rights</h2>
+<p className="text-gray-300 leading-relaxed my-4">Subject to applicable law (and in full where GDPR/UK GDPR applies), you have the right to:</p>
+<ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
+<li><strong>Access</strong> the personal data we hold about you;</li>
+<li><strong>Rectify</strong> inaccurate or incomplete data (note: some identity fields are fixed after onboarding);</li>
+<li><strong>Erase</strong> your data (&quot;right to be forgotten&quot;);</li>
+<li><strong>Restrict</strong> or <strong>object</strong> to certain processing, including processing based on legitimate interests;</li>
+<li><strong>Data portability</strong> — receive your data in a portable format;</li>
+<li><strong>Withdraw consent</strong> at any time (including biometric-verification and the research opt-in), without affecting prior lawful processing;</li>
+<li><strong>Not be subject to solely automated decisions</strong> that significantly affect you without human review — you may request human intervention and contest a decision (Section 5);</li>
+<li><strong>Lodge a complaint</strong> with a supervisory authority (Section 20).</li>
+</ul>
+<p className="text-gray-300 leading-relaxed my-4">To exercise any right, contact <strong>legal@gennety.com</strong>. We will respond within the timeframes required by law (generally within one month under GDPR). You can also delete your account directly in the app; a softer <strong>freeze</strong> (soft-delete) option is also available in Telegram.</p>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">16. Children&apos;s Privacy</h2>
+<p className="text-gray-300 leading-relaxed my-4">The Service is intended only for users who are <strong>at least 18 years old</strong> and enrolled at, or affiliated with, an eligible institution. We do not knowingly collect data from anyone under 18. If we learn that we have, we will delete it.</p>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">17. Cookies and Website Tracking</h2>
+<p className="text-gray-300 leading-relaxed my-4">Our website and Mini Apps use only the cookies/local storage necessary to make them work (for example, to remember your language or hold an unsent form draft). Inside the bot, we operate a <strong>no-third-party-tracking</strong> model. If we introduce any analytics or non-essential cookies, we will update this Policy and request consent where required.</p>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">18. Account Freeze vs Deletion</h2>
+<ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
+<li><strong>Freeze (soft-delete):</strong> removes you from matching and hides your status, but keeps your profile, photos, verification, and embedding so you can return instantly. You are silently reactivated when you next open the bot.</li>
+<li><strong>Deletion (hard-delete):</strong> permanently and irreversibly removes your account and cascades deletion across your data. This cannot be undone.</li>
+</ul>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">19. Changes to This Policy</h2>
+<p className="text-gray-300 leading-relaxed my-4">We may update this Policy as the Service evolves. When we make material changes, we will update the &quot;Last Updated&quot; date and, where appropriate, notify you in the app. Continued use after an update means you accept the revised Policy, except where new consent is legally required.</p>
+<hr className="border-gray-800 my-8" />
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">20. Complaints and Contact</h2>
+<p className="text-gray-300 leading-relaxed my-4">For any privacy question, request, or complaint, contact us at <strong>legal@gennety.com</strong>.</p>
+<p className="text-gray-300 leading-relaxed my-4">If you are in the EEA or UK and believe we have not handled your data lawfully, you may lodge a complaint with your local data-protection supervisory authority. We would, however, appreciate the chance to address your concern first.</p>
         </div>
       </div>
       
