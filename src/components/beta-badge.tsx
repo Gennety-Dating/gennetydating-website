@@ -10,11 +10,11 @@ export function BetaBadge({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "inline-flex select-none items-center rounded-full border border-magenta/50 bg-magenta/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-magenta",
+        "font-script text-base md:text-lg text-magenta neon-text-sm select-none tracking-normal -rotate-6 transform -translate-y-1 ml-1.5 font-normal leading-none inline-block",
         className,
       )}
     >
-      Beta
+      beta
     </span>
   );
 }
