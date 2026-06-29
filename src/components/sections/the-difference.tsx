@@ -273,7 +273,7 @@ export function TheDifference() {
             </div>
 
             {/* Tinder Stack Container */}
-            <div className="relative w-full max-w-[320px] h-[550px] flex items-center justify-center select-none z-10">
+            <div className="relative w-full max-w-[360px] h-[620px] flex items-center justify-center select-none z-10">
               <AnimatePresence>
                 {activeCards.slice(0, 3).reverse().map((profile) => {
                   const isTop = profile.uniqueId === activeCards[0]?.uniqueId;
@@ -321,7 +321,7 @@ export function TheDifference() {
                           src={profile.image}
                           alt="Student profile"
                           fill
-                          sizes="320px"
+                          sizes="360px"
                           priority={isTop}
                           className="object-cover pointer-events-none"
                         />
@@ -450,7 +450,7 @@ export function TheDifference() {
             </div>
 
             {/* Chatbot Telegram Frame */}
-            <div className="w-full max-w-[360px] h-[550px] bg-[#0e1621] border border-white/10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden relative">
+            <div className="w-full max-w-[400px] h-[620px] bg-[#0e1621] border border-white/10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden relative">
               
               {/* Floating Header (Subtle Liquid Glass) */}
               <div className="absolute top-3 inset-x-3 bg-[#182533]/35 backdrop-blur-xl border border-white/5 rounded-2xl p-2 px-3 flex items-center justify-between z-20 shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
@@ -523,23 +523,23 @@ export function TheDifference() {
                           </div>
 
                           {/* 2. Photo Grid bubble (Frameless & Translucent) */}
-                          <div className="relative w-full max-w-[270px] bg-[#182533]/50 border-none rounded-2xl rounded-tl-sm overflow-hidden shadow-sm flex flex-col backdrop-blur-sm">
+                          <div className="relative w-full max-w-[300px] bg-[#182533]/50 border-none rounded-2xl rounded-tl-sm overflow-hidden shadow-sm flex flex-col backdrop-blur-sm">
                             <div className="grid grid-cols-2 gap-1 p-1">
                               <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-black/20">
                                 <Image
-                                  src="/images/tinder-photo-1.jpg"
-                                  alt="Sofia 1"
+                                  src="/images/dan-1.jpg"
+                                  alt="Den 1"
                                   fill
-                                  sizes="135px"
+                                  sizes="150px"
                                   className="object-cover pointer-events-none"
                                 />
                               </div>
                               <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-black/20">
                                 <Image
-                                  src="/images/tinder-photo-3.jpg"
-                                  alt="Sofia 2"
+                                  src="/images/dan-2.jpg"
+                                  alt="Den 2"
                                   fill
-                                  sizes="135px"
+                                  sizes="150px"
                                   className="object-cover pointer-events-none"
                                 />
                               </div>
@@ -556,7 +556,7 @@ export function TheDifference() {
                           </div>
 
                           {/* 3. Synergy bubble (Frameless & Translucent) */}
-                          <div className="relative w-full max-w-[270px] bg-[#182533]/50 border-none rounded-2xl rounded-tl-sm p-3.5 shadow-md text-left flex flex-col gap-1.5 backdrop-blur-sm">
+                          <div className="relative w-full max-w-[300px] bg-[#182533]/50 border-none rounded-2xl rounded-tl-sm p-3.5 shadow-md text-left flex flex-col gap-1.5 backdrop-blur-sm">
                             <div className="text-[12px] font-bold text-white flex items-start gap-1.5 leading-snug">
                               <span className="text-base leading-none">💎</span>
                               <span>{t("difference.chat.ticket.synergy")}</span>
@@ -572,7 +572,7 @@ export function TheDifference() {
                           </div>
 
                           {/* 4. Action Buttons (Frameless & Sleek) */}
-                          <div className="w-full max-w-[270px] flex flex-col gap-1.5 mt-0.5">
+                          <div className="w-full max-w-[300px] flex flex-col gap-1.5 mt-0.5">
                             <div className="grid grid-cols-2 gap-1.5">
                               <button className="py-2.5 px-3 bg-[#31b14a]/80 hover:bg-[#31b14a]/90 active:scale-95 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-sm transition-all cursor-pointer border-none">
                                 <span className="text-xs leading-none">✨</span> {t("difference.chat.ticket.accept")}
