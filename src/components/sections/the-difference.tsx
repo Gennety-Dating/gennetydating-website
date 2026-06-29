@@ -205,7 +205,7 @@ export function TheDifference() {
           setChatMessages([]);
           timelineIndex = 0;
           playNextMessage();
-        }, 5000);
+        }, 10000);
         return;
       }
 
@@ -450,15 +450,16 @@ export function TheDifference() {
             </div>
 
             {/* Chatbot Telegram Frame */}
-            <div className="w-full max-w-[360px] h-[550px] bg-[#FDF8E7] border border-white/10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col overflow-hidden relative">
-              {/* Header */}
-              <div className="px-3 py-2.5 bg-[#FDF8E7]/95 backdrop-blur-md border-b border-black/5 flex items-center justify-between z-20">
+            <div className="w-full max-w-[360px] h-[550px] bg-[#0e1621] border border-white/10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden relative">
+              
+              {/* Floating Header (Subtle Liquid Glass) */}
+              <div className="absolute top-3 inset-x-3 bg-[#182533]/35 backdrop-blur-xl border border-white/5 rounded-2xl p-2 px-3 flex items-center justify-between z-20 shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
                 <div className="flex items-center gap-2">
-                  <button className="text-blue-500 hover:bg-black/5 p-1 rounded-full transition-colors">
+                  <button className="text-[#5288c1] hover:bg-white/5 p-1 rounded-full transition-colors cursor-pointer">
                     <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
                   </button>
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-[#FFFDF7] border border-black/5 flex items-center justify-center shadow-sm">
+                    <div className="w-9 h-9 rounded-full bg-[#1e2c3a] border border-white/5 flex items-center justify-center shadow-sm overflow-hidden">
                       <Image
                         src="/images/star-mascot.png"
                         alt="Gennety Mascot"
@@ -467,41 +468,41 @@ export function TheDifference() {
                         className="object-contain"
                       />
                     </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-gray-900 flex items-center gap-1.5 leading-none">
+                    <div className="text-left">
+                      <h4 className="text-sm font-bold text-white flex items-center gap-1 leading-none">
                         Gennety Bot
-                        <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-blue-500 text-white flex-shrink-0">
-                          <Check className="w-2.5 h-2.5 stroke-[3]" />
+                        <span className="inline-flex items-center justify-center w-3 h-3 rounded-full bg-[#5288c1] text-white flex-shrink-0">
+                          <Check className="w-2 h-2 stroke-[3.5]" />
                         </span>
                       </h4>
-                      <span className="text-[10px] text-gray-500 font-medium mt-0.5 block">
+                      <span className="text-[10px] text-[#708499] font-medium mt-0.5 block">
                         bot
                       </span>
                     </div>
                   </div>
                 </div>
-                <button className="hover:bg-black/5 p-2 rounded-full transition-colors">
-                  <MoreHorizontal className="w-5 h-5 text-gray-500" />
+                <button className="hover:bg-white/5 p-2 rounded-full transition-colors cursor-pointer">
+                  <MoreHorizontal className="w-5 h-5 text-[#708499]" />
                 </button>
               </div>
 
               {/* Message History area */}
               <div 
                 ref={chatContainerRef} 
-                className="flex-1 p-4 overflow-y-auto space-y-4 scrollbar-thin select-none relative z-0"
+                className="absolute inset-0 p-4 overflow-y-auto space-y-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden select-none z-10 pt-20 pb-20"
                 style={{ 
-                  backgroundImage: "radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px)", 
-                  backgroundSize: "12px 12px" 
+                  backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px)", 
+                  backgroundSize: "16px 16px" 
                 }}
               >
                 <div className="text-center w-full my-2">
-                  <span className="bg-black/5 text-gray-500 text-[10px] font-medium px-2.5 py-1 rounded-full">
+                  <span className="bg-black/20 text-[#708499] text-[10px] font-semibold px-2.5 py-1 rounded-full">
                     Today
                   </span>
                 </div>
 
                 <AnimatePresence initial={false}>
-                  {chatMessages.map((msg, index) => {
+                  {chatMessages.map((msg) => {
                     if (msg.sender === "ticket") {
                       return (
                         <motion.div
@@ -509,44 +510,80 @@ export function TheDifference() {
                           initial={{ opacity: 0, scale: 0.9, transformOrigin: "bottom left" }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ duration: 0.4, type: "spring", stiffness: 200, damping: 20 }}
-                          className="flex justify-start py-2"
+                          className="flex flex-col gap-2 py-2"
                         >
-                          <div className="relative w-full max-w-[260px] bg-[#FFFDF7] border border-black/5 rounded-2xl rounded-tl-sm overflow-hidden shadow-sm flex flex-col">
-                            {/* Ticket header */}
-                            <div className="p-3 border-b border-black/5 bg-black/[0.02] flex items-center justify-between">
-                              <span className="text-[10px] font-bold tracking-wider text-gray-800 uppercase flex items-center gap-1">
-                                <Flame className="w-3.5 h-3.5 text-blue-500" />
-                                {t("difference.chat.ticket.title")}
-                              </span>
-                              <span className="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-bold uppercase">
-                                NYU ONLY
-                              </span>
+                          {/* 1. Verification text bubble (Frameless & Translucent) */}
+                          <div className="max-w-[85%] rounded-2xl rounded-tl-sm bg-[#182533]/50 border-none px-3.5 py-2.5 text-[12.5px] leading-snug relative shadow-sm text-left backdrop-blur-sm">
+                            <span className="text-[#ffffff]">
+                              {t("difference.chat.ticket.verification")}
+                            </span>
+                            <div className="flex items-center gap-0.5 justify-end mt-1 text-[#708499]">
+                              <span className="text-[9px] font-medium leading-none">22:42</span>
                             </div>
+                          </div>
 
-                            {/* Ticket Body */}
-                            <div className="p-3 space-y-3">
-                              <div className="flex items-center gap-2">
-                                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center font-bold text-xs text-blue-600 border border-blue-200">
-                                  S
-                                </div>
-                                <div>
-                                  <p className="text-[10px] text-gray-500 font-semibold">{t("difference.chat.ticket.match")}</p>
-                                  <p className="text-[11px] text-gray-900 font-bold">{t("difference.chat.ticket.desc")}</p>
-                                </div>
+                          {/* 2. Photo Grid bubble (Frameless & Translucent) */}
+                          <div className="relative w-full max-w-[270px] bg-[#182533]/50 border-none rounded-2xl rounded-tl-sm overflow-hidden shadow-sm flex flex-col backdrop-blur-sm">
+                            <div className="grid grid-cols-2 gap-1 p-1">
+                              <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-black/20">
+                                <Image
+                                  src="/images/tinder-photo-1.jpg"
+                                  alt="Sofia 1"
+                                  fill
+                                  sizes="135px"
+                                  className="object-cover pointer-events-none"
+                                />
                               </div>
-
-                              <div className="space-y-1.5 pt-2 border-t border-black/5 text-[11px]">
-                                <div className="flex items-center gap-2 text-gray-600">
-                                  <MapPin className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
-                                  <span>{t("difference.chat.ticket.venue")}</span>
-                                </div>
-                                <div className="flex items-center gap-2 text-gray-600">
-                                  <Calendar className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
-                                  <span>{t("difference.chat.ticket.time")}</span>
-                                </div>
+                              <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-black/20">
+                                <Image
+                                  src="/images/tinder-photo-3.jpg"
+                                  alt="Sofia 2"
+                                  fill
+                                  sizes="135px"
+                                  className="object-cover pointer-events-none"
+                                />
                               </div>
                             </div>
-                            <span className="absolute bottom-2 right-2 text-[9px] text-gray-400 font-medium">22:42</span>
+                            <div className="px-3 pb-2.5 pt-1 text-left relative">
+                              <p className="text-[13px] font-bold text-white">
+                                {t("difference.chat.ticket.name")}
+                              </p>
+                              <p className="text-[11px] text-[#5288c1] font-semibold flex items-center gap-1 mt-0.5">
+                                <Check className="w-3.5 h-3.5 stroke-[3.5]" /> {t("difference.chat.ticket.verified")}
+                              </p>
+                              <span className="absolute bottom-1.5 right-2 text-[9px] text-[#708499] font-medium">22:42</span>
+                            </div>
+                          </div>
+
+                          {/* 3. Synergy bubble (Frameless & Translucent) */}
+                          <div className="relative w-full max-w-[270px] bg-[#182533]/50 border-none rounded-2xl rounded-tl-sm p-3.5 shadow-md text-left flex flex-col gap-1.5 backdrop-blur-sm">
+                            <div className="text-[12px] font-bold text-white flex items-start gap-1.5 leading-snug">
+                              <span className="text-base leading-none">💎</span>
+                              <span>{t("difference.chat.ticket.synergy")}</span>
+                            </div>
+                            <p className="text-[11.5px] text-[#cdd7e0] leading-normal pl-5">
+                              {t("difference.chat.ticket.synergyDesc")}
+                            </p>
+                            <div className="text-[11px] text-[#d0adfc] font-semibold flex items-center gap-1 pl-5 mt-0.5">
+                              <span className="text-xs leading-none">⌛</span>
+                              <span>{t("difference.chat.ticket.timeRemaining")}</span>
+                            </div>
+                            <span className="self-end text-[9px] text-[#708499] font-medium mt-1">22:42</span>
+                          </div>
+
+                          {/* 4. Action Buttons (Frameless & Sleek) */}
+                          <div className="w-full max-w-[270px] flex flex-col gap-1.5 mt-0.5">
+                            <div className="grid grid-cols-2 gap-1.5">
+                              <button className="py-2.5 px-3 bg-[#31b14a]/80 hover:bg-[#31b14a]/90 active:scale-95 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-sm transition-all cursor-pointer border-none">
+                                <span className="text-xs leading-none">✨</span> {t("difference.chat.ticket.accept")}
+                              </button>
+                              <button className="py-2.5 px-3 bg-[#b13138]/80 hover:bg-[#b13138]/90 active:scale-95 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-sm transition-all cursor-pointer border-none">
+                                <span className="text-xs leading-none">❌</span> {t("difference.chat.ticket.pass")}
+                              </button>
+                            </div>
+                            <button className="w-full py-2 bg-white/5 hover:bg-white/10 active:scale-[0.98] border-none text-white/70 font-semibold text-[11px] rounded-xl flex items-center justify-center gap-1.5 shadow-sm transition-all cursor-pointer">
+                              <span className="text-xs leading-none">🚨</span> {t("difference.chat.ticket.report")}
+                            </button>
                           </div>
                         </motion.div>
                       );
@@ -562,16 +599,16 @@ export function TheDifference() {
                         className={`flex ${isBot ? "justify-start" : "justify-end"}`}
                       >
                         <div
-                          className={`max-w-[75%] rounded-2xl px-3.5 py-2 text-[13px] leading-snug relative ${
+                          className={`max-w-[75%] rounded-2xl px-3.5 py-2 text-[13px] leading-snug relative border-none shadow-sm text-left backdrop-blur-sm ${
                             isBot
-                              ? "bg-[#FFFDF7] text-gray-800 rounded-tl-sm border border-black/[0.02] shadow-[0_1px_2px_rgba(0,0,0,0.05)]"
-                              : "bg-[#2A2A28] text-[#FDF8E7] rounded-tr-sm shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+                              ? "bg-[#182533]/50 text-white rounded-tl-sm"
+                              : "bg-[#2b5278]/55 text-white rounded-tr-sm"
                           }`}
                         >
                           <span className="break-words">{msg.textKey ? t(msg.textKey) : ""}</span>
-                          <div className={`flex items-center gap-0.5 justify-end mt-1 ${isBot ? 'text-gray-400' : 'text-white/60'}`}>
+                          <div className={`flex items-center gap-0.5 justify-end mt-1 ${isBot ? 'text-[#708499]' : 'text-white/60'}`}>
                             <span className="text-[9px] font-medium leading-none">22:42</span>
-                            {!isBot && <CheckCheck className="w-3 h-3 text-blue-400" />}
+                            {!isBot && <CheckCheck className="w-3.5 h-3.5 text-[#549df2]" />}
                           </div>
                         </div>
                       </motion.div>
@@ -579,32 +616,54 @@ export function TheDifference() {
                   })}
                 </AnimatePresence>
 
-                {/* Typing Indicator */}
+                {/* Typing Indicator (Frameless, Rounded-Full, Subtle Glass) */}
                 {isTyping && (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9, transformOrigin: "bottom left" }}
                     animate={{ opacity: 1, scale: 1 }}
                     className="flex justify-start"
                   >
-                    <div className="bg-[#FFFDF7] text-gray-500 rounded-2xl rounded-tl-sm px-4 py-2.5 flex gap-1 items-center border border-black/[0.02] shadow-[0_1px_2px_rgba(0,0,0,0.05)] h-[34px]">
-                      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-[bounce_1.4s_infinite_ease-in-out_both]" style={{ animationDelay: "-0.32s" }} />
-                      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-[bounce_1.4s_infinite_ease-in-out_both]" style={{ animationDelay: "-0.16s" }} />
-                      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-[bounce_1.4s_infinite_ease-in-out_both]" />
+                    <div className="bg-[#182533]/40 backdrop-blur-md text-[#708499] rounded-full px-4 py-2 flex gap-1.5 items-center border-none shadow-none h-[32px]">
+                      <span className="w-1.5 h-1.5 bg-white/60 rounded-full animate-[bounce_1.4s_infinite_ease-in-out_both]" style={{ animationDelay: "-0.32s" }} />
+                      <span className="w-1.5 h-1.5 bg-white/60 rounded-full animate-[bounce_1.4s_infinite_ease-in-out_both]" style={{ animationDelay: "-0.16s" }} />
+                      <span className="w-1.5 h-1.5 bg-white/60 rounded-full animate-[bounce_1.4s_infinite_ease-in-out_both]" />
                     </div>
                   </motion.div>
                 )}
               </div>
 
-              {/* Chat Input Bar */}
-              <div className="bg-[#FDF8E7]/95 backdrop-blur-md border-t border-black/5 px-3 py-2 flex items-center gap-2 z-20">
-                <button className="text-gray-400 hover:text-gray-600 transition-colors">
-                  <Paperclip className="w-5 h-5" />
+              {/* Floating Footer (Subtle Liquid Glass) */}
+              <div className="absolute bottom-3 inset-x-3 flex items-center gap-2 z-20">
+                {/* Telegram Menu Button (Transparent Blue Liquid Glass, borderless) */}
+                <button className="w-10 h-10 rounded-full bg-[#5288c1]/50 backdrop-blur-xl flex items-center justify-center text-white/90 shadow-md active:scale-95 transition-all cursor-pointer border-none">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <line x1="4" y1="6" x2="20" y2="6"></line>
+                    <line x1="4" y1="18" x2="20" y2="18"></line>
+                  </svg>
                 </button>
-                <div className="flex-1 bg-black/[0.03] rounded-full px-4 py-2 border border-black/5">
-                  <span className="text-sm text-gray-400 select-none">Message...</span>
+
+                {/* Message Input Pill (Transparent Liquid Glass, borderless) */}
+                <div className="flex-1 flex items-center bg-[#182533]/35 backdrop-blur-xl border border-white/5 rounded-full px-3.5 py-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
+                  <button className="text-[#708499] hover:text-white transition-colors p-1 cursor-pointer">
+                    <Paperclip className="w-5 h-5" />
+                  </button>
+                  <div className="flex-1 px-2">
+                    <span className="text-sm text-[#708499] select-none block text-left">Write a message...</span>
+                  </div>
+                  <button className="text-[#708499] hover:text-white transition-colors p-1 cursor-pointer">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                      <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                      <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                    </svg>
+                  </button>
                 </div>
-                <button className="text-blue-500 hover:text-blue-600 transition-colors p-1.5 hover:bg-black/5 rounded-full">
-                  <Mic className="w-4 h-4" />
+
+                {/* Mic Button (Transparent Liquid Glass) */}
+                <button className="w-10 h-10 rounded-full bg-[#182533]/35 backdrop-blur-xl border border-white/5 flex items-center justify-center text-[#708499] hover:text-white shadow-md active:scale-95 transition-all cursor-pointer">
+                  <Mic className="w-5 h-5" />
                 </button>
               </div>
             </div>
