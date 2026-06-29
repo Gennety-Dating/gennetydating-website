@@ -22,6 +22,9 @@ import {
 import { type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+// 🟠 BETA-ONLY — beta mode replaces the email→OTP modal with a direct Telegram
+// bot deep link. Remove this import on rollback (see BETA_WEBSITE.md).
+import { BETA_MODE, betaBotUrl } from "@/config/beta";
 
 type RegistrationStep = "email" | "code" | "done";
 
@@ -203,6 +206,25 @@ export function RegistrationButton({
     } finally {
       setLoading(false);
     }
+  }
+
+  // 🟠 BETA-ONLY — in beta the CTA skips the on-site email→OTP modal entirely
+  // and deep-links straight into the Telegram bot, where the phone one-tap flow
+  // runs. The whole modal below stays intact (just unused) so rollback is a
+  // single flag flip. Remove this block on full purge (see BETA_WEBSITE.md).
+  if (BETA_MODE) {
+    return (
+      <Button
+        variant={variant}
+        size={size}
+        className={className}
+        href={betaBotUrl(mode)}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {children}
+      </Button>
+    );
   }
 
   return (

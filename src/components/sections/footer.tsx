@@ -2,6 +2,9 @@
 
 import { MessageBubble } from "@/components/ui/message-bubble";
 import { CONTACT_EMAIL, TELEGRAM_BOT_URL } from "@/lib/data";
+// 🟠 BETA-ONLY — point the footer's "message us" link at the beta bot in beta
+// mode. Remove this import + the conditional below on rollback (BETA_WEBSITE.md).
+import { BETA_MODE, BETA_BOT_URL } from "@/config/beta";
 import { useLanguage } from "@/lib/language-context";
 import { useCookieConsent } from "@/hooks/useCookieConsent";
 import Link from "next/link";
@@ -76,7 +79,8 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pt-8 border-t border-white/10">
           <div className="flex flex-wrap gap-6 text-sm text-gray-400">
             <a
-              href={TELEGRAM_BOT_URL}
+              /* 🟠 BETA-ONLY: beta bot in beta mode, prod bot otherwise */
+              href={BETA_MODE ? BETA_BOT_URL : TELEGRAM_BOT_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 hover:text-white hover:underline underline-offset-4 transition-colors"
