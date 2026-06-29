@@ -15,11 +15,11 @@ export function Navbar() {
       className="fixed top-0 w-full z-40 flex items-center justify-between px-4 md:px-10 py-3 md:py-4"
     >
       <div className="flex items-center gap-2">
-        {/* 🟠 BETA-ONLY */}
-        <BetaBadge />
         <Link href="/" className="text-lg md:text-xl font-bold tracking-tight text-white hover:text-magenta transition-colors">
           Gennety
         </Link>
+        {/* 🟠 BETA-ONLY */}
+        <BetaBadge />
       </div>
 
       <div className="flex items-center gap-2 md:gap-3">
