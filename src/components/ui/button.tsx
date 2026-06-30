@@ -16,7 +16,7 @@ type ButtonProps = {
 
 const variantStyles: Record<ButtonVariant, string> = {
   solid:
-    "bg-white text-magenta-dark font-semibold hover:bg-gray-100 shadow-neon-sm hover:shadow-neon transition-all",
+    "bg-magenta text-[#F5F5F5] font-semibold hover:bg-magenta-dark shadow-neon-sm hover:shadow-neon transition-all",
   ghost:
     "bg-transparent text-white border border-white/60 hover:bg-white/10 transition-colors",
   outline:

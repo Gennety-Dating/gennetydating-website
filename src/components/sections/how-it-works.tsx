@@ -25,7 +25,7 @@ export function HowItWorks() {
             whileInView={{ width: "100%" }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 2.4, ease: "easeInOut" }}
-            className="absolute inset-y-0 left-0 bg-gradient-to-r from-transparent via-magenta to-magenta shadow-[0_0_15px_rgba(255,0,255,0.8)]"
+            className="absolute inset-y-0 left-0 bg-gradient-to-r from-transparent via-magenta to-magenta shadow-[0_0_15px_rgba(139,37,59,0.8)]"
           />
         </div>
 
@@ -56,7 +56,7 @@ export function HowItWorks() {
                 {num === 2 && (
                   /* Силуэт карты дропа без жестких обводок */
                   <div className="relative w-16 h-24 rounded-xl bg-white/[0.03] backdrop-blur-md flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-                    <div className="w-2 h-2 rounded-full bg-magenta shadow-[0_0_12px_rgba(255,0,255,1)]" />
+                    <div className="w-2 h-2 rounded-full bg-magenta shadow-[0_0_12px_rgba(139,37,59,1)]" />
                   </div>
                 )}
 

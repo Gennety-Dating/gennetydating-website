@@ -55,7 +55,7 @@ export function LanguageSwitcher({ menuPlacement = "bottom" }: LanguageSwitcherP
             exit={{ opacity: 0, y: opensUp ? -4 : 4, scale: 0.97 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             className={cn(
-              "absolute left-0 w-full max-h-[calc(100vh-6rem)] overflow-hidden rounded-2xl bg-[#050505]/95 border border-white/60 p-1 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-xl z-50",
+              "absolute left-0 w-full max-h-[calc(100vh-6rem)] overflow-hidden rounded-2xl bg-[#F5F5F5]/95 border border-white/60 p-1 shadow-[0_20px_50px_rgba(0,0,0,0.1)] backdrop-blur-xl z-50",
               opensUp ? "bottom-[calc(100%+8px)] origin-bottom" : "top-[calc(100%+8px)] origin-top",
             )}
           >
@@ -70,7 +70,7 @@ export function LanguageSwitcher({ menuPlacement = "bottom" }: LanguageSwitcherP
                   className={cn(
                     "w-full h-8 flex items-center justify-center rounded-full text-xs font-medium transition-all duration-200 cursor-pointer select-none",
                     locale === l
-                      ? "bg-white text-[#050505] font-semibold"
+                      ? "bg-magenta text-[#F5F5F5] font-semibold"
                       : "text-white/60 hover:text-white hover:bg-white/10"
                   )}
                 >

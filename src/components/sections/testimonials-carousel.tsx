@@ -40,7 +40,7 @@ function TestimonialCard({
           {/* Author info */}
           <p className="text-[10px] md:text-xs text-gray-400 font-medium tracking-wide">
             {name}{" "}
-            <span className="text-magenta drop-shadow-[0_0_10px_rgba(255,0,255,0.4)] font-semibold">@{school}</span>
+            <span className="text-magenta drop-shadow-[0_0_10px_rgba(139,37,59,0.4)] font-semibold">@{school}</span>
           </p>
         </motion.div>
       </div>

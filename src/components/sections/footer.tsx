@@ -42,7 +42,7 @@ export function Footer() {
                   </div>
                 </div>
                 {/* Soon sticker overlay */}
-                <span className="absolute -top-2.5 -right-3.5 z-10 px-2.5 py-0.5 text-[10px] font-bold tracking-widest text-black bg-magenta rounded-md rotate-12 uppercase shadow-[0_0_12px_rgba(255,0,255,0.9)] border border-white/20">
+                <span className="absolute -top-2.5 -right-3.5 z-10 px-2.5 py-0.5 text-[10px] font-bold tracking-widest text-[#F5F5F5] bg-magenta rounded-md rotate-12 uppercase shadow-[0_0_12px_rgba(139,37,59,0.9)] border border-white/20">
                   soon
                 </span>
               </div>
@@ -62,7 +62,7 @@ export function Footer() {
                   </div>
                 </div>
                 {/* Soon sticker overlay */}
-                <span className="absolute -top-2.5 -right-3.5 z-10 px-2.5 py-0.5 text-[10px] font-bold tracking-widest text-black bg-magenta rounded-md rotate-12 uppercase shadow-[0_0_12px_rgba(255,0,255,0.9)] border border-white/20">
+                <span className="absolute -top-2.5 -right-3.5 z-10 px-2.5 py-0.5 text-[10px] font-bold tracking-widest text-[#F5F5F5] bg-magenta rounded-md rotate-12 uppercase shadow-[0_0_12px_rgba(139,37,59,0.9)] border border-white/20">
                   soon
                 </span>
               </div>

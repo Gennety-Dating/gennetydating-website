@@ -55,10 +55,10 @@ export function Hero() {
         </RegistrationButton>
 
         {/* Postage stamp sticker */}
-        <div className="absolute -top-1 -right-6 sm:-top-2 sm:-right-8 z-20 rotate-[15deg] flex items-center justify-center w-[104px] h-[24px] drop-shadow-[0_0_8px_rgba(255,0,255,0.6)] select-none pointer-events-none">
+        <div className="absolute -top-1 -right-6 sm:-top-2 sm:-right-8 z-20 rotate-[15deg] flex items-center justify-center w-[104px] h-[24px] drop-shadow-[0_0_8px_rgba(139,37,59,0.6)] select-none pointer-events-none">
           {/* Perforated background */}
           <div 
-            className="absolute inset-0 bg-[#FF00FF]"
+            className="absolute inset-0 bg-[#8B253B]"
             style={{
               maskImage: `radial-gradient(circle, transparent 2px, black 2.5px)`,
               maskSize: `8px 8px`,
@@ -69,7 +69,7 @@ export function Hero() {
             }}
           />
           {/* Solid core to hide internal perforations */}
-          <div className="absolute inset-[2px] bg-[#FF00FF]" />
+          <div className="absolute inset-[2px] bg-[#8B253B]" />
 
           <span className="relative z-10 block text-white text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-center translate-y-[0.5px]">
             No dick pics

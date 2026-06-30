@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 /* ========================================
-   GENNETY DESIGN SYSTEM — Midnight Contrast
+   GENNETY DESIGN SYSTEM — Hybrid Theme Layout
    ======================================== */
 
 /* --- Theme Tokens (Tailwind v4) --- */
 @theme inline {
   /* Colors */
-  --color-midnight: #050505;
-  --color-magenta: #d0adfc;
-  --color-magenta-dark: #7c3aed;
-  --color-magenta-dim: rgba(208, 173, 252, 0.4);
-  --color-white: #FFFFFF;
+  --color-midnight: #050505;            /* default dark background */
+  --color-white: #FFFFFF;               /* default white text */
+  --color-magenta: #8B253B;             /* accent deep wine / burgundy */
+  --color-magenta-dark: #5a1827;
+  --color-magenta-dim: rgba(139, 37, 59, 0.4);
   --color-gray-400: #9ca3af;
   --color-gray-500: #6b7280;
   --color-glass: rgba(255, 255, 255, 0.06);
@@ -22,16 +22,16 @@
   --font-serif: var(--font-playfair), "Playfair Display", Georgia, serif;
   --font-script: var(--font-caveat), "Caveat", cursive;
 
-  /* Shadows — Neon Bloom */
-  --shadow-neon-sm: 0 0 10px rgba(208, 173, 252, 0.6);
-  --shadow-neon: 0 0 15px rgba(208, 173, 252, 0.8), 0 0 30px rgba(208, 173, 252, 0.4);
-  --shadow-neon-lg: 0 0 20px rgba(208, 173, 252, 0.8), 0 0 40px rgba(208, 173, 252, 0.5), 0 0 80px rgba(208, 173, 252, 0.3);
-  --shadow-neon-text: 0 0 15px rgba(208, 173, 252, 0.8), 0 0 30px rgba(208, 173, 252, 0.5);
+  /* Shadows — Velvet Aura */
+  --shadow-neon-sm: 0 2px 8px rgba(139, 37, 59, 0.2);
+  --shadow-neon: 0 4px 20px rgba(139, 37, 59, 0.35), 0 2px 6px rgba(139, 37, 59, 0.15);
+  --shadow-neon-lg: 0 10px 30px rgba(139, 37, 59, 0.4), 0 4px 12px rgba(139, 37, 59, 0.2);
+  --shadow-neon-text: 0 1px 2px rgba(139, 37, 59, 0.3);
 
-  /* Drop Shadows — Neon Bloom */
-  --drop-shadow-neon-sm: 0 0 8px rgba(208, 173, 252, 0.6);
-  --drop-shadow-neon: 0 0 15px rgba(208, 173, 252, 0.8);
-  --drop-shadow-neon-lg: 0 0 25px rgba(208, 173, 252, 0.9);
+  /* Drop Shadows — Velvet Aura */
+  --drop-shadow-neon-sm: 0 2px 6px rgba(139, 37, 59, 0.25);
+  --drop-shadow-neon: 0 4px 12px rgba(139, 37, 59, 0.3);
+  --drop-shadow-neon-lg: 0 8px 24px rgba(139, 37, 59, 0.4);
 
   /* Spacing */
   --spacing-section: 120px;
@@ -42,6 +42,35 @@
   --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
   --animate-float: float 6s ease-in-out infinite;
   --animate-scanline: scanline 8s linear infinite;
+}
+
+/* --- Theme Scoping (CSS Variables override for light and soft dark zones) --- */
+.theme-light {
+  --color-midnight: #F5F5F5;            /* light background */
+  --color-white: #111111;               /* dark text */
+  --color-glass: rgba(255, 255, 255, 0.55);
+  --color-glass-border: rgba(17, 17, 17, 0.08);
+  --color-gray-400: #4b5563;
+  --color-gray-500: #6b7280;
+}
+
+/* Force bg-white class to render as pure white #FFFFFF inside theme-light */
+.theme-light .bg-white {
+  background-color: #FFFFFF !important;
+}
+
+/* Keep text-white and border-white as white inside the dark button containers */
+.theme-light .bg-black\/60 {
+  --color-white: #FFFFFF;
+}
+
+.theme-soft-dark {
+  --color-midnight: #181818;            /* slightly lightened dark background */
+  --color-white: #F5F5F5;               /* soft white text */
+  --color-glass: rgba(255, 255, 255, 0.06);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
 }
 
 /* --- Keyframes --- */
@@ -56,8 +85,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 1; filter: drop-shadow(0 0 15px rgba(208, 173, 252, 0.8)); }
-  50% { opacity: 0.85; filter: drop-shadow(0 0 25px rgba(208, 173, 252, 1)); }
+  0%, 100% { opacity: 1; filter: drop-shadow(0 2px 8px rgba(139, 37, 59, 0.3)); }
+  50% { opacity: 0.85; filter: drop-shadow(0 4px 16px rgba(139, 37, 59, 0.5)); }
 }
 
 @keyframes float {
@@ -119,17 +148,17 @@ body[data-registration-modal-open="true"] .floating-language-switcher {
 
 /* --- Glassmorphism Utility --- */
 .glass {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--color-glass);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--color-glass-border);
 }
 
 .glass-strong {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-glass);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--color-glass-border);
 }
 
 /* --- Liquid Glass Utility --- */
@@ -148,14 +177,24 @@ body[data-registration-modal-open="true"] .floating-language-switcher {
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-
+/* Apply scoped variables inside themed zones for liquid glass */
+.theme-light .liquid-glass {
+  background: 
+    radial-gradient(circle at 12% 12%, rgba(255, 255, 255, 0.6), transparent 35%),
+    radial-gradient(circle at 88% 88%, rgba(255, 255, 255, 0.2), transparent 40%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  box-shadow: 
+    0 12px 40px rgba(17, 17, 17, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
 
 /* --- Cookie Liquid Glass --- */
 .cookie-liquid-shell {
   position: relative;
   isolation: isolate;
   background:
-    radial-gradient(circle at 8% 0%, rgba(208, 173, 252, 0.16), transparent 28%),
+    radial-gradient(circle at 8% 0%, rgba(139, 37, 59, 0.16), transparent 28%),
     radial-gradient(circle at 92% 120%, rgba(255, 255, 255, 0.08), transparent 30%),
     linear-gradient(135deg, rgba(27, 27, 31, 0.97), rgba(8, 8, 10, 0.98) 58%, rgba(18, 15, 22, 0.97));
   backdrop-filter: blur(16px) saturate(128%);
@@ -174,7 +213,7 @@ body[data-registration-modal-open="true"] .floating-language-switcher {
   pointer-events: none;
   background:
     linear-gradient(115deg, rgba(255, 255, 255, 0.13), transparent 32%),
-    linear-gradient(275deg, rgba(208, 173, 252, 0.08), transparent 40%);
+    linear-gradient(275deg, rgba(139, 37, 59, 0.08), transparent 40%);
   opacity: 0.78;
 }
 
@@ -194,7 +233,7 @@ body[data-registration-modal-open="true"] .floating-language-switcher {
   pointer-events: none;
   border-radius: 12px;
   background:
-    radial-gradient(circle at 12% 4%, rgba(208, 173, 252, 0.16), transparent 28%),
+    radial-gradient(circle at 12% 4%, rgba(139, 37, 59, 0.16), transparent 28%),
     linear-gradient(135deg, rgba(27, 27, 31, 0.985), rgba(8, 8, 10, 0.99) 58%, rgba(18, 15, 22, 0.985));
   box-shadow:
     0 18px 48px rgba(0, 0, 0, 0.42),
@@ -227,6 +266,7 @@ body[data-registration-modal-open="true"] .floating-language-switcher {
 .cookie-liquid-button {
   background: rgba(255, 255, 255, 0.075);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  color: #FFFFFF;
 }
 
 .cookie-liquid-button:hover,
@@ -236,8 +276,8 @@ body[data-registration-modal-open="true"] .floating-language-switcher {
 
 .cookie-liquid-primary {
   color: #050505;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(208, 173, 252, 0.92));
-  box-shadow: 0 8px 22px rgba(208, 173, 252, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.58);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(139, 37, 59, 0.92));
+  box-shadow: 0 8px 22px rgba(139, 37, 59, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.58);
 }
 
 .cookie-consent-tile {
@@ -267,23 +307,23 @@ body[data-registration-modal-open="true"] .floating-language-switcher {
 
 /* --- Neon Text Glow Utility --- */
 .neon-text {
-  color: #d0adfc;
-  text-shadow: 0 0 15px rgba(208, 173, 252, 0.8), 0 0 30px rgba(208, 173, 252, 0.5);
+  color: #8B253B;
+  text-shadow: 0 0 15px rgba(139, 37, 59, 0.5);
 }
 
 .neon-text-sm {
-  color: #d0adfc;
-  text-shadow: 0 0 10px rgba(208, 173, 252, 0.6);
+  color: #8B253B;
+  text-shadow: 0 0 5px rgba(139, 37, 59, 0.3);
 }
 
 /* --- Neon Box Glow Utility --- */
 .neon-box {
-  box-shadow: 0 0 15px rgba(208, 173, 252, 0.8), 0 0 30px rgba(208, 173, 252, 0.4);
+  box-shadow: 0 0 15px rgba(139, 37, 59, 0.4);
 }
 
 .neon-border {
-  border: 1px solid #d0adfc;
-  box-shadow: 0 0 10px rgba(208, 173, 252, 0.5), inset 0 0 10px rgba(208, 173, 252, 0.1);
+  border: 1px solid #8B253B;
+  box-shadow: 0 0 10px rgba(139, 37, 59, 0.3), inset 0 0 10px rgba(139, 37, 59, 0.05);
 }
 
 /* --- Scrollbar (minimal) --- */
@@ -296,16 +336,16 @@ body[data-registration-modal-open="true"] .floating-language-switcher {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(208, 173, 252, 0.3);
+  background: rgba(139, 37, 59, 0.3);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(208, 173, 252, 0.5);
+  background: rgba(139, 37, 59, 0.5);
 }
 
 /* --- Selection --- */
 ::selection {
-  background: rgba(208, 173, 252, 0.3);
+  background: rgba(139, 37, 59, 0.3);
   color: #FFFFFF;
 }

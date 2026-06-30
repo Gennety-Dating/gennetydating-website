@@ -12,27 +12,38 @@ import { Footer } from "@/components/sections/footer";
 export default function Home() {
   return (
     <main className="min-h-screen bg-midnight text-white">
-      <Navbar />
-      <Hero />
-      <HowItWorks />
-      <Matchmaker />
-      <div className="relative overflow-hidden">
-        {/* Blurred background image for TheDifference, Comparison & Safety sections */}
-        <div 
-          className="absolute inset-0 bg-[url('/images/verified-safety-bg.jpg')] bg-cover bg-center bg-fixed opacity-20 pointer-events-none filter blur-[12px] scale-110" 
-          aria-hidden="true"
-        />
-        {/* Edge blending gradients */}
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-midnight to-transparent pointer-events-none" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-midnight to-transparent pointer-events-none" />
-        
-        <TheDifference />
-        <Comparison />
-        <Safety />
+      {/* Light Theme Scoped Header Zone (Navbar, Hero, How It Works) */}
+      <div className="theme-light bg-midnight text-white">
+        <Navbar />
+        <Hero />
+        <HowItWorks />
       </div>
-      <FAQ />
-      <Marquee />
-      <Footer />
+
+      {/* Soft Dark Theme Scoped Content Zone (Matchmaker, Testimonials, Comparison, Safety, FAQ) */}
+      <div className="theme-soft-dark bg-midnight text-white">
+        <Matchmaker />
+        <div className="relative overflow-hidden">
+          {/* Blurred background image for TheDifference, Comparison & Safety sections (slightly lightened/increased opacity) */}
+          <div 
+            className="absolute inset-0 bg-[url('/images/verified-safety-bg.jpg')] bg-cover bg-center bg-fixed opacity-35 pointer-events-none filter blur-[12px] scale-110" 
+            aria-hidden="true"
+          />
+          {/* Edge blending gradients */}
+          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-midnight to-transparent pointer-events-none" />
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-midnight to-transparent pointer-events-none" />
+          
+          <TheDifference />
+          <Comparison />
+          <Safety />
+        </div>
+        <FAQ />
+      </div>
+
+      {/* Light Theme Scoped Footer Zone (Marquee & Footer) */}
+      <div className="theme-light bg-midnight text-white">
+        <Marquee />
+        <Footer />
+      </div>
     </main>
   );
 }
