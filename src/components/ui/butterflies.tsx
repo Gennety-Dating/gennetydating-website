@@ -21,14 +21,14 @@ interface Butterfly {
  * left clear on purpose.
  */
 const butterflies: Butterfly[] = [
-  { id: 1, style: { left: "7%",  top: "16%", "--size": "30px" }, drift: styles.driftA, flap: styles.flapSlow },
-  { id: 2, style: { left: "19%", top: "42%", "--size": "22px" }, drift: styles.driftC, flap: styles.flapFast },
-  { id: 3, style: { left: "13%", top: "66%", "--size": "26px" }, drift: styles.driftB, flap: styles.flapMed },
-  { id: 4, style: { left: "31%", top: "10%", "--size": "20px" }, drift: styles.driftD, flap: styles.flapMed },
-  { id: 5, style: { right: "8%",  top: "13%", "--size": "30px" }, drift: styles.driftB, flap: styles.flapSlow },
-  { id: 6, style: { right: "5%",  top: "46%", "--size": "22px" }, drift: styles.driftA, flap: styles.flapFast },
-  { id: 7, style: { right: "19%", top: "66%", "--size": "26px" }, drift: styles.driftD, flap: styles.flapMed },
-  { id: 8, style: { right: "31%", top: "9%",  "--size": "20px" }, drift: styles.driftC, flap: styles.flapFast },
+  { id: 1, style: { left: "7%",  top: "16%", "--size": "38px" }, drift: styles.driftA, flap: styles.flapSlow },
+  { id: 2, style: { left: "19%", top: "42%", "--size": "28px" }, drift: styles.driftC, flap: styles.flapFast },
+  { id: 3, style: { left: "13%", top: "66%", "--size": "32px" }, drift: styles.driftB, flap: styles.flapMed },
+  { id: 4, style: { left: "31%", top: "10%", "--size": "26px" }, drift: styles.driftD, flap: styles.flapMed },
+  { id: 5, style: { right: "8%",  top: "13%", "--size": "38px" }, drift: styles.driftB, flap: styles.flapSlow },
+  { id: 6, style: { right: "5%",  top: "46%", "--size": "28px" }, drift: styles.driftA, flap: styles.flapFast },
+  { id: 7, style: { right: "19%", top: "66%", "--size": "32px" }, drift: styles.driftD, flap: styles.flapMed },
+  { id: 8, style: { right: "31%", top: "9%",  "--size": "26px" }, drift: styles.driftC, flap: styles.flapFast },
 ];
 
 /** Abstract brand-mark wings, split down the body so each side can flap. */
