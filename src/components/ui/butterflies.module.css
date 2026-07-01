@@ -1,0 +1,128 @@
+/* --- Container: covers the hero, fades out on scroll (handled in JS) --- */
+.container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+  transition: opacity 0.2s ease-out;
+}
+
+/* Hide on mobile devices to keep the headline unobstructed */
+@media (max-width: 768px) {
+  .container {
+    display: none;
+  }
+}
+
+/* --- A single butterfly: positioned + drifts freely along a path --- */
+.butterfly {
+  position: absolute;
+  width: var(--size, 40px);
+  aspect-ratio: 560 / 406;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* --- Flapper: folds the wings (top-down foreshortening via scaleX) --- */
+.flapper {
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 6px 10px rgba(90, 24, 39, 0.28));
+}
+
+/* --- Wing flap: wings fold up toward the body, then open again --- */
+@keyframes flap {
+  0%,
+  100% {
+    transform: scaleX(1) scaleY(1);
+  }
+  50% {
+    transform: scaleX(0.58) scaleY(1.04);
+  }
+}
+
+.flapSlow {
+  animation: flap 0.72s ease-in-out infinite;
+}
+.flapMed {
+  animation: flap 0.62s ease-in-out infinite;
+}
+.flapFast {
+  animation: flap 0.5s ease-in-out infinite;
+}
+
+/* --- Free-roaming drift paths across the upper hero --- */
+@keyframes drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(4deg);
+  }
+  25% {
+    transform: translate3d(34px, -26px, 0) rotate(-8deg);
+  }
+  50% {
+    transform: translate3d(14px, -52px, 0) rotate(10deg);
+  }
+  75% {
+    transform: translate3d(-26px, -22px, 0) rotate(-4deg);
+  }
+}
+
+@keyframes drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-6deg);
+  }
+  33% {
+    transform: translate3d(-38px, -30px, 0) rotate(8deg);
+  }
+  66% {
+    transform: translate3d(30px, -18px, 0) rotate(-12deg);
+  }
+}
+
+@keyframes drift-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(2deg);
+  }
+  40% {
+    transform: translate3d(40px, -34px, 0) rotate(14deg);
+  }
+  70% {
+    transform: translate3d(-18px, -46px, 0) rotate(-10deg);
+  }
+}
+
+.driftA {
+  animation: drift-a 12s ease-in-out infinite;
+}
+.driftB {
+  animation: drift-b 14s ease-in-out infinite;
+  animation-delay: -3s;
+}
+.driftC {
+  animation: drift-c 13s ease-in-out infinite;
+  animation-delay: -6s;
+}
+
+/* --- Respect reduced-motion preferences --- */
+@media (prefers-reduced-motion: reduce) {
+  .butterfly,
+  .flapper {
+    animation: none !important;
+  }
+}
