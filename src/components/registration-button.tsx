@@ -270,10 +270,10 @@ export function RegistrationButton({
               role="dialog"
               aria-modal="true"
               aria-labelledby="registration-title"
-              className="w-full max-w-[400px] rounded-[32px] border border-white/10 bg-[#070708]/96 py-10 px-8 text-center shadow-[0_24px_80px_rgba(0,0,0,0.95),0_0_80px_rgba(208,173,252,0.03)] backdrop-blur-2xl"
+              className="w-full max-w-[400px] rounded-[32px] border border-white/10 bg-[#111111]/96 py-10 px-8 text-center shadow-[0_24px_80px_rgba(0,0,0,0.95),0_0_80px_rgba(139,37,59,0.03)] backdrop-blur-2xl"
             >
             <div>
-              <h2 id="registration-title" className="text-2xl font-bold tracking-tight text-white md:text-3xl">
+              <h2 id="registration-title" className="text-2xl font-bold tracking-tight text-heading-white md:text-3xl">
                 {title}
               </h2>
               <p className="mt-3 text-sm leading-6 text-gray-400 max-w-[280px] mx-auto">

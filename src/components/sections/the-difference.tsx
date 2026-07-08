@@ -6,7 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Heading, Highlight } from "@/components/ui/typography";
 import { useLanguage } from "@/lib/language-context";
 import { type TranslationKeys } from "@/lib/i18n";
-import { Sparkles, MapPin, Calendar, Flame, Check, RotateCcw, X, Star, Heart, GraduationCap, ChevronLeft, MoreHorizontal, Paperclip, Mic, CheckCheck } from "lucide-react";
+import { BubbleTail } from "@/components/ui/bubble-tail";
+import { Sparkles, MapPin, Calendar, Flame, Check, RotateCcw, X, Star, Heart, GraduationCap, ChevronLeft, MoreHorizontal, Paperclip, Mic, CheckCheck, Mars, Venus, Zap } from "lucide-react";
 
 // Tinder profiles data structure
 interface Profile {
@@ -19,10 +20,14 @@ interface Profile {
   tags: string[];
 }
 
-const profiles: Profile[] = [
+interface ActiveProfile extends Profile {
+  uniqueId: string;
+}
+
+const womenProfiles: Profile[] = [
   {
     id: 1,
-    image: "/images/tinder-photo-1.jpg",
+    image: "/images/tinder-woman-1.jpg",
     nameKey: "difference.tinder.profile1.name",
     bioKey: "difference.tinder.profile1.bio",
     collegeKey: "difference.tinder.profile1.college",
@@ -31,7 +36,7 @@ const profiles: Profile[] = [
   },
   {
     id: 2,
-    image: "/images/tinder-photo-2.jpg",
+    image: "/images/tinder-woman-2.jpg",
     nameKey: "difference.tinder.profile2.name",
     bioKey: "difference.tinder.profile2.bio",
     collegeKey: "difference.tinder.profile2.college",
@@ -40,7 +45,7 @@ const profiles: Profile[] = [
   },
   {
     id: 3,
-    image: "/images/tinder-photo-3.jpg",
+    image: "/images/tinder-woman-3.jpg",
     nameKey: "difference.tinder.profile3.name",
     bioKey: "difference.tinder.profile3.bio",
     collegeKey: "difference.tinder.profile3.college",
@@ -49,21 +54,87 @@ const profiles: Profile[] = [
   },
   {
     id: 4,
-    image: "/images/tinder-photo-4.jpg",
+    image: "/images/tinder-woman-4.jpg",
     nameKey: "difference.tinder.profile4.name",
     bioKey: "difference.tinder.profile4.bio",
     collegeKey: "difference.tinder.profile4.college",
     action: "nope",
-    tags: ["💻 Coding", "☕ Coffee", "📚 Study"],
+    tags: ["🎨 Art", "📸 Photo", "📚 Study"],
   },
   {
     id: 5,
-    image: "/images/tinder-photo-5.jpg",
+    image: "/images/tinder-woman-5.jpg",
     nameKey: "difference.tinder.profile5.name",
     bioKey: "difference.tinder.profile5.bio",
     collegeKey: "difference.tinder.profile5.college",
     action: "superlike",
     tags: ["🎨 Art", "🏛️ Museums", "📸 Photo"],
+  },
+  {
+    id: 6,
+    image: "/images/tinder-woman-6.jpg",
+    nameKey: "difference.tinder.profile6.name",
+    bioKey: "difference.tinder.profile6.bio",
+    collegeKey: "difference.tinder.profile6.college",
+    action: "like",
+    tags: ["📸 Photo", "🎸 Guitar", "☕ Coffee"],
+  },
+];
+
+const menProfiles: Profile[] = [
+  {
+    id: 1,
+    image: "/images/tinder-man-1.jpg",
+    nameKey: "difference.tinder.man1.name",
+    bioKey: "difference.tinder.man1.bio",
+    collegeKey: "difference.tinder.man1.college",
+    action: "like",
+    tags: ["🎧 Electronic", "☕ Coffee", "🚶‍♂️ Night walks"],
+  },
+  {
+    id: 2,
+    image: "/images/tinder-man-2.jpg",
+    nameKey: "difference.tinder.man2.name",
+    bioKey: "difference.tinder.man2.bio",
+    collegeKey: "difference.tinder.man2.college",
+    action: "nope",
+    tags: ["📸 Analog", "🎬 Indie films", "🗺️ Explore"],
+  },
+  {
+    id: 3,
+    image: "/images/tinder-man-3.png",
+    nameKey: "difference.tinder.man3.name",
+    bioKey: "difference.tinder.man3.bio",
+    collegeKey: "difference.tinder.man3.college",
+    action: "like",
+    tags: ["🏋️‍♂️ Gym", "🎾 Tennis", "🚗 Trips"],
+  },
+  {
+    id: 4,
+    image: "/images/tinder-man-4.png",
+    nameKey: "difference.tinder.man4.name",
+    bioKey: "difference.tinder.man4.bio",
+    collegeKey: "difference.tinder.man4.college",
+    action: "nope",
+    tags: ["💿 Vinyl", "🎸 Guitar", "☕ Coffee"],
+  },
+  {
+    id: 5,
+    image: "/images/tinder-man-5.jpg",
+    nameKey: "difference.tinder.man5.name",
+    bioKey: "difference.tinder.man5.bio",
+    collegeKey: "difference.tinder.man5.college",
+    action: "superlike",
+    tags: ["🏛️ Architecture", "🌲 Hiking", "💬 Talks"],
+  },
+  {
+    id: 6,
+    image: "/images/tinder-man-6.jpg",
+    nameKey: "difference.tinder.man6.name",
+    bioKey: "difference.tinder.man6.bio",
+    collegeKey: "difference.tinder.man6.college",
+    action: "like",
+    tags: ["📚 Books", "🍂 Park walks", "💬 Philosophy"],
   },
 ];
 
@@ -74,9 +145,6 @@ interface Message {
   textKey?: TranslationKeys;
 }
 
-interface ActiveProfile extends Profile {
-  uniqueId: string;
-}
 
 const messageTimeline: Message[] = [
   { id: 1, sender: "bot", textKey: "difference.chat.msg1" },
@@ -96,30 +164,62 @@ export function TheDifference() {
     ? tickerText.split("|").map(s => s.trim())
     : ["Agent Active", tickerText];
 
-  // --- Tinder Swiping Logic (AnimatePresence list) ---
-  const [activeCards, setActiveCards] = useState<ActiveProfile[]>([]);
+  const [chatMatchGender, setChatMatchGender] = useState<"man" | "woman">("man");
+
+  // --- Tinder Swiping Logic (AnimatePresence list with alternating profiles) ---
+  const [activeCards, setActiveCards] = useState<ActiveProfile[]>(() => {
+    const list: ActiveProfile[] = [];
+    const maxLength = Math.max(womenProfiles.length, menProfiles.length);
+    for (let i = 0; i < maxLength; i++) {
+      if (i < womenProfiles.length) {
+        list.push({
+          ...womenProfiles[i],
+          uniqueId: `${womenProfiles[i].id}-woman`,
+        });
+      }
+      if (i < menProfiles.length) {
+        list.push({
+          ...menProfiles[i],
+          uniqueId: `${menProfiles[i].id}-man`,
+        });
+      }
+    }
+    return list;
+  });
   const [history, setHistory] = useState<ActiveProfile[]>([]);
   const [isProcessingSwipe, setIsProcessingSwipe] = useState(false);
-  const nextIndexRef = useRef(0);
 
+  // Monitor when the stack becomes empty, and reload the alternating stack to loop infinitely
   useEffect(() => {
-    const initial: ActiveProfile[] = [];
-    for (let i = 0; i < profiles.length; i++) {
-      const proto = profiles[i % profiles.length];
-      initial.push({
-        ...proto,
-        uniqueId: `${proto.id}-${i}`,
-      });
-      nextIndexRef.current++;
+    if (activeCards.length === 0 && !isProcessingSwipe) {
+      const list: ActiveProfile[] = [];
+      const maxLength = Math.max(womenProfiles.length, menProfiles.length);
+      for (let i = 0; i < maxLength; i++) {
+        if (i < womenProfiles.length) {
+          list.push({
+            ...womenProfiles[i],
+            uniqueId: `${womenProfiles[i].id}-woman-${Date.now()}`,
+          });
+        }
+        if (i < menProfiles.length) {
+          list.push({
+            ...menProfiles[i],
+            uniqueId: `${menProfiles[i].id}-man-${Date.now()}`,
+          });
+        }
+      }
+      setActiveCards(list);
+      setHistory([]);
     }
-    setActiveCards(initial);
-  }, []);
+  }, [activeCards, isProcessingSwipe]);
 
   const swipeTopCard = (direction: "like" | "nope" | "superlike") => {
     if (isProcessingSwipe || activeCards.length === 0) return;
     setIsProcessingSwipe(true);
 
-    // 1. Update the top card's action to animate exit correctly
+    const topCard = activeCards[0];
+
+    // Mark action to trigger exit animation
     setActiveCards((prev) => {
       if (prev.length === 0) return prev;
       const updated = [...prev];
@@ -127,31 +227,19 @@ export function TheDifference() {
       return updated;
     });
 
-    // 2. Remove the card and add a new one at the bottom
     setTimeout(() => {
       setActiveCards((prev) => {
-        if (prev.length === 0) {
+        // Prevent race condition if the stack was reset/changed
+        if (prev.length === 0 || prev[0].uniqueId !== topCard.uniqueId) {
           setIsProcessingSwipe(false);
           return prev;
         }
-        const [topCard, ...rest] = prev;
-        
-        // Push to history
+        const [_, ...rest] = prev;
         setHistory((h) => [...h.slice(-9), topCard]);
-
-        const nextProto = profiles[nextIndexRef.current % profiles.length];
-        nextIndexRef.current++;
-
         setIsProcessingSwipe(false);
-        return [
-          ...rest,
-          {
-            ...nextProto,
-            uniqueId: `${nextProto.id}-${nextIndexRef.current}`,
-          },
-        ];
+        return rest;
       });
-    }, 300); // Synchronized with 0.3s GPU exit transition
+    }, 300); // 300ms matches Framer Motion's exit duration
   };
 
   const handleRewind = () => {
@@ -162,26 +250,32 @@ export function TheDifference() {
     setHistory((h) => h.slice(0, -1));
 
     setActiveCards((prev) => {
-      const rest = prev.slice(0, -1);
       setIsProcessingSwipe(false);
       return [
         {
           ...lastCard,
-          action: undefined, // reset the swipe action
+          action: undefined,
         },
-        ...rest,
+        ...prev,
       ];
     });
   };
 
+  const handleDepartComplete = () => {
+    // Handled in swipeTopCard timeout
+  };
+
+  // Auto-swipe timer
   useEffect(() => {
     if (activeCards.length === 0 || isProcessingSwipe) return;
 
     const timer = setTimeout(() => {
-      const topCard = activeCards[0];
-      const action = topCard.action || "like";
-      swipeTopCard(action);
-    }, 3000); // Swipe every 3 seconds
+      // Use activeCards.length to determine the strict alternating sequence.
+      // Even length (12, 10, 8, 6, 4, 2) -> "nope" (Left)
+      // Odd length (11, 9, 7, 5, 3, 1) -> "like" (Right)
+      const direction = activeCards.length % 2 === 0 ? "nope" : "like";
+      swipeTopCard(direction);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, [activeCards, isProcessingSwipe]);
@@ -192,9 +286,10 @@ export function TheDifference() {
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let timelineIndex = 0;
     setChatMessages([]);
     setIsTyping(false);
+
+    let timelineIndex = 0;
     let activeTimeout: NodeJS.Timeout | null = null;
     let loopTimeout: NodeJS.Timeout | null = null;
 
@@ -202,9 +297,7 @@ export function TheDifference() {
       if (timelineIndex >= messageTimeline.length) {
         // Conversation finished, pause then restart loop
         loopTimeout = setTimeout(() => {
-          setChatMessages([]);
-          timelineIndex = 0;
-          playNextMessage();
+          setChatMatchGender((prevGender) => (prevGender === "man" ? "woman" : "man"));
         }, 10000);
         return;
       }
@@ -236,7 +329,7 @@ export function TheDifference() {
       if (activeTimeout) clearTimeout(activeTimeout);
       if (loopTimeout) clearTimeout(loopTimeout);
     };
-  }, []);
+  }, [chatMatchGender, t]);
 
   // Auto scroll chat container internally
   useEffect(() => {
@@ -275,25 +368,25 @@ export function TheDifference() {
             {/* Tinder Stack Container */}
             <div className="relative w-full max-w-[360px] h-[620px] flex items-center justify-center select-none z-10">
               <AnimatePresence>
-                {activeCards.slice(0, 3).reverse().map((profile) => {
-                  const isTop = profile.uniqueId === activeCards[0]?.uniqueId;
-                  const stackIndex = isTop ? 2 : (profile.uniqueId === activeCards[1]?.uniqueId ? 1 : 0);
+                {activeCards.slice(0, 3).reverse().map((profile, index, arr) => {
+                  const stackIndex = arr.length - 1 - index;
+                  const isTop = stackIndex === 0;
 
                   return (
                     <motion.div
                       key={profile.uniqueId}
-                      className="absolute inset-0 bg-[#1e1e1e] rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.5)] border border-white/5 flex flex-col justify-end"
+                      className="absolute inset-0 bg-[#0d0d0d] rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.5)] border border-white/5 flex flex-col justify-end"
                       style={{
                         transformOrigin: "bottom center",
-                        zIndex: stackIndex,
+                        zIndex: 3 - stackIndex,
                         willChange: "transform, opacity",
                       }}
                       initial={{ scale: 0.92, y: -20, opacity: 0 }}
                       animate={{
-                        scale: stackIndex === 2 ? 1 : stackIndex === 1 ? 0.96 : 0.92,
-                        y: stackIndex === 2 ? 0 : stackIndex === 1 ? -12 : -24,
-                        rotate: stackIndex === 2 ? 0 : stackIndex === 1 ? -1.5 : 1.5,
-                        opacity: stackIndex === 0 ? 0.4 : 1,
+                        scale: stackIndex === 0 ? 1 : stackIndex === 1 ? 0.96 : 0.92,
+                        y: stackIndex === 0 ? 0 : stackIndex === 1 ? -12 : -24,
+                        rotate: stackIndex === 0 ? 0 : stackIndex === 1 ? -1.5 : 1.5,
+                        opacity: stackIndex === 2 ? 0.4 : 1,
                       }}
                       exit={{
                         x: profile.action === "like" ? 480 : profile.action === "nope" ? -480 : 0,
@@ -305,8 +398,8 @@ export function TheDifference() {
                         isTop && profile.action
                           ? {
                               type: "tween",
-                              ease: [0.32, 0, 0.67, 0], // easeInCubic
-                              duration: 0.3,
+                              ease: [0.32, 0, 0.67, 0],
+                              duration: 0.35,
                             }
                           : {
                               type: "spring",
@@ -316,26 +409,27 @@ export function TheDifference() {
                       }
                     >
                       {/* Portrait Image */}
-                      <div className="absolute inset-0 w-full h-full bg-[#111111]">
+                      <div className="absolute inset-0 w-full h-full bg-[#050505]">
                         <Image
                           src={profile.image}
                           alt="Student profile"
                           fill
                           sizes="360px"
                           priority={isTop}
-                          className="object-cover pointer-events-none"
+                          className="object-cover pointer-events-none brightness-[0.55] saturate-[0.45] contrast-[0.9] transition-all duration-300"
                         />
                         {/* Dark Vignette Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/20 pointer-events-none" />
                       </div>
 
                       {/* Top Stories-like pagination lines */}
                       <div className="absolute top-3 inset-x-3 z-30 flex gap-1 px-1 opacity-60">
-                        <div className={`h-1 flex-1 rounded-full ${profile.id === 1 ? 'bg-white' : 'bg-white/30'}`} />
-                        <div className={`h-1 flex-1 rounded-full ${profile.id === 2 ? 'bg-white' : 'bg-white/30'}`} />
-                        <div className={`h-1 flex-1 rounded-full ${profile.id === 3 ? 'bg-white' : 'bg-white/30'}`} />
-                        <div className={`h-1 flex-1 rounded-full ${profile.id === 4 ? 'bg-white' : 'bg-white/30'}`} />
-                        <div className={`h-1 flex-1 rounded-full ${profile.id === 5 ? 'bg-white' : 'bg-white/30'}`} />
+                        {Array.from({ length: 6 }).map((_, idx) => (
+                          <div 
+                            key={idx}
+                            className={`h-1 flex-1 rounded-full ${profile.id === idx + 1 ? 'bg-white' : 'bg-white/30'}`} 
+                          />
+                        ))}
                       </div>
 
                       {/* Profile text info and buttons at bottom */}
@@ -355,7 +449,7 @@ export function TheDifference() {
                           {/* College and Distance */}
                           <div className="flex flex-col gap-0.5 text-xs text-gray-300 font-semibold drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
                             <div className="flex items-center gap-1.5">
-                              <GraduationCap className="w-4 h-4 text-magenta" />
+                              <GraduationCap className="w-4 h-4 text-gray-400" />
                               <span>{t(profile.collegeKey)}</span>
                             </div>
                             <div className="flex items-center gap-1.5">
@@ -374,7 +468,7 @@ export function TheDifference() {
                             {profile.tags.map((tag, idx) => (
                               <span
                                 key={idx}
-                                className="text-[10px] font-bold text-white bg-black/40 border border-white/10 px-2 py-0.5 rounded-full backdrop-blur-sm shadow-sm"
+                                className="text-[10px] font-bold text-white bg-black/40 border border-white/10 px-2 py-0.5 rounded-full backdrop-blur-sm shadow-sm grayscale"
                               >
                                 {tag}
                               </span>
@@ -383,7 +477,7 @@ export function TheDifference() {
                         </div>
 
                         {/* Action Buttons Row (Only interactive on top card) */}
-                        <div className={`flex items-center justify-center gap-3.5 pt-2 ${isTop ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-40'}`}>
+                        <div className={`flex items-center justify-center gap-3 pt-2 ${isTop ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-40'}`}>
                           {/* Rewind Button */}
                           <button
                             onClick={(e) => {
@@ -391,7 +485,7 @@ export function TheDifference() {
                               handleRewind();
                             }}
                             disabled={history.length === 0}
-                            className="w-10 h-10 rounded-full bg-amber-400/10 flex items-center justify-center text-amber-400 hover:bg-amber-400/20 hover:shadow-[0_0_15px_rgba(251,191,36,0.3)] active:scale-95 transition-all duration-200 disabled:opacity-20 disabled:pointer-events-none backdrop-blur-sm"
+                            className="w-10 h-10 rounded-full bg-gray-500/10 flex items-center justify-center text-gray-400 hover:bg-gray-500/20 hover:shadow-[0_0_15px_rgba(156,163,175,0.2)] active:scale-95 transition-all duration-200 disabled:opacity-20 disabled:pointer-events-none backdrop-blur-sm"
                             aria-label="Rewind"
                           >
                             <RotateCcw className="w-4.5 h-4.5 stroke-[2.5]" />
@@ -403,22 +497,22 @@ export function TheDifference() {
                               e.stopPropagation();
                               swipeTopCard("nope");
                             }}
-                            className="w-12 h-12 rounded-full bg-rose-500/10 flex items-center justify-center text-rose-500 hover:bg-rose-500/20 hover:shadow-[0_0_15px_rgba(244,63,94,0.3)] active:scale-95 transition-all duration-200 backdrop-blur-sm"
+                            className="w-12 h-12 rounded-full bg-gray-500/10 flex items-center justify-center text-gray-400 hover:bg-gray-500/20 hover:shadow-[0_0_15px_rgba(156,163,175,0.2)] active:scale-95 transition-all duration-200 backdrop-blur-sm"
                             aria-label="Nope"
                           >
                             <X className="w-5.5 h-5.5 stroke-[3]" />
                           </button>
 
-                          {/* Superlike Button */}
+                          {/* Super Like Button */}
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
                               swipeTopCard("superlike");
                             }}
-                            className="w-10 h-10 rounded-full bg-sky-400/10 flex items-center justify-center text-sky-400 hover:bg-sky-400/20 hover:shadow-[0_0_15px_rgba(56,189,248,0.3)] active:scale-95 transition-all duration-200 backdrop-blur-sm"
+                            className="w-10 h-10 rounded-full bg-gray-500/10 flex items-center justify-center text-gray-400 hover:bg-gray-500/20 hover:shadow-[0_0_15px_rgba(156,163,175,0.2)] active:scale-95 transition-all duration-200 backdrop-blur-sm"
                             aria-label="Super Like"
                           >
-                            <Star className="w-4.5 h-4.5 fill-sky-400/10 stroke-[2.5]" />
+                            <Star className="w-4.5 h-4.5 fill-gray-400/5 stroke-[2.5]" />
                           </button>
 
                           {/* Like Button */}
@@ -427,10 +521,22 @@ export function TheDifference() {
                               e.stopPropagation();
                               swipeTopCard("like");
                             }}
-                            className="w-12 h-12 rounded-full bg-emerald-400/10 flex items-center justify-center text-emerald-400 hover:bg-emerald-400/20 hover:shadow-[0_0_15px_rgba(52,211,153,0.3)] active:scale-95 transition-all duration-200 backdrop-blur-sm"
+                            className="w-12 h-12 rounded-full bg-gray-500/10 flex items-center justify-center text-gray-400 hover:bg-gray-500/20 hover:shadow-[0_0_15px_rgba(156,163,175,0.2)] active:scale-95 transition-all duration-200 backdrop-blur-sm"
                             aria-label="Like"
                           >
-                            <Heart className="w-5.5 h-5.5 fill-emerald-400/5 stroke-[2.5]" />
+                            <Heart className="w-5.5 h-5.5 fill-gray-400/5 stroke-[2.5]" />
+                          </button>
+
+                          {/* Boost Button */}
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              // Visual click feedback
+                            }}
+                            className="w-10 h-10 rounded-full bg-gray-500/10 flex items-center justify-center text-gray-400 hover:bg-gray-500/20 hover:shadow-[0_0_15px_rgba(156,163,175,0.2)] active:scale-95 transition-all duration-200 backdrop-blur-sm"
+                            aria-label="Boost"
+                          >
+                            <Zap className="w-4.5 h-4.5 fill-gray-400/5 stroke-[2.5]" />
                           </button>
                         </div>
                       </div>
@@ -441,10 +547,11 @@ export function TheDifference() {
             </div>
           </div>
 
+
           {/* RIGHT COLUMN: Gennety Bot Mockup */}
           <div className="flex flex-col items-center">
             <div className="text-center mb-6">
-              <h3 className="text-xl md:text-2xl font-bold font-sans text-white">
+              <h3 className="text-xl md:text-2xl font-bold font-sans text-heading-white">
                 {t("difference.doThis")}
               </h3>
             </div>
@@ -461,7 +568,7 @@ export function TheDifference() {
                   <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full bg-[#1e2c3a] border border-white/5 flex items-center justify-center shadow-sm overflow-hidden">
                       <Image
-                        src="/images/star-mascot.png"
+                        src="/images/butterfly-favicon.png"
                         alt="Gennety Mascot"
                         width={28}
                         height={28}
@@ -469,7 +576,7 @@ export function TheDifference() {
                       />
                     </div>
                     <div className="text-left">
-                      <h4 className="text-sm font-bold text-white flex items-center gap-1 leading-none">
+                      <h4 className="text-sm font-bold text-heading-white flex items-center gap-1 leading-none">
                         Gennety Bot
                         <span className="inline-flex items-center justify-center w-3 h-3 rounded-full bg-[#5288c1] text-white flex-shrink-0">
                           <Check className="w-2 h-2 stroke-[3.5]" />
@@ -513,62 +620,69 @@ export function TheDifference() {
                           className="flex flex-col gap-2 py-2"
                         >
                           {/* 1. Verification text bubble (Frameless & Translucent) */}
-                          <div className="max-w-[85%] rounded-2xl rounded-tl-sm bg-[#182533]/50 border-none px-3.5 py-2.5 text-[12.5px] leading-snug relative shadow-sm text-left backdrop-blur-sm">
+                          <div className="max-w-[85%] rounded-2xl rounded-bl-md bg-[#182533]/50 border-none px-3.5 py-2.5 text-[12.5px] leading-snug relative shadow-sm text-left backdrop-blur-sm">
                             <span className="text-[#ffffff]">
                               {t("difference.chat.ticket.verification")}
                             </span>
                             <div className="flex items-center gap-0.5 justify-end mt-1 text-[#708499]">
                               <span className="text-[9px] font-medium leading-none">22:42</span>
                             </div>
+                            <BubbleTail
+                              side="left"
+                              className="absolute"
+                              style={{ color: "#131d2a", left: "-5px", bottom: "0px" }}
+                            />
                           </div>
 
-                          {/* 2. Photo Grid bubble (Frameless & Translucent) */}
-                          <div className="relative w-full max-w-[300px] bg-[#182533]/50 border-none rounded-2xl rounded-tl-sm overflow-hidden shadow-sm flex flex-col backdrop-blur-sm">
-                            <div className="grid grid-cols-2 gap-1 p-1">
-                              <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-black/20">
-                                <Image
-                                  src="/images/dan-1.jpg"
-                                  alt="Den 1"
-                                  fill
-                                  sizes="150px"
-                                  className="object-cover pointer-events-none"
-                                />
-                              </div>
-                              <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-black/20">
-                                <Image
-                                  src="/images/dan-2.jpg"
-                                  alt="Den 2"
-                                  fill
-                                  sizes="150px"
-                                  className="object-cover pointer-events-none"
-                                />
-                              </div>
-                            </div>
-                            <div className="px-3 pb-2.5 pt-1 text-left relative">
-                              <p className="text-[13px] font-bold text-white">
-                                {t("difference.chat.ticket.name")}
-                              </p>
-                              <p className="text-[11px] text-[#5288c1] font-semibold flex items-center gap-1 mt-0.5">
-                                <Check className="w-3.5 h-3.5 stroke-[3.5]" /> {t("difference.chat.ticket.verified")}
-                              </p>
-                              <span className="absolute bottom-1.5 right-2 text-[9px] text-[#708499] font-medium">22:42</span>
-                            </div>
-                          </div>
-
-                          {/* 3. Synergy bubble (Frameless & Translucent) */}
-                          <div className="relative w-full max-w-[300px] bg-[#182533]/50 border-none rounded-2xl rounded-tl-sm p-3.5 shadow-md text-left flex flex-col gap-1.5 backdrop-blur-sm">
-                            <div className="text-[12px] font-bold text-white flex items-start gap-1.5 leading-snug">
-                              <span className="text-base leading-none">💎</span>
-                              <span>{t("difference.chat.ticket.synergy")}</span>
-                            </div>
-                            <p className="text-[11.5px] text-[#cdd7e0] leading-normal pl-5">
-                              {t("difference.chat.ticket.synergyDesc")}
-                            </p>
-                            <div className="text-[11px] text-[#d0adfc] font-semibold flex items-center gap-1 pl-5 mt-0.5">
+                           {/* 2. Photo Grid bubble (Frameless & Translucent) */}
+                           <div className="relative w-full max-w-[300px] bg-[#182533]/50 border-none rounded-2xl rounded-tl-sm overflow-hidden shadow-sm flex flex-col backdrop-blur-sm">
+                             <div className="grid grid-cols-2 gap-1 p-1">
+                               <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-black/20">
+                                 <Image
+                                   src={chatMatchGender === "woman" ? "/images/dan-1.jpg" : "/images/tinder-woman-1.jpg"}
+                                   alt={chatMatchGender === "woman" ? "Den" : "Sofia"}
+                                   fill
+                                   sizes="150px"
+                                   className="object-cover pointer-events-none"
+                                 />
+                               </div>
+                               <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-black/20">
+                                 <Image
+                                   src={chatMatchGender === "woman" ? "/images/tinder-woman-1.jpg" : "/images/dan-1.jpg"}
+                                   alt={chatMatchGender === "woman" ? "Sofia" : "Den"}
+                                   fill
+                                   sizes="150px"
+                                   className="object-cover pointer-events-none"
+                                 />
+                               </div>
+                             </div>
+                             <div className="px-3 pb-2.5 pt-1 text-left relative">
+                               <p className="text-[13px] font-bold text-white">
+                                 {chatMatchGender === "woman" ? t("difference.chat.ticket.name") : t("difference.chat.ticket.name.female")}
+                               </p>
+                               <p className="text-[11px] text-[#5288c1] font-semibold flex items-center gap-1 mt-0.5">
+                                 <Check className="w-3.5 h-3.5 stroke-[3.5]" /> {t("difference.chat.ticket.verified")}
+                               </p>
+                               <span className="absolute bottom-1.5 right-2 text-[9px] text-[#708499] font-medium">22:42</span>
+                             </div>
+                           </div>
+ 
+                           {/* 3. Synergy bubble (Frameless & Translucent) */}
+                           <div className="relative w-full max-w-[300px] bg-[#182533]/50 border-none rounded-2xl rounded-tl-sm pt-3 px-3.5 pb-2 shadow-md text-left flex flex-col gap-1.5 backdrop-blur-sm">
+                             <div className="text-[12px] font-bold text-white flex items-start gap-1.5 leading-snug">
+                               <span className="text-base leading-none">💎</span>
+                               <span>
+                                 {chatMatchGender === "woman" ? t("difference.chat.ticket.synergy") : t("difference.chat.ticket.synergy.female")}
+                               </span>
+                             </div>
+                             <p className="text-[11.5px] text-[#cdd7e0] leading-normal pl-5">
+                               {chatMatchGender === "woman" ? t("difference.chat.ticket.synergyDesc") : t("difference.chat.ticket.synergyDesc.female")}
+                             </p>
+                            <div className="text-[11px] text-white font-semibold flex items-center gap-1 pl-5 mt-0.5">
                               <span className="text-xs leading-none">⌛</span>
                               <span>{t("difference.chat.ticket.timeRemaining")}</span>
                             </div>
-                            <span className="self-end text-[9px] text-[#708499] font-medium mt-1">22:42</span>
+                            <span className="absolute bottom-1.5 right-2.5 text-[9px] text-[#708499] font-medium">22:42</span>
                           </div>
 
                           {/* 4. Action Buttons (Frameless & Sleek) */}
@@ -601,8 +715,8 @@ export function TheDifference() {
                         <div
                           className={`max-w-[75%] rounded-2xl px-3.5 py-2 text-[13px] leading-snug relative border-none shadow-sm text-left backdrop-blur-sm ${
                             isBot
-                              ? "bg-[#182533]/50 text-white rounded-tl-sm"
-                              : "bg-[#2b5278]/55 text-white rounded-tr-sm"
+                              ? "bg-[#182533]/50 text-white rounded-bl-md"
+                              : "bg-[#2b5278]/55 text-white rounded-br-md"
                           }`}
                         >
                           <span className="break-words">{msg.textKey ? t(msg.textKey) : ""}</span>
@@ -610,6 +724,15 @@ export function TheDifference() {
                             <span className="text-[9px] font-medium leading-none">22:42</span>
                             {!isBot && <CheckCheck className="w-3.5 h-3.5 text-[#549df2]" />}
                           </div>
+                          <BubbleTail
+                            side={isBot ? "left" : "right"}
+                            className="absolute"
+                            style={
+                              isBot
+                                ? { color: "#131d2a", left: "-5px", bottom: "0px" }
+                                : { color: "#1e3751", right: "-5px", bottom: "0px" }
+                            }
+                          />
                         </div>
                       </motion.div>
                     );
@@ -670,11 +793,23 @@ export function TheDifference() {
           </div>
         </div>
 
+
+
         {/* Main Value Proposition Copy under components */}
         <div className="max-w-3xl mx-auto mt-16 text-center text-gray-400 text-base md:text-lg leading-relaxed px-4">
           <p>{t("difference.description")}</p>
         </div>
       </div>
+
+      {/* Bottom wavy edge (Postage Stamp Wavy Bottom Edge) */}
+      <svg className="absolute bottom-0 left-0 right-0 w-full h-[15px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="stamp-teeth-bottom" width="37" height="15" patternUnits="userSpaceOnUse">
+            <path d="M 0 15 L 37 15 C 30.5 15, 25 0, 18.5 0 C 12 0, 6.5 15, 0 15 Z" fill="#050505" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="15" fill="url(#stamp-teeth-bottom)" />
+      </svg>
     </section>
   );
 }

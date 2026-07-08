@@ -9,10 +9,12 @@ import { motion, AnimatePresence } from "framer-motion";
 
 interface LanguageSwitcherProps {
   menuPlacement?: "top" | "bottom";
+  theme?: "light" | "dark";
 }
 
-export function LanguageSwitcher({ menuPlacement = "bottom" }: LanguageSwitcherProps) {
+export function LanguageSwitcher({ menuPlacement = "bottom", theme = "dark" }: LanguageSwitcherProps) {
   const { locale, setLocale } = useLanguage();
+  const isDark = theme === "dark";
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const opensUp = menuPlacement === "top";
@@ -32,7 +34,12 @@ export function LanguageSwitcher({ menuPlacement = "bottom" }: LanguageSwitcherP
     <div ref={dropdownRef} className="relative inline-block text-left">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="group inline-flex items-center justify-center gap-2 rounded-full font-medium cursor-pointer select-none bg-transparent text-white border border-white/60 hover:bg-white/10 active:scale-95 px-3 py-1.5 text-xs md:px-4 md:py-2 md:text-sm transition-all duration-300"
+        className={cn(
+          "group inline-flex items-center justify-center gap-2 rounded-full font-medium cursor-pointer select-none bg-transparent active:scale-95 px-3 py-1.5 text-xs md:px-4 md:py-2 md:text-sm transition-[color,background-color] duration-300",
+          isDark 
+            ? "text-white hover:bg-white/10" 
+            : "text-[#111111] border border-[#111111]/60 hover:bg-[#111111]/10"
+        )}
         aria-expanded={isOpen}
       >
         <span>
@@ -40,7 +47,8 @@ export function LanguageSwitcher({ menuPlacement = "bottom" }: LanguageSwitcherP
         </span>
         <ChevronDown
           className={cn(
-            "w-3.5 h-3.5 text-white/60 transition-transform duration-300",
+            "w-3.5 h-3.5 transition-transform duration-300",
+            isDark ? "text-white/60" : "text-[#111111]/60",
             isOpen ? "rotate-180" : ""
           )}
         />
@@ -55,7 +63,10 @@ export function LanguageSwitcher({ menuPlacement = "bottom" }: LanguageSwitcherP
             exit={{ opacity: 0, y: opensUp ? -4 : 4, scale: 0.97 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             className={cn(
-              "absolute left-0 w-full max-h-[calc(100vh-6rem)] overflow-hidden rounded-2xl bg-[#F5F5F5]/95 border border-white/60 p-1 shadow-[0_20px_50px_rgba(0,0,0,0.1)] backdrop-blur-xl z-50",
+              "absolute left-0 w-full max-h-[calc(100vh-6rem)] overflow-hidden rounded-2xl p-1 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-xl z-50",
+              isDark 
+                ? "bg-[#111111]/95" 
+                : "bg-white/95 border border-black/20 shadow-lg",
               opensUp ? "bottom-[calc(100%+8px)] origin-bottom" : "top-[calc(100%+8px)] origin-top",
             )}
           >
@@ -70,8 +81,12 @@ export function LanguageSwitcher({ menuPlacement = "bottom" }: LanguageSwitcherP
                   className={cn(
                     "w-full h-8 flex items-center justify-center rounded-full text-xs font-medium transition-all duration-200 cursor-pointer select-none",
                     locale === l
-                      ? "bg-magenta text-[#F5F5F5] font-semibold"
-                      : "text-white/60 hover:text-white hover:bg-white/10"
+                      ? isDark 
+                        ? "bg-white text-[#111111] font-semibold" 
+                        : "bg-[#111111] text-white font-semibold"
+                      : isDark 
+                        ? "text-white/60 hover:text-white hover:bg-white/10" 
+                        : "text-black/60 hover:text-black hover:bg-black/5"
                   )}
                 >
                   {localeNames[l]}

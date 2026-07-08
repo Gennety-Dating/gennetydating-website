@@ -5,6 +5,7 @@ import { Heading } from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/lib/language-context";
 import type { TranslationKeys } from "@/lib/i18n";
+import { motion, AnimatePresence } from "framer-motion";
 
 function AccordionItem({
   question,
@@ -22,7 +23,7 @@ function AccordionItem({
   return (
     <div
       className={cn(
-        "transition-all duration-300",
+        "transition-colors duration-300",
         !isLast && "border-b border-white/10",
         isOpen ? "bg-white/[0.03]" : "hover:bg-white/[0.015]"
       )}
@@ -43,7 +44,7 @@ function AccordionItem({
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           style={{
-            filter: "drop-shadow(0 0 6px rgba(255, 0, 255, 0.8))",
+            filter: "drop-shadow(0 0 6px rgba(139, 37, 59, 0.6))",
           }}
         >
           <path
@@ -56,16 +57,40 @@ function AccordionItem({
         </svg>
       </button>
 
-      <div
-        className={cn(
-          "overflow-hidden transition-all duration-300",
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{
+              height: "auto",
+              opacity: 1,
+              transition: {
+                height: {
+                  duration: 0.35,
+                  ease: [0.04, 0.62, 0.23, 0.98],
+                },
+                opacity: { duration: 0.25 },
+              },
+            }}
+            exit={{
+              height: 0,
+              opacity: 0,
+              transition: {
+                height: {
+                  duration: 0.3,
+                  ease: [0.04, 0.62, 0.23, 0.98],
+                },
+                opacity: { duration: 0.2 },
+              },
+            }}
+            className="overflow-hidden"
+          >
+            <div className="px-6 md:px-8 pb-6 pt-1 text-sm md:text-base text-gray-300 leading-relaxed">
+              {answer}
+            </div>
+          </motion.div>
         )}
-      >
-        <div className="px-6 md:px-8 pb-6 pt-1 text-sm md:text-base text-gray-300 leading-relaxed">
-          {answer}
-        </div>
-      </div>
+      </AnimatePresence>
     </div>
   );
 }
@@ -78,37 +103,9 @@ export function FAQ() {
 
   return (
     <section
-      className="py-[120px] px-4 md:px-10 relative overflow-hidden bg-midnight"
+      className="min-h-[100vh] md:min-h-[1000px] pt-[80px] md:pt-[100px] pb-[230px] px-4 md:px-10 relative overflow-clip bg-transparent flex flex-col justify-center items-center"
     >
-      {/* Размытый фоновый рисунок (Blur background image) */}
-      <div 
-        className="absolute inset-0 bg-[url('/images/faq-bg.jpg')] bg-cover bg-center pointer-events-none filter blur-[6px] scale-105 opacity-50 z-0" 
-        aria-hidden="true"
-      />
-      {/* Затемняющий оверлей для идеального контраста и интеграции в темную тему */}
-      <div className="absolute inset-0 bg-[#050505]/60 z-0" />
-
-      {/* Верхний волнообразный край (Postage Stamp Wavy Top Edge) */}
-      <svg className="absolute top-0 left-0 right-0 w-full h-[15px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="faq-stamp-teeth-top" width="37" height="15" patternUnits="userSpaceOnUse">
-            <path d="M 0 0 L 37 0 C 30.5 0, 25 15, 18.5 15 C 12 15, 6.5 0, 0 0 Z" fill="#050505" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="15" fill="url(#faq-stamp-teeth-top)" />
-      </svg>
-
-      {/* Нижний волнообразный край (Postage Stamp Wavy Bottom Edge) */}
-      <svg className="absolute bottom-0 left-0 right-0 w-full h-[15px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="faq-stamp-teeth-bottom" width="37" height="15" patternUnits="userSpaceOnUse">
-            <path d="M 0 15 L 37 15 C 30.5 15, 25 0, 18.5 0 C 12 0, 6.5 15, 0 15 Z" fill="#050505" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="15" fill="url(#faq-stamp-teeth-bottom)" />
-      </svg>
-
-      <div className="relative z-10 max-w-3xl mx-auto">
+      <div className="relative z-10 w-full max-w-3xl mx-auto">
         <div className="text-center mb-16">
           <Heading as="h2">{t("faq.title")}</Heading>
         </div>

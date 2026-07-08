@@ -26,12 +26,13 @@ export function MessageBubble({
   const hasBorder = variant === "dark";
 
   return (
-    <div className={cn("relative inline-block w-full", className)}>
+    <div className="relative inline-block w-full">
       <div
         className={cn(
           "relative z-10 rounded-3xl px-5 py-3.5 text-sm leading-relaxed backdrop-blur-xl shadow-lg transition-all duration-300",
           baseBg,
-          hasBorder && "border border-white/10"
+          hasBorder && "border border-white/10",
+          className
         )}
       >
         {children}

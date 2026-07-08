@@ -12,20 +12,20 @@ export function HowItWorks() {
 
   return (
     <section className="py-[120px] px-4 md:px-10 relative overflow-hidden">
-      <Heading as="h2" className="text-center mb-24 tracking-tight">
+      <Heading as="h2" className="text-center mb-24 tracking-tight text-heading-white">
         {t("howItWorks.title")} <Highlight>{t("howItWorks.highlight")}</Highlight>
       </Heading>
 
       {/* Пространственная безрамочная сцена: Горизонтальный поток (Distributed Layout) */}
       <div className="max-w-6xl mx-auto relative">
         {/* Анимированная линия прогрессии (Loading/Progression Beam) */}
-        <div className="relative h-[2px] w-full bg-white/[0.03] rounded-full mb-16 overflow-hidden">
+        <div className="relative h-[2px] w-full bg-white/[0.08] rounded-full mb-16 overflow-hidden">
           <motion.div 
             initial={{ width: "0%" }}
             whileInView={{ width: "100%" }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 2.4, ease: "easeInOut" }}
-            className="absolute inset-y-0 left-0 bg-gradient-to-r from-transparent via-magenta to-magenta shadow-[0_0_15px_rgba(139,37,59,0.8)]"
+            className="absolute inset-y-0 left-0 bg-gradient-to-r from-transparent via-magenta to-magenta shadow-[0_0_15px_rgba(139,37,59,0.6)]"
           />
         </div>
 
@@ -55,8 +55,8 @@ export function HowItWorks() {
 
                 {num === 2 && (
                   /* Силуэт карты дропа без жестких обводок */
-                  <div className="relative w-16 h-24 rounded-xl bg-white/[0.03] backdrop-blur-md flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-                    <div className="w-2 h-2 rounded-full bg-magenta shadow-[0_0_12px_rgba(139,37,59,1)]" />
+                  <div className="relative w-16 h-24 rounded-xl bg-white/[0.05] border border-white/10 backdrop-blur-md flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
+                    <div className="w-2 h-2 rounded-full bg-magenta shadow-[0_0_12px_rgba(139,37,59,0.8)]" />
                   </div>
                 )}
 
@@ -64,9 +64,9 @@ export function HowItWorks() {
                   /* Схождение линий (Точка контакта) */
                   <div className="relative w-28 h-16 flex items-center justify-center">
                     <svg className="w-full h-full overflow-visible" viewBox="0 0 100 60" fill="none">
-                      <path d="M10 10 Q50 50 90 10" stroke="rgba(255,255,255,0.1)" strokeWidth="1.5" />
-                      <path d="M10 50 Q50 10 90 50" stroke="rgba(208,173,252,0.4)" strokeWidth="1.5" />
-                      <circle cx="50" cy="30" r="3.5" fill="#d0adfc" className="shadow-[0_0_10px_rgba(208,173,252,0.8)]" />
+                      <path d="M10 10 Q50 50 90 10" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
+                      <path d="M10 50 Q50 10 90 50" stroke="rgba(139,37,59,0.4)" strokeWidth="1.5" />
+                      <circle cx="50" cy="30" r="3.5" fill="#8B253B" className="shadow-[0_0_10px_rgba(139,37,59,0.6)]" />
                     </svg>
                   </div>
                 )}
@@ -75,7 +75,7 @@ export function HowItWorks() {
                   /* Искра: Свободный минималистичный символ */
                   <div className="relative flex items-center justify-center">
                     <svg className="w-12 h-12 text-magenta/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z" fill="rgba(208,173,252,0.1)" />
+                      <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z" fill="rgba(139,37,59,0.1)" />
                     </svg>
                   </div>
                 )}
@@ -83,7 +83,7 @@ export function HowItWorks() {
 
               {/* Отцентрированный текст ровно под символом на единой высоте */}
               <div className="text-center flex flex-col items-center w-full px-2">
-                <h3 className="font-sans font-bold text-lg md:text-xl text-white mb-3 tracking-tight text-center">
+                <h3 className="font-sans font-bold text-lg md:text-xl text-heading-white mb-3 tracking-tight text-center">
                   {t(`step.${num}.title` as TranslationKeys)}
                 </h3>
                 <p className="text-gray-400 text-xs md:text-sm leading-relaxed text-balance text-center max-w-[240px]">

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/lib/language-context";
 import type { Locale } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
 
 const dateLocales: Record<Locale, string> = {
   en: "en-US",
@@ -94,24 +95,52 @@ export function CountdownTimer() {
   }, [locale]);
 
   return (
-    <div className="flex flex-col items-center gap-2">
-      {/* Timer digits */}
-      <div className="flex items-baseline gap-1 font-mono text-4xl md:text-5xl font-bold neon-text tabular-nums">
-        <span>{time.days}</span>
-        <span className="text-magenta-dim">:</span>
-        <span>{time.hours}</span>
-        <span className="text-magenta-dim">:</span>
-        <span>{time.minutes}</span>
-        <span className="text-magenta-dim">:</span>
-        <span className="text-3xl md:text-4xl">{time.seconds}</span>
+    <div className="flex flex-col items-center gap-3">
+      {/* Option 1: Clean Classic Line */}
+      <div className="flex items-center gap-3 sm:gap-4 md:gap-5 select-none py-1.5">
+        <div className="flex flex-col items-center">
+          <span className="font-sans text-3xl sm:text-4xl md:text-5xl font-bold text-magenta tracking-tight tabular-nums">
+            {time.days}
+          </span>
+          <span className="text-[9px] sm:text-[10px] md:text-[11px] font-semibold text-gray-400 uppercase tracking-widest mt-1">
+            {t("countdown.d")}
+          </span>
+        </div>
+        <span className="text-magenta/30 font-light text-xl sm:text-2xl md:text-3xl -translate-y-2.5">:</span>
+        <div className="flex flex-col items-center">
+          <span className="font-sans text-3xl sm:text-4xl md:text-5xl font-bold text-magenta tracking-tight tabular-nums">
+            {time.hours}
+          </span>
+          <span className="text-[9px] sm:text-[10px] md:text-[11px] font-semibold text-gray-400 uppercase tracking-widest mt-1">
+            {t("countdown.h")}
+          </span>
+        </div>
+        <span className="text-magenta/30 font-light text-xl sm:text-2xl md:text-3xl -translate-y-2.5">:</span>
+        <div className="flex flex-col items-center">
+          <span className="font-sans text-3xl sm:text-4xl md:text-5xl font-bold text-magenta tracking-tight tabular-nums">
+            {time.minutes}
+          </span>
+          <span className="text-[9px] sm:text-[10px] md:text-[11px] font-semibold text-gray-400 uppercase tracking-widest mt-1">
+            {t("countdown.m")}
+          </span>
+        </div>
+        <span className="text-magenta/30 font-light text-xl sm:text-2xl md:text-3xl -translate-y-2.5">:</span>
+        <div className="flex flex-col items-center">
+          <span className="font-sans text-3xl sm:text-4xl md:text-5xl font-bold text-magenta tracking-tight tabular-nums">
+            {time.seconds}
+          </span>
+          <span className="text-[9px] sm:text-[10px] md:text-[11px] font-semibold text-gray-400 uppercase tracking-widest mt-1">
+            {t("countdown.s")}
+          </span>
+        </div>
       </div>
 
       {/* Match day info — renders after first interval tick */}
       {matchDay && (
         <>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-gray-500 mt-1">
             {t("countdown.nextMatch")}{" "}
-            <span className="text-white font-medium">{matchDay}</span>
+            <span className="text-heading-white font-semibold">{matchDay}</span>
           </p>
         </>
       )}

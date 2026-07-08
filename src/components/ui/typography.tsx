@@ -18,7 +18,7 @@ export function Heading({
   return (
     <Tag
       className={cn(
-        "font-sans font-bold tracking-tight text-white",
+        "font-sans font-bold tracking-tight text-heading-white",
         Tag === "h1" && "text-4xl md:text-6xl lg:text-7xl leading-[1.1]",
         Tag === "h2" && "text-3xl md:text-4xl lg:text-5xl leading-[1.15]",
         Tag === "h3" && "text-2xl md:text-3xl leading-[1.2]",
