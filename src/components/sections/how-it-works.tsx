@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Heading, Highlight } from "@/components/ui/typography";
 import { useLanguage } from "@/lib/language-context";
 import type { TranslationKeys } from "@/lib/i18n";
@@ -16,84 +17,75 @@ export function HowItWorks() {
         {t("howItWorks.title")} <Highlight>{t("howItWorks.highlight")}</Highlight>
       </Heading>
 
-      {/* Пространственная безрамочная сцена: Горизонтальный поток (Distributed Layout) */}
-      <div className="max-w-6xl mx-auto relative">
-        {/* Анимированная линия прогрессии (Loading/Progression Beam) */}
-        <div className="relative h-[2px] w-full bg-white/[0.08] rounded-full mb-16 overflow-hidden">
-          <motion.div 
-            initial={{ width: "0%" }}
-            whileInView={{ width: "100%" }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 2.4, ease: "easeInOut" }}
-            className="absolute inset-y-0 left-0 bg-gradient-to-r from-transparent via-magenta to-magenta shadow-[0_0_15px_rgba(139,37,59,0.6)]"
-          />
-        </div>
-
-        {/* Сетка шагов: выстраивается горизонтально на md+ */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
-          {stepKeys.map((num, i) => (
+      {/* Пространственная безрамочная сцена: Вертикальный лестничный (Staggered Layout) поток */}
+      <div className="max-w-4xl mx-auto relative flex flex-col gap-12 md:gap-0">
+        {stepKeys.map((num, i) => {
+          const isEven = num % 2 === 0;
+          return (
             <motion.div
               key={num}
-              initial={{ opacity: 0.25, filter: "brightness(0.5) blur(2px)" }}
-              whileInView={{ opacity: 1, filter: "brightness(1) blur(0px)" }}
+              initial={{ opacity: 0.25, filter: "brightness(0.5) blur(2px)", y: 20 }}
+              whileInView={{ opacity: 1, filter: "brightness(1) blur(0px)", y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: i * 0.55 + 0.2, ease: "easeOut" }}
-              className="relative flex flex-col items-center select-none w-full"
+              transition={{ duration: 0.8, delay: i * 0.15, ease: "easeOut" }}
+              className={`relative flex flex-col select-none w-full md:w-[46%] items-center md:items-start text-center md:text-left ${
+                isEven ? "self-end md:-mt-24" : "self-start"
+              } ${
+                i > 0 && !isEven ? "md:-mt-24" : ""
+              }`}
             >
-              {/* Статичные нативные иллюстрации кодом (фиксированная высота гарантирует единый уровень для заголовков) */}
-              <div className="h-32 w-full flex items-center justify-center relative mb-8">
-                {/* Мягкое пространственное свечение на фоне */}
-                <div className="absolute w-20 h-20 bg-magenta/[0.03] rounded-full blur-xl pointer-events-none" />
-
-                {num === 1 && (
-                  /* Слияние сфер: Парящие в чистом пространстве формы */
-                  <div className="relative w-28 h-28 flex items-center justify-center">
-                    <div className="absolute -left-2 w-16 h-16 rounded-full bg-magenta/20 backdrop-blur-md" />
-                    <div className="absolute -right-2 w-16 h-16 rounded-full bg-white/10 backdrop-blur-md" />
-                  </div>
-                )}
-
-                {num === 2 && (
-                  /* Силуэт карты дропа без жестких обводок */
-                  <div className="relative w-16 h-24 rounded-xl bg-white/[0.05] border border-white/10 backdrop-blur-md flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
-                    <div className="w-2 h-2 rounded-full bg-magenta shadow-[0_0_12px_rgba(139,37,59,0.8)]" />
-                  </div>
-                )}
-
-                {num === 3 && (
-                  /* Схождение линий (Точка контакта) */
-                  <div className="relative w-28 h-16 flex items-center justify-center">
-                    <svg className="w-full h-full overflow-visible" viewBox="0 0 100 60" fill="none">
-                      <path d="M10 10 Q50 50 90 10" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-                      <path d="M10 50 Q50 10 90 50" stroke="rgba(139,37,59,0.4)" strokeWidth="1.5" />
-                      <circle cx="50" cy="30" r="3.5" fill="#8B253B" className="shadow-[0_0_10px_rgba(139,37,59,0.6)]" />
-                    </svg>
-                  </div>
-                )}
-
-                {num === 4 && (
-                  /* Искра: Свободный минималистичный символ */
-                  <div className="relative flex items-center justify-center">
-                    <svg className="w-12 h-12 text-magenta/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z" fill="rgba(139,37,59,0.1)" />
-                    </svg>
-                  </div>
-                )}
-              </div>
-
-              {/* Отцентрированный текст ровно под символом на единой высоте */}
-              <div className="text-center flex flex-col items-center w-full px-2">
-                <h3 className="font-sans font-bold text-lg md:text-xl text-heading-white mb-3 tracking-tight text-center">
-                  {t(`step.${num}.title` as TranslationKeys)}
-                </h3>
-                <p className="text-gray-400 text-xs md:text-sm leading-relaxed text-balance text-center max-w-[240px]">
+              {/* Номер и Заголовок с описанием */}
+              <div className="flex flex-col items-center md:items-start mb-4 w-full">
+                <div className="flex items-center gap-3 mb-2 justify-center md:justify-start w-full">
+                  {/* Вертикальный овальный бейдж для цифры */}
+                  <span className={`flex items-center justify-center w-8 h-10 bg-black border-2 border-magenta text-magenta font-mono font-bold text-lg rounded-full select-none ${
+                    num === 4 ? "translate-x-[25px]" : ""
+                  }`}>
+                    {num}
+                  </span>
+                  <h3 className={`font-sans font-bold text-2xl md:text-3xl text-heading-white tracking-tight ${
+                    num === 4 ? "translate-x-[25px]" : ""
+                  }`}>
+                    {t(`step.${num}.title` as TranslationKeys)}
+                  </h3>
+                </div>
+                <p className={`text-gray-400 text-xs md:text-sm leading-relaxed ${
+                  num === 2 ? "max-w-[380px]" : "max-w-[280px]"
+                }`}>
                   {t(`step.${num}.desc` as TranslationKeys)}
                 </p>
               </div>
+
+              {/* Изображение шага с эффектом scrapbook-поворота */}
+              <div className={`relative w-full aspect-square flex items-center justify-center bg-transparent transform transition-all duration-500 hover:scale-[1.03] ${
+                num === 1 ? "max-w-[320px] rotate-1 hover:rotate-2" :
+                num === 2 ? "max-w-[320px] -rotate-2 hover:-rotate-1" :
+                num === 3 ? "max-w-[320px] rotate-2 hover:rotate-3" :
+                "max-w-[270px] rotate-[5deg] hover:rotate-[7deg] mt-10"
+              }`}>
+                {/* Мягкое свечение сзади */}
+                <div className="absolute w-36 h-36 bg-magenta/[0.04] rounded-full blur-2xl pointer-events-none" />
+                
+                <Image
+                  src={
+                    num === 1
+                      ? "/images/how-it-works-1-final.png"
+                      : num === 4
+                      ? "/images/how-it-works-4-new.png"
+                      : `/images/how-it-works-${num}.png`
+                  }
+                  alt={t(`step.${num}.title` as TranslationKeys)}
+                  width={320}
+                  height={320}
+                  className="w-full h-full object-contain select-none drop-shadow-[0_8px_25px_rgba(0,0,0,0.5)]"
+                  priority={num <= 2}
+                />
+              </div>
             </motion.div>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </section>
   );
 }
+

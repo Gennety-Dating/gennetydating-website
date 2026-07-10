@@ -114,20 +114,22 @@ export function Matchmaker() {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 className={cn(
-                  "relative max-w-[85%] rounded-[22px] px-[18px] py-2.5 text-sm md:text-base leading-relaxed text-left shadow-[0_1px_2px_rgba(0,0,0,0.16)]",
+                  "relative w-fit max-w-[280px] sm:max-w-[300px] md:max-w-[320px] rounded-[20px] px-[18px] py-2.5 text-[14px] md:text-[15px] leading-relaxed text-left",
                   isAgent
-                    ? "bg-[#e9e9eb] text-black self-start rounded-bl-md"
-                    : "bg-black text-white self-end rounded-br-md font-medium"
+                    ? "bg-white text-black self-start rounded-bl-[8px]"
+                    : "bg-[#3a3a3c] text-white self-end rounded-br-[8px] font-medium"
                 )}
               >
-                {t(msg.translationKey)}
+                <span>{t(msg.translationKey)}</span>
                 <BubbleTail
                   side={isAgent ? "left" : "right"}
                   className="absolute"
+                  width={20}
+                  height={19}
                   style={
                     isAgent
-                      ? { color: "#e9e9eb", left: "-6px", bottom: "-1px" }
-                      : { color: "#000000", right: "-6px", bottom: "-1px" }
+                      ? { color: "#ffffff", left: "-7px", bottom: "0px" }
+                      : { color: "#3a3a3c", right: "-7px", bottom: "0px" }
                   }
                 />
               </motion.div>

@@ -176,13 +176,13 @@ export function CookieBanner() {
                 {t("cookie.banner_text")}
               </p>
 
-              <div className="grid grid-cols-3 gap-2 md:flex md:items-center md:gap-2">
+              <div className="flex flex-col gap-2 w-full md:flex-row md:items-center md:gap-2 md:w-auto">
                 <button
                   ref={firstFocusRef}
                   type="button"
                   onClick={() => setShowCustomize((v) => !v)}
                   className={cn(
-                    "cookie-liquid-button transition-all duration-300",
+                    "cookie-liquid-button w-full md:w-auto transition-all duration-300",
                     isOverDarkBg
                       ? "cookie-liquid-button-dark text-white/60 hover:text-white"
                       : "cookie-liquid-button-light text-neutral-600 hover:text-black"
@@ -194,7 +194,7 @@ export function CookieBanner() {
                   type="button"
                   onClick={showCustomize ? handleSaveCustom : handleRejectNonEssential}
                   className={cn(
-                    "cookie-liquid-button transition-all duration-300",
+                    "cookie-liquid-button w-full md:w-auto transition-all duration-300",
                     isOverDarkBg
                       ? "cookie-liquid-button-dark text-white/80 hover:bg-white/10 hover:text-white"
                       : "cookie-liquid-button-light text-neutral-800 hover:bg-black/[0.06] hover:text-black"
@@ -205,7 +205,7 @@ export function CookieBanner() {
                 <button
                   type="button"
                   onClick={handleAcceptAll}
-                  className="cookie-liquid-primary"
+                  className="cookie-liquid-primary w-full md:w-auto"
                 >
                   {t("cookie.accept_all")}
                 </button>

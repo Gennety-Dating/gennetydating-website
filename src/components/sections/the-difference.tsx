@@ -477,7 +477,7 @@ export function TheDifference() {
                         </div>
 
                         {/* Action Buttons Row (Only interactive on top card) */}
-                        <div className={`flex items-center justify-center gap-3 pt-2 ${isTop ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-40'}`}>
+                        <div className={`flex items-center justify-center gap-2 sm:gap-3 pt-2 ${isTop ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-40'}`}>
                           {/* Rewind Button */}
                           <button
                             onClick={(e) => {
@@ -485,10 +485,10 @@ export function TheDifference() {
                               handleRewind();
                             }}
                             disabled={history.length === 0}
-                            className="w-10 h-10 rounded-full bg-gray-500/10 flex items-center justify-center text-gray-400 hover:bg-gray-500/20 hover:shadow-[0_0_15px_rgba(156,163,175,0.2)] active:scale-95 transition-all duration-200 disabled:opacity-20 disabled:pointer-events-none backdrop-blur-sm"
+                            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-500/10 flex items-center justify-center text-gray-400 hover:bg-gray-500/20 hover:shadow-[0_0_15px_rgba(156,163,175,0.2)] active:scale-95 transition-all duration-200 disabled:opacity-20 disabled:pointer-events-none backdrop-blur-sm"
                             aria-label="Rewind"
                           >
-                            <RotateCcw className="w-4.5 h-4.5 stroke-[2.5]" />
+                            <RotateCcw className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5]" />
                           </button>
 
                           {/* Nope Button */}
@@ -497,10 +497,10 @@ export function TheDifference() {
                               e.stopPropagation();
                               swipeTopCard("nope");
                             }}
-                            className="w-12 h-12 rounded-full bg-gray-500/10 flex items-center justify-center text-gray-400 hover:bg-gray-500/20 hover:shadow-[0_0_15px_rgba(156,163,175,0.2)] active:scale-95 transition-all duration-200 backdrop-blur-sm"
+                            className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gray-500/10 flex items-center justify-center text-gray-400 hover:bg-gray-500/20 hover:shadow-[0_0_15px_rgba(156,163,175,0.2)] active:scale-95 transition-all duration-200 backdrop-blur-sm"
                             aria-label="Nope"
                           >
-                            <X className="w-5.5 h-5.5 stroke-[3]" />
+                            <X className="w-5 h-5 sm:w-5.5 sm:h-5.5 stroke-[3]" />
                           </button>
 
                           {/* Super Like Button */}
@@ -509,10 +509,10 @@ export function TheDifference() {
                               e.stopPropagation();
                               swipeTopCard("superlike");
                             }}
-                            className="w-10 h-10 rounded-full bg-gray-500/10 flex items-center justify-center text-gray-400 hover:bg-gray-500/20 hover:shadow-[0_0_15px_rgba(156,163,175,0.2)] active:scale-95 transition-all duration-200 backdrop-blur-sm"
+                            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-500/10 flex items-center justify-center text-gray-400 hover:bg-gray-500/20 hover:shadow-[0_0_15px_rgba(156,163,175,0.2)] active:scale-95 transition-all duration-200 backdrop-blur-sm"
                             aria-label="Super Like"
                           >
-                            <Star className="w-4.5 h-4.5 fill-gray-400/5 stroke-[2.5]" />
+                            <Star className="w-4 h-4 sm:w-4.5 sm:h-4.5 fill-gray-400/5 stroke-[2.5]" />
                           </button>
 
                           {/* Like Button */}
@@ -521,10 +521,10 @@ export function TheDifference() {
                               e.stopPropagation();
                               swipeTopCard("like");
                             }}
-                            className="w-12 h-12 rounded-full bg-gray-500/10 flex items-center justify-center text-gray-400 hover:bg-gray-500/20 hover:shadow-[0_0_15px_rgba(156,163,175,0.2)] active:scale-95 transition-all duration-200 backdrop-blur-sm"
+                            className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gray-500/10 flex items-center justify-center text-gray-400 hover:bg-gray-500/20 hover:shadow-[0_0_15px_rgba(156,163,175,0.2)] active:scale-95 transition-all duration-200 backdrop-blur-sm"
                             aria-label="Like"
                           >
-                            <Heart className="w-5.5 h-5.5 fill-gray-400/5 stroke-[2.5]" />
+                            <Heart className="w-5 h-5 sm:w-5.5 sm:h-5.5 fill-gray-400/5 stroke-[2.5]" />
                           </button>
 
                           {/* Boost Button */}
@@ -533,10 +533,10 @@ export function TheDifference() {
                               e.stopPropagation();
                               // Visual click feedback
                             }}
-                            className="w-10 h-10 rounded-full bg-gray-500/10 flex items-center justify-center text-gray-400 hover:bg-gray-500/20 hover:shadow-[0_0_15px_rgba(156,163,175,0.2)] active:scale-95 transition-all duration-200 backdrop-blur-sm"
+                            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-500/10 flex items-center justify-center text-gray-400 hover:bg-gray-500/20 hover:shadow-[0_0_15px_rgba(156,163,175,0.2)] active:scale-95 transition-all duration-200 backdrop-blur-sm"
                             aria-label="Boost"
                           >
-                            <Zap className="w-4.5 h-4.5 fill-gray-400/5 stroke-[2.5]" />
+                            <Zap className="w-4 h-4 sm:w-4.5 sm:h-4.5 fill-gray-400/5 stroke-[2.5]" />
                           </button>
                         </div>
                       </div>
@@ -566,13 +566,12 @@ export function TheDifference() {
                     <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
                   </button>
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-[#1e2c3a] border border-white/5 flex items-center justify-center shadow-sm overflow-hidden">
+                    <div className="w-9 h-9 rounded-full border border-white/5 flex items-center justify-center shadow-sm overflow-hidden relative">
                       <Image
-                        src="/images/butterfly-favicon.png"
+                        src="/images/butterfly-favicon.svg"
                         alt="Gennety Mascot"
-                        width={28}
-                        height={28}
-                        className="object-contain"
+                        fill
+                        className="object-cover"
                       />
                     </div>
                     <div className="text-left">
@@ -597,10 +596,6 @@ export function TheDifference() {
               <div 
                 ref={chatContainerRef} 
                 className="absolute inset-0 p-4 overflow-y-auto space-y-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden select-none z-10 pt-20 pb-20"
-                style={{ 
-                  backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px)", 
-                  backgroundSize: "16px 16px" 
-                }}
               >
                 <div className="text-center w-full my-2">
                   <span className="bg-black/20 text-[#708499] text-[10px] font-semibold px-2.5 py-1 rounded-full">

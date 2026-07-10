@@ -419,7 +419,7 @@ export function RegistrationButton({
                       required
                       type="checkbox"
                       checked={termsAccepted}
-                      className="mt-1 h-4 w-4 rounded border-white/10 bg-white/5 text-magenta accent-magenta focus:ring-magenta/20 cursor-pointer transition-colors duration-200"
+                      className="mt-1 h-4 w-4 shrink-0 rounded border-white/10 bg-white/5 text-magenta accent-magenta focus:ring-magenta/20 cursor-pointer transition-colors duration-200"
                       onChange={(event) => setTermsAccepted(event.target.checked)}
                     />
                     <span>
@@ -439,7 +439,7 @@ export function RegistrationButton({
                       required
                       type="checkbox"
                       checked={researchOptIn}
-                      className="mt-1 h-4 w-4 rounded border-white/10 bg-white/5 text-magenta accent-magenta focus:ring-magenta/20 cursor-pointer transition-colors duration-200"
+                      className="mt-1 h-4 w-4 shrink-0 rounded border-white/10 bg-white/5 text-magenta accent-magenta focus:ring-magenta/20 cursor-pointer transition-colors duration-200"
                       onChange={(event) => setResearchOptIn(event.target.checked)}
                     />
                     <span>{t("registration.researchOptIn")}</span>

@@ -7,6 +7,7 @@ import { BETA_MODE, BETA_BOT_URL } from "@/config/beta";
 import { useLanguage } from "@/lib/language-context";
 import { useCookieConsent } from "@/hooks/useCookieConsent";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 export function Footer({ theme = "light" }: { theme?: "light" | "dark" }) {
@@ -18,12 +19,18 @@ export function Footer({ theme = "light" }: { theme?: "light" | "dark" }) {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 mb-16">
           {/* Large wordmark */}
-          <h2 className={cn(
-            "text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight transition-colors duration-300",
-            theme === "dark" ? "text-white" : "text-[#111111]"
-          )}>
-            Gennety
-          </h2>
+          <div className="flex items-center">
+            <Image
+              src="/images/logo-wordmark.png"
+              alt="Gennety"
+              width={320}
+              height={80}
+              className={cn(
+                "h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300",
+                theme === "dark" ? "" : "brightness-0"
+              )}
+            />
+          </div>
 
           {/* App Store & Google Play Block */}
           <div className="flex flex-wrap items-center gap-4.5">

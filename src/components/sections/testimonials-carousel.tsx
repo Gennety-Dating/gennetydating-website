@@ -144,7 +144,7 @@ export function TestimonialsCarousel() {
 
     animationRef.current = requestAnimationFrame(animate);
 
-    // Pause on hover
+    // Pause on hover or touch
     const handleMouseEnter = () => {
       speedRef.current = 0;
     };
@@ -154,11 +154,15 @@ export function TestimonialsCarousel() {
 
     container.addEventListener("mouseenter", handleMouseEnter);
     container.addEventListener("mouseleave", handleMouseLeave);
+    container.addEventListener("touchstart", handleMouseEnter, { passive: true });
+    container.addEventListener("touchend", handleMouseLeave, { passive: true });
 
     return () => {
       cancelAnimationFrame(animationRef.current);
       container.removeEventListener("mouseenter", handleMouseEnter);
       container.removeEventListener("mouseleave", handleMouseLeave);
+      container.removeEventListener("touchstart", handleMouseEnter);
+      container.removeEventListener("touchend", handleMouseLeave);
     };
   }, []);
 
@@ -173,7 +177,7 @@ export function TestimonialsCarousel() {
 
       <div
         ref={scrollRef}
-        className="flex gap-8 pb-16 pt-4 pl-4 md:pl-10 overflow-x-hidden cursor-grab active:cursor-grabbing"
+        className="flex gap-8 pb-16 pt-4 pl-4 md:pl-10 overflow-x-auto md:overflow-x-hidden [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing"
         style={{ scrollbarWidth: "none" }}
       >
         {doubled.map((item, i) => {

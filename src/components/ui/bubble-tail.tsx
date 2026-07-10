@@ -15,13 +15,15 @@ interface BubbleTailProps {
   side: "left" | "right";
   className?: string;
   style?: React.CSSProperties;
+  width?: number;
+  height?: number;
 }
 
-export function BubbleTail({ side, className, style }: BubbleTailProps) {
+export function BubbleTail({ side, className, style, width = 16, height = 15 }: BubbleTailProps) {
   return (
     <svg
-      width="16"
-      height="15"
+      width={width}
+      height={height}
       viewBox="0 0 16 15"
       fill="none"
       aria-hidden="true"

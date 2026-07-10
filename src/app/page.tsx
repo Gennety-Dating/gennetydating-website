@@ -6,7 +6,6 @@ import { Matchmaker } from "@/components/sections/matchmaker";
 import { SlideshowBg } from "@/components/sections/slideshow-bg";
 import { Comparison } from "@/components/sections/comparison";
 import { TestimonialsCarousel } from "@/components/sections/testimonials-carousel";
-import { OurMission } from "@/components/sections/our-mission";
 import { FAQ } from "@/components/sections/faq";
 import { Marquee } from "@/components/sections/marquee";
 import { Footer } from "@/components/sections/footer";
@@ -82,7 +81,6 @@ export default function Home() {
         </svg>
 
         <div className="relative z-10">
-          <OurMission />
           <FAQ />
           <Marquee />
         </div>
