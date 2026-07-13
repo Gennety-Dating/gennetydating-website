@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useLanguage } from "@/lib/language-context";
 import { cn } from "@/lib/utils";
 import { BubbleTail } from "@/components/ui/bubble-tail";
@@ -31,11 +32,15 @@ export function Matchmaker() {
 
       {/* Прозрачный и безрамочный контейнер чата (Chat screen container) */}
       <div className="relative z-10 w-full max-w-[480px] mx-auto min-h-[380px] p-6 bg-transparent flex flex-col gap-4 justify-start">
-        {chatMessages.map((msg) => {
+        {chatMessages.map((msg, index) => {
           const isAgent = msg.sender === "agent";
           return (
-            <div
+            <motion.div
               key={msg.id}
+              initial={{ opacity: 0.25, filter: "brightness(0.5) blur(2px)", y: 20 }}
+              whileInView={{ opacity: 1, filter: "brightness(1) blur(0px)", y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: index * 0.25, ease: "easeOut" }}
               className={cn(
                 "relative w-fit max-w-[280px] sm:max-w-[300px] md:max-w-[320px] rounded-[20px] px-[18px] py-2.5 text-[14px] md:text-[15px] leading-relaxed text-left",
                 isAgent
@@ -55,7 +60,7 @@ export function Matchmaker() {
                     : { color: "#3a3a3c", right: "-7px", bottom: "0px" }
                 }
               />
-            </div>
+            </motion.div>
           );
         })}
       </div>
