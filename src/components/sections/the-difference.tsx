@@ -259,13 +259,13 @@ export function TheDifference() {
             </div>
 
             {/* Tinder Stack Container inside Retro Phone */}
-            <div className="relative w-full max-w-[320px] aspect-[571/1024] flex items-center justify-center select-none z-10">
+            <div className="relative w-full max-w-[380px] aspect-[571/1024] flex items-center justify-center select-none z-10">
               {/* Retro Phone Frame */}
               <Image
                 src="/images/retro-phone-new.png"
                 alt="Retro Phone Frame"
                 fill
-                sizes="320px"
+                sizes="380px"
                 className="pointer-events-none z-20 object-contain"
                 priority
               />
@@ -329,7 +329,7 @@ export function TheDifference() {
                               src={profile.image}
                               alt="Student profile"
                               fill
-                              sizes="220px"
+                              sizes="260px"
                               priority={isTop}
                               className="object-cover pointer-events-none brightness-[0.55] saturate-[0.45] contrast-[0.9] transition-all duration-300"
                             />
@@ -338,33 +338,33 @@ export function TheDifference() {
                           </div>
 
                           {/* Profile text info at bottom (compact layout) */}
-                          <div className="relative z-20 text-left space-y-1.5 select-none w-full px-2.5 pb-2.5 pt-6">
+                          <div className="relative z-20 text-left space-y-1.5 select-none w-full px-3 pb-3 pt-7">
                             {/* Details Stack */}
                             <div className="space-y-0.5 pointer-events-none">
                               {/* Name, Age, Verified badge */}
                               <div className="flex items-center gap-1 flex-wrap">
-                                <span className="font-sans font-extrabold text-sm text-white drop-shadow-[0_1.5px_3px_rgba(0,0,0,0.85)]">
+                                <span className="font-sans font-extrabold text-[15px] text-white drop-shadow-[0_1.5px_3px_rgba(0,0,0,0.85)]">
                                   {t(profile.nameKey)}
                                 </span>
-                                <span className="inline-flex items-center justify-center w-3 h-3 rounded-full bg-white text-black shadow-md flex-shrink-0">
-                                  <Check className="w-2 h-2 stroke-[4]" />
+                                <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-white text-black shadow-md flex-shrink-0">
+                                  <Check className="w-2.5 h-2.5 stroke-[4]" />
                                 </span>
                               </div>
 
                               {/* College and Distance */}
-                              <div className="flex flex-col gap-0.5 text-[8.5px] text-gray-300 font-semibold drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+                              <div className="flex flex-col gap-0.5 text-[10px] text-gray-300 font-semibold drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
                                 <div className="flex items-center gap-1 leading-none">
-                                  <GraduationCap className="w-2.5 h-2.5 text-gray-400 flex-shrink-0" />
+                                  <GraduationCap className="w-3 h-3 text-gray-400 flex-shrink-0" />
                                   <span className="truncate">{t(profile.collegeKey)}</span>
                                 </div>
                                 <div className="flex items-center gap-1 leading-none">
-                                  <MapPin className="w-2.5 h-2.5 text-gray-400 flex-shrink-0" />
+                                  <MapPin className="w-3 h-3 text-gray-400 flex-shrink-0" />
                                   <span>{t("difference.tinder.distance")}</span>
                                 </div>
                               </div>
 
                               {/* Bio description */}
-                              <p className="text-gray-200 text-[8.5px] font-medium leading-tight line-clamp-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+                              <p className="text-gray-200 text-[10px] font-medium leading-tight line-clamp-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
                                 {t(profile.bioKey)}
                               </p>
                             </div>
