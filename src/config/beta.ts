@@ -18,7 +18,7 @@
  *         bypassed.
  * false → production behaviour: the email→OTP RegistrationButton modal.
  */
-export const BETA_MODE = true;
+export const BETA_MODE = false;
 
 /**
  * Telegram bot the beta CTAs open. Defaults to the beta production bot
