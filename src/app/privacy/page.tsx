@@ -433,7 +433,7 @@ export default function PrivacyPage() {
         </div>
       </div>
       
-      <Footer />
+      <Footer theme="dark" />
     </main>
   );
 }

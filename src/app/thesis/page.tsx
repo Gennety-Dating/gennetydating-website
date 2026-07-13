@@ -89,7 +89,7 @@ export default function ThesisPage() {
         </div>
       </div>
 
-      <Footer />
+      <Footer theme="dark" />
     </main>
   );
 }

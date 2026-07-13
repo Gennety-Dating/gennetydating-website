@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { Playfair_Display } from "next/font/google";
 import { Caveat } from "next/font/google";
 import "./globals.css";
@@ -12,15 +12,20 @@ const geist = Geist({
   subsets: ["latin"],
 });
 
+const geistMono = Geist_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+});
+
 const playfair = Playfair_Display({
   variable: "--font-playfair",
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "600", "700"],
 });
 
 const caveat = Caveat({
   variable: "--font-caveat",
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "600", "700"],
 });
 
@@ -29,6 +34,14 @@ export const metadata: Metadata = {
   description:
     "Go on a date with your type. Gennety is an AI-driven dating service that curates personalized dates for college students — no swiping required.",
   keywords: ["dating", "AI dating", "college dating", "student dating", "Gennety"],
+  icons: {
+    icon: [
+      { url: "/images/butterfly-favicon.svg", type: "image/svg+xml" },
+      { url: "/images/butterfly-favicon.png", type: "image/png" },
+    ],
+    shortcut: "/images/butterfly-favicon.png",
+    apple: "/images/butterfly-favicon.png",
+  },
   openGraph: {
     title: "Gennety — AI-Powered Dating for Students",
     description:
@@ -45,7 +58,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${playfair.variable} ${caveat.variable} h-full antialiased`}
+      className={`${geist.variable} ${geistMono.variable} ${playfair.variable} ${caveat.variable} h-full antialiased`}
     >
       <body className="min-h-full">
         <LanguageProvider>

@@ -1,29 +1,31 @@
 "use client";
 
 import { Heading, ScriptHighlight } from "@/components/ui/typography";
-import { StarLogo } from "@/components/ui/star-logo";
+import { ButterflyLogo } from "@/components/ui/butterfly-logo";
 import { CountdownTimer } from "@/components/countdown-timer";
 import { RegistrationButton } from "@/components/registration-button";
 import { useLanguage } from "@/lib/language-context";
-
-
+// import { Butterflies } from "@/components/ui/butterflies";
 
 export function Hero() {
   const { t } = useLanguage();
 
   return (
     <section className="relative flex flex-col items-center justify-center min-h-screen pt-24 pb-16 px-4 text-center overflow-hidden">
-      {/* Star logo */}
-      <StarLogo />
+      {/* Fluttering butterflies animation */}
+      {/* <Butterflies /> */}
+
+      {/* Butterfly logo */}
+      <ButterflyLogo className="mb-6 md:mb-8" />
 
       {/* Headline */}
-      <Heading as="h1" className="max-w-3xl">
+      <Heading as="h1" className="max-w-3xl text-heading-white">
         {t("hero.headline")}{" "}
         <ScriptHighlight className="text-6xl md:text-8xl lg:text-9xl">
           {t("hero.highlight")}
         </ScriptHighlight>
       </Heading>
-
+ 
       {/* Polaroid photo */}
       <div className="relative mt-8 mb-6 flex justify-center z-10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -33,10 +35,10 @@ export function Hero() {
           className="max-w-[110px] sm:max-w-[125px] md:max-w-[147px] w-full h-auto drop-shadow-xl transition-transform hover:scale-[1.02] -rotate-2 pointer-events-none"
         />
       </div>
-
+ 
       {/* Countdown timer */}
       <CountdownTimer />
-
+ 
       {/* CTA button & Sticker */}
       <div className="relative mt-8 inline-block">
         <RegistrationButton
@@ -53,12 +55,12 @@ export function Hero() {
           />
           {t("hero.cta")}
         </RegistrationButton>
-
+ 
         {/* Postage stamp sticker */}
-        <div className="absolute -top-1 -right-6 sm:-top-2 sm:-right-8 z-20 rotate-[15deg] flex items-center justify-center w-[104px] h-[24px] drop-shadow-[0_0_8px_rgba(255,0,255,0.6)] select-none pointer-events-none">
+        <div className="absolute -top-1 -right-6 sm:-top-2 sm:-right-8 z-20 rotate-[15deg] flex items-center justify-center w-[104px] h-[24px] drop-shadow-[0_0_8px_rgba(139,37,59,0.6)] select-none pointer-events-none">
           {/* Perforated background */}
           <div 
-            className="absolute inset-0 bg-[#FF00FF]"
+            className="absolute inset-0 bg-white"
             style={{
               maskImage: `radial-gradient(circle, transparent 2px, black 2.5px)`,
               maskSize: `8px 8px`,
@@ -69,16 +71,16 @@ export function Hero() {
             }}
           />
           {/* Solid core to hide internal perforations */}
-          <div className="absolute inset-[2px] bg-[#FF00FF]" />
-
-          <span className="relative z-10 block text-white text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-center translate-y-[0.5px]">
-            No dick pics
+          <div className="absolute inset-[2px] bg-white" />
+ 
+          <span className="relative z-10 block text-[#8B253B] text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-center translate-y-[0.5px]">
+            No Dick pics
           </span>
         </div>
       </div>
-
+ 
       {/* Disclaimer */}
-      <p className="mt-4 text-xs text-gray-400">
+      <p className="mt-4 text-xs text-gray-500">
         {t("hero.disclaimer")}{" "}
         <a href="#" className="underline hover:text-white transition-colors">
           {t("hero.terms")}
