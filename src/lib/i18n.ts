@@ -38,7 +38,7 @@ export const translations = {
     "nav.join": "Join Now",
 
     // Hero
-    "hero.headline": "go on a date with",
+    "hero.headline": "Date",
     "hero.highlight": "your type",
     "hero.cta": "Message Gennety to Join",
     "hero.disclaimer": "By continuing, you agree to our",

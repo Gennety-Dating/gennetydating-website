@@ -8,7 +8,7 @@ import { useLanguage } from "@/lib/language-context";
 // import { Butterflies } from "@/components/ui/butterflies";
 
 export function Hero() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   return (
     <section className="relative flex flex-col items-center justify-center min-h-screen pt-24 pb-16 px-4 text-center overflow-hidden">
@@ -20,10 +20,20 @@ export function Hero() {
 
       {/* Headline */}
       <Heading as="h1" className="max-w-3xl text-heading-white">
-        {t("hero.headline")}{" "}
-        <ScriptHighlight className="text-6xl md:text-8xl lg:text-9xl">
-          {t("hero.highlight")}
-        </ScriptHighlight>
+        <span className="block mb-2 md:mb-4">
+          {locale === "en" ? (
+            <span className="text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter">
+              {t("hero.headline")}
+            </span>
+          ) : (
+            t("hero.headline")
+          )}
+        </span>
+        <span className="block">
+          <ScriptHighlight className="text-6xl md:text-8xl lg:text-9xl">
+            {t("hero.highlight")}
+          </ScriptHighlight>
+        </span>
       </Heading>
  
       {/* Polaroid photo */}
