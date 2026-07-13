@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -11,6 +12,18 @@ import { cn } from "@/lib/utils";
 export function Navbar() {
   const { t } = useLanguage();
   const pathname = usePathname();
+  
+  useEffect(() => {
+    if (pathname === "/") {
+      document.documentElement.style.backgroundColor = "#1A1A1A";
+    } else {
+      document.documentElement.style.backgroundColor = "";
+    }
+    return () => {
+      document.documentElement.style.backgroundColor = "";
+    };
+  }, [pathname]);
+
   const isScrolledPastLight = true;
   const isThesisPage = pathname === "/thesis";
   const isPlacesPage = pathname === "/places";
