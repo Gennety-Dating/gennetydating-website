@@ -17,6 +17,9 @@ const backTexts = {
   ru: "Назад на главную",
   de: "Zurück zur Startseite",
   pl: "Powrót do strony głównej",
+  fr: "Retour à l'accueil",
+  it: "Torna alla Home",
+  es: "Volver al inicio",
 };
 
 const cityNames = {
@@ -25,6 +28,9 @@ const cityNames = {
   ru: { kyiv: "Киев", warsaw: "Варшава" },
   de: { kyiv: "Kiew", warsaw: "Warschau" },
   pl: { kyiv: "Kijów", warsaw: "Warszawa" },
+  fr: { kyiv: "Kyiv", warsaw: "Varsovie" },
+  it: { kyiv: "Kyiv", warsaw: "Varsavia" },
+  es: { kyiv: "Kyiv", warsaw: "Varsovia" },
 };
 
 const mapsButtonTexts = {
@@ -33,6 +39,9 @@ const mapsButtonTexts = {
   ru: "Открыть на карте",
   de: "In Maps öffnen",
   pl: "Otwórz w Mapach",
+  fr: "Ouvrir dans Maps",
+  it: "Apri in Maps",
+  es: "Abrir en Maps",
 };
 
 export default function PlacesPage() {

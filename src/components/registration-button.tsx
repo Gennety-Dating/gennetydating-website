@@ -42,6 +42,9 @@ const languageOptions: Array<{ value: RegistrationLanguage; label: string }> = [
   { value: "ru", label: "Русский" },
   { value: "de", label: "Deutsch" },
   { value: "pl", label: "Polski" },
+  { value: "fr", label: "Français" },
+  { value: "it", label: "Italiano" },
+  { value: "es", label: "Español" },
 ];
 
 function registrationLanguageFromLocale(locale: Locale): RegistrationLanguage {

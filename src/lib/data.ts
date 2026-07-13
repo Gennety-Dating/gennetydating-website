@@ -6,6 +6,7 @@ import { type Locale } from "./i18n";
 
 export const TELEGRAM_BOT_URL = "https://t.me/GennetyBot";
 export const TWITTER_URL = "https://x.com/gennety_ai?s=20";
+export const INSTAGRAM_URL = "https://www.instagram.com/gennety.ai/";
 export const CONTACT_EMAIL = "dating@gennety.com";
 
 // --- How It Works Steps ---
@@ -190,9 +191,9 @@ export interface DatePlace {
   id: string;
   city: "warsaw" | "kyiv";
   type: "cafe" | "restaurant" | "park" | "museum";
-  vibe: Record<Locale, string>;
-  name: Record<Locale, string>;
-  description: Record<Locale, string>;
+  vibe: Record<Exclude<Locale, "fr" | "it" | "es">, string> & { fr?: string; it?: string; es?: string };
+  name: Record<Exclude<Locale, "fr" | "it" | "es">, string> & { fr?: string; it?: string; es?: string };
+  description: Record<Exclude<Locale, "fr" | "it" | "es">, string> & { fr?: string; it?: string; es?: string };
   images: string[];
   mapsUrl: string;
   likes: number;
@@ -231,6 +232,37 @@ export const datePlaces: DatePlace[] = [
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Milk+Bar+Shota+Rustaveli+Kyiv",
     likes: 76
+  },
+  {
+    id: "kyiv-mimosa",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Cozy Pizza Place",
+      uk: "Затишна піцерія",
+      ru: "Уютная пиццерия",
+      de: "Gemütliche Pizzeria",
+      pl: "Przytulna pizzeria"
+    },
+    name: {
+      en: "Mimosa Brooklyn Pizza",
+      uk: "Mimosa Brooklyn Pizza",
+      ru: "Mimosa Brooklyn Pizza",
+      de: "Mimosa Brooklyn Pizza",
+      pl: "Mimosa Brooklyn Pizza"
+    },
+    description: {
+      en: "A legendary pizzeria near Bessarabska Square. Famous for Brooklyn-style pizza, cozy candlelight in the evening, and a vibrant, friendly atmosphere perfect for a date.",
+      uk: "Легендарна піцерія біля Бессарабської площі. Відома бруклінською піцою, затишним вечірнім світлом свічок та жвавою атмосферою для першого побачення.",
+      ru: "Легендарная пиццерия возле Бессарабской площади. Известна бруклинской пиццей, уютным вечерним светом свечей и оживленной атмосферой для первого свидания.",
+      de: "Eine legendäre Pizzeria in der Nähe des Bessarabska-Platzes. Bekannt für Brooklyn-Style-Pizza, gemütliches Kerzenlicht am Abend und eine lebendige Atmosphäre.",
+      pl: "Legendarna pizzeria w pobliżu Placu Bessarabskiego. Słynie z pizzy w stylu brooklyńskim, przytulnego światła świec wieczorem i tętniącej życiem atmosfery."
+    },
+    images: [
+      "/images/places/kyiv_mimosa_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Mimosa+Brooklyn+Pizza+Kyiv",
+    likes: 78
   },
   {
     id: "kyiv-volodymyr-hill",
@@ -512,6 +544,37 @@ export const datePlaces: DatePlace[] = [
     likes: 62
   },
   {
+    id: "kyiv-kitsunya",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Asian Bistro",
+      uk: "Азійське бістро",
+      ru: "Азиатское бистро",
+      de: "Asiatisches Bistro",
+      pl: "Azjatyckie bistro"
+    },
+    name: {
+      en: "Kitsunya",
+      uk: "Кицуня",
+      ru: "Кицуня",
+      de: "Kitsunya",
+      pl: "Kitsunya"
+    },
+    description: {
+      en: "A trendy Asian bistro near Zoloti Vorota. Famous for its authentic ramen, fluffy bao buns, and a cozy, modern design with neon accents that makes it a perfect date spot.",
+      uk: "Трендове азійське бістро біля Золотих воріт. Відоме смачним раменом, пухкими бао та затишним сучасним інтер'єром з неоновими акцентами для побачень.",
+      ru: "Трендовое азиатское бистро возле Золотых ворот. Известно вкусным раменом, пышными бао и уютным современным интерьером с неоновыми акцентами для свиданий.",
+      de: "Ein trendiges asiatisches Bistro in der Nähe von Zoloti Vorota. Bekannt für exzellente Ramen, fluffige Bao-Brötchen und ein gemütliches Interieur mit Neon-Akzenten.",
+      pl: "Modne azjatyckie bistro w pobliżu Złotej Bramy. Słynie z doskonałego ramenu, puszystych bułeczek bao i przytulnego wnętrza z neonowymi akcentami."
+    },
+    images: [
+      "/images/places/kyiv_kitsunya_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Kitsunya+Bistro+Velyka+Zhytomyrska+Kyiv",
+    likes: 56
+  },
+  {
     id: "kyiv-china-hi",
     city: "kyiv",
     type: "restaurant",
@@ -758,6 +821,37 @@ export const datePlaces: DatePlace[] = [
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Hryshko+National+Botanical+Garden+Kyiv",
     likes: 47
+  },
+  {
+    id: "kyiv-unit-cafe",
+    city: "kyiv",
+    type: "cafe",
+    vibe: {
+      en: "Innovative Hub",
+      uk: "Інноваційний хаб",
+      ru: "Инновационный хаб",
+      de: "Innovativer Hub",
+      pl: "Innowacyjny hub"
+    },
+    name: {
+      en: "UNIT.Cafe",
+      uk: "UNIT.Cafe",
+      ru: "UNIT.Cafe",
+      de: "UNIT.Cafe",
+      pl: "UNIT.Cafe"
+    },
+    description: {
+      en: "A modern, architecturally unique cafe located in the UNIT.City innovation park. It's a key meeting spot for tech enthusiasts, students, and startups, offering great food and a productive, forward-thinking vibe.",
+      uk: "Сучасне кафе з унікальною архітектурою на території інноваційного парку UNIT.City. Головне місце зустрічей для IT-спільноти, студентів та стартаперів із чудовою кухнею та продуктивною атмосферою.",
+      ru: "Современное кафе с уникальной архитектурой на территории инновационного парка UNIT.City. Главное место встреч для IT-сообщества, студентов и стартаперов с отличной кухней и продуктивной атмосферой.",
+      de: "Ein modernes, architektonisch einzigartiges Café im Innovationspark UNIT.City. Ein wichtiger Treffpunkt für Tech-Enthusiasten, Studenten und Startups mit einer produktiven Atmosphäre.",
+      pl: "Nowoczesna, architektonicznie wyjątkowa kawiarnia położona w parku innowacji UNIT.City. Kluczowe miejsce spotkań dla entuzjastów technologii, studentów i startupów."
+    },
+    images: [
+      "/images/places/kyiv_unit_cafe_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=UNIT.Cafe+Kyiv",
+    likes: 46
   },
   {
     id: "kyiv-foodmarket",
@@ -1131,6 +1225,68 @@ export const datePlaces: DatePlace[] = [
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Spelta+Kyiv+Yaroslavska",
     likes: 42
   },
+  {
+    id: "kyiv-bonco",
+    city: "kyiv",
+    type: "cafe",
+    vibe: {
+      en: "Pastry Shop & Cafe",
+      uk: "Кав’ярня-кондитерська",
+      ru: "Кофейня-кондитерская",
+      de: "Café & Konditorei",
+      pl: "Kawiarnia-cukiernia"
+    },
+    name: {
+      en: "Bonco",
+      uk: "Bonco",
+      ru: "Bonco",
+      de: "Bonco",
+      pl: "Bonco"
+    },
+    description: {
+      en: "A beautiful, intimate pastry shop near Lvivska Square. Famed for its exceptional croissants, artful tarts, and delicious signature drinks.",
+      uk: "Красива затишна кав’ярня-кондитерська біля Львівської площі. Відома винятковими круасанами, авторськими тартами та кавовими напоями.",
+      ru: "Красивая уютная кофейня-кондитерская возле Львовской площади. Известна исключительными круассанами, авторскими тартами и кофейными напитками.",
+      de: "Ein wunderschönes, gemütliches Café in der Nähe des Lwiwska-Platzes. Bekannt für hervorragende Croissants, kunstvolle Törtchen und erstklassige Getränke.",
+      pl: "Piękna, kameralna kawiarnia-cukiernia w pobliżu Placu Lwowskiego. Słynie z wyjątkowych rogalików, artystycznych tart i wyśmienitych napojów."
+    },
+    images: [
+      "/images/places/kyiv_bonco_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bonco+Kyiv+Velyka+Zhytomyrska",
+    likes: 54
+  },
+  {
+    id: "kyiv-italianska-redaktsiia",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Modern Italian",
+      uk: "Італійська Редакція",
+      ru: "Итальянская Редакция",
+      de: "Modernes Italienisch",
+      pl: "Nowoczesna włoska"
+    },
+    name: {
+      en: "Italianska Redaktsiia",
+      uk: "Італійська Редакція",
+      ru: "Итальянская Редакция",
+      de: "Italianska Redaktsiia",
+      pl: "Italianska Redaktsiia"
+    },
+    description: {
+      en: "A highly popular and stylish restaurant offering a creative edit on traditional Italian cuisine. Known for sourdough pizzas, craft cocktails, and stunning eclectic interiors.",
+      uk: "Надзвичайно популярний і стильний ресторан сучасної італійської кухні. Відомий піцою на заквасці, крафтовими коктейлями та яскравим еклектичним інтер'єром.",
+      ru: "Очень популярный и стильный ресторан современной итальянской кухни. Известен пиццей на закваске, крафтовыми коктейлями и ярким эклектичным интерьером.",
+      de: "Ein äußerst beliebtes und stilvolles Restaurant mit einer kreativen Interpretation traditioneller italienischer Gerichte. Bekannt für Sauerteigpizza.",
+      pl: "Bardzo popularna i stylowa restauracja oferująca autorskie interpretacje dań kuchni włoskiej. Słynie z pizzy na zakwasie i eklektycznego wnętrza."
+    },
+    images: [
+      "/images/places/kyiv_italianska_redaktsiia_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Italianska+Redaktsiia+Kyiv",
+    likes: 68
+  },
 
   // Warsaw Places
   {
@@ -1260,5 +1416,191 @@ export const datePlaces: DatePlace[] = [
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Copernicus+Science+Centre+Warsaw",
     likes: 65
+  },
+  {
+    id: "warsaw-baken",
+    city: "warsaw",
+    type: "cafe",
+    vibe: {
+      en: "Artisanal Bakery & Bistro",
+      uk: "Реміснича пекарня та бістро",
+      ru: "Ремесленная пекарня и бистро",
+      de: "Handwerkliche Bäckerei & Bistro",
+      pl: "Piekarnia rzemieślnicza i bistro"
+    },
+    name: {
+      en: "BAKEN",
+      uk: "BAKEN",
+      ru: "BAKEN",
+      de: "BAKEN",
+      pl: "BAKEN"
+    },
+    description: {
+      en: "A trendy bakery and bistro offering outstanding sourdough bread, Copenhagen-style breakfasts by day, and cozy plates with natural wine by night.",
+      uk: "Трендова пекарня та бістро, що пропонує видатний хліб на заквасці, сніданки в стилі Копенгагена вдень та затишні тарілки з натуральним вином увечері.",
+      ru: "Трендовая пекарня и бистро, предлагающее выдающийся хлеб на закваске, завтраки в копенгагенском стиле днем и уютные тарелки с натуральным вином вечером.",
+      de: "Eine trendige Bäckerei und Bistro mit hervorragendem Sauerteigbrot, Kopenhagen-Frühstück tagsüber und gemütlichen Platten mit Naturwein abends.",
+      pl: "Modna piekarnia i bistro oferująca wybitny chleb na zakwasie, śniadania w stylu kopenhaskim w ciągu dnia i przytulne talerzyki z winem naturalnym wieczorem."
+    },
+    images: [
+      "/images/places/warsaw_baken_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=BAKEN+Krochmalna+Warsaw",
+    likes: 74
+  },
+  {
+    id: "warsaw-bibenda",
+    city: "warsaw",
+    type: "restaurant",
+    vibe: {
+      en: "Cozy Hipster Bistro",
+      uk: "Затишне хіпстерське бістро",
+      ru: "Уютное хипстерское бистро",
+      de: "Gemütliches Hipster-Bistro",
+      pl: "Przytulne hipsterskie bistro"
+    },
+    name: {
+      en: "Bibenda",
+      uk: "Bibenda",
+      ru: "Bibenda",
+      de: "Bibenda",
+      pl: "Bibenda"
+    },
+    description: {
+      en: "A beloved local spot featuring seasonal, ingredient-driven shared plates, natural wines, and a buzzing, warm industrial atmosphere on Nowogrodzka.",
+      uk: "Улюблене місце місцевих із сезонними тарілками «на шеринг», натуральними винами та жвавою, теплою індустріальною атмосферою на Nowogrodzka.",
+      ru: "Любимое место местных с сезонными тарелками «на шеринг», натуральными винами и оживленной, теплой индустриальной атмосферой на Nowogrodzka.",
+      de: "Ein beliebter Ort mit saisonalen Platten zum Teilen, Naturweinen und einer lebhaften, warmen Industrie-Atmosphäre auf der Nowogrodzka.",
+      pl: "Uwielbiane przez lokalnych mieszkańców miejsce serwujące sezonowe talerzyki do dzielenia się, wina naturalne i tętniące życiem, ciepłe, industrialne wnętrze na Nowogrodzkiej."
+    },
+    images: [
+      "/images/places/warsaw_bibenda_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bibenda+Nowogrodzka+Warsaw",
+    likes: 79
+  },
+  {
+    id: "warsaw-muus",
+    city: "warsaw",
+    type: "cafe",
+    vibe: {
+      en: "Aesthetic Pastry Shop",
+      uk: "Естетична кондитерська",
+      ru: "Эстетичная кондитерская",
+      de: "Ästhetische Konditorei",
+      pl: "Estetyczna cukiernia"
+    },
+    name: {
+      en: "MUUS",
+      uk: "MUUS",
+      ru: "MUUS",
+      de: "MUUS",
+      pl: "MUUS"
+    },
+    description: {
+      en: "A gorgeous, Instagram-worthy pastry shop with a beautiful pastel interior, exceptional tarts, and delicious specialty coffee.",
+      uk: "Прекрасна кондитерська з ніжним пастельним інтер'єром, винятковими тартами та чудовою спешелті-кавою. Ідеальне місце для солодкого побачення.",
+      ru: "Прекрасная кондитерская с нежным пастельным интерьером, исключительными тартами и отличным спешелти-кофе. Идеально для сладкого свидания.",
+      de: "Eine wunderschöne Konditorei mit hübschem Pastell-Interieur, außergewöhnlichen Törtchen und köstlichem Kaffeespezialitäten.",
+      pl: "Piękna cukiernia o pastelowym wnętrzu, słynąca z wyjątkowych tartaletek i doskonałej kawy specialty. Idealna na słodką randkę."
+    },
+    images: [
+      "/images/places/warsaw_muus_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=MUUS+Tamka+Warsaw",
+    likes: 71
+  },
+  {
+    id: "warsaw-bulke-przez-bibulke",
+    city: "warsaw",
+    type: "cafe",
+    vibe: {
+      en: "All-Day Breakfast Cafe",
+      uk: "Завтраки весь день",
+      ru: "Завтраки весь день",
+      de: "Frühstück den ganzen Tag",
+      pl: "Śniadania przez cały день"
+    },
+    name: {
+      en: "Bułkę przez Bibułkę",
+      uk: "Bułkę przez Bibułkę",
+      ru: "Bułkę przez Bibułkę",
+      de: "Bułkę przez Bibułkę",
+      pl: "Bułkę przez Bibułkę"
+    },
+    description: {
+      en: "A bright and friendly cafe famous for all-day breakfasts, delicious bagels, pancakes, and highly affordable prosecco in a lively setting.",
+      uk: "Світле та дружнє кафе, відоме сніданками цілий день, смачними бейглами, панкейками та недорогим просекко в жвавій атмосфері.",
+      ru: "Светлое и дружелюбное кафе, известное завтраками весь день, вкусными бейглами, панкейками и недорогим просекко в оживленной атмосфере.",
+      de: "Ein helles und freundliches Café, bekannt für Frühstück den ganzen Tag, leckere Bagels, Pfannkuchen und erschwinglichen Prosecco.",
+      pl: "Jasna i przyjazna kawiarnia słynąca ze śniadań serwowanych przez cały dzień, pysznych bajgli, naleśników i niedrogiego prosecco."
+    },
+    images: [
+      "/images/places/warsaw_bulke_przez_bibulke_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bulke+przez+Bibulke+Zurawia+Warsaw",
+    likes: 76
+  },
+  {
+    id: "warsaw-coffeedesk",
+    city: "warsaw",
+    type: "cafe",
+    vibe: {
+      en: "Specialty Coffee Hub",
+      uk: "Хаб спешелті кави",
+      ru: "Хаб спешелти кофе",
+      de: "Spezialitätenkaffee-Hub",
+      pl: "Kawiarnia specialty"
+    },
+    name: {
+      en: "Coffeedesk",
+      uk: "Coffeedesk",
+      ru: "Coffeedesk",
+      de: "Coffeedesk",
+      pl: "Coffeedesk"
+    },
+    description: {
+      en: "A modern, work-friendly and date-friendly specialty coffee shop with a clean minimalist design, premium beans, and friendly baristas.",
+      uk: "Сучасна кав'ярня третьої хвилі з мінімалістичним дизайном, великим вибором зерна та затишною атмосферою для теплих розмов.",
+      ru: "Современная кофейня третьей волны с минималистичным дизайном, огромным выбором зерна и уютной атмосферой для теплых разговоров.",
+      de: "Ein modernes, arbeits- und datefreundliches Spezialitäten-Café mit minimalistischem Design, Premium-Bohnen und freundlicher Atmosphäre.",
+      pl: "Nowoczesna kawiarnia specialty o minimalistycznym designie, ogromnym wyborze kaw oraz bardzo przyjaznej i swobodnej atmosferze."
+    },
+    images: [
+      "/images/places/warsaw_coffeedesk_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Coffeedesk+Wilcza+Warsaw",
+    likes: 72
+  },
+  {
+    id: "warsaw-deseo",
+    city: "warsaw",
+    type: "cafe",
+    vibe: {
+      en: "Premium Dessert Boutique",
+      uk: "Бутик преміум десертів",
+      ru: "Бутик премиум десертов",
+      de: "Premium Dessert Boutique",
+      pl: "Ekskluzywna cukiernia"
+    },
+    name: {
+      en: "DESEO",
+      uk: "DESEO",
+      ru: "DESEO",
+      de: "DESEO",
+      pl: "DESEO"
+    },
+    description: {
+      en: "A high-end dessert boutique offering visually stunning, glaze-coated modern pastries and premium craft chocolates that look like actual art.",
+      uk: "Преміальний бутик десертів, що пропонує візуально вражаючі сучасні тістечка з глянцевою глазур'ю та крафтовий шоколад.",
+      ru: "Премиальный бутик десертов, предлагающий визуально потрясающие современные пирожные с глянцевой глазурью и крафтовый шоколад.",
+      de: "Eine exklusive Dessert-Boutique mit visuell beeindruckenden modernen Törtchen und erstklassiger handwerklicher Schokolade.",
+      pl: "Ekskluzywna cukiernia oferująca spektakularne wizualnie, nowoczesne desery z błyszczącą polewą oraz rzemieślnicze czekolady."
+    },
+    images: [
+      "/images/places/warsaw_deseo_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=DESEO+Patisserie+Chocolaterie+Warsaw",
+    likes: 73
   }
 ];

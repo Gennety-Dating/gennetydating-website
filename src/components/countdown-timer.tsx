@@ -11,6 +11,9 @@ const dateLocales: Record<Locale, string> = {
   ru: "ru-RU",
   de: "de-DE",
   pl: "pl-PL",
+  fr: "fr-FR",
+  it: "it-IT",
+  es: "es-ES",
 };
 
 function getNextThursdayKyiv(): Date {

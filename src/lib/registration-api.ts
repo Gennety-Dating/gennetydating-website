@@ -1,4 +1,4 @@
-export type RegistrationLanguage = "en" | "ru" | "uk" | "de" | "pl";
+export type RegistrationLanguage = "en" | "ru" | "uk" | "de" | "pl" | "fr" | "it" | "es";
 export type RegistrationPurpose = "join" | "login";
 
 const API_BASE_URL = (

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Heading, Highlight } from "@/components/ui/typography";
+import { Heading } from "@/components/ui/typography";
 import { useLanguage } from "@/lib/language-context";
 import type { TranslationKeys } from "@/lib/i18n";
 
@@ -14,7 +14,7 @@ export function HowItWorks() {
   return (
     <section className="py-[120px] px-4 md:px-10 relative overflow-hidden">
       <Heading as="h2" className="text-center mb-24 tracking-tight text-heading-white">
-        {t("howItWorks.title")} <Highlight>{t("howItWorks.highlight")}</Highlight>
+        {t("howItWorks.title")} {t("howItWorks.highlight")}
       </Heading>
 
       {/* Пространственная безрамочная сцена: Вертикальный лестничный (Staggered Layout) поток */}

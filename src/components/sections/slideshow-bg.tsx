@@ -10,7 +10,6 @@ const backgroundImages = [
   "/images/matchmaker-bg-4.jpg",
   "/images/matchmaker-bg-8.jpg",
   "/images/matchmaker-bg-10.jpg",
-  "/images/matchmaker-bg-11.jpg",
   "/images/matchmaker-bg-12.jpg",
   "/images/matchmaker-bg-14.jpg",
   "/images/matchmaker-bg-15.jpg",
