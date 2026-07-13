@@ -32,7 +32,7 @@ export function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 w-full z-40 flex items-center justify-between px-4 md:px-10 py-3 md:py-4 bg-transparent transition-all duration-300",
+        "fixed top-0 w-full z-40 flex items-center justify-between px-4 md:px-10 pt-[calc(env(safe-area-inset-top)+12px)] pb-3 md:pt-[calc(env(safe-area-inset-top)+16px)] md:pb-4 bg-transparent transition-all duration-300",
         isScrolledPastLight ? "text-white" : "text-[#111111]"
       )}
     >

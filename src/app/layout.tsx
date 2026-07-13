@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Playfair_Display } from "next/font/google";
 import { Caveat } from "next/font/google";
@@ -28,6 +28,13 @@ const caveat = Caveat({
   subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "600", "700"],
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#1A1A1A",
+};
 
 export const metadata: Metadata = {
   title: "Gennety — AI-Powered Dating for Students",
