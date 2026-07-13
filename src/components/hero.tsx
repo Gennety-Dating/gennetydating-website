@@ -20,7 +20,7 @@ export function Hero() {
 
       {/* Headline */}
       <Heading as="h1" className="max-w-3xl text-heading-white">
-        <span className="block mb-2 md:mb-4">
+        <span className="block mb-0">
           {locale === "en" ? (
             <span className="text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter">
               {t("hero.headline")}
@@ -29,7 +29,7 @@ export function Hero() {
             t("hero.headline")
           )}
         </span>
-        <span className="block">
+        <span className="block -mt-2 md:-mt-4 lg:-mt-6">
           <ScriptHighlight className="text-6xl md:text-8xl lg:text-9xl">
             {t("hero.highlight")}
           </ScriptHighlight>
