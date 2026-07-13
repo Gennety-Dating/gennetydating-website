@@ -259,7 +259,7 @@ export const datePlaces: DatePlace[] = [
       pl: "Legendarna pizzeria w pobliżu Placu Bessarabskiego. Słynie z pizzy w stylu brooklyńskim, przytulnego światła świec wieczorem i tętniącej życiem atmosfery."
     },
     images: [
-      "/images/places/kyiv_mimosa_1.jpg"
+      "/images/places/kyiv_mimosa_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Mimosa+Brooklyn+Pizza+Kyiv",
     likes: 78
@@ -293,7 +293,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_volodymyr_hill_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Volodymyr+Hill+Kyiv",
-    likes: 73
+    likes: 62
   },
   {
     id: "kyiv-idealist",
@@ -386,7 +386,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_zavertailo_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Zavertailo+Kyiv",
-    likes: 68
+    likes: 71
   },
   {
     id: "kyiv-lviv-croissants",
@@ -445,7 +445,7 @@ export const datePlaces: DatePlace[] = [
       pl: "Spektakularne wizualnie studio deserowe oferujące kolorowe, artystyczne ciasta i kawę premium. Absolutny faworyt dla par lubiących estetyczne zdjęcia."
     },
     images: [
-      "/images/places/kyiv_ministerstvo_desertiv_1.jpg"
+      "/images/places/kyiv_ministerstvo_desertiv_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Ministerstvo+Desertiv+Kyiv",
     likes: 65
@@ -541,7 +541,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_zigzag_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Zigzag+Kyiv",
-    likes: 62
+    likes: 69
   },
   {
     id: "kyiv-kitsunya",
@@ -603,7 +603,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_china_hi_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Chinese+Hi+Kyiv",
-    likes: 60
+    likes: 73
   },
   {
     id: "kyiv-goodgirl",
@@ -727,7 +727,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_sens_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Sens+Bookstore+Kyiv",
-    likes: 53
+    likes: 75
   },
   {
     id: "kyiv-coffee-records",
@@ -789,7 +789,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_remi_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Remi+Cafe+Kyiv",
-    likes: 48
+    likes: 77
   },
   {
     id: "kyiv-hryshko-botanic",
@@ -817,41 +817,10 @@ export const datePlaces: DatePlace[] = [
       pl: "Ogromna zielona oaza w sercu Kijowa, znana ze wzgórz, ukrytych klasztorów i panoramicznych widoków."
     },
     images: [
-      "/images/places/kyiv_hryshko_botanic_1.jpg"
+      "/images/places/kyiv_hryshko_botanic_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Hryshko+National+Botanical+Garden+Kyiv",
     likes: 47
-  },
-  {
-    id: "kyiv-unit-cafe",
-    city: "kyiv",
-    type: "cafe",
-    vibe: {
-      en: "Innovative Hub",
-      uk: "Інноваційний хаб",
-      ru: "Инновационный хаб",
-      de: "Innovativer Hub",
-      pl: "Innowacyjny hub"
-    },
-    name: {
-      en: "UNIT.Cafe",
-      uk: "UNIT.Cafe",
-      ru: "UNIT.Cafe",
-      de: "UNIT.Cafe",
-      pl: "UNIT.Cafe"
-    },
-    description: {
-      en: "A modern, architecturally unique cafe located in the UNIT.City innovation park. It's a key meeting spot for tech enthusiasts, students, and startups, offering great food and a productive, forward-thinking vibe.",
-      uk: "Сучасне кафе з унікальною архітектурою на території інноваційного парку UNIT.City. Головне місце зустрічей для IT-спільноти, студентів та стартаперів із чудовою кухнею та продуктивною атмосферою.",
-      ru: "Современное кафе с уникальной архитектурой на территории инновационного парка UNIT.City. Главное место встреч для IT-сообщества, студентов и стартаперов с отличной кухней и продуктивной атмосферой.",
-      de: "Ein modernes, architektonisch einzigartiges Café im Innovationspark UNIT.City. Ein wichtiger Treffpunkt für Tech-Enthusiasten, Studenten und Startups mit einer produktiven Atmosphäre.",
-      pl: "Nowoczesna, architektonicznie wyjątkowa kawiarnia położona w parku innowacji UNIT.City. Kluczowe miejsce spotkań dla entuzjastów technologii, studentów i startupów."
-    },
-    images: [
-      "/images/places/kyiv_unit_cafe_1.jpg"
-    ],
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=UNIT.Cafe+Kyiv",
-    likes: 46
   },
   {
     id: "kyiv-foodmarket",
@@ -882,7 +851,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_foodmarket_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Kyiv+Food+Market+Kyiv",
-    likes: 45
+    likes: 92
   },
   {
     id: "kyiv-boutique-sofie",
@@ -941,7 +910,7 @@ export const datePlaces: DatePlace[] = [
       pl: "Lubiana piekarnia słynąca z przyjaznej obsługi, świeżych wypieków i puszystych rogalików. Świetne miejsce на randkę."
     },
     images: [
-      "/images/places/kyiv_franyk_1.jpg"
+      "/images/places/kyiv_franyk_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Franyk+Kyiv",
     likes: 38
@@ -975,7 +944,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_loved_uncle_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Lyubimyy+Dyadya+Kyiv",
-    likes: 35
+    likes: 66
   },
   {
     id: "kyiv-shevchenko-park",
@@ -1003,7 +972,7 @@ export const datePlaces: DatePlace[] = [
       pl: "Tętniący życiem park w centrum, łączący zabytkowy Czerwony Uniwersytet z graczami w szachy i najlepszą kawą na wynos."
     },
     images: [
-      "/images/places/kyiv_shevchenko_1.jpg"
+      "/images/places/kyiv_shevchenko_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Shevchenko+Park+Kyiv",
     likes: 33
@@ -1034,10 +1003,10 @@ export const datePlaces: DatePlace[] = [
       pl: "Modny sushibar w stylu kalifornijskim z jasnym, artystycznym wnętrzem, doskonałym sushi."
     },
     images: [
-      "/images/places/kyiv_fish_pussycat_1.jpg"
+      "/images/places/kyiv_fish_pussycat_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Fish+and+Pussycat+Sushi+Kyiv",
-    likes: 30
+    likes: 70
   },
   {
     id: "kyiv-thai-hi",
@@ -1068,7 +1037,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_thai_hi_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Thai+Hi+Kyiv",
-    likes: 25
+    likes: 71
   },
   {
     id: "kyiv-japanese-hi",
@@ -1099,7 +1068,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_japanese_hi_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Japanese+Hi+Kyiv",
-    likes: 18
+    likes: 84
   },
   {
     id: "kyiv-suit-13",
@@ -1130,7 +1099,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_suit_13_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Suit+13+Kyiv",
-    likes: 0
+    likes: 69
   },
   {
     id: "kyiv-vero-vero",
@@ -1161,7 +1130,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_vero_vero_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Vero+Vero+Kyiv",
-    likes: 0
+    likes: 70
   },
   {
     id: "kyiv-foodspot",
@@ -1192,7 +1161,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_foodspot_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Foodspot+Kyiv",
-    likes: 0
+    likes: 83
   },
   {
     id: "kyiv-spelta",
@@ -1282,10 +1251,10 @@ export const datePlaces: DatePlace[] = [
       pl: "Bardzo popularna i stylowa restauracja oferująca autorskie interpretacje dań kuchni włoskiej. Słynie z pizzy na zakwasie i eklektycznego wnętrza."
     },
     images: [
-      "/images/places/kyiv_italianska_redaktsiia_1.jpg"
+      "/images/places/kyiv_italianska_redaktsiia_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Italianska+Redaktsiia+Kyiv",
-    likes: 68
+    likes: 77
   },
 
   // Warsaw Places
@@ -1315,7 +1284,7 @@ export const datePlaces: DatePlace[] = [
       pl: "Popularna francuska kawiarnia na Placu Zbawiciela, słynąca ze świeżo pieczonego chleba, pysznych wypieków i tętniącego życiem klimatu."
     },
     images: [
-      "/images/places/warsaw_charlotte_1.jpg",
+      "/images/places/warsaw_charlotte_1.png",
       "/images/places/warsaw_charlotte_2.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Charlotte+Plac+Zbawiciela+Warsaw",

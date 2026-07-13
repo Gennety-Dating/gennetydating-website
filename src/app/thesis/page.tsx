@@ -13,11 +13,11 @@ export default function ThesisPage() {
     <main className="min-h-screen bg-midnight text-white flex flex-col font-sans relative overflow-hidden">
       {/* Background image */}
       <div 
-        className="fixed inset-0 bg-[url('/images/thesis-bg.jpg')] bg-cover bg-center pointer-events-none filter blur-[2px] opacity-45 z-0" 
+        className="fixed -inset-10 bg-[url('/images/thesis-bg.jpg')] bg-cover bg-center pointer-events-none filter blur-[2px] opacity-45 z-0 scale-105" 
         aria-hidden="true"
       />
       {/* Dark overlay for contrast */}
-      <div className="fixed inset-0 bg-midnight/50 z-0 pointer-events-none" />
+      <div className="fixed -inset-10 bg-midnight/50 z-0 pointer-events-none" />
 
       <Navbar />
 

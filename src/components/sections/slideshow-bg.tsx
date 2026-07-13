@@ -36,7 +36,7 @@ export function SlideshowBg() {
   const currentImage = backgroundImages[bgIndex];
 
   return (
-    <div className="sticky top-0 h-screen w-full overflow-hidden bg-midnight" aria-hidden="true">
+    <div className="sticky -top-[250px] h-[calc(100vh+500px)] w-full overflow-hidden bg-midnight" aria-hidden="true">
       <AnimatePresence mode="popLayout">
         <motion.div
           key={currentImage}

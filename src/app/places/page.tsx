@@ -92,7 +92,7 @@ export default function PlacesPage() {
     <main className="min-h-screen bg-midnight text-white flex flex-col font-sans relative overflow-hidden">
       {/* Blurred background image */}
       <div 
-        className="fixed inset-0 bg-[url('/images/places-bg.jpg')] bg-cover bg-center pointer-events-none filter blur-[6px] opacity-55 z-0 scale-110" 
+        className="fixed -inset-10 bg-[url('/images/places-balloon.jpg')] bg-cover bg-center pointer-events-none filter blur-[6px] opacity-55 z-0 scale-110" 
         aria-hidden="true"
       />
       {/* Edge blending gradients */}

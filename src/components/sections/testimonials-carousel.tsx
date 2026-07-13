@@ -119,12 +119,22 @@ function TestimonialsHeading() {
 export function TestimonialsCarousel() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>(0);
+  const getSpeed = () => {
+    if (typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches) {
+      return 1.2; // At least twice as fast as 0.5
+    }
+    return 0.5;
+  };
+
   const speedRef = useRef(0.5);
   const { t } = useLanguage();
 
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
+
+    // Set initial speed based on screen size
+    speedRef.current = getSpeed();
 
     let scrollPos = 0;
 
@@ -149,13 +159,29 @@ export function TestimonialsCarousel() {
       speedRef.current = 0;
     };
     const handleMouseLeave = () => {
-      speedRef.current = 0.5;
+      speedRef.current = getSpeed();
+    };
+
+    // Synchronize scrollPos with container's scrollLeft during manual user scroll/swipe
+    const handleScroll = () => {
+      if (speedRef.current === 0) {
+        scrollPos = container.scrollLeft;
+      }
+    };
+
+    // Handle resize to update speed dynamically
+    const handleResize = () => {
+      if (speedRef.current !== 0) {
+        speedRef.current = getSpeed();
+      }
     };
 
     container.addEventListener("mouseenter", handleMouseEnter);
     container.addEventListener("mouseleave", handleMouseLeave);
     container.addEventListener("touchstart", handleMouseEnter, { passive: true });
     container.addEventListener("touchend", handleMouseLeave, { passive: true });
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize);
 
     return () => {
       cancelAnimationFrame(animationRef.current);
@@ -163,6 +189,8 @@ export function TestimonialsCarousel() {
       container.removeEventListener("mouseleave", handleMouseLeave);
       container.removeEventListener("touchstart", handleMouseEnter);
       container.removeEventListener("touchend", handleMouseLeave);
+      container.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
