@@ -37,10 +37,18 @@ export function Matchmaker() {
           return (
             <motion.div
               key={msg.id}
-              initial={{ opacity: 0.25, filter: "brightness(0.5) blur(2px)", y: 20 }}
-              whileInView={{ opacity: 1, filter: "brightness(1) blur(0px)", y: 0 }}
+              initial={{ opacity: 0, scale: 0.3, y: 15 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: index * 0.25, ease: "easeOut" }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 20,
+                delay: index * 0.4,
+              }}
+              style={{
+                transformOrigin: isAgent ? "bottom left" : "bottom right",
+              }}
               className={cn(
                 "relative w-fit max-w-[280px] sm:max-w-[300px] md:max-w-[320px] rounded-[20px] px-[18px] py-2.5 text-[14px] md:text-[15px] leading-relaxed text-left",
                 isAgent

@@ -23,7 +23,7 @@ export default function Home() {
       <div className="relative overflow-clip text-white z-10">
         {/* Background wrapper for HowItWorks & Matchmaker */}
         <div className="absolute inset-0 pointer-events-none z-0">
-          <div className="sticky top-0 h-screen w-full overflow-hidden bg-midnight" aria-hidden="true">
+          <div className="sticky -top-[100px] h-[calc(100vh+100px)] w-full overflow-hidden bg-midnight" aria-hidden="true">
             <div 
               className="absolute inset-0 bg-[url('/images/matchmaker-works-bg.jpg')] bg-cover bg-center opacity-55 filter blur-[8px] scale-110" 
             />
@@ -67,7 +67,7 @@ export default function Home() {
       <div className="relative overflow-clip">
         {/* Sticky background wrapper for Comparison, Testimonials & FAQ sections */}
         <div className="absolute inset-0 pointer-events-none z-0">
-          <div className="sticky top-0 h-screen w-full overflow-hidden">
+          <div className="sticky -top-[100px] h-[calc(100vh+100px)] w-full overflow-hidden">
             <div 
               className="absolute inset-0 bg-[url('/images/matchmaker-bg-1.jpg')] bg-cover bg-center opacity-35 filter blur-[12px] scale-110" 
               aria-hidden="true"
