@@ -1,9 +1,6 @@
 "use client";
 
 import { CONTACT_EMAIL, TELEGRAM_BOT_URL, TWITTER_URL, INSTAGRAM_URL } from "@/lib/data";
-// 🟠 BETA-ONLY — point the footer's "message us" link at the beta bot in beta
-// mode. Remove this import + the conditional below on rollback (BETA_WEBSITE.md).
-import { BETA_MODE, BETA_BOT_URL } from "@/config/beta";
 import { useLanguage } from "@/lib/language-context";
 import { useCookieConsent } from "@/hooks/useCookieConsent";
 import Link from "next/link";
@@ -94,8 +91,7 @@ export function Footer({ theme = "light" }: { theme?: "light" | "dark" }) {
             theme === "dark" ? "text-gray-400" : "text-gray-600"
           )}>
             <a
-              /* 🟠 BETA-ONLY: beta bot in beta mode, prod bot otherwise */
-              href={BETA_MODE ? BETA_BOT_URL : TELEGRAM_BOT_URL}
+              href={TELEGRAM_BOT_URL}
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
