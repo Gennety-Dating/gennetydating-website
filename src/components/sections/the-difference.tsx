@@ -259,7 +259,7 @@ export function TheDifference() {
             </div>
 
             {/* Tinder Stack Container inside Retro Phone */}
-            <div className="relative w-full max-w-[380px] aspect-[571/1024] flex items-center justify-center select-none z-10">
+            <div className="relative w-full max-w-[380px] aspect-[571/1024] flex items-center justify-center select-none z-10 my-auto">
               {/* Retro Phone Frame */}
               <Image
                 src="/images/retro-phone-new.png"
@@ -388,7 +388,7 @@ export function TheDifference() {
             </div>
 
             {/* Overlapping Polaroids Container */}
-            <div className="relative w-full max-w-[380px] h-[500px] sm:h-[580px] select-none z-10">
+            <div className="relative w-full max-w-[380px] h-[500px] sm:h-[580px] select-none z-10 my-auto">
               {/* Photo 1: Mia (Top-Left) */}
               <motion.div
                 className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10"
