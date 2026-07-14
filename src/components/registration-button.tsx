@@ -67,6 +67,12 @@ interface RegistrationButtonProps {
 
 const BOT_USERNAME = process.env.NEXT_PUBLIC_BOT_USERNAME || "gennetybot";
 
+// Some networks fail to resolve the short t.me domain. telegram.me is an
+// official Telegram domain and reaches the same bot without that DNS failure.
+function toTelegramWebUrl(url: string): string {
+  return url.replace(/^https:\/\/t\.me\//i, "https://telegram.me/");
+}
+
 /** Only the languages the bot can actually converse in (see registration-api). */
 const languageOptions: Array<{ value: RegistrationLanguage; label: string }> = [
   { value: "en", label: "English" },
@@ -265,7 +271,7 @@ export function RegistrationButton({
           termsAccepted: true,
           researchOptIn,
         });
-        setTelegramUrl(result.telegramUrl);
+        setTelegramUrl(toTelegramWebUrl(result.telegramUrl));
         setStep("done");
       } catch (err) {
         setError(
@@ -338,7 +344,7 @@ export function RegistrationButton({
         termsAccepted: true,
         researchOptIn,
       });
-      setTelegramUrl(result.telegramUrl);
+      setTelegramUrl(toTelegramWebUrl(result.telegramUrl));
       setStep("done");
     } catch (err) {
       setError(errorLabel(err instanceof Error ? err.message : "", t("registration.errorGeneric")));
@@ -367,7 +373,7 @@ export function RegistrationButton({
         variant={variant}
         size={size}
         className={className}
-        href={`https://t.me/${BOT_USERNAME}`}
+        href={`https://telegram.me/${BOT_USERNAME}`}
         target="_blank"
         rel="noopener noreferrer"
       >
