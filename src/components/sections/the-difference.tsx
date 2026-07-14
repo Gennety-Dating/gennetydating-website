@@ -380,7 +380,7 @@ export function TheDifference() {
 
 
           {/* RIGHT COLUMN: Overlapping Polaroids Collage */}
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center">
             <div className="text-center mb-6">
               <h3 className="text-xl md:text-2xl font-bold font-sans text-heading-white">
                 {t("difference.doThis")}
