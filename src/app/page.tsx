@@ -21,16 +21,16 @@ export default function Home() {
 
       {/* HowItWorks & Matchmaker sections sharing the photo background */}
       <div className="relative overflow-clip text-white z-10">
-        {/* Background wrapper for HowItWorks & Matchmaker */}
-        <div className="absolute inset-0 pointer-events-none z-0">
-          <div className="sticky -top-[250px] h-[calc(100vh+500px)] w-full overflow-hidden bg-midnight" aria-hidden="true">
-            <div 
-              className="absolute inset-0 bg-[url('/images/matchmaker-works-bg.jpg')] bg-cover bg-center opacity-55 filter blur-[8px] scale-110" 
-            />
-            {/* Затемняющий оверлей для идеального контраста и интеграции в темную тему */}
-            <div className="absolute inset-0 bg-[#111111]/45 z-10" />
-          </div>
-        </div>
+        {/*
+          Keep this layer as tall as its content. A viewport-sized sticky background
+          can expose the page's black canvas on mobile when the browser chrome
+          changes the viewport height during scrolling.
+        */}
+        <div
+          className="absolute -inset-8 pointer-events-none z-0 bg-[#111111] bg-[url('/images/matchmaker-works-bg.jpg')] bg-cover bg-center opacity-55 blur-[8px]"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 pointer-events-none z-[1] bg-[#111111]/45" aria-hidden="true" />
 
         {/* Wavy transition from Hero (grey #1A1A1A) to HowItWorks (Photo) */}
         <svg className="absolute top-0 left-0 right-0 w-full h-[15px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
@@ -65,15 +65,11 @@ export default function Home() {
 
       {/* Comparison, Testimonials & FAQ container */}
       <div className="relative overflow-clip">
-        {/* Sticky background wrapper for Comparison, Testimonials & FAQ sections */}
-        <div className="absolute inset-0 pointer-events-none z-0">
-          <div className="sticky -top-[250px] h-[calc(100vh+500px)] w-full overflow-hidden">
-            <div 
-              className="absolute inset-0 bg-[url('/images/matchmaker-bg-1.jpg')] bg-cover bg-center opacity-35 filter blur-[12px] scale-110" 
-              aria-hidden="true"
-            />
-          </div>
-        </div>
+        {/* Full-height layer avoids mobile viewport gaps above and below the image. */}
+        <div
+          className="absolute -inset-10 pointer-events-none z-0 bg-[#111111] bg-[url('/images/matchmaker-bg-1.jpg')] bg-cover bg-center opacity-35 blur-[12px]"
+          aria-hidden="true"
+        />
         {/* Wavy transition from TheDifference (grey #1A1A1A) to Comparison (Photo) */}
         <svg className="absolute top-0 left-0 right-0 w-full h-[15px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
           <defs>
