@@ -20,17 +20,19 @@ export default function Home() {
       </div>
 
       {/* HowItWorks & Matchmaker sections sharing the photo background */}
-      <div className="relative overflow-clip text-white z-10">
+      <div className="relative overflow-clip text-white z-10 bg-[#111111]">
         {/*
-          Keep this layer as tall as its content. A viewport-sized sticky background
-          can expose the page's black canvas on mobile when the browser chrome
-          changes the viewport height during scrolling.
+          This is kept sticky so the content scrolls over a static photo. Dynamic
+          viewport units follow mobile browser chrome without exposing the page
+          canvas above or below the image.
         */}
         <div
-          className="absolute -inset-8 pointer-events-none z-0 bg-[#111111] bg-[url('/images/matchmaker-works-bg.jpg')] bg-cover bg-center opacity-55 blur-[8px]"
+          className="sticky top-0 z-0 -mb-[100dvh] h-[100dvh] min-h-[100svh] w-full overflow-hidden pointer-events-none"
           aria-hidden="true"
-        />
-        <div className="absolute inset-0 pointer-events-none z-[1] bg-[#111111]/45" aria-hidden="true" />
+        >
+          <div className="absolute -inset-8 bg-[#111111] bg-[url('/images/matchmaker-works-bg.jpg')] bg-cover bg-center opacity-55 blur-[8px]" />
+          <div className="absolute inset-0 bg-[#111111]/45" />
+        </div>
 
         {/* Wavy transition from Hero (grey #1A1A1A) to HowItWorks (Photo) */}
         <svg className="absolute top-0 left-0 right-0 w-full h-[15px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
@@ -64,12 +66,14 @@ export default function Home() {
       </div>
 
       {/* Comparison, Testimonials & FAQ container */}
-      <div className="relative overflow-clip">
-        {/* Full-height layer avoids mobile viewport gaps above and below the image. */}
+      <div className="relative overflow-clip bg-[#111111]">
+        {/* A sticky viewport layer preserves the fixed-photo effect without viewport gaps. */}
         <div
-          className="absolute -inset-10 pointer-events-none z-0 bg-[#111111] bg-[url('/images/matchmaker-bg-1.jpg')] bg-cover bg-center opacity-35 blur-[12px]"
+          className="sticky top-0 z-0 -mb-[100dvh] h-[100dvh] min-h-[100svh] w-full overflow-hidden pointer-events-none"
           aria-hidden="true"
-        />
+        >
+          <div className="absolute -inset-10 bg-[#111111] bg-[url('/images/matchmaker-bg-1.jpg')] bg-cover bg-center opacity-35 blur-[12px]" />
+        </div>
         {/* Wavy transition from TheDifference (grey #1A1A1A) to Comparison (Photo) */}
         <svg className="absolute top-0 left-0 right-0 w-full h-[15px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
           <defs>
