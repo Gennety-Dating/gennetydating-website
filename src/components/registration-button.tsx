@@ -26,6 +26,7 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/language-context";
 import {
   completeRegistration,
+  fetchRegistrationConfig,
   requestRegistrationOtp,
   resolveCity,
   searchCities,
@@ -122,6 +123,25 @@ export function RegistrationButton({
   const [telegramUrl, setTelegramUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  // Assume the phone rail is live until the API says otherwise: the server
+  // refuses a phone-track link anyway when the flag is off, so an unreachable
+  // config never silently degrades the common path.
+  const [phoneAuthEnabled, setPhoneAuthEnabled] = useState(true);
+
+  useEffect(() => {
+    if (!open) return;
+    let cancelled = false;
+    void fetchRegistrationConfig()
+      .then((config) => {
+        if (!cancelled) setPhoneAuthEnabled(config.phoneAuthEnabled);
+      })
+      .catch(() => {
+        /* keep the optimistic default — the server guard is the real boundary */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [open]);
 
   const title = mode === "login" ? t("registration.loginTitle") : t("registration.joinTitle");
   const description =
@@ -603,26 +623,33 @@ export function RegistrationButton({
                         </span>
                       </button>
 
-                      <button
-                        type="button"
-                        disabled={loading || !termsAccepted}
-                        onClick={() => startTrack("general")}
-                        className="flex w-full items-center gap-4 rounded-2xl bg-white/[0.04] p-4 text-left transition-all duration-300 hover:bg-white/[0.08] disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer"
-                      >
-                        {loading && track === "general" ? (
-                          <Loader2 className="h-6 w-6 shrink-0 animate-spin text-magenta" aria-hidden="true" />
-                        ) : (
-                          <Phone className="h-6 w-6 shrink-0 text-magenta" aria-hidden="true" />
-                        )}
-                        <span className="min-w-0">
-                          <span className="block text-sm font-semibold text-white">
-                            {t("registration.trackGeneral")}
+                      {/* Hidden entirely when the bot's phone rail is off — an
+                          offer we cannot honour is worse than no offer. */}
+                      {phoneAuthEnabled && (
+                        <button
+                          type="button"
+                          disabled={loading || !termsAccepted}
+                          onClick={() => startTrack("general")}
+                          className="flex w-full items-center gap-4 rounded-2xl bg-white/[0.04] p-4 text-left transition-all duration-300 hover:bg-white/[0.08] disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer"
+                        >
+                          {loading && track === "general" ? (
+                            <Loader2
+                              className="h-6 w-6 shrink-0 animate-spin text-magenta"
+                              aria-hidden="true"
+                            />
+                          ) : (
+                            <Phone className="h-6 w-6 shrink-0 text-magenta" aria-hidden="true" />
+                          )}
+                          <span className="min-w-0">
+                            <span className="block text-sm font-semibold text-white">
+                              {t("registration.trackGeneral")}
+                            </span>
+                            <span className="block text-xs leading-5 text-gray-400">
+                              {t("registration.trackGeneralHint")}
+                            </span>
                           </span>
-                          <span className="block text-xs leading-5 text-gray-400">
-                            {t("registration.trackGeneralHint")}
-                          </span>
-                        </span>
-                      </button>
+                        </button>
+                      )}
                     </div>
                   </motion.div>
                 )}

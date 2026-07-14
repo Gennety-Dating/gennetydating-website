@@ -43,6 +43,16 @@ export function requestRegistrationOtp(email: string): Promise<{ ok: true }> {
   return postJson("/web-registration/otp/request", { email });
 }
 
+/**
+ * What the bot currently allows. The phone rail is feature-flagged server-side,
+ * and this site deploys separately — so we ask instead of assuming. If the rail
+ * is off, offering it here would strand the user on an email gate they have no
+ * email for.
+ */
+export function fetchRegistrationConfig(): Promise<{ phoneAuthEnabled: boolean }> {
+  return request("/web-registration/config");
+}
+
 /** The dating city — where the user wants matches, not a home address. */
 export interface RegistrationCity {
   label: string;
