@@ -121,12 +121,12 @@ export function TestimonialsCarousel() {
   const animationRef = useRef<number>(0);
   const getSpeed = () => {
     if (typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches) {
-      return 1.2; // At least twice as fast as 0.5
+      return 1.8; // Increased from 1.2
     }
-    return 0.5;
+    return 1.0; // Increased from 0.5
   };
 
-  const speedRef = useRef(0.5);
+  const speedRef = useRef(1.0);
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -154,11 +154,11 @@ export function TestimonialsCarousel() {
 
     animationRef.current = requestAnimationFrame(animate);
 
-    // Pause on hover or touch
-    const handleMouseEnter = () => {
+    // Pause on touch to avoid layout fighting during manual scroll
+    const handleTouchStart = () => {
       speedRef.current = 0;
     };
-    const handleMouseLeave = () => {
+    const handleTouchEnd = () => {
       speedRef.current = getSpeed();
     };
 
@@ -176,19 +176,15 @@ export function TestimonialsCarousel() {
       }
     };
 
-    container.addEventListener("mouseenter", handleMouseEnter);
-    container.addEventListener("mouseleave", handleMouseLeave);
-    container.addEventListener("touchstart", handleMouseEnter, { passive: true });
-    container.addEventListener("touchend", handleMouseLeave, { passive: true });
+    container.addEventListener("touchstart", handleTouchStart, { passive: true });
+    container.addEventListener("touchend", handleTouchEnd, { passive: true });
     container.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
 
     return () => {
       cancelAnimationFrame(animationRef.current);
-      container.removeEventListener("mouseenter", handleMouseEnter);
-      container.removeEventListener("mouseleave", handleMouseLeave);
-      container.removeEventListener("touchstart", handleMouseEnter);
-      container.removeEventListener("touchend", handleMouseLeave);
+      container.removeEventListener("touchstart", handleTouchStart);
+      container.removeEventListener("touchend", handleTouchEnd);
       container.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
