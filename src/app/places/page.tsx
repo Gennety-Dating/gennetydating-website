@@ -92,7 +92,7 @@ export default function PlacesPage() {
     <main className="min-h-screen bg-midnight text-white flex flex-col font-sans relative overflow-hidden">
       {/* Blurred background image */}
       <div 
-        className="fixed -inset-10 bg-[url('/images/places-balloon.jpg')] bg-cover bg-center pointer-events-none filter blur-[6px] opacity-55 z-0 scale-110" 
+        className="fixed -inset-10 bg-[url('/images/places-balloon-mobile.jpg')] md:bg-[url('/images/places-balloon.jpg')] bg-cover bg-center pointer-events-none filter blur-[6px] opacity-55 z-0 scale-110" 
         aria-hidden="true"
       />
       {/* Edge blending gradients */}
@@ -248,6 +248,19 @@ export default function PlacesPage() {
               </motion.div>
             );
           })}
+          {selectedCity === "warsaw" && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: filteredPlaces.length * 0.05 }}
+              className="flex items-center justify-center min-h-[350px] rounded-2xl border border-dashed border-white/10 bg-white/[0.01] p-6 text-center select-none"
+            >
+              <span className="text-white/30 text-sm font-sans font-light tracking-wider">
+                More places soon
+              </span>
+            </motion.div>
+          )}
         </div>
 
       </div>

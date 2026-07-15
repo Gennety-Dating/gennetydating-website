@@ -407,8 +407,7 @@ export function RegistrationButton({
           style={{ scrollbarGutter: "stable" }}
         >
           <div
-            className="fixed inset-0 bg-cover bg-center animate-fade-in"
-            style={{ backgroundImage: `url('/images/registration-bg.jpg')` }}
+            className="fixed inset-0 bg-cover bg-center animate-fade-in bg-[url('/images/registration-bg-mobile.jpg')] md:bg-[url('/images/registration-bg.jpg')]"
           />
           <button
             type="button"

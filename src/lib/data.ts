@@ -1354,38 +1354,7 @@ export const datePlaces: DatePlace[] = [
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Lazienki+Krolewskie+Warsaw",
     likes: 70
   },
-  {
-    id: "warsaw-copernicus",
-    city: "warsaw",
-    type: "museum",
-    vibe: {
-      en: "Interactive Science Center",
-      uk: "Науковий центр",
-      ru: "Научний центр",
-      de: "Interaktives Wissenschaftszentrum",
-      pl: "Centrum Nauki Kopernik"
-    },
-    name: {
-      en: "Copernicus Science Centre",
-      uk: "Центр науки Коперника",
-      ru: "Центр науки Коперника",
-      de: "Kopernikus-Wissenschaftszentrum",
-      pl: "Centrum Nauki Kopernik"
-    },
-    description: {
-      en: "An interactive museum offering playful exhibits and experiment zones next to the Vistula River, perfect for active, fun conversations.",
-      uk: "Інтерактивний музей із цікавими експонатами та зонами для експериментів на березі Вісли, чудовий для активного та веселого спілкування.",
-      ru: "Интерактивный музей с интересными экспонатами и зонами для экспериментов на берегу Вислы, отличный для активного и веселого общения.",
-      de: "Ein interaktives Museum mit spielerischen Exponaten und experimentierzonen direkt an der Weichsel, perfekt für aktive Gespräche.",
-      pl: "Interaktywne muzeum oferujące angażujące wystawy i strefy eksperymentów tuż nad Wisłą, doskonałe na aktywną i wesołą randkę."
-    },
-    images: [
-      "/images/places/warsaw_copernicus_1.jpg",
-      "/images/places/warsaw_copernicus_2.jpg"
-    ],
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Copernicus+Science+Centre+Warsaw",
-    likes: 65
-  },
+
   {
     id: "warsaw-baken",
     city: "warsaw",
