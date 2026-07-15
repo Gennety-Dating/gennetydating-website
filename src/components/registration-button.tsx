@@ -229,8 +229,10 @@ export function RegistrationButton({
     if (step !== "city") return;
     const query = cityQuery.trim();
     if (query.length < 2) {
-      setCityResults([]);
-      return;
+      const timer = window.setTimeout(() => {
+        setCityResults([]);
+      }, 0);
+      return () => window.clearTimeout(timer);
     }
 
     const timer = window.setTimeout(() => {

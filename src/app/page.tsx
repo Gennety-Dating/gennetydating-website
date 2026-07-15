@@ -28,14 +28,18 @@ export default function Home() {
         */}
         <div
           className="sticky top-0 z-0 -mb-[100dvh] h-[100dvh] min-h-[100svh] w-full overflow-hidden pointer-events-none"
+          style={{ transform: "translate3d(0, 0, 0)", willChange: "transform" }}
           aria-hidden="true"
         >
-          <div className="absolute -inset-8 bg-[#111111] bg-[url('/images/matchmaker-works-bg.jpg')] bg-cover bg-center opacity-55 blur-[8px]" />
+          <div 
+            className="absolute -inset-8 bg-[#111111] bg-[url('/images/matchmaker-works-bg.jpg')] bg-cover bg-center opacity-55 blur-[8px]" 
+            style={{ transform: "translate3d(0, 0, 0)", willChange: "transform" }}
+          />
           <div className="absolute inset-0 bg-[#111111]/45" />
         </div>
 
         {/* Wavy transition from Hero (grey #1A1A1A) to HowItWorks (Photo) */}
-        <svg className="absolute top-0 left-0 right-0 w-full h-[15px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+        <svg className="absolute -top-[1px] left-0 right-0 w-full h-[15px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="how-it-works-stamp-teeth-top" width="37" height="15" patternUnits="userSpaceOnUse">
               <path d="M 0 0 L 37 0 C 30.5 0, 25 15, 18.5 15 C 12 15, 6.5 0, 0 0 Z" fill="#1A1A1A" />
@@ -50,7 +54,7 @@ export default function Home() {
         </div>
 
         {/* Bottom wavy edge (Postage Stamp Wavy Bottom Edge) to transition to TheDifference (grey #1A1A1A) */}
-        <svg className="absolute bottom-0 left-0 right-0 w-full h-[15px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+        <svg className="absolute -bottom-[1px] left-0 right-0 w-full h-[15px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="matchmaker-stamp-teeth-bottom" width="37" height="15" patternUnits="userSpaceOnUse">
               <path d="M 0 15 L 37 15 C 30.5 15, 25 0, 18.5 0 C 12 0, 6.5 15, 0 15 Z" fill="#1A1A1A" />
@@ -70,12 +74,16 @@ export default function Home() {
         {/* A sticky viewport layer preserves the fixed-photo effect without viewport gaps. */}
         <div
           className="sticky top-0 z-0 -mb-[100dvh] h-[100dvh] min-h-[100svh] w-full overflow-hidden pointer-events-none"
+          style={{ transform: "translate3d(0, 0, 0)", willChange: "transform" }}
           aria-hidden="true"
         >
-          <div className="absolute -inset-10 bg-[#111111] bg-[url('/images/matchmaker-bg-1.jpg')] bg-cover bg-center opacity-35 blur-[12px]" />
+          <div 
+            className="absolute -inset-10 bg-[#111111] bg-[url('/images/matchmaker-bg-1.jpg')] bg-cover bg-center opacity-35 blur-[12px]" 
+            style={{ transform: "translate3d(0, 0, 0)", willChange: "transform" }}
+          />
         </div>
         {/* Wavy transition from TheDifference (grey #1A1A1A) to Comparison (Photo) */}
-        <svg className="absolute top-0 left-0 right-0 w-full h-[15px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+        <svg className="absolute -top-[1px] left-0 right-0 w-full h-[15px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="comparison-stamp-teeth-top" width="37" height="15" patternUnits="userSpaceOnUse">
               <path d="M 0 0 L 37 0 C 30.5 0, 25 15, 18.5 15 C 12 15, 6.5 0, 0 0 Z" fill="#1A1A1A" />
@@ -90,8 +98,8 @@ export default function Home() {
           <FAQ />
         </div>
 
-        {/* Bottom wavy edge (Postage Stamp Wavy Bottom Edge) to transition to Marquee (grey #1A1A1A) */}
-        <svg className="absolute bottom-0 left-0 right-0 w-full h-[15px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+        {/* Bottom wavy edge (Postage Stamp Wavy Bottom Edge) to transition to FAQ (grey #1A1A1A) */}
+        <svg className="absolute -bottom-[1px] left-0 right-0 w-full h-[15px] z-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="faq-stamp-teeth-bottom" width="37" height="15" patternUnits="userSpaceOnUse">
               <path d="M 0 15 L 37 15 C 30.5 15, 25 0, 18.5 0 C 12 0, 6.5 15, 0 15 Z" fill="#1A1A1A" />

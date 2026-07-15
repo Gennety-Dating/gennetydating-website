@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { ArrowLeft, Heart, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -47,20 +47,20 @@ const mapsButtonTexts = {
 export default function PlacesPage() {
   const { t, locale } = useLanguage();
   const [selectedCity, setSelectedCity] = useState<"kyiv" | "warsaw">("kyiv");
-  const [likedIds, setLikedIds] = useState<string[]>([]);
-  const backText = backTexts[locale] || backTexts.en;
-
-  // Load liked items on mount
-  useEffect(() => {
-    const saved = localStorage.getItem("gennety-liked-places");
-    if (saved) {
-      try {
-        setLikedIds(JSON.parse(saved));
-      } catch (e) {
-        // ignore
+  const [likedIds, setLikedIds] = useState<string[]>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("gennety-liked-places");
+      if (saved) {
+        try {
+          return JSON.parse(saved);
+        } catch {
+          // ignore
+        }
       }
     }
-  }, []);
+    return [];
+  });
+  const backText = backTexts[locale] || backTexts.en;
 
   const toggleLike = (id: string) => {
     setLikedIds((prev) => {
