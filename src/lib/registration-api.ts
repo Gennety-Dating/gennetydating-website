@@ -21,7 +21,10 @@ export type RegistrationTrack = "student" | "general";
 const API_BASE_URL = (
   process.env.NEXT_PUBLIC_GENNETY_API_URL ||
   process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "http://localhost:3101/v1"
+  // The marketing site is deployed independently from the registration API.
+  // Falling back to localhost made every public build without the environment
+  // variable try to verify a visitor's phone against their own device.
+  "https://dating-api.gennety.com/v1"
 ).replace(/\/+$/, "");
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
