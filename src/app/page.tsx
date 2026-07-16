@@ -15,25 +15,19 @@ export default function Home() {
       <Navbar />
 
       {/*
-        iPhone safe-area covers. iOS Safari repaints the pinned photo backgrounds
-        unreliably inside the notch/status-bar (top) and home-indicator (bottom)
-        insets while scrolling — the top strip stayed grey, the bottom flickered.
-        Rather than fight the compositor, paint BOTH insets deliberately with a
-        stable solid bar: a plain fixed div (no filter/transform/opacity) cannot
-        drop like a composite layer, so top and bottom stay consistent. env()
-        collapses each bar to 0 height on devices/orientations with no inset.
-        z-30 sits above the page content and pinned photo (z-0/10/20) but below
-        the transparent navbar (z-40), whose own content clears the inset.
+        iPhone status-bar (notch) cover. iOS Safari repaints the pinned photo
+        backgrounds unreliably inside the top safe-area inset while scrolling,
+        leaving a grey band behind the clock/battery. A plain solid fixed bar (no
+        filter/transform/opacity) paints reliably and keeps that strip clean.
+        Only the top is covered: a full-height bottom bar (env(safe-area-inset-
+        bottom), ~34px) read as too large a grey strip, so the home-indicator
+        inset is left uncovered. env() collapses the bar to 0 where there is no
+        inset; z-30 sits above content/pinned photo, below the z-40 navbar.
       */}
       <div
         aria-hidden="true"
         className="pointer-events-none fixed inset-x-0 top-0 z-30 bg-[#1A1A1A]"
         style={{ height: "env(safe-area-inset-top)" }}
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-x-0 bottom-0 z-30 bg-[#1A1A1A]"
-        style={{ height: "env(safe-area-inset-bottom)" }}
       />
 
       {/* Hero section with grey background */}
