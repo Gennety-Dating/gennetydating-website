@@ -9,31 +9,6 @@ import { FAQ } from "@/components/sections/faq";
 import { Marquee } from "@/components/sections/marquee";
 import { Footer } from "@/components/sections/footer";
 
-function WaveEdge({ position }: { position: "top" | "bottom" }) {
-  const isTop = position === "top";
-
-  return (
-    <svg
-      className={`absolute inset-x-0 ${isTop ? "-top-px" : "-bottom-px"} z-20 h-5 w-full pointer-events-none`}
-      viewBox="0 0 1440 20"
-      preserveAspectRatio="none"
-      aria-hidden="true"
-    >
-      {isTop ? (
-        <path
-          d="M0 0H1440V2C1320 2 1320 18 1200 18S1080 2 960 2S840 18 720 18S600 2 480 2S360 18 240 18S120 2 0 2Z"
-          fill="#1A1A1A"
-        />
-      ) : (
-        <path
-          d="M0 18V2C120 2 120 18 240 18S360 2 480 2S600 18 720 18S840 2 960 2S1080 18 1200 18S1320 2 1440 2V20H0Z"
-          fill="#1A1A1A"
-        />
-      )}
-    </svg>
-  );
-}
-
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#1A1A1A] text-white">
@@ -45,27 +20,44 @@ export default function Home() {
       </div>
 
       {/* HowItWorks & Matchmaker sections sharing the photo background */}
-      <div className="relative isolate overflow-x-clip text-white z-10 bg-[#111111]">
+      <div className="relative overflow-x-clip text-white z-10 bg-[#111111]">
         {/*
-          Keep the photo in the section's normal paint layer. A sticky, transformed
-          viewport-sized backdrop is unstable in iOS Safari while its browser chrome
-          expands or collapses and can expose the document's black canvas.
+          The background stays pinned while this section's content scrolls. Unlike
+          the previous implementation, it has no forced GPU transform, oversized
+          blurred image, or animated viewport measurement — the WebKit triggers
+          behind the black safe-area artefacts.
         */}
         <div
-          className="absolute inset-0 z-0 pointer-events-none bg-[#111111] bg-[url('/images/matchmaker-works-bg.jpg')] bg-cover bg-center opacity-55"
+          className="sticky top-0 z-0 -mb-[100dvh] h-[100dvh] min-h-[100svh] w-full pointer-events-none"
           aria-hidden="true"
-        />
-        <div className="absolute inset-0 z-0 bg-[#111111]/45 pointer-events-none" aria-hidden="true" />
+        >
+          <div className="absolute inset-0 bg-[#111111] bg-[url('/images/matchmaker-works-bg.jpg')] bg-cover bg-center opacity-55" />
+          <div className="absolute inset-0 bg-[#111111]/45" />
+        </div>
 
-        {/* The whole wave is one vector, avoiding repeated-image seams on iOS. */}
-        <WaveEdge position="top" />
+        {/* Original postage-stamp edge. */}
+        <div
+          className="absolute -top-[1px] left-0 right-0 z-20 h-[15px] w-full pointer-events-none"
+          style={{
+            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 0 L 37 0 C 30.5 0, 25 15, 18.5 15 C 12 15, 6.5 0, 0 0 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
+            backgroundRepeat: "repeat-x",
+            backgroundSize: "37px 15px",
+          }}
+        />
 
         <div className="relative z-10">
           <HowItWorks />
           <Matchmaker />
         </div>
 
-        <WaveEdge position="bottom" />
+        <div
+          className="absolute -bottom-[1px] left-0 right-0 z-20 h-[15px] w-full pointer-events-none"
+          style={{
+            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 15 L 37 15 C 30.5 15, 25 0, 18.5 0 C 12 0, 6.5 15, 0 15 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
+            backgroundRepeat: "repeat-x",
+            backgroundSize: "37px 15px",
+          }}
+        />
       </div>
 
       {/* TheDifference section with grey background */}
@@ -74,13 +66,22 @@ export default function Home() {
       </div>
 
       {/* Comparison, Testimonials & FAQ container */}
-      <div className="relative isolate overflow-x-clip bg-[#111111]">
-        {/* See the note above: section-sized paint layers survive iOS viewport resizing. */}
+      <div className="relative overflow-x-clip bg-[#111111]">
+        {/* This background is pinned with the same WebKit-safe composition as above. */}
         <div
-          className="absolute inset-0 z-0 pointer-events-none bg-[#111111] bg-[url('/images/matchmaker-bg-1.jpg')] bg-cover bg-center opacity-35"
+          className="sticky top-0 z-0 -mb-[100dvh] h-[100dvh] min-h-[100svh] w-full pointer-events-none"
           aria-hidden="true"
+        >
+          <div className="absolute inset-0 bg-[#111111] bg-[url('/images/matchmaker-bg-1.jpg')] bg-cover bg-center opacity-35" />
+        </div>
+        <div
+          className="absolute -top-[1px] left-0 right-0 z-20 h-[15px] w-full pointer-events-none"
+          style={{
+            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 0 L 37 0 C 30.5 0, 25 15, 18.5 15 C 12 15, 6.5 0, 0 0 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
+            backgroundRepeat: "repeat-x",
+            backgroundSize: "37px 15px",
+          }}
         />
-        <WaveEdge position="top" />
         
         <div className="relative z-10">
           <Comparison />
@@ -88,7 +89,14 @@ export default function Home() {
           <FAQ />
         </div>
 
-        <WaveEdge position="bottom" />
+        <div
+          className="absolute -bottom-[1px] left-0 right-0 z-20 h-[15px] w-full pointer-events-none"
+          style={{
+            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 15 L 37 15 C 30.5 15, 25 0, 18.5 0 C 12 0, 6.5 15, 0 15 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
+            backgroundRepeat: "repeat-x",
+            backgroundSize: "37px 15px",
+          }}
+        />
       </div>
 
       {/* Marquee container with grey background */}
