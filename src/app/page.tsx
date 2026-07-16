@@ -9,9 +9,34 @@ import { FAQ } from "@/components/sections/faq";
 import { Marquee } from "@/components/sections/marquee";
 import { Footer } from "@/components/sections/footer";
 
+function WaveEdge({ position }: { position: "top" | "bottom" }) {
+  const isTop = position === "top";
+
+  return (
+    <svg
+      className={`absolute inset-x-0 ${isTop ? "-top-px" : "-bottom-px"} z-20 h-5 w-full pointer-events-none`}
+      viewBox="0 0 1440 20"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      {isTop ? (
+        <path
+          d="M0 0H1440V2C1320 2 1320 18 1200 18S1080 2 960 2S840 18 720 18S600 2 480 2S360 18 240 18S120 2 0 2Z"
+          fill="#1A1A1A"
+        />
+      ) : (
+        <path
+          d="M0 18V2C120 2 120 18 240 18S360 2 480 2S600 18 720 18S840 2 960 2S1080 18 1200 18S1320 2 1440 2V20H0Z"
+          fill="#1A1A1A"
+        />
+      )}
+    </svg>
+  );
+}
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-midnight text-white">
+    <main className="min-h-screen bg-[#1A1A1A] text-white">
       <Navbar />
       
       {/* Hero section with grey background */}
@@ -20,48 +45,27 @@ export default function Home() {
       </div>
 
       {/* HowItWorks & Matchmaker sections sharing the photo background */}
-      <div className="relative overflow-x-clip text-white z-10 bg-[#111111]">
+      <div className="relative isolate overflow-x-clip text-white z-10 bg-[#111111]">
         {/*
-          This is kept sticky so the content scrolls over a static photo. Dynamic
-          viewport units follow mobile browser chrome without exposing the page
-          canvas above or below the image.
+          Keep the photo in the section's normal paint layer. A sticky, transformed
+          viewport-sized backdrop is unstable in iOS Safari while its browser chrome
+          expands or collapses and can expose the document's black canvas.
         */}
         <div
-          className="sticky top-0 z-0 -mb-[100dvh] h-[100dvh] min-h-[100svh] w-full overflow-hidden pointer-events-none"
-          style={{ transform: "translate3d(0, 0, 0)", willChange: "transform" }}
+          className="absolute inset-0 z-0 pointer-events-none bg-[#111111] bg-[url('/images/matchmaker-works-bg.jpg')] bg-cover bg-center opacity-55"
           aria-hidden="true"
-        >
-          <div 
-            className="absolute -inset-8 bg-[#111111] bg-[url('/images/matchmaker-works-bg.jpg')] bg-cover bg-center opacity-55 blur-[8px]" 
-            style={{ transform: "translate3d(0, 0, 0)", willChange: "transform" }}
-          />
-          <div className="absolute inset-0 bg-[#111111]/45" />
-        </div>
-
-        {/* Wavy transition from Hero (grey #1A1A1A) to HowItWorks (Photo) */}
-        <div 
-          className="absolute -top-[1px] left-0 right-0 w-full h-[15px] z-20 pointer-events-none"
-          style={{
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 0 L 37 0 C 30.5 0, 25 15, 18.5 15 C 12 15, 6.5 0, 0 0 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
-            backgroundRepeat: "repeat-x",
-            backgroundSize: "37px 15px"
-          }}
         />
+        <div className="absolute inset-0 z-0 bg-[#111111]/45 pointer-events-none" aria-hidden="true" />
+
+        {/* The whole wave is one vector, avoiding repeated-image seams on iOS. */}
+        <WaveEdge position="top" />
 
         <div className="relative z-10">
           <HowItWorks />
           <Matchmaker />
         </div>
 
-        {/* Bottom wavy edge (Postage Stamp Wavy Bottom Edge) to transition to TheDifference (grey #1A1A1A) */}
-        <div 
-          className="absolute -bottom-[1px] left-0 right-0 w-full h-[15px] z-20 pointer-events-none"
-          style={{
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 15 L 37 15 C 30.5 15, 25 0, 18.5 0 C 12 0, 6.5 15, 0 15 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
-            backgroundRepeat: "repeat-x",
-            backgroundSize: "37px 15px"
-          }}
-        />
+        <WaveEdge position="bottom" />
       </div>
 
       {/* TheDifference section with grey background */}
@@ -70,27 +74,13 @@ export default function Home() {
       </div>
 
       {/* Comparison, Testimonials & FAQ container */}
-      <div className="relative overflow-x-clip bg-[#111111]">
-        {/* A sticky viewport layer preserves the fixed-photo effect without viewport gaps. */}
+      <div className="relative isolate overflow-x-clip bg-[#111111]">
+        {/* See the note above: section-sized paint layers survive iOS viewport resizing. */}
         <div
-          className="sticky top-0 z-0 -mb-[100dvh] h-[100dvh] min-h-[100svh] w-full overflow-hidden pointer-events-none"
-          style={{ transform: "translate3d(0, 0, 0)", willChange: "transform" }}
+          className="absolute inset-0 z-0 pointer-events-none bg-[#111111] bg-[url('/images/matchmaker-bg-1.jpg')] bg-cover bg-center opacity-35"
           aria-hidden="true"
-        >
-          <div 
-            className="absolute -inset-10 bg-[#111111] bg-[url('/images/matchmaker-bg-1.jpg')] bg-cover bg-center opacity-35 blur-[12px]" 
-            style={{ transform: "translate3d(0, 0, 0)", willChange: "transform" }}
-          />
-        </div>
-        {/* Wavy transition from TheDifference (grey #1A1A1A) to Comparison (Photo) */}
-        <div 
-          className="absolute -top-[1px] left-0 right-0 w-full h-[15px] z-20 pointer-events-none"
-          style={{
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 0 L 37 0 C 30.5 0, 25 15, 18.5 15 C 12 15, 6.5 0, 0 0 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
-            backgroundRepeat: "repeat-x",
-            backgroundSize: "37px 15px"
-          }}
         />
+        <WaveEdge position="top" />
         
         <div className="relative z-10">
           <Comparison />
@@ -98,15 +88,7 @@ export default function Home() {
           <FAQ />
         </div>
 
-        {/* Bottom wavy edge (Postage Stamp Wavy Bottom Edge) to transition to FAQ (grey #1A1A1A) */}
-        <div 
-          className="absolute -bottom-[1px] left-0 right-0 w-full h-[15px] z-20 pointer-events-none"
-          style={{
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 15 L 37 15 C 30.5 15, 25 0, 18.5 0 C 12 0, 6.5 15, 0 15 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
-            backgroundRepeat: "repeat-x",
-            backgroundSize: "37px 15px"
-          }}
-        />
+        <WaveEdge position="bottom" />
       </div>
 
       {/* Marquee container with grey background */}
