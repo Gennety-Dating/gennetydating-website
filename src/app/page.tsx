@@ -89,8 +89,14 @@ export default function Home() {
         <TheDifference />
       </div>
 
-      {/* Comparison, Testimonials & FAQ container */}
-      <div className="relative overflow-x-clip bg-[#111111]">
+      {/* Comparison, Testimonials & FAQ container.
+          z-10 (matching the first photo section) gives this container its own
+          stacking context, so the pinned sticky photo composites WITH the section
+          and iOS repaints its bottom safe-area inset. Without z-10 the sticky
+          layer promoted to the root stacking context, where WebKit dropped the
+          home-indicator strip to a dark block while the first section (which has
+          z-10) stayed clean. */}
+      <div className="relative z-10 overflow-x-clip bg-[#111111]">
         {/* A sticky viewport layer preserves the fixed-photo effect without viewport gaps. */}
         <div
           className="sticky top-0 z-0 -mb-[100dvh] h-[100dvh] min-h-[100svh] w-full overflow-hidden pointer-events-none"
