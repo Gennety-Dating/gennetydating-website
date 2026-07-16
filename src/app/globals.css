@@ -157,20 +157,6 @@ body::after {
   );
 }
 
-/*
- * Fixed full-viewport texture overlays are another WebKit compositing trigger
- * when a photo section scrolls beneath Safari's dynamic top/bottom chrome — they
- * can flash the safe-area insets black on iPhone. The grain/scanline flourish is
- * a purely decorative desktop touch (opacity 0.03/0.015), so drop it on
- * touch/coarse-pointer devices where it hurts more than it helps.
- */
-@media (hover: none) and (pointer: coarse) {
-  body::before,
-  body::after {
-    display: none;
-  }
-}
-
 body[data-registration-modal-open="true"] .floating-language-switcher {
   display: none;
 }
