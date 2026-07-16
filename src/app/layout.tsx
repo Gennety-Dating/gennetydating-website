@@ -47,14 +47,7 @@ export const metadata: Metadata = {
       { url: "/images/butterfly-favicon.png", type: "image/png" },
     ],
     shortcut: "/images/butterfly-favicon.png",
-    apple: "/images/butterfly-logo.png",
-  },
-  appleWebApp: {
-    capable: true,
-    title: "Gennety",
-    // In standalone mode the page paints behind the status indicators instead
-    // of reserving a dark browser-coloured bar above the content.
-    statusBarStyle: "black-translucent",
+    apple: "/images/butterfly-favicon.png",
   },
   openGraph: {
     title: "Gennety — AI-Powered Dating for Students",

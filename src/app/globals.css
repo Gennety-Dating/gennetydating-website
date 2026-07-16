@@ -112,12 +112,10 @@
 html {
   font-size: 14px;
   scroll-behavior: smooth;
-  background: #1A1A1A;
 }
 
 body {
-  min-height: 100%;
-  background: #1A1A1A;
+  background-color: #050505;
   color: #FFFFFF;
   font-family: var(--font-sans);
   overflow-x: hidden;
@@ -151,19 +149,6 @@ body::after {
     rgba(255, 255, 255, 0.03) 2px,
     rgba(255, 255, 255, 0.03) 4px
   );
-}
-
-/*
- * Fixed full-viewport texture layers are another WebKit compositing trigger when
- * a photo section scrolls beneath Safari's dynamic top and bottom controls.
- * The texture is deliberately desktop-only; the normal page background remains
- * visible through every iPhone safe-area inset.
- */
-@media (hover: none) and (pointer: coarse) {
-  body::before,
-  body::after {
-    display: none;
-  }
 }
 
 body[data-registration-modal-open="true"] .floating-language-switcher {
