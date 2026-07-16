@@ -17,18 +17,33 @@ export default function Home() {
       {/*
         iPhone status-bar (notch) cover. iOS Safari repaints the pinned photo
         backgrounds unreliably inside the top safe-area inset while scrolling,
-        leaving a grey band behind the clock/battery. A plain solid fixed bar (no
-        filter/transform/opacity) paints reliably and keeps that strip clean.
-        Only the top is covered: a full-height bottom bar (env(safe-area-inset-
-        bottom), ~34px) read as too large a grey strip, so the home-indicator
-        inset is left uncovered. env() collapses the bar to 0 where there is no
-        inset; z-30 sits above content/pinned photo, below the z-40 navbar.
+        leaving a grey band behind the clock/battery, so we paint that strip with
+        a fixed grey bar. Only the top is covered (a full-height bottom bar,
+        env(safe-area-inset-bottom) ~34px, read as too large). The bar's bottom
+        edge is a short gradient fade, NOT a hard line: Safari resizes
+        env(safe-area-inset-top) as its URL bar collapses/expands during scroll,
+        and combined with fixed-layer compositing lag a hard edge visibly
+        juddered as it moved — a soft edge does not. On devices with no inset the
+        whole thing collapses over the grey hero and is invisible. z-30 sits above
+        content/pinned photo, below the z-40 navbar.
       */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-x-0 top-0 z-30 bg-[#1A1A1A]"
-        style={{ height: "env(safe-area-inset-top)" }}
-      />
+        className="pointer-events-none fixed inset-x-0 top-0 z-30"
+        style={{ height: "calc(env(safe-area-inset-top) + 8px)" }}
+      >
+        <div
+          className="absolute inset-x-0 top-0 bg-[#1A1A1A]"
+          style={{ height: "env(safe-area-inset-top)" }}
+        />
+        <div
+          className="absolute inset-x-0 h-[8px]"
+          style={{
+            top: "env(safe-area-inset-top)",
+            background: "linear-gradient(to bottom, #1A1A1A, transparent)",
+          }}
+        />
+      </div>
 
       {/* Hero section with grey background */}
       <div className="relative overflow-x-clip text-white z-10 bg-[#1A1A1A]">
