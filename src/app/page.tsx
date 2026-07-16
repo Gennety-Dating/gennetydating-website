@@ -134,8 +134,12 @@ export default function Home() {
         />
       </div>
 
-      {/* Marquee container with grey background */}
-      <div className="relative overflow-x-clip bg-[#1A1A1A] text-white">
+      {/* Marquee container with grey background.
+          z-10 keeps this grey band above the previous photo section's z-10 pinned
+          background (which bleeds down via -mb-[100dvh]); without a matching
+          z-index the section-2 photo showed through behind the marquee. Mirrors
+          the z-10 already on TheDifference and the Footer. */}
+      <div className="relative z-10 overflow-x-clip bg-[#1A1A1A] text-white">
         <div className="relative z-10">
           <Marquee />
         </div>
