@@ -11,9 +11,9 @@ import { Footer } from "@/components/sections/footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-midnight text-white">
+    <main className="min-h-screen bg-[#111111] text-white">
       <Navbar />
-      
+
       {/* Hero section with grey background */}
       <div className="relative overflow-x-clip text-white z-10 bg-[#1A1A1A]">
         <Hero />
@@ -22,28 +22,30 @@ export default function Home() {
       {/* HowItWorks & Matchmaker sections sharing the photo background */}
       <div className="relative overflow-x-clip text-white z-10 bg-[#111111]">
         {/*
-          This is kept sticky so the content scrolls over a static photo. Dynamic
-          viewport units follow mobile browser chrome without exposing the page
-          canvas above or below the image.
+          Pinned photo background. It is kept sticky so the content scrolls over a
+          static photo. Dynamic viewport units follow the mobile browser chrome so
+          the page canvas is never exposed above or below the image.
+
+          NOTE: no `will-change`/`translate3d` GPU promotion here. On iOS Safari
+          (viewport-fit=cover) a forced composite layer on a blurred sticky element
+          is not repainted inside the notch/home-indicator safe-area insets during
+          scroll, which flashed those strips black. The root canvas colour matches
+          #111111 as a second line of defence — see globals.css.
         */}
         <div
           className="sticky top-0 z-0 -mb-[100dvh] h-[100dvh] min-h-[100svh] w-full overflow-hidden pointer-events-none"
-          style={{ transform: "translate3d(0, 0, 0)", willChange: "transform" }}
           aria-hidden="true"
         >
-          <div 
-            className="absolute -inset-8 bg-[#111111] bg-[url('/images/matchmaker-works-bg.jpg')] bg-cover bg-center opacity-55 blur-[8px]" 
-            style={{ transform: "translate3d(0, 0, 0)", willChange: "transform" }}
-          />
+          <div className="absolute -inset-8 bg-[#111111] bg-[url('/images/matchmaker-works-bg.jpg')] bg-cover bg-center opacity-55 blur-[8px]" />
           <div className="absolute inset-0 bg-[#111111]/45" />
         </div>
 
         {/* Wavy transition from Hero (grey #1A1A1A) to HowItWorks (Photo) */}
-        <div 
+        <div
           className="absolute -top-[1px] left-0 right-0 w-full h-[15px] z-20 pointer-events-none"
           style={{
             backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 0 L 37 0 C 30.5 0, 25 15, 18.5 15 C 12 15, 6.5 0, 0 0 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
-            backgroundRepeat: "repeat-x",
+            backgroundRepeat: "round",
             backgroundSize: "37px 15px"
           }}
         />
@@ -54,11 +56,11 @@ export default function Home() {
         </div>
 
         {/* Bottom wavy edge (Postage Stamp Wavy Bottom Edge) to transition to TheDifference (grey #1A1A1A) */}
-        <div 
+        <div
           className="absolute -bottom-[1px] left-0 right-0 w-full h-[15px] z-20 pointer-events-none"
           style={{
             backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 15 L 37 15 C 30.5 15, 25 0, 18.5 0 C 12 0, 6.5 15, 0 15 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
-            backgroundRepeat: "repeat-x",
+            backgroundRepeat: "round",
             backgroundSize: "37px 15px"
           }}
         />
@@ -74,24 +76,20 @@ export default function Home() {
         {/* A sticky viewport layer preserves the fixed-photo effect without viewport gaps. */}
         <div
           className="sticky top-0 z-0 -mb-[100dvh] h-[100dvh] min-h-[100svh] w-full overflow-hidden pointer-events-none"
-          style={{ transform: "translate3d(0, 0, 0)", willChange: "transform" }}
           aria-hidden="true"
         >
-          <div 
-            className="absolute -inset-10 bg-[#111111] bg-[url('/images/matchmaker-bg-1.jpg')] bg-cover bg-center opacity-35 blur-[12px]" 
-            style={{ transform: "translate3d(0, 0, 0)", willChange: "transform" }}
-          />
+          <div className="absolute -inset-10 bg-[#111111] bg-[url('/images/matchmaker-bg-1.jpg')] bg-cover bg-center opacity-35 blur-[12px]" />
         </div>
         {/* Wavy transition from TheDifference (grey #1A1A1A) to Comparison (Photo) */}
-        <div 
+        <div
           className="absolute -top-[1px] left-0 right-0 w-full h-[15px] z-20 pointer-events-none"
           style={{
             backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 0 L 37 0 C 30.5 0, 25 15, 18.5 15 C 12 15, 6.5 0, 0 0 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
-            backgroundRepeat: "repeat-x",
+            backgroundRepeat: "round",
             backgroundSize: "37px 15px"
           }}
         />
-        
+
         <div className="relative z-10">
           <Comparison />
           <TestimonialsCarousel />
@@ -99,11 +97,11 @@ export default function Home() {
         </div>
 
         {/* Bottom wavy edge (Postage Stamp Wavy Bottom Edge) to transition to FAQ (grey #1A1A1A) */}
-        <div 
+        <div
           className="absolute -bottom-[1px] left-0 right-0 w-full h-[15px] z-20 pointer-events-none"
           style={{
             backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 15 L 37 15 C 30.5 15, 25 0, 18.5 0 C 12 0, 6.5 15, 0 15 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
-            backgroundRepeat: "repeat-x",
+            backgroundRepeat: "round",
             backgroundSize: "37px 15px"
           }}
         />

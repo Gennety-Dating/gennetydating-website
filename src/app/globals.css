@@ -112,10 +112,16 @@
 html {
   font-size: 14px;
   scroll-behavior: smooth;
+  /* Root canvas colour. Under viewport-fit=cover iOS Safari fills the
+     notch/home-indicator safe-area insets with this colour while a photo
+     section's pinned background repaints during scroll. It must match the photo
+     sections' #111111 base, otherwise the near-black canvas reads as an ugly
+     black bar at the top and bottom of the screen. */
+  background-color: #111111;
 }
 
 body {
-  background-color: #050505;
+  background-color: #111111;
   color: #FFFFFF;
   font-family: var(--font-sans);
   overflow-x: hidden;
@@ -149,6 +155,20 @@ body::after {
     rgba(255, 255, 255, 0.03) 2px,
     rgba(255, 255, 255, 0.03) 4px
   );
+}
+
+/*
+ * Fixed full-viewport texture overlays are another WebKit compositing trigger
+ * when a photo section scrolls beneath Safari's dynamic top/bottom chrome — they
+ * can flash the safe-area insets black on iPhone. The grain/scanline flourish is
+ * a purely decorative desktop touch (opacity 0.03/0.015), so drop it on
+ * touch/coarse-pointer devices where it hurts more than it helps.
+ */
+@media (hover: none) and (pointer: coarse) {
+  body::before,
+  body::after {
+    display: none;
+  }
 }
 
 body[data-registration-modal-open="true"] .floating-language-switcher {
