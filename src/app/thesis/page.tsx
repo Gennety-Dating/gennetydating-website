@@ -66,11 +66,7 @@ export default function ThesisPage() {
 
           <p dangerouslySetInnerHTML={{ __html: t("thesis.p4") }} />
           <p dangerouslySetInnerHTML={{ __html: t("thesis.p5") }} />
-          
-          {/* Big Question Highlight as a minimalist quote */}
-          <blockquote className="pl-4 md:pl-8 my-12 text-white/95 text-2xl md:text-3xl font-serif italic tracking-wide leading-relaxed">
-            {t("thesis.p6")}
-          </blockquote>
+          <p dangerouslySetInnerHTML={{ __html: t("thesis.p6") }} />
 
           {/* Scam Market Stats Highlight Card */}
           <div className="p-8 rounded-2xl bg-white/[0.03] my-10 backdrop-blur-sm">
