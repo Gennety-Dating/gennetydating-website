@@ -10,6 +10,7 @@ export function CookieBanner() {
   const pathname = usePathname();
   const isThesisPage = pathname === "/thesis";
   const isPlacesPage = pathname === "/places";
+  const isAppPage = pathname === "/app";
   const { hasConsented, isLoading, submitConsent } = useCookieConsent();
   const [showCustomize, setShowCustomize] = useState(false);
   const [registrationModalOpen, setRegistrationModalOpen] = useState(false);
@@ -215,7 +216,7 @@ export function CookieBanner() {
         </div>
       )}
 
-      {!isThesisPage && !isPlacesPage && <SpotifyWidget />}
+      {!isThesisPage && !isPlacesPage && !isAppPage && <SpotifyWidget />}
     </>
   );
 }

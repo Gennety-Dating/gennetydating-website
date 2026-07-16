@@ -532,7 +532,7 @@ export function RegistrationButton({
                             transition={{ duration: 0.15, ease: "easeOut" }}
                             role="listbox"
                             aria-label={t("registration.languageLabel")}
-                            className="absolute left-0 right-0 top-[calc(100%+8px)] z-30 max-h-[240px] overflow-y-auto no-scrollbar rounded-2xl bg-black/95 p-1.5 shadow-[0_12px_40px_rgba(0,0,0,0.85)] backdrop-blur-xl"
+                            className="absolute left-0 top-[calc(100%+8px)] z-30 w-60 max-h-[240px] overflow-y-auto no-scrollbar rounded-[22px] bg-black/95 p-1.5 shadow-[0_12px_40px_rgba(0,0,0,0.85)] backdrop-blur-xl"
                           >
                             {languageOptions.map((option) => {
                               const selected = option.value === language;

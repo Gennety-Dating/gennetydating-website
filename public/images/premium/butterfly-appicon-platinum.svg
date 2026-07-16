@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="512" height="512">
+  <defs>
+    <radialGradient id="grad-platinum" cx="30%" cy="100%" r="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="30%" stop-color="#E0E0E0" />
+      <stop offset="70%" stop-color="#9E9E9E" />
+      <stop offset="100%" stop-color="#1A1A1A" />
+     </radialGradient>
+  </defs>
+  <rect width="100" height="100" rx="26" fill="url(#grad-platinum)" />
+  <path d="M 50 35 
+            C 20 0, -10 30, 15 55 
+            C -5 75, 25 100, 48 65 
+            L 52 65 
+            C 75 100, 105 75, 85 55 
+            C 110 30, 80 0, 50 35 
+            Z" 
+         fill="#FFFFFF" 
+         transform="translate(15, 15) scale(0.7)" />
+</svg>

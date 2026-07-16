@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from "react";
 import { useLanguage } from "@/lib/language-context";
 import { type Locale, locales, localeNames } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface LanguageSwitcherProps {
@@ -35,23 +34,33 @@ export function LanguageSwitcher({ menuPlacement = "bottom", theme = "dark" }: L
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "group inline-flex items-center justify-center gap-2 rounded-full font-medium cursor-pointer select-none bg-transparent active:scale-95 px-3 py-1.5 text-xs md:px-4 md:py-2 md:text-sm transition-[color,background-color] duration-300",
+          "group flex items-center justify-center rounded-full cursor-pointer select-none bg-transparent active:scale-95 transition-all duration-300",
+          "w-9 h-9 md:w-10 md:h-10",
           isDark 
             ? "text-white hover:bg-white/10" 
-            : "text-[#111111] border border-[#111111]/60 hover:bg-[#111111]/10"
+            : "text-[#111111] border border-[#111111]/30 hover:bg-[#111111]/10"
         )}
         aria-expanded={isOpen}
+        aria-label="Change language"
       >
-        <span>
-          {localeNames[locale]}
-        </span>
-        <ChevronDown
+        <svg 
+          viewBox="0 0 100 100" 
           className={cn(
-            "w-3.5 h-3.5 transition-transform duration-300",
-            isDark ? "text-white/60" : "text-[#111111]/60",
-            isOpen ? "rotate-180" : ""
+            "w-5 h-5 md:w-6 md:h-6 fill-none stroke-current transition-all duration-300",
+            isOpen ? "rotate-12 scale-90" : "group-hover:scale-110"
           )}
-        />
+          strokeWidth={8} 
+          strokeLinecap="round" 
+          strokeLinejoin="round"
+        >
+          <path d="M 50 35 
+                     C 20 0, -10 30, 15 55 
+                     C -5 75, 25 100, 48 65 
+                     L 52 65 
+                     C 75 100, 105 75, 85 55 
+                     C 110 30, 80 0, 50 35 
+                     Z" />
+        </svg>
       </button>
 
       {/* Liquid Glass dropdown list */}
@@ -63,11 +72,13 @@ export function LanguageSwitcher({ menuPlacement = "bottom", theme = "dark" }: L
             exit={{ opacity: 0, y: opensUp ? -4 : 4, scale: 0.97 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             className={cn(
-              "absolute left-0 w-full max-h-[calc(100vh-6rem)] overflow-hidden rounded-2xl p-1 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-xl z-50",
+              "absolute w-24 max-h-[calc(100vh-6rem)] overflow-hidden rounded-[22px] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-xl z-50",
               isDark 
-                ? "bg-[#111111]/95" 
+                ? "bg-[#111111]/95 border border-white/10" 
                 : "bg-white/95 border border-black/20 shadow-lg",
-              opensUp ? "bottom-[calc(100%+8px)] origin-bottom" : "top-[calc(100%+8px)] origin-top",
+              opensUp 
+                ? "bottom-[calc(100%+8px)] right-0 origin-bottom-right" 
+                : "top-[calc(100%+8px)] right-0 origin-top-right",
             )}
           >
             <div className="flex flex-col gap-1">

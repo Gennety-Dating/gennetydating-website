@@ -197,6 +197,7 @@ export interface DatePlace {
   images: string[];
   mapsUrl: string;
   likes: number;
+  isPremium?: boolean;
 }
 
 export const datePlaces: DatePlace[] = [
@@ -448,7 +449,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_ministerstvo_desertiv_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Ministerstvo+Desertiv+Kyiv",
-    likes: 65
+    likes: 27
   },
   {
     id: "kyiv-natalka-park",
@@ -634,7 +635,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_goodgirl_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Goodgirl+Kyiv",
-    likes: 58
+    likes: 6
   },
   {
     id: "kyiv-landscape-alley",
@@ -696,7 +697,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_breakfast_club_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Breakfast+Club+Kyiv",
-    likes: 55
+    likes: 1
   },
   {
     id: "kyiv-sens",
@@ -882,7 +883,8 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_boutique_sofie_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Boutique+Sofie+Kyiv",
-    likes: 42
+    likes: 42,
+    isPremium: true
   },
   {
     id: "kyiv-franyk",
@@ -975,7 +977,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_shevchenko_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Shevchenko+Park+Kyiv",
-    likes: 33
+    likes: 66
   },
   {
     id: "kyiv-fish-pussycat",
@@ -984,7 +986,7 @@ export const datePlaces: DatePlace[] = [
     vibe: {
       en: "California Sushi",
       uk: "Каліфорнійські суші",
-      ru: "Калифорнийские суши",
+      ru: "Калифорниские суши",
       de: "Kalifornisches Sushi",
       pl: "Sushibar kalifornijski"
     },
@@ -1006,7 +1008,8 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_fish_pussycat_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Fish+and+Pussycat+Sushi+Kyiv",
-    likes: 70
+    likes: 70,
+    isPremium: true
   },
   {
     id: "kyiv-thai-hi",
@@ -1037,7 +1040,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_thai_hi_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Thai+Hi+Kyiv",
-    likes: 71
+    likes: 10
   },
   {
     id: "kyiv-japanese-hi",
@@ -1068,7 +1071,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_japanese_hi_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Japanese+Hi+Kyiv",
-    likes: 84
+    likes: 43
   },
   {
     id: "kyiv-suit-13",
@@ -1130,7 +1133,8 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_vero_vero_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Vero+Vero+Kyiv",
-    likes: 70
+    likes: 70,
+    isPremium: true
   },
   {
     id: "kyiv-foodspot",
@@ -1192,7 +1196,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_spelta_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Spelta+Kyiv+Yaroslavska",
-    likes: 42
+    likes: 59
   },
   {
     id: "kyiv-bonco",
@@ -1220,7 +1224,7 @@ export const datePlaces: DatePlace[] = [
       pl: "Piękna, kameralna kawiarnia-cukiernia w pobliżu Placu Lwowskiego. Słynie z wyjątkowych rogalików, artystycznych tart i wyśmienitych napojów."
     },
     images: [
-      "/images/places/kyiv_bonco_1.jpg"
+      "/images/places/kyiv_bonco_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bonco+Kyiv+Velyka+Zhytomyrska",
     likes: 54
@@ -1254,7 +1258,328 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_italianska_redaktsiia_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Italianska+Redaktsiia+Kyiv",
-    likes: 77
+    likes: 77,
+    isPremium: true
+  },
+  {
+    id: "kyiv-catch",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Premium Seafood",
+      uk: "Преміальні морепродукти",
+      ru: "Премиальные морепродукты",
+      de: "Premium-Meeresfrüchte",
+      pl: "Ekskluzywne owoce morza"
+    },
+    name: {
+      en: "Catch Seafood Restaurant",
+      uk: "Catch Seafood Restaurant",
+      ru: "Catch Seafood Restaurant",
+      de: "Catch Seafood Restaurant",
+      pl: "Catch Seafood Restaurant"
+    },
+    description: {
+      en: "One of the best seafood restaurants in Kyiv, boasting an impressive raw bar, a wide selection of champagne, and a sophisticated, romantic interior.",
+      uk: "Один із найкращих рибних ресторанів столиці з вражаючим Raw-баром, величезним вибором шампанського та вишуканим романтичним інтер'єром.",
+      ru: "Один из лучших рыбных ресторанов столицы с впечатляющим Raw-баром, огромным выбором шампанского и изысканным романтическим интерьером.",
+      de: "Eines der besten Fischrestaurants in Kiew mit einer beeindruckenden Raw Bar, einer großen Auswahl an Champagner und einem anspruchsvollen, romantischen Interieur.",
+      pl: "Jedna z najlepszych restauracji z owocami morza w Kijowie, oferująca imponujący bar raw, szeroki wybór szampanów oraz wyrafinowane, romantyczne wnętrze."
+    },
+    images: [
+      "/images/places/kyiv_catch_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Catch+Seafood+Restaurant+Kyiv+Volodymyrska+12",
+    likes: 67,
+    isPremium: true
+  },
+  {
+    id: "kyiv-citronelle",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "French Fine Dining",
+      uk: "Французька вишукана кухня",
+      ru: "Французская изысканная кухня",
+      de: "Französische Haute Cuisine",
+      pl: "Francuska wykwintna kuchnia"
+    },
+    name: {
+      en: "Citronelle",
+      uk: "Citronelle",
+      ru: "Citronelle",
+      de: "Citronelle",
+      pl: "Citronelle"
+    },
+    description: {
+      en: "An elegant French restaurant opposite the Opera House. Famous for its classic and modern French cuisine, exquisite wine list, and refined European charm.",
+      uk: "Елегантний ресторан французької кухні навпроти Оперного театру. Відомий вишуканими стравами, чудовою винною картою та особливим європейським шармом.",
+      ru: "Элегантный ресторан французской кухни напротив Оперного театра. Известен изысканными блюдами, отличной винной картой и особым европейским шармом.",
+      de: "Ein elegantes französisches Restaurant gegenüber dem Opernhaus. Bekannt für seine klassische und moderne französische Küche und exquisiten Charme.",
+      pl: "Elegancka francuska restauracja naprzeciwko Opery. Słynie z klasycznej i nowoczesnej kuchni francuskiej, wykwintnej karty win i europejskiego uroku."
+    },
+    images: [
+      "/images/places/kyiv_citronelle_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Citronelle+Kyiv+Bohdana+Khmelnytskoho+23",
+    likes: 11,
+    isPremium: true
+  },
+  {
+    id: "kyiv-nam",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Modern Vietnamese",
+      uk: "Сучасна в'єтнамська кухня",
+      ru: "Современная вьетнамская кухня",
+      de: "Modernes Vietnamesisch",
+      pl: "Nowoczesna wietnamska"
+    },
+    name: {
+      en: "NAM",
+      uk: "NAM",
+      ru: "NAM",
+      de: "NAM",
+      pl: "NAM"
+    },
+    description: {
+      en: "A stylish, upscale restaurant serving creative interpretations of Vietnamese dishes in a visually stunning dark-toned interior with ambient lighting.",
+      uk: "Стильний преміум-ресторан, який пропонує креативні інтерпретації в'єтнамських страв у розкішному темному інтер'єрі з приглушеним світлом.",
+      ru: "Стильный премиум-ресторан, предлагающий креативные интерпретации вьетнамских блюд в роскошном темном интерьере с приглушенным светом.",
+      de: "Ein stilvolles, gehobenes Restaurant, das kreative Interpretationen vietnamesischer Gerichte in einem atemberaubenden, dunklen Interieur serviert.",
+      pl: "Stylowa, ekskluzywna restauracja serwująca kreatywne interpretacje dań wietnamskich w spektakularnym, ciemnym wnętrzu z klimatycznym oświetleniem."
+    },
+    images: [
+      "/images/places/kyiv_nam_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=N%C4%82M+Modern+Vietnamese+Cuisine+Kyiv",
+    likes: 82,
+    isPremium: true
+  },
+  {
+    id: "kyiv-bao",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Modern Chinese",
+      uk: "Сучасна китайська кухня",
+      ru: "Современная китайская кухня",
+      de: "Modernes Chinesisch",
+      pl: "Nowoczesna chińska"
+    },
+    name: {
+      en: "BAO • Modern Chinese Cuisine",
+      uk: "BAO • Modern Chinese Cuisine",
+      ru: "BAO • Modern Chinese Cuisine",
+      de: "BAO • Modern Chinese Cuisine",
+      pl: "BAO • Modern Chinese Cuisine"
+    },
+    description: {
+      en: "A high-end Chinese restaurant with an open kitchen, a legendary long table, and an energetic atmosphere. Perfect for a memorable dinner date.",
+      uk: "Вишуканий ресторан китайської кухні з відкритою кухнею, легендарним довгим столом та динамічною атмосферою. Ідеально для незабутнього вечірнього побачення.",
+      ru: "Изысканный ресторан китайской кухни с открытой кухней, легендарным длинным столом и динамичной атмосферой. Идеально для незабываемого свидания.",
+      de: "Ein erstklassiges chinesisches Restaurant mit offener Küche, einem legendären langen Tisch und einer energiegeladenen Atmosphäre.",
+      pl: "Ekskluzywna chińska restauracja z otwartą kuchnią, kultowym długim stołem i tętniącą życiem atmosferą. Idealna na wyjątkową randkę."
+    },
+    images: [
+      "/images/places/kyiv_bao_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=BAO+Modern+Chinese+Cuisine+Kyiv+Mechnykova+14/1",
+    likes: 89,
+    isPremium: true
+  },
+  {
+    id: "kyiv-lucky",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Wine & Fine Dining",
+      uk: "Вино та гастрономія",
+      ru: "Вино и гастрономия",
+      de: "Wein & Gastronomie",
+      pl: "Wino i wykwintne jedzenie"
+    },
+    name: {
+      en: "Lucky Restaurant Vinoteque",
+      uk: "Lucky Restaurant Vinoteque",
+      ru: "Lucky Restaurant Vinoteque",
+      de: "Lucky Restaurant Vinoteque",
+      pl: "Lucky Restaurant Vinoteque"
+    },
+    description: {
+      en: "An exceptional culinary space inside Good Wine, blending a state-of-the-art kitchen with a massive selection of premium wines. Perfect for wine lovers.",
+      uk: "Унікальний гастрономічний простір всередині Good Wine, що поєднує сучасну авторську кухню та величезну колекцію найкращих вин світу.",
+      ru: "Уникальное гастрономическое пространство внутри Good Wine, сочетающее современную авторскую кухню и огромную коллекцию лучших вин мира.",
+      de: "Ein außergewöhnlicher kulinarischer Raum im Good Wine, der eine hochmoderne Küche mit einer riesigen Auswahl an Premium-Weinen verbindet.",
+      pl: "Wyjątkowa przestrzeń kulinarna w Good Wine, łącząca nowoczesną kuchnię autorską z ogromnym wyborem win z całego świata."
+    },
+    images: [
+      "/images/places/kyiv_lucky_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Lucky+Restaurant+Vinoteque+Mechnykova+9+Kyiv",
+    likes: 84,
+    isPremium: true
+  },
+  {
+    id: "kyiv-11mirrors",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Rooftop Restaurant & Bar",
+      uk: "Панорамний ресторан і бар",
+      ru: "Панорамный ресторан и бар",
+      de: "Rooftop Restaurant & Bar",
+      pl: "Restauracja i bar na dachu"
+    },
+    name: {
+      en: "11 Mirrors Rooftop",
+      uk: "11 Mirrors Rooftop",
+      ru: "11 Mirrors Rooftop",
+      de: "11 Mirrors Rooftop",
+      pl: "11 Mirrors Rooftop"
+    },
+    description: {
+      en: "A sophisticated rooftop restaurant and bar offering a stunning panoramic view of old Kyiv, signature cocktails, and premium fusion cuisine.",
+      uk: "Вишуканий панорамний ресторан і бар на даху з неймовірним краєвидом на старий Київ, авторськими коктейлями та преміальною кухнею ф'южн.",
+      ru: "Изысканный панорамный ресторан и бар на крыше с невероятным видом на старый Киев, авторскими коктейлями и премиальной кухней фьюжн.",
+      de: "Ein anspruchsvolles Rooftop-Restaurant und eine Bar mit einem atemberaubenden Panoramablick auf das alte Kiew, Signature-Cocktails und erstklassiger Fusionsküche.",
+      pl: "Wyrafinowana restauracja i bar na dachu, oferująca oszałamiający panoramiczny widok na stary Kijów, autorskie koktajle oraz wykwintną kuchnię fusion."
+    },
+    images: [
+      "/images/places/kyiv_11mirrors_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=11+Mirrors+Rooftop+Restaurant+%26+Bar+Kyiv",
+    likes: 91,
+    isPremium: true
+  },
+  {
+    id: "kyiv-bassano",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Italian Cuisine & Pastries",
+      uk: "Італійська кухня та кондитерська",
+      ru: "Итальянская кухня и кондитерская",
+      de: "Italienische Küche & Konditorei",
+      pl: "Włoska kuchnia i cukiernia"
+    },
+    name: {
+      en: "Bassano",
+      uk: "Bassano",
+      ru: "Bassano",
+      de: "Bassano",
+      pl: "Bassano"
+    },
+    description: {
+      en: "An elegant Italian restaurant next to St. Nicholas Cathedral, known for its authentic Mediterranean dishes, fine wines, and artisanal pastries.",
+      uk: "Елегантний ресторан італійської та середземноморської кухні біля Костелу святого Миколая, відомий вишуканими стравами, вином та власною кондитерською.",
+      ru: "Элегантный ресторан итальянской и средиземноморской кухни возле Костела святого Николая, известный изысканными блюдами, вином и собственной кондитерской.",
+      de: "Ein elegantes italienisches Restaurant in der Nähe der St.-Nikolaus-Kathedrale, bekannt für seine authentischen mediterranen Gerichte, erlesenen Weine und handwerkliche Konditorei.",
+      pl: "Elegancka włoska restauracja obok kościoła św. Mikołaja, znana z autentycznych dań śródziemnomorskich, wyśmienitych win i rzemieślniczych wypieków."
+    },
+    images: [
+      "/images/places/kyiv_bassano_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bassano+Ristorante+Velyka+Vasylkivska+100+Kyiv",
+    likes: 19,
+    isPremium: true
+  },
+  {
+    id: "kyiv-biggoli",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Italian Dining & Fresh Pasta",
+      uk: "Італійська класика та свіжа паста",
+      ru: "Итальянская классика и свежая паста",
+      de: "Italienische Küche & frische Pasta",
+      pl: "Klasyczna włoska kuchnia i świeży makaron"
+    },
+    name: {
+      en: "Biggoli",
+      uk: "Biggoli",
+      ru: "Biggoli",
+      de: "Biggoli",
+      pl: "Biggoli"
+    },
+    description: {
+      en: "A charming Italian restaurant famous for its handmade bigoli pasta, mozzarella bar, and warm, traditional Mediterranean atmosphere.",
+      uk: "Затишний ресторан італійської кухні, відомий своєю домашньою пастою біголі, моцарела-баром та традиційною гостинною атмосферою.",
+      ru: "Уютный ресторан итальянской кухни, известный своей домашней пастой биголи, моцарелла-баром и традиционной гостеприимной атмосферой.",
+      de: "Ein charmantes italienisches Restaurant, das für seine handgemachte Bigoli-Pasta, die Mozzarella-Bar und die warme, traditionelle mediterrane Atmosphäre bekannt ist.",
+      pl: "Urocza włoska restauracja słynąca z ręcznie robionego makaronu bigoli, baru mozzarella oraz ciepłej, tradycyjnej śródziemnomorskiej atmosfery."
+    },
+    images: [
+      "/images/places/kyiv_biggoli_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Biggoli+Restaurant+Climb+Klovsky+Descent+7A+Kyiv",
+    likes: 7,
+    isPremium: true
+  },
+  {
+    id: "kyiv-la-maison",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "French Chic & Fine Dining",
+      uk: "Французький шик та висока кухня",
+      ru: "Французский шик и высокая кухня",
+      de: "Französischer Schick & Fine Dining",
+      pl: "Francuski szyk i wykwintne jedzenie"
+    },
+    name: {
+      en: "La Maison",
+      uk: "La Maison",
+      ru: "La Maison",
+      de: "La Maison",
+      pl: "La Maison"
+    },
+    description: {
+      en: "A classic French restaurant in the heart of Kyiv, offering an elegant setting, traditional recipes with a modern twist, and an exceptional wine list.",
+      uk: "Класичний французький ресторан у центрі Києва, який пропонує елегантну атмосферу, традиційні рецепти в сучасній інтерпретації та виняткову винну карту.",
+      ru: "Классический французский ресторан в центре Киева, предлагающий элегантную атмосферу, традиционные рецепты в современной интерпретации и исключительную винную карту.",
+      de: "Ein klassisches französisches Restaurant im Herzen von Kiew, das ein elegantes Ambiente, traditionelle Rezepte mit modernem Touch und eine außergewöhnliche Weinkarte bietet.",
+      pl: "Klasyczna francuska restauracja w sercu Kijowa, oferująca eleganckie wnętrza, tradycyjne receptury w nowoczesnym wydaniu oraz wyjątkową kartę win."
+    },
+    images: [
+      "/images/places/kyiv_la_maison_1.png"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Maison+Restaurant+Kyiv",
+    likes: 79,
+    isPremium: true
+  },
+  {
+    id: "kyiv-vino-e-cucina",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Italian Restaurant & Enoteca",
+      uk: "Італійський ресторан та енотека",
+      ru: "Итальянский ресторан и энотека",
+      de: "Italienisches Restaurant & Enoteca",
+      pl: "Włoska restauracja i enoteka"
+    },
+    name: {
+      en: "VINO e CUCINA",
+      uk: "VINO e CUCINA",
+      ru: "VINO e CUCINA",
+      de: "VINO e CUCINA",
+      pl: "VINO e CUCINA"
+    },
+    description: {
+      en: "An award-winning Italian restaurant featuring a spacious terrace, an impressive multi-level wine cellar, and excellent wood-fired pizzas.",
+      uk: "Знаменитий італійський ресторан із просторою терасою, вражаючим багаторівневим винним льохом та вишуканою піцою на дровах.",
+      ru: "Знаменитый итальянский ресторан с просторной террасой, впечатляющим многоуровневым винным погребом и изысканной пиццей на дровах.",
+      de: "Ein preisgekröntes italienisches Restaurant mit einer weitläufigen Terrasse, einem beeindruckenden mehrstöckigen Weinkeller und hervorragenden Pizzen aus dem Holzofen.",
+      pl: "Nagradzana włoska restauracja z przestronnym tarasem, imponującą wielopoziomową piwniczką winną oraz wyśmienitą pizzą z pieca opalanego drewnem."
+    },
+    images: [
+      "/images/places/kyiv_vino_e_cucina_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Vino+e+Cucina+Kyiv+Sichovykh+Striltsiv+82",
+    likes: 12,
+    isPremium: true
   },
 
   // Warsaw Places
@@ -1415,7 +1740,8 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_bibenda_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bibenda+Nowogrodzka+Warsaw",
-    likes: 79
+    likes: 79,
+    isPremium: true
   },
   {
     id: "warsaw-muus",
@@ -1539,6 +1865,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_deseo_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=DESEO+Patisserie+Chocolaterie+Warsaw",
-    likes: 73
+    likes: 73,
+    isPremium: true
   }
 ];
