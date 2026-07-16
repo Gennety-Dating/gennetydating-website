@@ -14,36 +14,11 @@ export default function Home() {
     <main className="min-h-screen bg-[#111111] text-white">
       <Navbar />
 
-      {/*
-        iPhone status-bar (notch) cover. iOS Safari repaints the pinned photo
-        backgrounds unreliably inside the top safe-area inset while scrolling,
-        leaving a grey band behind the clock/battery, so we paint that strip with
-        a fixed grey bar. Only the top is covered (a full-height bottom bar,
-        env(safe-area-inset-bottom) ~34px, read as too large). The bar's bottom
-        edge is a short gradient fade, NOT a hard line: Safari resizes
-        env(safe-area-inset-top) as its URL bar collapses/expands during scroll,
-        and combined with fixed-layer compositing lag a hard edge visibly
-        juddered as it moved — a soft edge does not. On devices with no inset the
-        whole thing collapses over the grey hero and is invisible. z-30 sits above
-        content/pinned photo, below the z-40 navbar.
-      */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-x-0 top-0 z-30"
-        style={{ height: "calc(env(safe-area-inset-top) + 8px)" }}
-      >
-        <div
-          className="absolute inset-x-0 top-0 bg-[#1A1A1A]"
-          style={{ height: "env(safe-area-inset-top)" }}
-        />
-        <div
-          className="absolute inset-x-0 h-[8px]"
-          style={{
-            top: "env(safe-area-inset-top)",
-            background: "linear-gradient(to bottom, #1A1A1A, transparent)",
-          }}
-        />
-      </div>
+      {/* No top safe-area cover. A fixed grey bar sized by env(safe-area-inset-top)
+          hid the photo and juddered on scroll (Safari resizes that inset as its URL
+          bar animates, and the fixed gradient layer also lagged scrolling), so the
+          notch strip is intentionally left transparent — the pinned photo shows
+          through it edge-to-edge, kept clean by the section's z-10 stacking. */}
 
       {/* Hero section with grey background */}
       <div className="relative overflow-x-clip text-white z-10 bg-[#1A1A1A]">
