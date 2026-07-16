@@ -26,18 +26,20 @@ export default function Home() {
           static photo. Dynamic viewport units follow the mobile browser chrome so
           the page canvas is never exposed above or below the image.
 
-          NOTE: no `will-change`/`translate3d` GPU promotion here. On iOS Safari
-          (viewport-fit=cover) a forced composite layer on a blurred sticky element
-          is not repainted inside the notch/home-indicator safe-area insets during
-          scroll, which flashed those strips black. The root canvas colour matches
-          #111111 as a second line of defence — see globals.css.
+          NOTE: the blur AND darkening are baked into the *-soft.jpg asset, so
+          there is NO runtime `filter`/`opacity`/`will-change`/`translate3d` on
+          these layers. Under viewport-fit=cover, iOS Safari does not repaint such
+          a composite layer inside the notch/home-indicator safe-area insets while
+          scrolling, which left black bars over the photo sections. A plain opaque
+          image paints edge to edge. The #111111 root canvas (globals.css) is a
+          backstop. To re-tune the look, regenerate the asset — see
+          scripts/bake-photo-backgrounds (blur radius + photo/#111111 mix).
         */}
         <div
           className="sticky top-0 z-0 -mb-[100dvh] h-[100dvh] min-h-[100svh] w-full overflow-hidden pointer-events-none"
           aria-hidden="true"
         >
-          <div className="absolute -inset-8 bg-[#111111] bg-[url('/images/matchmaker-works-bg.jpg')] bg-cover bg-center opacity-55 blur-[8px]" />
-          <div className="absolute inset-0 bg-[#111111]/45" />
+          <div className="absolute -inset-8 bg-[#111111] bg-[url('/images/matchmaker-works-bg-soft.jpg')] bg-cover bg-center" />
         </div>
 
         {/* Wavy transition from Hero (grey #1A1A1A) to HowItWorks (Photo) */}
@@ -78,7 +80,10 @@ export default function Home() {
           className="sticky top-0 z-0 -mb-[100dvh] h-[100dvh] min-h-[100svh] w-full overflow-hidden pointer-events-none"
           aria-hidden="true"
         >
-          <div className="absolute -inset-10 bg-[#111111] bg-[url('/images/matchmaker-bg-1.jpg')] bg-cover bg-center opacity-35 blur-[12px]" />
+          {/* Blur + darkening baked into the *-soft.jpg (no runtime filter/opacity),
+              so this layer is not composited and does not drop the iOS safe-area
+              insets to black — see the note on the first photo section above. */}
+          <div className="absolute -inset-10 bg-[#111111] bg-[url('/images/matchmaker-bg-1-soft.jpg')] bg-cover bg-center" />
         </div>
         {/* Wavy transition from TheDifference (grey #1A1A1A) to Comparison (Photo) */}
         <div
