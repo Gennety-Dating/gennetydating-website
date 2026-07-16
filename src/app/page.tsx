@@ -36,28 +36,28 @@ export default function Home() {
         </div>
 
         {/* Original postage-stamp edge. */}
-        <div
-          className="absolute -top-[1px] left-0 right-0 z-20 h-[15px] w-full pointer-events-none"
-          style={{
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 0 L 37 0 C 30.5 0, 25 15, 18.5 15 C 12 15, 6.5 0, 0 0 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
-            backgroundRepeat: "repeat-x",
-            backgroundSize: "37px 15px",
-          }}
-        />
+        <svg className="absolute -top-[1px] left-0 right-0 z-20 h-[15px] w-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="how-it-works-stamp-teeth-top" width="37" height="15" patternUnits="userSpaceOnUse">
+              <path d="M 0 0 L 37 0 C 30.5 0, 25 15, 18.5 15 C 12 15, 6.5 0, 0 0 Z" fill="#1A1A1A" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="15" fill="url(#how-it-works-stamp-teeth-top)" />
+        </svg>
 
         <div className="relative z-10">
           <HowItWorks />
           <Matchmaker />
         </div>
 
-        <div
-          className="absolute -bottom-[1px] left-0 right-0 z-20 h-[15px] w-full pointer-events-none"
-          style={{
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 15 L 37 15 C 30.5 15, 25 0, 18.5 0 C 12 0, 6.5 15, 0 15 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
-            backgroundRepeat: "repeat-x",
-            backgroundSize: "37px 15px",
-          }}
-        />
+        <svg className="absolute -bottom-[1px] left-0 right-0 z-20 h-[15px] w-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="matchmaker-stamp-teeth-bottom" width="37" height="15" patternUnits="userSpaceOnUse">
+              <path d="M 0 15 L 37 15 C 30.5 15, 25 0, 18.5 0 C 12 0, 6.5 15, 0 15 Z" fill="#1A1A1A" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="15" fill="url(#matchmaker-stamp-teeth-bottom)" />
+        </svg>
       </div>
 
       {/* TheDifference section with grey background */}
@@ -74,14 +74,14 @@ export default function Home() {
         >
           <div className="absolute inset-0 bg-[#111111] bg-[url('/images/matchmaker-bg-1.jpg')] bg-cover bg-center opacity-35" />
         </div>
-        <div
-          className="absolute -top-[1px] left-0 right-0 z-20 h-[15px] w-full pointer-events-none"
-          style={{
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 0 L 37 0 C 30.5 0, 25 15, 18.5 15 C 12 15, 6.5 0, 0 0 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
-            backgroundRepeat: "repeat-x",
-            backgroundSize: "37px 15px",
-          }}
-        />
+        <svg className="absolute -top-[1px] left-0 right-0 z-20 h-[15px] w-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="comparison-stamp-teeth-top" width="37" height="15" patternUnits="userSpaceOnUse">
+              <path d="M 0 0 L 37 0 C 30.5 0, 25 15, 18.5 15 C 12 15, 6.5 0, 0 0 Z" fill="#1A1A1A" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="15" fill="url(#comparison-stamp-teeth-top)" />
+        </svg>
         
         <div className="relative z-10">
           <Comparison />
@@ -89,14 +89,14 @@ export default function Home() {
           <FAQ />
         </div>
 
-        <div
-          className="absolute -bottom-[1px] left-0 right-0 z-20 h-[15px] w-full pointer-events-none"
-          style={{
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 15 L 37 15 C 30.5 15, 25 0, 18.5 0 C 12 0, 6.5 15, 0 15 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
-            backgroundRepeat: "repeat-x",
-            backgroundSize: "37px 15px",
-          }}
-        />
+        <svg className="absolute -bottom-[1px] left-0 right-0 z-20 h-[15px] w-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="faq-stamp-teeth-bottom" width="37" height="15" patternUnits="userSpaceOnUse">
+              <path d="M 0 15 L 37 15 C 30.5 15, 25 0, 18.5 0 C 12 0, 6.5 15, 0 15 Z" fill="#1A1A1A" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="15" fill="url(#faq-stamp-teeth-bottom)" />
+        </svg>
       </div>
 
       {/* Marquee container with grey background */}
