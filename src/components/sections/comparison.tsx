@@ -58,7 +58,7 @@ export function Comparison() {
 
           {/* Crumpled paper style container */}
           <div className="relative w-full max-w-lg">
-            <div className="rounded-xl bg-gradient-to-br from-stone-800/80 to-stone-900/60 border border-white/10 p-6 relative overflow-hidden min-h-[200px] py-6 flex flex-col justify-center">
+            <div className="rounded-xl bg-gradient-to-br from-[#262423] to-[#1a1817] border border-white/10 p-6 relative overflow-hidden min-h-[200px] py-6 flex flex-col justify-center">
               {/* Graph paper lines */}
               <div
                 className="absolute inset-0 opacity-[0.06]"
