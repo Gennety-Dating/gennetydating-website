@@ -35,12 +35,12 @@ export function Navbar() {
           Matches the navbar's glassmorphic look so nothing bleeds through. */}
       <div
         className="fixed top-0 left-0 right-0 z-50 bg-black md:hidden pointer-events-none"
-        style={{ height: 'calc(max(env(safe-area-inset-top, 0px), 47px) + 12px)' }}
+        style={{ height: 'env(safe-area-inset-top, 0px)' }}
         aria-hidden="true"
       />
       <nav
       className={cn(
-        "fixed top-0 w-full z-40 flex items-center justify-between px-4 md:px-10 pt-[calc(max(env(safe-area-inset-top,0px),47px)+12px)] pb-3 md:pt-[calc(env(safe-area-inset-top)+16px)] md:pb-4 transition-all duration-300",
+        "fixed top-0 w-full z-40 flex items-center justify-between px-4 md:px-10 pt-[calc(env(safe-area-inset-top)+12px)] pb-3 md:pt-[calc(env(safe-area-inset-top)+16px)] md:pb-4 transition-all duration-300",
         "bg-black/40 backdrop-blur-md md:bg-transparent md:backdrop-blur-none",
         isScrolledPastLight ? "text-white" : "text-[#111111]"
       )}
