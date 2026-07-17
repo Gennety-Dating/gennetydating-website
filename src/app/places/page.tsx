@@ -92,7 +92,7 @@ export default function PlacesPage() {
     <main className="min-h-screen bg-midnight text-white flex flex-col font-sans relative overflow-hidden">
       {/* Blurred background image */}
       <div 
-        className="fixed -inset-10 bg-[url('/images/places-balloon-mobile.jpg')] md:bg-[url('/images/places-balloon.jpg')] bg-cover bg-center pointer-events-none filter blur-[6px] opacity-55 z-0 scale-110" 
+        className="fixed -inset-10 bg-[url('/images/places-balloon-mobile.jpg')] md:bg-[url('/images/places-balloon.jpg')] bg-cover bg-center pointer-events-none filter blur-[3px] opacity-55 z-0 scale-110" 
         aria-hidden="true"
       />
       {/* Edge blending gradients */}
@@ -159,7 +159,6 @@ export default function PlacesPage() {
 
             return (
               <motion.div
-                layout
                 key={place.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

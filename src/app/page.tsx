@@ -50,11 +50,11 @@ export default function Home() {
 
         {/* Wavy transition from Hero (grey #1A1A1A) to HowItWorks (Photo) */}
         <div
-          className="absolute -top-[1px] left-0 right-0 w-full h-[15px] z-20 pointer-events-none"
+          className="absolute -top-[1px] left-0 right-0 w-full h-[17px] z-20 pointer-events-none"
           style={{
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 0 L 37 0 C 30.5 0, 25 15, 18.5 15 C 12 15, 6.5 0, 0 0 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
+            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 17' width='28' height='17'%3E%3Cpath d='M 0 0 L 28 0 C 23 0, 19 15, 14 15 C 9 15, 5 0, 0 0 Z' fill='%231A1A1A' stroke='%231A1A1A' stroke-width='1' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E\")",
             backgroundRepeat: "round",
-            backgroundSize: "37px 15px"
+            backgroundSize: "28px 17px"
           }}
         />
 
@@ -65,11 +65,11 @@ export default function Home() {
 
         {/* Bottom wavy edge (Postage Stamp Wavy Bottom Edge) to transition to TheDifference (grey #1A1A1A) */}
         <div
-          className="absolute -bottom-[1px] left-0 right-0 w-full h-[15px] z-20 pointer-events-none"
+          className="absolute -bottom-[1px] left-0 right-0 w-full h-[17px] z-20 pointer-events-none"
           style={{
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 15 L 37 15 C 30.5 15, 25 0, 18.5 0 C 12 0, 6.5 15, 0 15 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
+            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 17' width='28' height='17'%3E%3Cpath d='M 0 17 L 28 17 C 23 17, 19 2, 14 2 C 9 2, 5 17, 0 17 Z' fill='%231A1A1A' stroke='%231A1A1A' stroke-width='1' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E\")",
             backgroundRepeat: "round",
-            backgroundSize: "37px 15px"
+            backgroundSize: "28px 17px"
           }}
         />
       </div>
@@ -99,11 +99,11 @@ export default function Home() {
         </div>
         {/* Wavy transition from TheDifference (grey #1A1A1A) to Comparison (Photo) */}
         <div
-          className="absolute -top-[1px] left-0 right-0 w-full h-[15px] z-20 pointer-events-none"
+          className="absolute -top-[1px] left-0 right-0 w-full h-[17px] z-20 pointer-events-none"
           style={{
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 0 L 37 0 C 30.5 0, 25 15, 18.5 15 C 12 15, 6.5 0, 0 0 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
+            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 17' width='28' height='17'%3E%3Cpath d='M 0 0 L 28 0 C 23 0, 19 15, 14 15 C 9 15, 5 0, 0 0 Z' fill='%231A1A1A' stroke='%231A1A1A' stroke-width='1' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E\")",
             backgroundRepeat: "round",
-            backgroundSize: "37px 15px"
+            backgroundSize: "28px 17px"
           }}
         />
 
@@ -115,11 +115,11 @@ export default function Home() {
 
         {/* Bottom wavy edge (Postage Stamp Wavy Bottom Edge) to transition to FAQ (grey #1A1A1A) */}
         <div
-          className="absolute -bottom-[1px] left-0 right-0 w-full h-[15px] z-20 pointer-events-none"
+          className="absolute -bottom-[1px] left-0 right-0 w-full h-[17px] z-20 pointer-events-none"
           style={{
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37' height='15'%3E%3Cpath d='M 0 15 L 37 15 C 30.5 15, 25 0, 18.5 0 C 12 0, 6.5 15, 0 15 Z' fill='%231A1A1A'/%3E%3C/svg%3E\")",
+            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 17' width='28' height='17'%3E%3Cpath d='M 0 17 L 28 17 C 23 17, 19 2, 14 2 C 9 2, 5 17, 0 17 Z' fill='%231A1A1A' stroke='%231A1A1A' stroke-width='1' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E\")",
             backgroundRepeat: "round",
-            backgroundSize: "37px 15px"
+            backgroundSize: "28px 17px"
           }}
         />
       </div>

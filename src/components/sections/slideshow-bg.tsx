@@ -44,7 +44,7 @@ export function SlideshowBg() {
           animate={{ opacity: 0.65 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
-          className="absolute inset-0 pointer-events-none filter blur-[4px] scale-105"
+          className="absolute inset-0 pointer-events-none filter blur-[2px] scale-105"
         >
           <img
             src={currentImage}

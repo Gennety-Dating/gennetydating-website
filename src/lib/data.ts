@@ -418,7 +418,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_lviv_croissants_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Lviv+Croissants+Kyiv",
-    likes: 66
+    likes: 63
   },
   {
     id: "kyiv-ministerstvo-desertiv",
@@ -946,7 +946,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_loved_uncle_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Lyubimyy+Dyadya+Kyiv",
-    likes: 66
+    likes: 65
   },
   {
     id: "kyiv-shevchenko-park",
@@ -977,7 +977,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_shevchenko_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Shevchenko+Park+Kyiv",
-    likes: 66
+    likes: 67
   },
   {
     id: "kyiv-fish-pussycat",

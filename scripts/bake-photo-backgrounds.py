@@ -26,9 +26,9 @@ BASE = (17, 17, 17)  # #111111
 # (source, destination, gaussian blur radius, photo weight 0..1)
 JOBS = [
     ("public/images/matchmaker-works-bg.jpg",
-     "public/images/matchmaker-works-bg-soft.jpg", 10, 0.3025),
+     "public/images/matchmaker-works-bg-soft.jpg", 4, 0.3025),
     ("public/images/matchmaker-bg-1.jpg",
-     "public/images/matchmaker-bg-1-soft.jpg", 14, 0.35),
+     "public/images/matchmaker-bg-1-soft.jpg", 5, 0.35),
 ]
 
 

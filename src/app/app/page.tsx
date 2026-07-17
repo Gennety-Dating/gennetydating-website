@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Send, X } from "lucide-react";
+import { ArrowLeft, X } from "lucide-react";
+import { TelegramIcon } from "@/components/ui/telegram-icon";
 import { useLanguage } from "@/lib/language-context";
 import { ButterflyLogo } from "@/components/ui/butterfly-logo";
 import { TELEGRAM_BOT_URL } from "@/lib/data";
@@ -78,7 +79,7 @@ export default function AppDownloadPage() {
     <main className="h-[100dvh] w-full bg-[#050505] text-white flex flex-col justify-between items-center py-8 px-6 font-sans relative overflow-hidden select-none">
       {/* Background image */}
       <div 
-        className="fixed -inset-10 bg-[url('/images/app-bg.jpg')] bg-cover bg-center pointer-events-none filter blur-[8px] opacity-85 z-0 scale-105" 
+        className="fixed -inset-10 bg-[url('/images/app-bg.jpg')] bg-cover bg-center pointer-events-none filter blur-[4px] opacity-85 z-0 scale-105" 
         aria-hidden="true"
       />
       {/* Subtle dark overlay */}
@@ -206,7 +207,7 @@ export default function AppDownloadPage() {
                 onClick={() => setShowModal(false)}
                 className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#8B253B] hover:bg-[#A3304A] text-white font-semibold text-xs md:text-sm transition-all duration-300 shadow-[0_4px_15px_rgba(139,37,59,0.4)] cursor-pointer"
               >
-                <Send className="w-3.5 h-3.5" />
+                <TelegramIcon className="w-3.5 h-3.5" />
                 <span>{tLocal("modalCta")}</span>
               </a>
               

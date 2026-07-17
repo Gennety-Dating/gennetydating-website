@@ -20,9 +20,9 @@ import {
   MapPin,
   Mail,
   Phone,
-  Send,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { TelegramIcon } from "@/components/ui/telegram-icon";
 import { useLanguage } from "@/lib/language-context";
 import {
   completeRegistration,
@@ -386,7 +386,7 @@ export function RegistrationButton({
 
   const fieldLabel = "mb-2.5 block text-left text-xs font-semibold uppercase tracking-wider text-white/40";
   const fieldBox =
-    "h-[54px] w-full rounded-2xl border-0 bg-white/[0.04] pl-12 pr-4 text-base text-white placeholder:text-white/20 outline-none focus:outline-none focus:ring-0 focus:bg-white/[0.07] transition-all duration-300";
+    "h-[54px] w-full rounded-2xl border-0 bg-white/[0.04] pl-12 pr-4 text-[16px] text-white placeholder:text-white/20 outline-none focus:outline-none focus:ring-0 focus:bg-white/[0.07] transition-all duration-300";
 
   return (
     <>
@@ -409,7 +409,7 @@ export function RegistrationButton({
           style={{ scrollbarGutter: "stable" }}
         >
           <div
-            className="fixed inset-0 bg-cover bg-center animate-fade-in bg-[url('/images/registration-bg-mobile.jpg')] md:bg-[url('/images/registration-bg.jpg')]"
+            className="fixed -inset-10 bg-cover bg-center scale-105 animate-fade-in bg-[url('/images/registration-bg-mobile.jpg')] md:bg-[url('/images/registration-bg.jpg')]"
           />
           <button
             type="button"
@@ -730,30 +730,30 @@ export function RegistrationButton({
                             <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
                           </div>
                         )}
+
+                        {cityResults.length > 0 && !city && (
+                          <div className="absolute left-0 right-0 top-full mt-2 max-h-[180px] overflow-y-auto no-scrollbar rounded-2xl bg-zinc-950/95 border border-white/10 p-1.5 z-30 shadow-[0_12px_40px_rgba(0,0,0,0.85)] backdrop-blur-xl animate-fade-in">
+                            {cityResults.map((hit) => (
+                              <button
+                                key={`${hit.homeCityKey}:${hit.homePlaceId ?? hit.label}`}
+                                type="button"
+                                className="flex h-11 w-full items-center rounded-xl px-3 text-left text-[15px] text-white/70 transition-all duration-200 hover:bg-white/[0.06] hover:text-white cursor-pointer"
+                                onClick={() => {
+                                  setCity(hit);
+                                  setCityQuery(hit.label);
+                                  setCityResults([]);
+                                }}
+                              >
+                                {hit.label}
+                              </button>
+                            ))}
+                          </div>
+                        )}
                       </div>
                       <p className="mt-2 text-left text-xs leading-5 text-gray-500">
                         {t("registration.cityHint")}
                       </p>
                     </div>
-
-                    {cityResults.length > 0 && !city && (
-                      <div className="max-h-[200px] overflow-y-auto no-scrollbar rounded-2xl bg-black/60 p-1.5">
-                        {cityResults.map((hit) => (
-                          <button
-                            key={`${hit.homeCityKey}:${hit.homePlaceId ?? hit.label}`}
-                            type="button"
-                            className="flex h-11 w-full items-center rounded-xl px-3 text-left text-sm text-white/70 transition-all duration-200 hover:bg-white/[0.06] hover:text-white cursor-pointer"
-                            onClick={() => {
-                              setCity(hit);
-                              setCityQuery(hit.label);
-                              setCityResults([]);
-                            }}
-                          >
-                            {hit.label}
-                          </button>
-                        ))}
-                      </div>
-                    )}
 
                     {city && (
                       <div className="flex items-center gap-2 rounded-2xl bg-magenta/[0.06] px-4 py-3 text-left text-sm text-white">
@@ -822,9 +822,9 @@ export function RegistrationButton({
 
                     <Button type="submit" size="md" className="w-full" disabled={loading}>
                       {loading ? (
-                        <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                        <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
                       ) : (
-                        <Send className="h-4 w-4" aria-hidden="true" />
+                        <TelegramIcon className="h-9 w-9 -my-2" />
                       )}
                       {t("registration.continueTelegram")}
                     </Button>
@@ -879,7 +879,7 @@ export function RegistrationButton({
                       </p>
                     </div>
                     <Button href={telegramUrl} size="md" className="w-full">
-                      <Send className="h-4 w-4" aria-hidden="true" />
+                      <TelegramIcon className="h-9 w-9 -my-2" />
                       {t("registration.openTelegram")}
                     </Button>
                   </motion.div>

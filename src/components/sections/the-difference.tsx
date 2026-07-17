@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Heading, Highlight } from "@/components/ui/typography";
 import { useLanguage } from "@/lib/language-context";
 import { type TranslationKeys } from "@/lib/i18n";
@@ -294,7 +294,6 @@ export function TheDifference() {
                 }}
               >
                 <div className="relative w-full h-full">
-                  <AnimatePresence>
                     {activeCards.slice(0, 3).reverse().map((profile, index, arr) => {
                        const stackIndex = arr.length - 1 - index;
                        const isTop = stackIndex === 0;
@@ -306,34 +305,31 @@ export function TheDifference() {
                           style={{
                             transformOrigin: "bottom center",
                             zIndex: 3 - stackIndex,
-                            willChange: "transform, opacity",
                           }}
-                          initial={{ scale: 0.92, y: -20, opacity: 0 }}
+                          /* Skip the mount animation for cards that are already
+                             in the stack — this was the main flickering culprit.
+                             AnimatePresence re-mounted cards when the reversed
+                             array shifted, replaying opacity:0 → 1.  Without
+                             AnimatePresence we no longer need `initial` at all;
+                             setting it to `false` tells Framer Motion to render
+                             the card at its `animate` target immediately. */
+                          initial={false}
                           animate={
                             isTop && profile.swiped
                               ? {
-                                  // Drive the fly-off through `animate`, which always
-                                  // plays, rather than leaning on AnimatePresence's
-                                  // `exit` firing at unmount — that could silently be
-                                  // skipped, snapping the card out with no motion.
                                   x: profile.action === "like" ? 300 : profile.action === "nope" ? -300 : 0,
                                   y: profile.action === "superlike" ? -300 : 0,
                                   rotate: profile.action === "like" ? 25 : profile.action === "nope" ? -25 : 0,
                                   opacity: 0,
                                 }
                               : {
-                                  scale: stackIndex === 0 ? 1 : stackIndex === 1 ? 0.96 : 0.92,
+                                  x: 0,
                                   y: stackIndex === 0 ? 0 : stackIndex === 1 ? -6 : -12,
+                                  scale: stackIndex === 0 ? 1 : stackIndex === 1 ? 0.96 : 0.92,
                                   rotate: stackIndex === 0 ? 0 : stackIndex === 1 ? -1.5 : 1.5,
                                   opacity: stackIndex === 2 ? 0.4 : 1,
                                 }
                           }
-                          exit={{
-                            x: profile.action === "like" ? 300 : profile.action === "nope" ? -300 : 0,
-                            y: profile.action === "superlike" ? -300 : 0,
-                            rotate: profile.action === "like" ? 25 : profile.action === "nope" ? -25 : 0,
-                            opacity: 0,
-                          }}
                           transition={
                             isTop && profile.swiped
                               ? {
@@ -397,7 +393,6 @@ export function TheDifference() {
                         </motion.div>
                       );
                     })}
-                  </AnimatePresence>
                 </div>
               </div>
             </div>
