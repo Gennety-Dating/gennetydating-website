@@ -32,7 +32,12 @@ const caveat = Caveat({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  viewportFit: "cover",
+  // NOTE: intentionally NOT viewportFit: "cover". Under cover, iOS Safari
+  // extends content under the notch/home-indicator and toggles
+  // env(safe-area-inset-*) between 0 and ~59px as its URL bar animates on
+  // scroll — which made the navbar padding jump and the pinned photo repaint in
+  // juddering steps. Without cover the safe areas are reserved by the browser
+  // (filled with themeColor), so nothing repaints there and the scroll is stable.
   themeColor: "#1A1A1A",
 };
 
