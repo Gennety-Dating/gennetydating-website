@@ -30,19 +30,7 @@ export function Navbar() {
   const isWhiteHeaderPage = isThesisPage || isPlacesPage;
 
   return (
-    <>
-      {/* Solid cover for the iPhone status-bar / Dynamic Island area (mobile
-          only). viewport-fit=cover lets the page paint under the notch, so
-          without this the page content would show through behind the
-          clock/battery while scrolling. Height is exactly env(safe-area-inset-top)
-          — the notch/Dynamic Island inset (~59px on those devices, 0 where there
-          is none) — so it covers that strip and nothing more. */}
-      <div
-        className="fixed top-0 left-0 right-0 z-50 bg-[#1A1A1A] md:hidden pointer-events-none"
-        style={{ height: 'env(safe-area-inset-top)' }}
-        aria-hidden="true"
-      />
-      <nav
+    <nav
       className={cn(
         "fixed top-0 w-full z-40 flex items-center justify-between px-4 md:px-10 pt-[calc(env(safe-area-inset-top)+12px)] pb-3 md:pt-[calc(env(safe-area-inset-top)+16px)] md:pb-4 transition-all duration-300",
         "bg-black/40 backdrop-blur-md md:bg-transparent md:backdrop-blur-none",
@@ -97,6 +85,5 @@ export function Navbar() {
         </RegistrationButton>
       </div>
     </nav>
-    </>
   );
 }

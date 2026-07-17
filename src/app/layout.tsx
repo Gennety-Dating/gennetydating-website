@@ -75,6 +75,19 @@ export default function RootLayout({
           <CookieBanner />
           <FloatingLanguageSwitcher />
         </LanguageProvider>
+        {/* iPhone status-bar / Dynamic Island cover. Deliberately at <body> level
+            with a very high z-index so it sits above ALL page content (the photo
+            sections and their stacking contexts included) — inside the navbar it
+            was getting out-stacked, so content showed through behind the
+            clock/battery. With viewport-fit=cover the page scrolls under the
+            notch; this opaque strip stops that show-through. Height is
+            env(safe-area-inset-top) — the notch inset, 0 on devices without one.
+            Mobile only; Safari's own chrome handles the area otherwise. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed top-0 left-0 right-0 z-[9999] bg-[#1A1A1A] md:hidden"
+          style={{ height: "env(safe-area-inset-top)" }}
+        />
       </body>
     </html>
   );
