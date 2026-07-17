@@ -84,8 +84,8 @@ export default function RootLayout({
             Safari states env(safe-area-inset-top) resolves to 0 even on a Dynamic
             Island phone (which collapsed a bare-env strip and let content show
             through); the 38px floor keeps the clock/battery row covered. The 46px
-            cap keeps it compact — just the status-bar strip, never spilling into
-            the content. Mobile only. */}
+            cap keeps it a thin status-bar strip that never spills into the
+            content (and guards against a bogus-large env). Mobile only. */}
         <div
           aria-hidden="true"
           className="pointer-events-none fixed top-0 left-0 right-0 z-[9999] bg-[#1A1A1A] md:hidden"
