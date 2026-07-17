@@ -80,15 +80,16 @@ export default function RootLayout({
             page scrolls under the notch; this opaque strip stops content showing
             through behind the clock/battery.
 
-            Height = max(env(safe-area-inset-top), 59px). On some iOS Safari states
-            env(safe-area-inset-top) resolves to 0 even on a Dynamic Island phone,
-            which collapsed the strip and let content show through. The 59px floor
-            (the Dynamic Island inset) guarantees coverage; when env is larger it
-            wins. Mobile only. */}
+            Height = clamp(44px, env(safe-area-inset-top), 54px). On some iOS
+            Safari states env(safe-area-inset-top) resolves to 0 even on a Dynamic
+            Island phone (which collapsed a bare-env strip and let content show
+            through); the 44px floor guarantees the status-bar row stays covered.
+            The 54px cap keeps it compact — just the clock/battery/Dynamic Island
+            strip, never spilling into the content. Mobile only. */}
         <div
           aria-hidden="true"
           className="pointer-events-none fixed top-0 left-0 right-0 z-[9999] bg-[#1A1A1A] md:hidden"
-          style={{ height: "max(env(safe-area-inset-top, 0px), 59px)" }}
+          style={{ height: "clamp(44px, env(safe-area-inset-top), 54px)" }}
         />
       </body>
     </html>

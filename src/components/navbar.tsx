@@ -32,7 +32,7 @@ export function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 w-full z-40 flex items-center justify-between px-4 md:px-10 pt-[calc(max(env(safe-area-inset-top,0px),59px)+12px)] pb-3 md:pt-[calc(env(safe-area-inset-top)+16px)] md:pb-4 transition-all duration-300",
+        "fixed top-0 w-full z-40 flex items-center justify-between px-4 md:px-10 pt-[calc(clamp(44px,env(safe-area-inset-top),54px)+12px)] pb-3 md:pt-[calc(env(safe-area-inset-top)+16px)] md:pb-4 transition-all duration-300",
         "bg-black/40 backdrop-blur-md md:bg-transparent md:backdrop-blur-none",
         isScrolledPastLight ? "text-white" : "text-[#111111]"
       )}
