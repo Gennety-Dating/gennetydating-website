@@ -35,7 +35,7 @@ export function Navbar() {
           Matches the navbar's glassmorphic look so nothing bleeds through. */}
       <div
         className="fixed top-0 left-0 right-0 z-50 bg-black md:hidden pointer-events-none"
-        style={{ height: 'max(env(safe-area-inset-top, 0px), 47px)' }}
+        style={{ height: 'calc(max(env(safe-area-inset-top, 0px), 47px) + 12px)' }}
         aria-hidden="true"
       />
       <nav
