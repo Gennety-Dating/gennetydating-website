@@ -121,14 +121,13 @@ export function CookieBanner() {
           )}
         />
       )}
-
       {showBanner && (
         <div
           ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-label={t("cookie.banner_title")}
-          className="fixed bottom-3 left-3 right-3 z-[101] md:bottom-5 md:left-6 md:right-6"
+          className="fixed bottom-[22px] left-3 right-3 z-[101] md:bottom-5 md:left-6 md:right-6"
         >
           <div
             className={cn(

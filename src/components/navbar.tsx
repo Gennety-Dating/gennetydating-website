@@ -32,19 +32,19 @@ export function Navbar() {
   return (
     <>
       {/* Fixed cover for the phone's status-bar / notch area (mobile only).
-          Solid #1A1A1A — the site's grey — so the strip behind the clock/battery
-          is fully filled and nothing bleeds through it. The navbar below stays
-          glassmorphic on purpose; only this strip is opaque. Collapses to 0 on
-          devices/states with no inset (env fallback), where Safari's own chrome
-          occupies that area anyway. */}
+          Height is at least 47px + 12px so the strip behind the clock/battery
+          stays fully covered even when env(safe-area-inset-top) collapses to 0
+          (e.g. Safari's URL bar expanded at the top of the page) — with a plain
+          env() height the block vanished in that state. The navbar padding below
+          matches, so the logo/buttons never sit under it. */}
       <div
         className="fixed top-0 left-0 right-0 z-50 bg-[#1A1A1A] md:hidden pointer-events-none"
-        style={{ height: 'env(safe-area-inset-top, 0px)' }}
+        style={{ height: 'calc(max(env(safe-area-inset-top, 0px), 47px) + 12px)' }}
         aria-hidden="true"
       />
       <nav
       className={cn(
-        "fixed top-0 w-full z-40 flex items-center justify-between px-4 md:px-10 pt-[calc(env(safe-area-inset-top)+12px)] pb-3 md:pt-[calc(env(safe-area-inset-top)+16px)] md:pb-4 transition-all duration-300",
+        "fixed top-0 w-full z-40 flex items-center justify-between px-4 md:px-10 pt-[calc(max(env(safe-area-inset-top,0px),47px)+12px)] pb-3 md:pt-[calc(env(safe-area-inset-top)+16px)] md:pb-4 transition-all duration-300",
         "bg-black/40 backdrop-blur-md md:bg-transparent md:backdrop-blur-none",
         isScrolledPastLight ? "text-white" : "text-[#111111]"
       )}
