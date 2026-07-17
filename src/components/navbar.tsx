@@ -31,20 +31,20 @@ export function Navbar() {
 
   return (
     <>
-      {/* Fixed cover for the phone's status-bar / notch area (mobile only).
-          Height is at least 47px + 12px so the strip behind the clock/battery
-          stays fully covered even when env(safe-area-inset-top) collapses to 0
-          (e.g. Safari's URL bar expanded at the top of the page) — with a plain
-          env() height the block vanished in that state. The navbar padding below
-          matches, so the logo/buttons never sit under it. */}
+      {/* Solid cover for the iPhone status-bar / Dynamic Island area (mobile
+          only). viewport-fit=cover lets the page paint under the notch, so
+          without this the page content would show through behind the
+          clock/battery while scrolling. Height is exactly env(safe-area-inset-top)
+          — the notch/Dynamic Island inset (~59px on those devices, 0 where there
+          is none) — so it covers that strip and nothing more. */}
       <div
         className="fixed top-0 left-0 right-0 z-50 bg-[#1A1A1A] md:hidden pointer-events-none"
-        style={{ height: 'calc(max(env(safe-area-inset-top, 0px), 47px) + 12px)' }}
+        style={{ height: 'env(safe-area-inset-top)' }}
         aria-hidden="true"
       />
       <nav
       className={cn(
-        "fixed top-0 w-full z-40 flex items-center justify-between px-4 md:px-10 pt-[calc(max(env(safe-area-inset-top,0px),47px)+12px)] pb-3 md:pt-[calc(env(safe-area-inset-top)+16px)] md:pb-4 transition-all duration-300",
+        "fixed top-0 w-full z-40 flex items-center justify-between px-4 md:px-10 pt-[calc(env(safe-area-inset-top)+12px)] pb-3 md:pt-[calc(env(safe-area-inset-top)+16px)] md:pb-4 transition-all duration-300",
         "bg-black/40 backdrop-blur-md md:bg-transparent md:backdrop-blur-none",
         isScrolledPastLight ? "text-white" : "text-[#111111]"
       )}
