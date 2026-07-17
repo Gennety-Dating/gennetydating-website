@@ -32,9 +32,13 @@ export function Navbar() {
   return (
     <>
       {/* Fixed cover for the phone's status-bar / notch area (mobile only).
-          Matches the navbar's glassmorphic look so nothing bleeds through. */}
+          Solid #1A1A1A — the site's grey — so the strip behind the clock/battery
+          is fully filled and nothing bleeds through it. The navbar below stays
+          glassmorphic on purpose; only this strip is opaque. Collapses to 0 on
+          devices/states with no inset (env fallback), where Safari's own chrome
+          occupies that area anyway. */}
       <div
-        className="fixed top-0 left-0 right-0 z-50 bg-black md:hidden pointer-events-none"
+        className="fixed top-0 left-0 right-0 z-50 bg-[#1A1A1A] md:hidden pointer-events-none"
         style={{ height: 'env(safe-area-inset-top, 0px)' }}
         aria-hidden="true"
       />
