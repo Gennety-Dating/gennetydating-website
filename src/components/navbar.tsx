@@ -34,7 +34,7 @@ export function Navbar() {
       {/* Fixed cover for the phone's status-bar / notch area (mobile only).
           Matches the navbar's glassmorphic look so nothing bleeds through. */}
       <div
-        className="fixed top-0 left-0 right-0 z-40 bg-black/40 backdrop-blur-md md:hidden pointer-events-none"
+        className="fixed top-0 left-0 right-0 z-40 bg-black md:hidden pointer-events-none"
         style={{ height: 'env(safe-area-inset-top, 0px)' }}
         aria-hidden="true"
       />
