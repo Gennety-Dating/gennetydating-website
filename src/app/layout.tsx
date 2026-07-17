@@ -33,7 +33,12 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#050505",
+  // Grey to match the site chrome (Hero at the top, Footer at the bottom, both
+  // #1A1A1A). iOS Safari paints its status-bar and bottom-toolbar zones with
+  // this colour; #050505 read as a near-black block at the bottom and behind the
+  // clock/battery whenever the notch strip cover collapsed (env inset = 0 at the
+  // top of the page). #1A1A1A blends both into the site's grey.
+  themeColor: "#1A1A1A",
 };
 
 export const metadata: Metadata = {
