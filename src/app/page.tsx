@@ -45,7 +45,10 @@ export default function Home() {
           className="sticky top-0 z-0 -mb-[100dvh] h-[100dvh] min-h-[100svh] w-full overflow-hidden pointer-events-none"
           aria-hidden="true"
         >
-          <div className="absolute -inset-8 bg-[#111111] bg-[url('/images/matchmaker-works-bg-soft.jpg')] bg-cover bg-center" />
+          {/* Mobile: beach couple photo */}
+          <div className="absolute -inset-8 bg-[#111111] bg-[url('/images/beach-couple-bg-soft.jpg')] bg-cover bg-center md:hidden" />
+          {/* Desktop: original ice-cream couple photo */}
+          <div className="absolute -inset-8 bg-[#111111] bg-[url('/images/matchmaker-works-bg-soft.jpg')] bg-cover bg-center hidden md:block" />
         </div>
 
         {/* Wavy transition from Hero (grey #1A1A1A) to HowItWorks (Photo) */}
@@ -95,7 +98,7 @@ export default function Home() {
           {/* Blur + darkening baked into the *-soft.jpg (no runtime filter/opacity),
               so this layer is not composited and does not drop the iOS safe-area
               insets to black — see the note on the first photo section above. */}
-          <div className="absolute -inset-10 bg-[#111111] bg-[url('/images/matchmaker-bg-1-soft.jpg')] bg-cover bg-center" />
+          <div className="absolute -inset-10 bg-[#111111] bg-[url('/images/cathedral-couple-bg-soft.jpg')] bg-cover bg-center" />
         </div>
         {/* Wavy transition from TheDifference (grey #1A1A1A) to Comparison (Photo) */}
         <div
