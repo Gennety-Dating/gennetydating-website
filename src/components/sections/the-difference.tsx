@@ -203,16 +203,20 @@ export function TheDifference() {
     });
 
     setTimeout(() => {
+      // Keep this updater PURE. Calling setIsProcessingSwipe inside it (as it was
+      // before) is an impure update that React's concurrent renderer can replay
+      // or drop — which occasionally left isProcessingSwipe stuck `true`,
+      // deadlocking both the auto-swipe timer and the stack reload, so the cards
+      // stopped flipping after a while. Reset the flag separately, after.
       setActiveCards((prev) => {
         // Prevent race condition if the stack was reset/changed
         if (prev.length === 0 || prev[0].uniqueId !== topCard.uniqueId) {
-          setIsProcessingSwipe(false);
           return prev;
         }
         const [, ...rest] = prev;
-        setIsProcessingSwipe(false);
         return rest;
       });
+      setIsProcessingSwipe(false);
     }, 300); // 300ms matches Framer Motion's exit duration
   };
 
