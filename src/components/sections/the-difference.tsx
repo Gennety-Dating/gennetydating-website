@@ -21,6 +21,10 @@ interface Profile {
 
 interface ActiveProfile extends Profile {
   uniqueId: string;
+  // Set only once the card has actually been swiped. Every profile already ships
+  // with a default `action` in its data, so `action` alone cannot tell us whether
+  // a card should be flying off — this flag can.
+  swiped?: boolean;
 }
 
 const womenProfiles: Profile[] = [
@@ -194,11 +198,13 @@ export function TheDifference() {
 
     const topCard = activeCards[0];
 
-    // Mark action to trigger exit animation
+    // Mark the card as swiped. This drives the fly-off through `animate` (which
+    // always runs) rather than relying on AnimatePresence's `exit` firing on
+    // unmount — the latter silently skipped, making cards snap out instantly.
     setActiveCards((prev) => {
       if (prev.length === 0) return prev;
       const updated = [...prev];
-      updated[0] = { ...updated[0], action: direction };
+      updated[0] = { ...updated[0], action: direction, swiped: true };
       return updated;
     });
 
@@ -217,7 +223,9 @@ export function TheDifference() {
         return rest;
       });
       setIsProcessingSwipe(false);
-    }, 300); // 300ms matches Framer Motion's exit duration
+      // Remove only after the 0.35s fly-off has finished. The old 300ms cut the
+      // animation short (its comment claimed they matched — they never did).
+    }, 360);
   };
 
   // Auto-swipe timer
@@ -301,12 +309,25 @@ export function TheDifference() {
                             willChange: "transform, opacity",
                           }}
                           initial={{ scale: 0.92, y: -20, opacity: 0 }}
-                          animate={{
-                            scale: stackIndex === 0 ? 1 : stackIndex === 1 ? 0.96 : 0.92,
-                            y: stackIndex === 0 ? 0 : stackIndex === 1 ? -6 : -12,
-                            rotate: stackIndex === 0 ? 0 : stackIndex === 1 ? -1.5 : 1.5,
-                            opacity: stackIndex === 2 ? 0.4 : 1,
-                          }}
+                          animate={
+                            isTop && profile.swiped
+                              ? {
+                                  // Drive the fly-off through `animate`, which always
+                                  // plays, rather than leaning on AnimatePresence's
+                                  // `exit` firing at unmount — that could silently be
+                                  // skipped, snapping the card out with no motion.
+                                  x: profile.action === "like" ? 300 : profile.action === "nope" ? -300 : 0,
+                                  y: profile.action === "superlike" ? -300 : 0,
+                                  rotate: profile.action === "like" ? 25 : profile.action === "nope" ? -25 : 0,
+                                  opacity: 0,
+                                }
+                              : {
+                                  scale: stackIndex === 0 ? 1 : stackIndex === 1 ? 0.96 : 0.92,
+                                  y: stackIndex === 0 ? 0 : stackIndex === 1 ? -6 : -12,
+                                  rotate: stackIndex === 0 ? 0 : stackIndex === 1 ? -1.5 : 1.5,
+                                  opacity: stackIndex === 2 ? 0.4 : 1,
+                                }
+                          }
                           exit={{
                             x: profile.action === "like" ? 300 : profile.action === "nope" ? -300 : 0,
                             y: profile.action === "superlike" ? -300 : 0,
@@ -314,7 +335,7 @@ export function TheDifference() {
                             opacity: 0,
                           }}
                           transition={
-                            isTop && profile.action
+                            isTop && profile.swiped
                               ? {
                                   type: "tween",
                                   ease: [0.32, 0, 0.67, 0],
