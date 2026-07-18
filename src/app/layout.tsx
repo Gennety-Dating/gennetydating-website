@@ -33,6 +33,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  colorScheme: "dark",
   // iOS Safari uses this colour for its browser chrome. Keep it in sync with
   // the root canvas and the safe-area backdrops below.
   themeColor: "#1A1A1A",

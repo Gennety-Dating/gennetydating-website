@@ -140,6 +140,7 @@ body {
   body {
     /* Safari exposes the root canvas behind its translucent browser controls. */
     background-color: #1A1A1A;
+    color-scheme: dark;
   }
 
   .ios-status-bar-backdrop,
@@ -150,9 +151,9 @@ body {
     z-index: 2147483646;
     display: block;
     pointer-events: none;
+    overflow: hidden;
     opacity: 1;
-    background-color: #1A1A1A !important;
-    background-image: none !important;
+    background: linear-gradient(#1A1A1A, #1A1A1A) !important;
     border: 0;
     box-shadow: none;
     filter: none;
@@ -160,6 +161,16 @@ body {
     -webkit-backdrop-filter: none;
     mix-blend-mode: normal;
     isolation: isolate;
+  }
+
+  .ios-status-bar-backdrop::before,
+  .ios-browser-bar-backdrop::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 1;
+    background: #1A1A1A;
   }
 
   .ios-status-bar-backdrop {

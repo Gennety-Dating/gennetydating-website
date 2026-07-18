@@ -145,6 +145,17 @@ const menProfiles: Profile[] = [
 
 export function TheDifference() {
   const { t } = useLanguage();
+  const [activeCard, setActiveCard] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleDocumentClick = () => {
+      setActiveCard(null);
+    };
+    document.addEventListener("click", handleDocumentClick);
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
 
   // --- Tinder Swiping Logic (AnimatePresence list with alternating profiles) ---
   const [activeCards, setActiveCards] = useState<ActiveProfile[]>(() => {
@@ -414,9 +425,19 @@ export function TheDifference() {
                 className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10"
                 style={{ left: "2%", top: "4%" }}
                 initial={{ rotate: -8, scale: 0.95, opacity: 0 }}
-                animate={{ rotate: -8, scale: 1, opacity: 1 }}
+                animate={{
+                  rotate: activeCard === "mia" ? -2 : -8,
+                  scale: activeCard === "mia" ? 1.06 : 1,
+                  y: activeCard === "mia" ? -8 : 0,
+                  zIndex: activeCard === "mia" ? 40 : 10,
+                  opacity: 1,
+                }}
                 whileHover={{ scale: 1.06, zIndex: 40, rotate: -2, y: -8 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveCard(prev => prev === "mia" ? null : "mia");
+                }}
               >
                 <Image
                   src="/images/do-this-mia.jpg"
@@ -433,9 +454,19 @@ export function TheDifference() {
                 className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10"
                 style={{ right: "-8%", top: "12%" }}
                 initial={{ rotate: 6, scale: 0.95, opacity: 0 }}
-                animate={{ rotate: 6, scale: 1, opacity: 1 }}
+                animate={{
+                  rotate: activeCard === "girls1" ? 2 : 6,
+                  scale: activeCard === "girls1" ? 1.06 : 1,
+                  y: activeCard === "girls1" ? -8 : 0,
+                  zIndex: activeCard === "girls1" ? 40 : 10,
+                  opacity: 1,
+                }}
                 whileHover={{ scale: 1.06, zIndex: 40, rotate: 2, y: -8 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveCard(prev => prev === "girls1" ? null : "girls1");
+                }}
               >
                 <Image
                   src="/images/do-this-girls-1.jpg"
@@ -452,9 +483,19 @@ export function TheDifference() {
                 className="absolute w-[54%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10"
                 style={{ left: "23%", top: "25%" }}
                 initial={{ rotate: -3, scale: 0.95, opacity: 0 }}
-                animate={{ rotate: -3, scale: 1, opacity: 1 }}
+                animate={{
+                  rotate: activeCard === "boys1" ? 0 : -3,
+                  scale: activeCard === "boys1" ? 1.06 : 1,
+                  y: activeCard === "boys1" ? -8 : 0,
+                  zIndex: activeCard === "boys1" ? 40 : 10,
+                  opacity: 1,
+                }}
                 whileHover={{ scale: 1.06, zIndex: 40, rotate: 0, y: -8 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveCard(prev => prev === "boys1" ? null : "boys1");
+                }}
               >
                 <Image
                   src="/images/do-this-boys-1.jpg"
@@ -470,9 +511,19 @@ export function TheDifference() {
                 className="absolute w-[56%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10"
                 style={{ left: "-3%", bottom: "2%" }}
                 initial={{ rotate: -6, scale: 0.95, opacity: 0 }}
-                animate={{ rotate: -6, scale: 1, opacity: 1 }}
+                animate={{
+                  rotate: activeCard === "girls2" ? -1 : -6,
+                  scale: activeCard === "girls2" ? 1.06 : 1,
+                  y: activeCard === "girls2" ? -8 : 0,
+                  zIndex: activeCard === "girls2" ? 40 : 10,
+                  opacity: 1,
+                }}
                 whileHover={{ scale: 1.06, zIndex: 40, rotate: -1, y: -8 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveCard(prev => prev === "girls2" ? null : "girls2");
+                }}
               >
                 <Image
                   src="/images/do-this-girls-2.jpg"
@@ -485,12 +536,22 @@ export function TheDifference() {
 
               {/* Photo 5: Adrian (Bottom-Right) - default z-30 */}
               <motion.div
-                className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-2xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-30"
+                className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-2xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10"
                 style={{ right: "-4%", bottom: "-2%" }}
                 initial={{ rotate: 4, scale: 0.95, opacity: 0 }}
-                animate={{ rotate: 4, scale: 1, opacity: 1 }}
+                animate={{
+                  rotate: activeCard === "adrian" ? 1 : 4,
+                  scale: activeCard === "adrian" ? 1.06 : 1,
+                  y: activeCard === "adrian" ? -8 : 0,
+                  zIndex: activeCard === "adrian" ? 40 : 30,
+                  opacity: 1,
+                }}
                 whileHover={{ scale: 1.06, zIndex: 40, rotate: 1, y: -8 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveCard(prev => prev === "adrian" ? null : "adrian");
+                }}
               >
                 <Image
                   src="/images/do-this-adrian.jpg"

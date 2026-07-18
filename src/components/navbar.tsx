@@ -50,7 +50,7 @@ export function Navbar() {
           variant="ghost"
           size="sm"
           className={cn(
-            "px-3 py-1.5 text-xs md:px-4 md:py-2 md:text-sm transition-all duration-300",
+            "px-5 py-2.5 text-sm md:px-4 md:py-2 md:text-sm transition-all duration-300",
             isScrolledPastLight
               ? "text-white border-white/60 hover:bg-white/10"
               : "text-[#111111] border-[#111111]/60 hover:bg-[#111111]/10"
@@ -63,7 +63,7 @@ export function Navbar() {
           variant="solid"
           size="sm"
           className={cn(
-            "px-3 py-1.5 text-xs md:px-4 md:py-2 md:text-sm transition-all duration-300",
+            "px-5 py-2.5 text-sm md:px-4 md:py-2 md:text-sm transition-all duration-300",
             isWhiteHeaderPage
               ? "bg-white text-black hover:bg-white/90 hover:text-black shadow-none hover:shadow-none"
               : ""
