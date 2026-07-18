@@ -80,17 +80,17 @@ export default function RootLayout({
             page scrolls under the notch; this opaque strip stops content showing
             through behind the clock/battery.
 
-            Height = clamp(20px, env(safe-area-inset-top), 24px) — a thin strip,
-            per request. env(safe-area-inset-top) resolves to 0 in some iOS Safari
-            states even on a Dynamic Island phone, so the 20px floor keeps a solid
-            band at the very top; the 24px cap keeps it short (and guards against a
-            bogus-large env). The navbar's own top padding still clears the iOS
-            clock/battery, so those stay legible over whatever is behind them.
-            Mobile only. */}
+            Height = clamp(12px, env(safe-area-inset-top), 16px) — a very thin
+            strip, per request. env(safe-area-inset-top) resolves to 0 in some iOS
+            Safari states even on a Dynamic Island phone, so the 12px floor keeps a
+            solid band at the very top; the 16px cap keeps it minimal (and guards
+            against a bogus-large env). The navbar's own top padding still clears
+            the iOS clock/battery, so those stay legible over whatever is behind
+            them. Mobile only. */}
         <div
           aria-hidden="true"
           className="pointer-events-none fixed top-0 left-0 right-0 z-[9999] bg-[#1A1A1A] md:hidden"
-          style={{ height: "clamp(20px, env(safe-area-inset-top), 24px)" }}
+          style={{ height: "clamp(12px, env(safe-area-inset-top), 16px)" }}
         />
       </body>
     </html>
