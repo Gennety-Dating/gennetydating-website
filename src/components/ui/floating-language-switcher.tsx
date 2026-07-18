@@ -24,7 +24,7 @@ export function FloatingLanguageSwitcher() {
 
   return (
     <div className="floating-language-switcher fixed bottom-4 right-4 z-40 md:hidden">
-      <LanguageSwitcher menuPlacement="top" />
+      <LanguageSwitcher menuPlacement="top" isFloating />
     </div>
   );
 }
