@@ -132,8 +132,8 @@ body {
 
 @media (max-width: 767px) {
   :root {
-    --mobile-status-bar-height: max(env(safe-area-inset-top, 0px), 47px);
-    --mobile-browser-bar-height: max(env(safe-area-inset-bottom, 0px), 34px);
+    --mobile-status-bar-height: env(safe-area-inset-top, 0px);
+    --mobile-browser-bar-height: env(safe-area-inset-bottom, 0px);
   }
 
   html,
