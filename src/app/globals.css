@@ -112,11 +112,6 @@
 html {
   font-size: 14px;
   scroll-behavior: smooth;
-  /* Root canvas colour. Under viewport-fit=cover iOS Safari fills the
-     notch/home-indicator safe-area insets with this colour while a photo
-     section's pinned background repaints during scroll. It must match the photo
-     sections' #111111 base, otherwise the near-black canvas reads as an ugly
-     black bar at the top and bottom of the screen. */
   background-color: #111111;
 }
 
@@ -125,6 +120,54 @@ body {
   color: #FFFFFF;
   font-family: var(--font-sans);
   overflow-x: hidden;
+}
+
+/* Mobile browser chrome ---------------------------------------------------
+   The status bar and the page header are separate layers. This avoids the
+   previous double-spacing where a capped status strip and a second navbar
+   inset disagreed on Dynamic Island devices. */
+.ios-status-bar-backdrop,
+.ios-browser-bar-backdrop {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  html,
+  body {
+    /* Safari exposes the root canvas behind its translucent browser controls. */
+    background-color: #1A1A1A;
+  }
+
+  .ios-status-bar-backdrop,
+  .ios-browser-bar-backdrop {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    display: block;
+    pointer-events: none;
+    background: #1A1A1A;
+  }
+
+  .ios-status-bar-backdrop {
+    top: 0;
+    height: env(safe-area-inset-top, 0px);
+  }
+
+  .ios-browser-bar-backdrop {
+    bottom: 0;
+    height: env(safe-area-inset-bottom, 0px);
+  }
+
+  .site-navbar {
+    top: env(safe-area-inset-top, 0px);
+    min-height: 64px;
+    background: rgba(26, 26, 26, 0.72);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(20px) saturate(125%);
+    -webkit-backdrop-filter: blur(20px) saturate(125%);
+  }
 }
 
 /* --- Subtle Grain Texture Overlay --- */

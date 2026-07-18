@@ -14,12 +14,6 @@ export default function Home() {
     <main className="min-h-screen bg-[#111111] text-white">
       <Navbar />
 
-      {/* No top safe-area cover. A fixed grey bar sized by env(safe-area-inset-top)
-          hid the photo and juddered on scroll (Safari resizes that inset as its URL
-          bar animates, and the fixed gradient layer also lagged scrolling), so the
-          notch strip is intentionally left transparent — the pinned photo shows
-          through it edge-to-edge, kept clean by the section's z-10 stacking. */}
-
       {/* Hero section with grey background */}
       <div className="relative overflow-x-clip text-white z-10 bg-[#1A1A1A]">
         <Hero />
