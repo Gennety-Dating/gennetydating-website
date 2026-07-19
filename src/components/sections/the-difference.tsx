@@ -425,17 +425,16 @@ export function TheDifference() {
                 role="button"
                 tabIndex={0}
                 aria-label="Show Mia match card"
-                className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10"
-                style={{ left: "2%", top: "4%", zIndex: activeCard === "mia" ? 20 : 10 }}
+                className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-10 hover:z-20"
+                style={{ left: "2%", top: "4%" }}
                 initial={{ rotate: -8, scale: 0.95, opacity: 0 }}
                 animate={{
                   rotate: activeCard === "mia" ? -2 : -8,
                   scale: activeCard === "mia" ? 1.06 : 1,
                   y: activeCard === "mia" ? -8 : 0,
-                  zIndex: activeCard === "mia" ? 20 : 10,
                   opacity: 1,
                 }}
-                whileHover={{ scale: 1.06, zIndex: 20, rotate: -2, y: -8 }}
+                whileHover={{ scale: 1.06, rotate: -2, y: -8 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -463,17 +462,16 @@ export function TheDifference() {
                 role="button"
                 tabIndex={0}
                 aria-label="Show verified date card"
-                className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10"
-                style={{ right: "-8%", top: "12%", zIndex: activeCard === "girls1" ? 20 : 10 }}
+                className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-10 hover:z-20"
+                style={{ right: "-8%", top: "12%" }}
                 initial={{ rotate: 6, scale: 0.95, opacity: 0 }}
                 animate={{
                   rotate: activeCard === "girls1" ? 2 : 6,
                   scale: activeCard === "girls1" ? 1.06 : 1,
                   y: activeCard === "girls1" ? -8 : 0,
-                  zIndex: activeCard === "girls1" ? 20 : 10,
                   opacity: 1,
                 }}
-                whileHover={{ scale: 1.06, zIndex: 20, rotate: 2, y: -8 }}
+                whileHover={{ scale: 1.06, rotate: 2, y: -8 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -501,17 +499,16 @@ export function TheDifference() {
                 role="button"
                 tabIndex={0}
                 aria-label="Show verified date card"
-                className="absolute w-[54%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10"
-                style={{ left: "23%", top: "25%", zIndex: activeCard === "boys1" ? 20 : 10 }}
+                className="absolute w-[54%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-10 hover:z-20"
+                style={{ left: "23%", top: "25%" }}
                 initial={{ rotate: -3, scale: 0.95, opacity: 0 }}
                 animate={{
                   rotate: activeCard === "boys1" ? 0 : -3,
                   scale: activeCard === "boys1" ? 1.06 : 1,
                   y: activeCard === "boys1" ? -8 : 0,
-                  zIndex: activeCard === "boys1" ? 20 : 10,
                   opacity: 1,
                 }}
-                whileHover={{ scale: 1.06, zIndex: 20, rotate: 0, y: -8 }}
+                whileHover={{ scale: 1.06, rotate: 0, y: -8 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -539,17 +536,16 @@ export function TheDifference() {
                 role="button"
                 tabIndex={0}
                 aria-label="Show verified date card"
-                className="absolute w-[56%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10"
-                style={{ left: "-3%", bottom: "2%", zIndex: activeCard === "girls2" ? 20 : 10 }}
+                className="absolute w-[56%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-10 hover:z-20"
+                style={{ left: "-3%", bottom: "2%" }}
                 initial={{ rotate: -6, scale: 0.95, opacity: 0 }}
                 animate={{
                   rotate: activeCard === "girls2" ? -1 : -6,
                   scale: activeCard === "girls2" ? 1.06 : 1,
                   y: activeCard === "girls2" ? -8 : 0,
-                  zIndex: activeCard === "girls2" ? 20 : 10,
                   opacity: 1,
                 }}
-                whileHover={{ scale: 1.06, zIndex: 20, rotate: -1, y: -8 }}
+                whileHover={{ scale: 1.06, rotate: -1, y: -8 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -577,17 +573,16 @@ export function TheDifference() {
                 role="button"
                 tabIndex={0}
                 aria-label="Show Adrian match card"
-                className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-2xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10"
-                style={{ right: "-5.5%", bottom: "-2%", zIndex: activeCard === "adrian" ? 40 : 30 }}
+                className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-2xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-30"
+                style={{ right: "-5.5%", bottom: "-2%" }}
                 initial={{ rotate: 8, scale: 0.95, opacity: 0 }}
                 animate={{
                   rotate: activeCard === "adrian" ? 2 : 8,
                   scale: activeCard === "adrian" ? 1.06 : 1,
                   y: activeCard === "adrian" ? -8 : 0,
-                  zIndex: activeCard === "adrian" ? 40 : 30,
                   opacity: 1,
                 }}
-                whileHover={{ scale: 1.06, zIndex: 40, rotate: 2, y: -8 }}
+                whileHover={{ scale: 1.06, rotate: 2, y: -8 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 onClick={(e) => {
                   e.stopPropagation();
