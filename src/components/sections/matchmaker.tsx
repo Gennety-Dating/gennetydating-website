@@ -15,6 +15,29 @@ const chatMessages = [
   { id: 5, sender: "agent" as const, translationKey: "matchmaker.chat.msg5" as TranslationKeys },
 ];
 
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.35,
+    },
+  },
+};
+
+const messageVariants = {
+  hidden: { opacity: 0, scale: 0.3, y: 15 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      type: "spring" as const,
+      stiffness: 260,
+      damping: 20,
+    },
+  },
+};
+
 export function Matchmaker() {
   const { t } = useLanguage();
   const [viewportMargin, setViewportMargin] = useState("-100px");
@@ -47,21 +70,19 @@ export function Matchmaker() {
       </div>
 
       {/* Прозрачный и безрамочный контейнер чата (Chat screen container) */}
-      <div className="relative z-10 w-full max-w-[480px] mx-auto min-h-[380px] p-6 bg-transparent flex flex-col gap-4 justify-start">
-        {chatMessages.map((msg, index) => {
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: viewportMargin }}
+        className="relative z-10 w-full max-w-[480px] mx-auto min-h-[380px] p-6 bg-transparent flex flex-col gap-4 justify-start"
+      >
+        {chatMessages.map((msg) => {
           const isAgent = msg.sender === "agent";
           return (
             <motion.div
               key={msg.id}
-              initial={{ opacity: 0, scale: 0.3, y: 15 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true, margin: viewportMargin }}
-              transition={{
-                type: "spring",
-                stiffness: 260,
-                damping: 20,
-                delay: index * 0.4,
-              }}
+              variants={messageVariants}
               style={{
                 transformOrigin: isAgent ? "bottom left" : "bottom right",
               }}
@@ -87,7 +108,7 @@ export function Matchmaker() {
             </motion.div>
           );
         })}
-      </div>
+      </motion.div>
     </section>
   );
 }
