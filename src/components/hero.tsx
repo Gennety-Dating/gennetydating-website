@@ -60,13 +60,6 @@ export function Hero() {
           variant="solid"
           size="lg"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/logos/telegram.svg"
-            alt=""
-            className="w-5 h-5"
-            aria-hidden="true"
-          />
           {t("hero.cta")}
         </RegistrationButton>
  

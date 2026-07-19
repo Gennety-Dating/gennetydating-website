@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeft, Heart } from "lucide-react";
 import { motion } from "framer-motion";
@@ -48,6 +48,17 @@ const mapsButtonTexts = {
 export default function PlacesPage() {
   const { t, locale } = useLanguage();
   const [selectedCity, setSelectedCity] = useState<"kyiv" | "warsaw">("kyiv");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const [likedIds, setLikedIds] = useState<string[]>(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("gennety-liked-places");
@@ -161,11 +172,12 @@ export default function PlacesPage() {
             return (
               <motion.div
                 key={place.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[#1c1c1e] hover:bg-[#252528] transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl"
+                whileHover={isMobile ? {} : { scale: 1.01 }}
+                viewport={{ once: true, margin: isMobile ? "100px" : "-50px" }}
+                transition={isMobile ? { duration: 0 } : { duration: 0.5, delay: index * 0.05 }}
+                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[#1c1c1e] hover:bg-[#252528] transition-[background-color,box-shadow] duration-300 hover:shadow-2xl"
               >
                 <div className="flex flex-col">
                   {/* Card Header Image / Gradient */}
@@ -267,10 +279,10 @@ export default function PlacesPage() {
           })}
           {selectedCity === "warsaw" && (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: filteredPlaces.length * 0.05 }}
+              viewport={{ once: true, margin: isMobile ? "100px" : "-50px" }}
+              transition={isMobile ? { duration: 0 } : { duration: 0.5, delay: filteredPlaces.length * 0.05 }}
               className="flex items-center justify-center min-h-[350px] rounded-2xl border border-dashed border-white/10 bg-white/[0.01] p-6 text-center select-none"
             >
               <span className="text-white/30 text-sm font-sans font-light tracking-wider">

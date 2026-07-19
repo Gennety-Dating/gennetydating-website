@@ -1581,6 +1581,47 @@ export const datePlaces: DatePlace[] = [
     likes: 12,
     isPremium: true
   },
+  {
+    id: "kyiv-la-veranda",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Romantic & Cozy Restaurant",
+      uk: "Романтичний та затишний ресторан",
+      ru: "Романтичный и уютный ресторан",
+      de: "Romantisches & gemütliches Restaurant",
+      pl: "Romantyczna i przytulna restauracja",
+      fr: "Restaurant romantique & chaleureux",
+      it: "Ristorante romantico e accogliente",
+      es: "Restaurante romántico y acogedor"
+    },
+    name: {
+      en: "La Veranda",
+      uk: "La Veranda",
+      ru: "La Veranda",
+      de: "La Veranda",
+      pl: "La Veranda",
+      fr: "La Veranda",
+      it: "La Veranda",
+      es: "La Veranda"
+    },
+    description: {
+      en: "A hidden gem in Lypky district with a gorgeous green terrace and quiet courtyard. Perfect for a quiet, romantic dinner with fine wine and Italian-French cuisine.",
+      uk: "Затишний ресторан на Липках із мальовничою зеленою терасою та тихим внутрішнім двориком. Ідеальне місце для романтичної вечері з вишуканим вином та італійсько-французькою кухнею.",
+      ru: "Уютный ресторан на Липках с живописной зеленой террасой и тихим внутренним двориком. Идеальное место для романтического ужина с изысканным вином и итальянско-французской кухней.",
+      de: "Ein verstecktes Juwel im Lypky-Viertel mit einer wunderschönen grünen Terrasse und einem ruhigen Innenhof. Perfekt für ein romantisches Abendessen mit erlesenem Wein.",
+      pl: "Ukryty klejnot w dzielnicy Łypki z pięknym zielonym tarasem i cichym dziedzińcem. Idealny na romantyczną kolację przy wybornym winie i kuchni włosko-francuskiej.",
+      fr: "Un joyau caché dans le quartier de Lypky avec une magnifique terrasse verdoyante et une cour calme. Parfait pour un dîner romantique avec du bon vin et une cuisine italo-française.",
+      it: "Una gemma nascosta nel quartiere Lypky con una splendida terrazza verde e un cortile tranquillo. Perfetto per una cena romantica con dell'ottimo vino e cucina italo-francese.",
+      es: "Una joya escondida en el barrio de Lypky con una hermosa terraza verde y un patio tranquilo. Perfecto para una cena romántica con buen vino y cocina italiano-francesa."
+    },
+    images: [
+      "/images/places/kyiv_la_veranda_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Veranda+Bogomoltsa+Kyiv",
+    likes: 3,
+    isPremium: true
+  },
 
   // Warsaw Places
   {
