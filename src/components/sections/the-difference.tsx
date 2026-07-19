@@ -574,15 +574,15 @@ export function TheDifference() {
                 tabIndex={0}
                 aria-label="Show Adrian match card"
                 className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-2xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-30"
-                style={{ right: "-5.5%", bottom: "-2%" }}
-                initial={{ rotate: 8, scale: 0.95, opacity: 0 }}
+                style={{ right: "calc(-5.5% - 5px)", bottom: "calc(-2% - 5px)" }}
+                initial={{ rotate: 11, scale: 0.95, opacity: 0 }}
                 animate={{
-                  rotate: activeCard === "adrian" ? 2 : 8,
+                  rotate: activeCard === "adrian" ? 5 : 11,
                   scale: activeCard === "adrian" ? 1.06 : 1,
                   y: activeCard === "adrian" ? -8 : 0,
                   opacity: 1,
                 }}
-                whileHover={{ scale: 1.06, rotate: 2, y: -8 }}
+                whileHover={{ scale: 1.06, rotate: 5, y: -8 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 onClick={(e) => {
                   e.stopPropagation();
