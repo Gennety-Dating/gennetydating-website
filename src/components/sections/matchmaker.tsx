@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/lib/language-context";
 import { cn } from "@/lib/utils";
@@ -16,6 +17,21 @@ const chatMessages = [
 
 export function Matchmaker() {
   const { t } = useLanguage();
+  const [viewportMargin, setViewportMargin] = useState("-100px");
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setViewportMargin("-10px");
+      } else {
+        setViewportMargin("-100px");
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <section
@@ -39,7 +55,7 @@ export function Matchmaker() {
               key={msg.id}
               initial={{ opacity: 0, scale: 0.3, y: 15 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: viewportMargin }}
               transition={{
                 type: "spring",
                 stiffness: 260,
