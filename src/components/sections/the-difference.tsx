@@ -262,10 +262,6 @@ export function TheDifference() {
 
   return (
     <section className="py-[120px] px-4 md:px-10 relative overflow-hidden bg-transparent">
-      {/* Decorative neon gradient overlays */}
-      <div className="absolute top-1/4 left-0 w-80 h-80 bg-magenta/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-white/5 rounded-full blur-[120px] pointer-events-none" />
-
       <div className="max-w-6xl mx-auto">
         {/* Title */}
         <Heading as="h2" className="text-center mb-16 tracking-tight">

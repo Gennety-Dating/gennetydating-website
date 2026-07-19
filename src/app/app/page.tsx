@@ -78,9 +78,12 @@ export default function AppDownloadPage() {
 
   return (
     <main className="h-[100dvh] w-full bg-[#050505] text-white flex flex-col justify-between items-center py-8 px-6 font-sans relative overflow-hidden select-none">
-      {/* Background image */}
-      <div className="fixed -inset-10 pointer-events-none filter blur-[4px] opacity-85 z-0 scale-105" aria-hidden="true">
-        <Image src="/images/app-bg.jpg" alt="" fill priority sizes="100vw" className="object-cover object-center" />
+      {/* Background images (Desktop & Mobile) */}
+      <div className="fixed -inset-10 pointer-events-none filter blur-[4px] opacity-85 z-0 scale-105 hidden md:block" aria-hidden="true">
+        <Image src="/images/app-desktop-bg.jpg" alt="" fill priority sizes="100vw" className="object-cover object-center" />
+      </div>
+      <div className="fixed -inset-10 pointer-events-none filter blur-[4px] opacity-85 z-0 scale-105 md:hidden" aria-hidden="true">
+        <Image src="/images/app-mobile-bg.jpg" alt="" fill priority sizes="100vw" className="object-cover object-center" />
       </div>
       {/* Subtle dark overlay */}
       <div className="fixed inset-0 bg-black/40 z-0 pointer-events-none" />
