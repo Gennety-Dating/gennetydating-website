@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Heading, Highlight } from "@/components/ui/typography";
@@ -146,10 +146,13 @@ const menProfiles: Profile[] = [
 export function TheDifference() {
   const { t } = useLanguage();
   const [activeCard, setActiveCard] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleDocumentClick = () => {
-      setActiveCard(null);
+    const handleDocumentClick = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setActiveCard(null);
+      }
     };
     document.addEventListener("click", handleDocumentClick);
     return () => {
@@ -417,7 +420,10 @@ export function TheDifference() {
             </div>
 
             {/* Overlapping Polaroids Container */}
-            <div className="relative w-full max-w-[380px] h-[500px] sm:h-[580px] select-none z-10 my-auto">
+            <div
+              ref={containerRef}
+              className="relative w-full max-w-[380px] h-[500px] sm:h-[580px] select-none z-10 my-auto"
+            >
               {/* Photo 1: Mia (Top-Left) */}
               <motion.div
                 role="button"
