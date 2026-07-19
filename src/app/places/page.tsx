@@ -177,7 +177,7 @@ export default function PlacesPage() {
                 whileHover={isMobile ? {} : { scale: 1.01 }}
                 viewport={{ once: true, margin: isMobile ? "100px" : "-50px" }}
                 transition={isMobile ? { duration: 0 } : { duration: 0.5, delay: index * 0.05 }}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[#1c1c1e] hover:bg-[#252528] transition-[background-color,box-shadow] duration-300 hover:shadow-2xl"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[#1c1c1e] hover:bg-[#252528] transition-[background-color,box-shadow] duration-300 hover:shadow-2xl max-md:opacity-100! max-md:transform-none!"
               >
                 <div className="flex flex-col">
                   {/* Card Header Image / Gradient */}
@@ -283,7 +283,7 @@ export default function PlacesPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: isMobile ? "100px" : "-50px" }}
               transition={isMobile ? { duration: 0 } : { duration: 0.5, delay: filteredPlaces.length * 0.05 }}
-              className="flex items-center justify-center min-h-[350px] rounded-2xl border border-dashed border-white/10 bg-white/[0.01] p-6 text-center select-none"
+              className="flex items-center justify-center min-h-[350px] rounded-2xl border border-dashed border-white/10 bg-white/[0.01] p-6 text-center select-none max-md:opacity-100! max-md:transform-none!"
             >
               <span className="text-white/30 text-sm font-sans font-light tracking-wider">
                 More places soon
