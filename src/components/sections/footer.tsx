@@ -139,26 +139,26 @@ export function Footer({ theme = "light" }: { theme?: "light" | "dark" }) {
             <a
               href={`mailto:${CONTACT_EMAIL}`}
               className={cn(
-                "hover:underline underline-offset-4 transition-colors",
+                "inline-flex items-center hover:underline underline-offset-4 transition-colors",
                 theme === "dark" ? "hover:text-white" : "hover:text-black"
               )}
             >
               {t("footer.contact")}
             </a>
             <Link href="/thesis" className={cn(
-              "hover:underline underline-offset-4 transition-colors",
+              "inline-flex items-center hover:underline underline-offset-4 transition-colors",
               theme === "dark" ? "hover:text-white" : "hover:text-black"
             )}>
               {t("footer.thesis")}
             </Link>
             <Link href="/terms" className={cn(
-              "hover:underline underline-offset-4 transition-colors",
+              "inline-flex items-center hover:underline underline-offset-4 transition-colors",
               theme === "dark" ? "hover:text-white" : "hover:text-black"
             )}>
               {t("footer.terms")}
             </Link>
             <Link href="/privacy" className={cn(
-              "hover:underline underline-offset-4 transition-colors",
+              "inline-flex items-center hover:underline underline-offset-4 transition-colors",
               theme === "dark" ? "hover:text-white" : "hover:text-black"
             )}>
               {t("footer.privacy")}
@@ -166,7 +166,7 @@ export function Footer({ theme = "light" }: { theme?: "light" | "dark" }) {
             <button
               onClick={openPreferences}
               className={cn(
-                "hover:underline underline-offset-4 transition-colors",
+                "inline-flex items-center hover:underline underline-offset-4 transition-colors",
                 theme === "dark" ? "hover:text-white" : "hover:text-black"
               )}
             >
