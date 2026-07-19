@@ -43,7 +43,7 @@ export function ScriptHighlight({ children, className }: ScriptHighlightProps) {
   return (
     <span
       className={cn(
-        "font-script text-magenta-readable neon-text inline-block",
+        "font-script text-magenta neon-text inline-block",
         className
       )}
     >
@@ -62,7 +62,7 @@ interface HighlightProps {
 
 export function Highlight({ children, className }: HighlightProps) {
   return (
-    <span className={cn("text-magenta-readable neon-text-sm", className)}>
+    <span className={cn("text-magenta neon-text-sm", className)}>
       {children}
     </span>
   );

@@ -17,7 +17,7 @@ export default function PrivacyPage() {
         
         <div className="prose prose-invert max-w-none text-gray-300">
           <p className="text-gray-300 leading-relaxed my-4"><strong>Last Updated: 18 July 2026</strong></p>
-<p className="text-gray-300 leading-relaxed my-4">This Privacy Policy explains how Gennety (&quot;<strong>Gennety</strong>&quot;, &quot;<strong>we</strong>&quot;, &quot;<strong>us</strong>&quot;, or &quot;<strong>our</strong>&quot;) collects, uses, shares, and protects your personal data when you use the Gennety matchmaking service through our Telegram bot (<code className="bg-gray-800 px-1 py-0.5 rounded text-magenta-readable font-mono text-sm">@gennetybot</code>), our Telegram Mini Apps, our mobile application, and our website at <code className="bg-gray-800 px-1 py-0.5 rounded text-magenta-readable font-mono text-sm">gennety.com</code> (together, the &quot;<strong>Service</strong>&quot;).</p>
+<p className="text-gray-300 leading-relaxed my-4">This Privacy Policy explains how Gennety (&quot;<strong>Gennety</strong>&quot;, &quot;<strong>we</strong>&quot;, &quot;<strong>us</strong>&quot;, or &quot;<strong>our</strong>&quot;) collects, uses, shares, and protects your personal data when you use the Gennety matchmaking service through our Telegram bot (<code className="bg-gray-800 px-1 py-0.5 rounded text-magenta font-mono text-sm">@gennetybot</code>), our Telegram Mini Apps, our mobile application, and our website at <code className="bg-gray-800 px-1 py-0.5 rounded text-magenta font-mono text-sm">gennety.com</code> (together, the &quot;<strong>Service</strong>&quot;).</p>
 <p className="text-gray-300 leading-relaxed my-4">Gennety is an AI-first matchmaking service for university students. By design we process more context about you than a traditional dating app — including psychological context and biometric data used for identity verification — so please read this Policy carefully. Where we process <strong>special categories</strong> of personal data (such as biometric data), we do so only with your <strong>explicit consent</strong>, as described in Section 9.</p>
 <hr className="border-gray-800 my-8" />
 <h2 className="text-2xl font-semibold text-white mt-12 mb-4">1. Data Controller</h2>
@@ -34,7 +34,7 @@ export default function PrivacyPage() {
 <ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
 <li>users and prospective users of the Service (including during onboarding, before an account is fully created);</li>
 <li>people who verify a corporate/university email on our website before opening the bot;</li>
-<li>visitors to <code className="bg-gray-800 px-1 py-0.5 rounded text-magenta-readable font-mono text-sm">gennety.com</code>.</li>
+<li>visitors to <code className="bg-gray-800 px-1 py-0.5 rounded text-magenta font-mono text-sm">gennety.com</code>.</li>
 </ul>
 <p className="text-gray-300 leading-relaxed my-4">It does <strong>not</strong> cover third-party services you reach through our links (for example, your own personal AI assistant such as ChatGPT or Claude). Those services have their own privacy policies.</p>
 <hr className="border-gray-800 my-8" />
@@ -52,7 +52,7 @@ export default function PrivacyPage() {
 <tbody className="divide-y divide-gray-800">
 <tr>
 <td className="border border-gray-800 px-4 py-3 align-top"><strong>Account &amp; identity</strong></td>
-<td className="border border-gray-800 px-4 py-3 align-top">First name (and optionally surname), age, gender, gender preference, language, your Telegram user ID and public <code className="bg-gray-800 px-1 py-0.5 rounded text-magenta-readable font-mono text-sm">@username</code> (if any), platform (Telegram / mobile).</td>
+<td className="border border-gray-800 px-4 py-3 align-top">First name (and optionally surname), age, gender, gender preference, language, your Telegram user ID and public <code className="bg-gray-800 px-1 py-0.5 rounded text-magenta font-mono text-sm">@username</code> (if any), platform (Telegram / mobile).</td>
 </tr>
 <tr>
 <td className="border border-gray-800 px-4 py-3 align-top"><strong>Corporate/university email</strong></td>

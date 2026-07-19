@@ -631,14 +631,14 @@ export function RegistrationButton({
                         required
                         type="checkbox"
                         checked={termsAccepted}
-                        className="mt-1 h-4 w-4 shrink-0 rounded border-0 bg-white/10 text-magenta-readable accent-magenta focus:ring-0 cursor-pointer transition-colors duration-200"
+                        className="mt-1 h-4 w-4 shrink-0 rounded border-0 bg-white/10 text-magenta accent-magenta focus:ring-0 cursor-pointer transition-colors duration-200"
                         onChange={(event) => setTermsAccepted(event.target.checked)}
                       />
                       <span>
                         {t("registration.termsPrefix")}{" "}
                         <a
                           href="/terms"
-                          className="text-white underline underline-offset-4 hover:text-magenta-readable transition-colors"
+                          className="text-white underline underline-offset-4 hover:text-magenta transition-colors"
                           onClick={(e) => e.stopPropagation()}
                         >
                           {t("registration.terms")}
@@ -646,7 +646,7 @@ export function RegistrationButton({
                         {t("registration.and")}{" "}
                         <a
                           href="/privacy"
-                          className="text-white underline underline-offset-4 hover:text-magenta-readable transition-colors"
+                          className="text-white underline underline-offset-4 hover:text-magenta transition-colors"
                           onClick={(e) => e.stopPropagation()}
                         >
                           {t("registration.privacy")}
@@ -660,7 +660,7 @@ export function RegistrationButton({
                       <input
                         type="checkbox"
                         checked={researchOptIn}
-                        className="mt-1 h-4 w-4 shrink-0 rounded border-0 bg-white/10 text-magenta-readable accent-magenta focus:ring-0 cursor-pointer transition-colors duration-200"
+                        className="mt-1 h-4 w-4 shrink-0 rounded border-0 bg-white/10 text-magenta accent-magenta focus:ring-0 cursor-pointer transition-colors duration-200"
                         onChange={(event) => setResearchOptIn(event.target.checked)}
                       />
                       <span>
@@ -680,7 +680,7 @@ export function RegistrationButton({
                         onClick={() => startTrack("student")}
                         className="flex w-full items-center gap-4 rounded-2xl bg-white/[0.04] p-4 text-left transition-all duration-300 hover:bg-white/[0.08] disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer"
                       >
-                        <GraduationCap className="h-6 w-6 shrink-0 text-magenta-readable" aria-hidden="true" />
+                        <GraduationCap className="h-6 w-6 shrink-0 text-magenta" aria-hidden="true" />
                         <span className="min-w-0">
                           <span className="block text-sm font-semibold text-white">
                             {t("registration.trackStudent")}
@@ -702,11 +702,11 @@ export function RegistrationButton({
                         >
                           {loading && track === "general" ? (
                             <Loader2
-                              className="h-6 w-6 shrink-0 animate-spin text-magenta-readable"
+                              className="h-6 w-6 shrink-0 animate-spin text-magenta"
                               aria-hidden="true"
                             />
                           ) : (
-                            <Phone className="h-6 w-6 shrink-0 text-magenta-readable" aria-hidden="true" />
+                            <Phone className="h-6 w-6 shrink-0 text-magenta" aria-hidden="true" />
                           )}
                           <span className="min-w-0">
                             <span className="block text-sm font-semibold text-white">
@@ -818,7 +818,7 @@ export function RegistrationButton({
 
                     {city && (
                       <div className="flex items-center gap-2 rounded-2xl bg-magenta/[0.06] px-4 py-3 text-left text-sm text-white">
-                        <Check className="h-4 w-4 shrink-0 text-magenta-readable" aria-hidden="true" />
+                        <Check className="h-4 w-4 shrink-0 text-magenta" aria-hidden="true" />
                         <span className="truncate">{city.label}</span>
                       </div>
                     )}
@@ -925,7 +925,7 @@ export function RegistrationButton({
                   >
                     <div className="rounded-2xl bg-magenta/[0.05] px-4 py-5 text-center">
                       <CheckCircle2
-                        className="mx-auto h-10 w-10 text-magenta-readable filter drop-shadow-neon-sm"
+                        className="mx-auto h-10 w-10 text-magenta filter drop-shadow-neon-sm"
                         aria-hidden="true"
                       />
                       <p className="mt-4 text-base font-semibold text-white">

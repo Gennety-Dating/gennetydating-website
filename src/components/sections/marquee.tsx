@@ -13,7 +13,7 @@ function MarqueeRow({ text }: { text: string }) {
       className={
         i % 2 === 0
           ? "text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mx-4 md:mx-8 py-2"
-          : "text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-magenta-readable mx-4 md:mx-8 py-2"
+          : "text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-magenta mx-4 md:mx-8 py-2"
       }
     >
       {text}

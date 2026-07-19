@@ -42,7 +42,7 @@ function AccordionItem({
         </span>
         <svg
           className={cn(
-            "w-5 h-5 flex-shrink-0 text-magenta-readable transition-transform duration-300",
+            "w-5 h-5 flex-shrink-0 text-magenta transition-transform duration-300",
             isOpen && "rotate-180"
           )}
           viewBox="0 0 20 20"
