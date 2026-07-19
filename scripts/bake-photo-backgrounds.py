@@ -29,6 +29,8 @@ JOBS = [
      "public/images/matchmaker-works-bg-soft.jpg", 4, 0.3025),
     ("public/images/matchmaker-bg-1.jpg",
      "public/images/matchmaker-bg-1-soft.jpg", 5, 0.35),
+    ("public/images/mobile-comparison-faq-bg.jpg",
+     "public/images/mobile-comparison-faq-bg-soft.jpg", 12, 0.35),
 ]
 
 

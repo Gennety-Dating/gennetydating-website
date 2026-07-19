@@ -92,8 +92,8 @@ export default function Home() {
           {/* Blur + darkening baked into the *-soft.jpg (no runtime filter/opacity),
               so this layer is not composited and does not drop the iOS safe-area
               insets to black — see the note on the first photo section above. */}
-          {/* Mobile: topgolf couple photo */}
-          <div className="absolute -inset-10 bg-[#111111] bg-[url('/images/topgolf-couple-bg-soft.jpg')] bg-cover bg-center md:hidden" />
+          {/* Mobile: custom couple photo */}
+          <div className="absolute -inset-10 bg-[#111111] bg-[url('/images/mobile-comparison-faq-bg-soft.jpg')] bg-cover bg-center md:hidden" />
           {/* Desktop: cathedral couple photo */}
           <div className="absolute -inset-10 bg-[#111111] bg-[url('/images/cathedral-couple-bg-soft.jpg')] bg-cover bg-center hidden md:block" />
         </div>
