@@ -11,6 +11,7 @@ import {
 export const LS_SESSION_KEY = "cookie_consent_session_id";
 export const LS_CONSENT_KEY = "cookie_consent_given";
 export const CONSENT_EVENT = "cookie-consent-changed";
+export const OPEN_CONSENT_PREFERENCES_EVENT = "cookie-consent-preferences-open";
 export const CONSENT_CACHE_TTL_MS = 180 * 24 * 60 * 60 * 1000;
 
 type FetchLike = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;

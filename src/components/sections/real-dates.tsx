@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { metrics } from "@/lib/data";
+import { metrics } from "@/lib/home-content";
 import { Heading, Highlight } from "@/components/ui/typography";
 import { useLanguage } from "@/lib/language-context";
 import type { TranslationKeys } from "@/lib/i18n";
@@ -60,7 +60,7 @@ export function RealDates() {
                 {/* Значение метрики с нативным свечением */}
                 <span className={cn(
                   "font-sans font-bold text-xl md:text-2xl tracking-tight block mb-1",
-                  metric.color === "magenta" && "text-magenta drop-shadow-[0_0_15px_rgba(139,37,59,0.5)]",
+                  metric.color === "magenta" && "text-magenta-readable drop-shadow-[0_0_15px_rgba(139,37,59,0.5)]",
                   metric.color === "gold" && "text-amber-300 drop-shadow-[0_0_15px_rgba(251,191,36,0.3)]",
                   metric.color === "sky" && "text-sky-300 drop-shadow-[0_0_15px_rgba(56,189,248,0.3)]"
                 )}>

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export function OurMission() {
   return (
@@ -17,9 +18,11 @@ export function OurMission() {
           className="relative w-full max-w-[450px] aspect-[2/3] mx-auto select-none drop-shadow-[0_20px_50px_rgba(0,0,0,0.85)] filter"
         >
           {/* Scroll Background Image with baked-in text */}
-          <img
+          <Image
             src="/images/mission-scroll.png"
             alt="Our Mission"
+            fill
+            sizes="(min-width: 768px) 450px, calc(100vw - 2rem)"
             className="absolute inset-0 w-full h-full object-contain pointer-events-none"
           />
         </motion.div>
@@ -27,4 +30,3 @@ export function OurMission() {
     </section>
   );
 }
-

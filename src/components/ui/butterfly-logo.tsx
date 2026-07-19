@@ -4,14 +4,12 @@ interface ButterflyLogoProps {
   className?: string;
   size?: number;
   variant?: "gradient-bg" | "gradient-butterfly" | "glassmorphic" | "dark" | "classic";
-  animated?: boolean;
 }
 
 export function ButterflyLogo({
   className,
   size = 112,
   variant = "gradient-bg",
-  animated = true,
 }: ButterflyLogoProps) {
   // SVG gradients definitions
   const svgGradients = (

@@ -5,6 +5,7 @@ import { ButterflyLogo } from "@/components/ui/butterfly-logo";
 import { CountdownTimer } from "@/components/countdown-timer";
 import { RegistrationButton } from "@/components/registration-button";
 import { useLanguage } from "@/lib/language-context";
+import Image from "next/image";
 // import { Butterflies } from "@/components/ui/butterflies";
 
 export function Hero() {
@@ -38,10 +39,13 @@ export function Hero() {
  
       {/* Polaroid photo */}
       <div className="relative mt-8 mb-6 flex justify-center z-10">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src="/images/polaroid-couple.png"
           alt="Couple"
+          width={819}
+          height={1024}
+          sizes="(min-width: 768px) 147px, (min-width: 640px) 125px, 110px"
+          priority
           className="max-w-[110px] sm:max-w-[125px] md:max-w-[147px] w-full h-auto drop-shadow-xl transition-transform hover:scale-[1.02] -rotate-2 pointer-events-none"
         />
       </div>
@@ -90,13 +94,13 @@ export function Hero() {
       </div>
  
       {/* Disclaimer */}
-      <p className="mt-4 text-xs text-gray-500">
+      <p className="mt-4 text-xs text-gray-400">
         {t("hero.disclaimer")}{" "}
-        <a href="#" className="underline hover:text-white transition-colors">
+        <a href="/terms" className="underline hover:text-white transition-colors">
           {t("hero.terms")}
         </a>{" "}
         &{" "}
-        <a href="#" className="underline hover:text-white transition-colors">
+        <a href="/privacy" className="underline hover:text-white transition-colors">
           {t("hero.privacy")}
         </a>
         .

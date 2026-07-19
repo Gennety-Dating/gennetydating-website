@@ -9,6 +9,7 @@ import {
   type FormEvent,
   type ReactNode,
 } from "react";
+import { createPortal } from "react-dom";
 import {
   ArrowLeft,
   Check,
@@ -70,7 +71,14 @@ const BOT_USERNAME = process.env.NEXT_PUBLIC_BOT_USERNAME || "gennetybot";
 // Some networks fail to resolve the short t.me domain. telegram.me is an
 // official Telegram domain and reaches the same bot without that DNS failure.
 function toTelegramWebUrl(url: string): string {
-  return url.replace(/^https:\/\/t\.me\//i, "https://telegram.me/");
+  const normalized = url.replace(/^https:\/\/t\.me\//i, "https://telegram.me/");
+  const parsed = new URL(normalized);
+
+  if (parsed.protocol !== "https:" || parsed.hostname.toLowerCase() !== "telegram.me") {
+    throw new Error("Invalid Telegram redirect URL");
+  }
+
+  return parsed.toString();
 }
 
 /** Only the languages the bot can actually converse in (see registration-api). */
@@ -133,6 +141,9 @@ export function RegistrationButton({
   // refuses a phone-track link anyway when the flag is off, so an unreachable
   // config never silently degrades the common path.
   const [phoneAuthEnabled, setPhoneAuthEnabled] = useState(true);
+  const modalRootRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const triggerElementRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -213,6 +224,51 @@ export function RegistrationButton({
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [languageOpen, loading, open]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const main = document.querySelector("main");
+    const mainWasInert = main?.hasAttribute("inert") ?? false;
+    main?.setAttribute("inert", "");
+
+    const focusableSelector =
+      'a[href], button:not([disabled]):not([tabindex="-1"]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const focusDialog = window.requestAnimationFrame(() => dialogRef.current?.focus());
+
+    function trapFocus(event: KeyboardEvent) {
+      if (event.key !== "Tab") return;
+      const root = modalRootRef.current;
+      if (!root) return;
+
+      const focusable = Array.from(root.querySelectorAll<HTMLElement>(focusableSelector)).filter(
+        (element) => element.getClientRects().length > 0,
+      );
+      if (focusable.length === 0) {
+        event.preventDefault();
+        dialogRef.current?.focus();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    document.addEventListener("keydown", trapFocus);
+    return () => {
+      window.cancelAnimationFrame(focusDialog);
+      document.removeEventListener("keydown", trapFocus);
+      if (!mainWasInert) main?.removeAttribute("inert");
+      triggerElementRef.current?.focus();
+    };
+  }, [open]);
 
   useEffect(() => {
     if (step !== "done" || !telegramUrl) return;
@@ -396,6 +452,7 @@ export function RegistrationButton({
         size={size}
         className={className}
         onClick={() => {
+          triggerElementRef.current = document.activeElement as HTMLElement | null;
           setLanguage(registrationLanguageFromLocale(locale));
           setOpen(true);
         }}
@@ -403,8 +460,9 @@ export function RegistrationButton({
         {children}
       </Button>
 
-      {open && (
+      {open && typeof document !== "undefined" && createPortal(
         <div
+          ref={modalRootRef}
           className="fixed inset-0 z-[80] overflow-y-auto overscroll-contain bg-midnight px-4 py-0 md:flex md:items-center md:justify-center md:py-6"
           style={{ scrollbarGutter: "stable" }}
         >
@@ -413,6 +471,7 @@ export function RegistrationButton({
           />
           <button
             type="button"
+            tabIndex={-1}
             className="fixed inset-0 bg-midnight/65 backdrop-blur-[8px] cursor-default"
             aria-label={t("registration.close")}
             onClick={() => !loading && setOpen(false)}
@@ -438,9 +497,11 @@ export function RegistrationButton({
 
           <div className="relative z-10 flex min-h-[100svh] w-full items-center justify-center py-20 md:min-h-0 md:py-0">
             <div
+              ref={dialogRef}
               role="dialog"
               aria-modal="true"
               aria-labelledby="registration-title"
+              tabIndex={-1}
               className="w-full max-w-[400px] rounded-[32px] bg-black/60 py-10 px-8 text-center shadow-2xl backdrop-blur-3xl"
             >
               <div>
@@ -570,14 +631,14 @@ export function RegistrationButton({
                         required
                         type="checkbox"
                         checked={termsAccepted}
-                        className="mt-1 h-4 w-4 shrink-0 rounded border-0 bg-white/10 text-magenta accent-magenta focus:ring-0 cursor-pointer transition-colors duration-200"
+                        className="mt-1 h-4 w-4 shrink-0 rounded border-0 bg-white/10 text-magenta-readable accent-magenta focus:ring-0 cursor-pointer transition-colors duration-200"
                         onChange={(event) => setTermsAccepted(event.target.checked)}
                       />
                       <span>
                         {t("registration.termsPrefix")}{" "}
                         <a
                           href="/terms"
-                          className="text-white underline underline-offset-4 hover:text-magenta transition-colors"
+                          className="text-white underline underline-offset-4 hover:text-magenta-readable transition-colors"
                           onClick={(e) => e.stopPropagation()}
                         >
                           {t("registration.terms")}
@@ -585,7 +646,7 @@ export function RegistrationButton({
                         {t("registration.and")}{" "}
                         <a
                           href="/privacy"
-                          className="text-white underline underline-offset-4 hover:text-magenta transition-colors"
+                          className="text-white underline underline-offset-4 hover:text-magenta-readable transition-colors"
                           onClick={(e) => e.stopPropagation()}
                         >
                           {t("registration.privacy")}
@@ -599,7 +660,7 @@ export function RegistrationButton({
                       <input
                         type="checkbox"
                         checked={researchOptIn}
-                        className="mt-1 h-4 w-4 shrink-0 rounded border-0 bg-white/10 text-magenta accent-magenta focus:ring-0 cursor-pointer transition-colors duration-200"
+                        className="mt-1 h-4 w-4 shrink-0 rounded border-0 bg-white/10 text-magenta-readable accent-magenta focus:ring-0 cursor-pointer transition-colors duration-200"
                         onChange={(event) => setResearchOptIn(event.target.checked)}
                       />
                       <span>
@@ -619,7 +680,7 @@ export function RegistrationButton({
                         onClick={() => startTrack("student")}
                         className="flex w-full items-center gap-4 rounded-2xl bg-white/[0.04] p-4 text-left transition-all duration-300 hover:bg-white/[0.08] disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer"
                       >
-                        <GraduationCap className="h-6 w-6 shrink-0 text-magenta" aria-hidden="true" />
+                        <GraduationCap className="h-6 w-6 shrink-0 text-magenta-readable" aria-hidden="true" />
                         <span className="min-w-0">
                           <span className="block text-sm font-semibold text-white">
                             {t("registration.trackStudent")}
@@ -641,11 +702,11 @@ export function RegistrationButton({
                         >
                           {loading && track === "general" ? (
                             <Loader2
-                              className="h-6 w-6 shrink-0 animate-spin text-magenta"
+                              className="h-6 w-6 shrink-0 animate-spin text-magenta-readable"
                               aria-hidden="true"
                             />
                           ) : (
-                            <Phone className="h-6 w-6 shrink-0 text-magenta" aria-hidden="true" />
+                            <Phone className="h-6 w-6 shrink-0 text-magenta-readable" aria-hidden="true" />
                           )}
                           <span className="min-w-0">
                             <span className="block text-sm font-semibold text-white">
@@ -757,7 +818,7 @@ export function RegistrationButton({
 
                     {city && (
                       <div className="flex items-center gap-2 rounded-2xl bg-magenta/[0.06] px-4 py-3 text-left text-sm text-white">
-                        <Check className="h-4 w-4 shrink-0 text-magenta" aria-hidden="true" />
+                        <Check className="h-4 w-4 shrink-0 text-magenta-readable" aria-hidden="true" />
                         <span className="truncate">{city.label}</span>
                       </div>
                     )}
@@ -864,7 +925,7 @@ export function RegistrationButton({
                   >
                     <div className="rounded-2xl bg-magenta/[0.05] px-4 py-5 text-center">
                       <CheckCircle2
-                        className="mx-auto h-10 w-10 text-magenta filter drop-shadow-neon-sm"
+                        className="mx-auto h-10 w-10 text-magenta-readable filter drop-shadow-neon-sm"
                         aria-hidden="true"
                       />
                       <p className="mt-4 text-base font-semibold text-white">
@@ -887,7 +948,8 @@ export function RegistrationButton({
               </AnimatePresence>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </>
   );

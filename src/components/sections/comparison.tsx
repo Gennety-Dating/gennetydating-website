@@ -1,9 +1,8 @@
 "use client";
 
 import { Heading } from "@/components/ui/typography";
-import { MessageBubble } from "@/components/ui/message-bubble";
-import { Bell } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
+import Image from "next/image";
 
 export function Comparison() {
   const { t } = useLanguage();
@@ -24,9 +23,11 @@ export function Comparison() {
           <div className="relative w-full max-w-lg">
             {/* Telegram Floating Icon */}
             <div className="absolute top-[45px] left-1/2 -translate-x-1/2 z-20 w-[84px] h-[84px]">
-              <img
+              <Image
                 src="/images/logos/telegram.png"
                 alt="Telegram"
+                fill
+                sizes="84px"
                 className="w-full h-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)]"
               />
               <span 
@@ -37,12 +38,15 @@ export function Comparison() {
               </span>
             </div>
 
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/gennety-notification.jpg"
-              alt="Gennety Notification"
-              className="w-full h-[200px] object-cover object-bottom rounded-2xl shadow-lg relative z-10"
-            />
+            <div className="relative z-10 h-[200px] w-full overflow-hidden rounded-2xl shadow-lg">
+              <Image
+                src="/images/gennety-notification.jpg"
+                alt="Gennety Notification"
+                fill
+                sizes="(min-width: 768px) 512px, calc(100vw - 2rem)"
+                className="object-cover object-bottom"
+              />
+            </div>
           </div>
 
           <p className="text-gray-400 text-sm mt-6 max-w-xs">
@@ -73,10 +77,11 @@ export function Comparison() {
                 {/* Tinder */}
                 <div className="relative">
                   <div className="w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src="/images/logos/tinder.png"
                       alt="Tinder"
+                      width={80}
+                      height={80}
                       className="w-full h-full scale-[1.05]"
                     />
                   </div>
@@ -91,10 +96,11 @@ export function Comparison() {
                 {/* Badoo */}
                 <div className="relative">
                   <div className="w-20 h-20 rounded-2xl bg-white flex items-center justify-center shadow-lg overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src="/images/logos/badoo.svg"
                       alt="Badoo"
+                      width={80}
+                      height={80}
                       className="w-full h-full"
                     />
                   </div>

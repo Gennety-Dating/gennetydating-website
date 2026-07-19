@@ -28,10 +28,22 @@ const API_BASE_URL = (
 ).replace(/\/+$/, "");
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE_URL}${path}`, {
-    ...init,
-    headers: init?.body ? { "Content-Type": "application/json" } : undefined,
-  });
+  const timeoutSignal = AbortSignal.timeout(15_000);
+  const signal = init?.signal ? AbortSignal.any([init.signal, timeoutSignal]) : timeoutSignal;
+  let response: Response;
+
+  try {
+    response = await fetch(`${API_BASE_URL}${path}`, {
+      ...init,
+      signal,
+      headers: init?.body ? { "Content-Type": "application/json" } : undefined,
+    });
+  } catch (error) {
+    if (error instanceof DOMException && error.name === "TimeoutError") {
+      throw new Error("The service is taking too long to respond. Please try again.");
+    }
+    throw error;
+  }
 
   const payload = (await response.json().catch(() => ({}))) as { error?: string };
   if (!response.ok) throw new Error(payload.error || "Request failed");

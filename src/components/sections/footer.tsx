@@ -1,6 +1,6 @@
 "use client";
 
-import { CONTACT_EMAIL, TELEGRAM_BOT_URL, TWITTER_URL, INSTAGRAM_URL } from "@/lib/data";
+import { CONTACT_EMAIL, TELEGRAM_BOT_URL, TWITTER_URL, INSTAGRAM_URL } from "@/lib/site-config";
 import { useLanguage } from "@/lib/language-context";
 import { useCookieConsent } from "@/hooks/useCookieConsent";
 import Link from "next/link";
@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 
 export function Footer({ theme = "light" }: { theme?: "light" | "dark" }) {
   const { t } = useLanguage();
-  const { withdrawConsent } = useCookieConsent();
+  const { openPreferences } = useCookieConsent();
   const pathname = usePathname();
   const isMainPage = pathname === "/";
 
@@ -87,7 +87,7 @@ export function Footer({ theme = "light" }: { theme?: "light" | "dark" }) {
           theme === "dark" ? "border-white/10" : "border-[#111111]/10"
         )}>
           <div className={cn(
-            "flex flex-wrap gap-6 text-sm transition-colors duration-300",
+            "flex flex-wrap items-center gap-x-6 gap-y-2 text-sm transition-colors duration-300 [&_a]:min-h-11 [&_button]:min-h-11",
             theme === "dark" ? "text-gray-400" : "text-gray-600"
           )}>
             <a
@@ -164,7 +164,7 @@ export function Footer({ theme = "light" }: { theme?: "light" | "dark" }) {
               {t("footer.privacy")}
             </Link>
             <button
-              onClick={withdrawConsent}
+              onClick={openPreferences}
               className={cn(
                 "hover:underline underline-offset-4 transition-colors",
                 theme === "dark" ? "hover:text-white" : "hover:text-black"

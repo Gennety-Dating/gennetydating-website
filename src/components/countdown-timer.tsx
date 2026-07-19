@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/lib/language-context";
 import type { Locale } from "@/lib/i18n";
-import { cn } from "@/lib/utils";
 
 const dateLocales: Record<Locale, string> = {
   en: "en-US",
@@ -78,11 +77,12 @@ export function CountdownTimer() {
     seconds: "00",
   });
   const [matchDay, setMatchDay] = useState("");
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     targetRef.current = getNextThursdayKyiv();
 
-    const id = setInterval(() => {
+    const updateCountdown = () => {
       if (!targetRef.current) return;
 
       // Reset when timer expires
@@ -92,7 +92,11 @@ export function CountdownTimer() {
 
       setTime(calcTimeLeft(targetRef.current));
       setMatchDay(formatDate(targetRef.current, locale));
-    }, 1000);
+      setIsReady(true);
+    };
+
+    updateCountdown();
+    const id = setInterval(updateCountdown, 1000);
 
     return () => clearInterval(id);
   }, [locale]);
@@ -100,36 +104,36 @@ export function CountdownTimer() {
   return (
     <div className="flex flex-col items-center gap-3">
       {/* Option 1: Clean Classic Line */}
-      <div className="flex items-center gap-3 sm:gap-4 md:gap-5 select-none py-1.5">
+      <div className={`flex items-center gap-3 sm:gap-4 md:gap-5 select-none py-1.5 transition-opacity duration-200 ${isReady ? "opacity-100" : "opacity-0"}`}>
         <div className="flex flex-col items-center">
-          <span className="font-sans text-3xl sm:text-4xl md:text-5xl font-bold text-magenta tracking-tight tabular-nums">
+          <span className="font-sans text-3xl sm:text-4xl md:text-5xl font-bold text-magenta-readable tracking-tight tabular-nums">
             {time.days}
           </span>
           <span className="text-[9px] sm:text-[10px] md:text-[11px] font-semibold text-gray-400 uppercase tracking-widest mt-1">
             {t("countdown.d")}
           </span>
         </div>
-        <span className="text-magenta/30 font-light text-xl sm:text-2xl md:text-3xl -translate-y-2.5">:</span>
+        <span className="text-magenta-readable/40 font-light text-xl sm:text-2xl md:text-3xl -translate-y-2.5">:</span>
         <div className="flex flex-col items-center">
-          <span className="font-sans text-3xl sm:text-4xl md:text-5xl font-bold text-magenta tracking-tight tabular-nums">
+          <span className="font-sans text-3xl sm:text-4xl md:text-5xl font-bold text-magenta-readable tracking-tight tabular-nums">
             {time.hours}
           </span>
           <span className="text-[9px] sm:text-[10px] md:text-[11px] font-semibold text-gray-400 uppercase tracking-widest mt-1">
             {t("countdown.h")}
           </span>
         </div>
-        <span className="text-magenta/30 font-light text-xl sm:text-2xl md:text-3xl -translate-y-2.5">:</span>
+        <span className="text-magenta-readable/40 font-light text-xl sm:text-2xl md:text-3xl -translate-y-2.5">:</span>
         <div className="flex flex-col items-center">
-          <span className="font-sans text-3xl sm:text-4xl md:text-5xl font-bold text-magenta tracking-tight tabular-nums">
+          <span className="font-sans text-3xl sm:text-4xl md:text-5xl font-bold text-magenta-readable tracking-tight tabular-nums">
             {time.minutes}
           </span>
           <span className="text-[9px] sm:text-[10px] md:text-[11px] font-semibold text-gray-400 uppercase tracking-widest mt-1">
             {t("countdown.m")}
           </span>
         </div>
-        <span className="text-magenta/30 font-light text-xl sm:text-2xl md:text-3xl -translate-y-2.5">:</span>
+        <span className="text-magenta-readable/40 font-light text-xl sm:text-2xl md:text-3xl -translate-y-2.5">:</span>
         <div className="flex flex-col items-center">
-          <span className="font-sans text-3xl sm:text-4xl md:text-5xl font-bold text-magenta tracking-tight tabular-nums">
+          <span className="font-sans text-3xl sm:text-4xl md:text-5xl font-bold text-magenta-readable tracking-tight tabular-nums">
             {time.seconds}
           </span>
           <span className="text-[9px] sm:text-[10px] md:text-[11px] font-semibold text-gray-400 uppercase tracking-widest mt-1">
@@ -138,15 +142,12 @@ export function CountdownTimer() {
         </div>
       </div>
 
-      {/* Match day info — renders after first interval tick */}
-      {matchDay && (
-        <>
-          <p className="text-sm text-gray-500 mt-1">
-            {t("countdown.nextMatch")}{" "}
-            <span className="text-heading-white font-semibold">{matchDay}</span>
-          </p>
-        </>
-      )}
+      <p
+        className={`min-h-5 text-sm text-gray-400 mt-1 ${matchDay ? "visible" : "invisible"}`}
+      >
+        {t("countdown.nextMatch")}{" "}
+        <span className="text-heading-white font-semibold">{matchDay || "Placeholder"}</span>
+      </p>
     </div>
   );
 }

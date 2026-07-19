@@ -9,6 +9,7 @@ import { Footer } from "@/components/sections/footer";
 import { useLanguage } from "@/lib/language-context";
 import { datePlaces } from "@/lib/data";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 // Localized UI Translations
 const backTexts = {
@@ -170,9 +171,11 @@ export default function PlacesPage() {
                   {/* Card Header Image / Gradient */}
                   <div className="relative h-60 w-full overflow-hidden bg-black/20">
                     {hasImage ? (
-                      <img
+                      <Image
                         src={place.images[0]}
                         alt={name}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     ) : (

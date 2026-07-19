@@ -14,6 +14,10 @@ const MAX_CATEGORIES_JSON_LENGTH = 4_096;
 const MAX_SESSION_ID_LENGTH = 200;
 const MAX_PAGE_URL_LENGTH = 2_048;
 const MAX_USER_AGENT_LENGTH = 1_024;
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 30;
+
+const rateLimits = new Map<string, { count: number; resetAt: number }>();
 
 interface ValidatedConsentPayload {
   action: ConsentAction;
@@ -63,6 +67,21 @@ function validatePayload(body: unknown): ValidationResult {
     return { ok: false, error: "categories must be an object or null" };
   }
 
+  if (categories !== null) {
+    const allowedKeys = new Set(["necessary", "analytics", "marketing", "functional"]);
+    if (Object.keys(categories).some((key) => !allowedKeys.has(key))) {
+      return { ok: false, error: "categories contains unsupported fields" };
+    }
+    if (
+      categories.necessary !== true ||
+      typeof categories.analytics !== "boolean" ||
+      typeof categories.marketing !== "boolean" ||
+      typeof categories.functional !== "boolean"
+    ) {
+      return { ok: false, error: "Invalid consent categories" };
+    }
+  }
+
   const categoriesJson = JSON.stringify(categories);
   if (categoriesJson.length > MAX_CATEGORIES_JSON_LENGTH) {
     return { ok: false, error: "categories is too large" };
@@ -92,15 +111,15 @@ function requiredEnv(name: string): string {
 }
 
 function getClientIp(request: NextRequest): string | null {
+  const trustedIp =
+    request.headers.get("cf-connecting-ip")?.trim() ||
+    request.headers.get("x-real-ip")?.trim();
+  if (trustedIp) return trustedIp;
+
   const forwarded = request.headers.get("x-forwarded-for");
   const firstForwarded = forwarded?.split(",")[0]?.trim();
   if (firstForwarded) return firstForwarded;
-
-  return (
-    request.headers.get("x-real-ip")?.trim() ||
-    request.headers.get("cf-connecting-ip")?.trim() ||
-    null
-  );
+  return null;
 }
 
 function hashIp(rawIp: string | null, salt: string): string | null {
@@ -116,6 +135,31 @@ function isOversizedRequest(request: NextRequest): boolean {
   return Number.isFinite(bytes) && bytes > MAX_REQUEST_BYTES;
 }
 
+function isRateLimited(request: NextRequest): { limited: boolean; retryAfter: number } {
+  const now = Date.now();
+  const key = getClientIp(request) ?? "unknown";
+  const current = rateLimits.get(key);
+
+  if (rateLimits.size > 10_000) {
+    for (const [storedKey, entry] of rateLimits) {
+      if (entry.resetAt <= now) rateLimits.delete(storedKey);
+    }
+  }
+
+  if (!current || current.resetAt <= now) {
+    rateLimits.set(key, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return { limited: false, retryAfter: 0 };
+  }
+
+  current.count += 1;
+  if (current.count <= RATE_LIMIT_MAX_REQUESTS) return { limited: false, retryAfter: 0 };
+
+  return {
+    limited: true,
+    retryAfter: Math.max(1, Math.ceil((current.resetAt - now) / 1000)),
+  };
+}
+
 function getPgErrorCode(error: unknown): string | undefined {
   if (!isObjectRecord(error)) return undefined;
   return typeof error.code === "string" ? error.code : undefined;
@@ -129,9 +173,24 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  const rateLimit = isRateLimited(request);
+  if (rateLimit.limited) {
+    return NextResponse.json(
+      { success: false, error: "Too many requests" },
+      { status: 429, headers: { "Retry-After": String(rateLimit.retryAfter) } },
+    );
+  }
+
   let body: unknown;
   try {
-    body = await request.json();
+    const rawBody = await request.text();
+    if (new TextEncoder().encode(rawBody).byteLength > MAX_REQUEST_BYTES) {
+      return NextResponse.json(
+        { success: false, error: "Payload is too large" },
+        { status: 413 },
+      );
+    }
+    body = JSON.parse(rawBody);
   } catch {
     return NextResponse.json({ success: false, error: "Invalid JSON" }, { status: 400 });
   }

@@ -290,7 +290,6 @@ export function TheDifference() {
                 fill
                 sizes="380px"
                 className="pointer-events-none z-20 object-contain"
-                priority
               />
 
               {/* Screen Area */}
@@ -362,7 +361,6 @@ export function TheDifference() {
                               alt="Student profile"
                               fill
                               sizes="260px"
-                              priority={isTop}
                               className="object-cover pointer-events-none brightness-[0.55] saturate-[0.45] contrast-[0.9] transition-all duration-300"
                             />
                             {/* Dark Vignette Overlay */}
@@ -422,6 +420,9 @@ export function TheDifference() {
             <div className="relative w-full max-w-[380px] h-[500px] sm:h-[580px] select-none z-10 my-auto">
               {/* Photo 1: Mia (Top-Left) */}
               <motion.div
+                role="button"
+                tabIndex={0}
+                aria-label="Show Mia match card"
                 className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10"
                 style={{ left: "2%", top: "4%" }}
                 initial={{ rotate: -8, scale: 0.95, opacity: 0 }}
@@ -438,6 +439,13 @@ export function TheDifference() {
                   e.stopPropagation();
                   setActiveCard(prev => prev === "mia" ? null : "mia");
                 }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setActiveCard(prev => prev === "mia" ? null : "mia");
+                  }
+                }}
               >
                 <Image
                   src="/images/do-this-mia.jpg"
@@ -445,12 +453,14 @@ export function TheDifference() {
                   fill
                   sizes="220px"
                   className="object-cover"
-                  priority
                 />
               </motion.div>
 
               {/* Photo 2: Girls 1 (Top-Right) */}
               <motion.div
+                role="button"
+                tabIndex={0}
+                aria-label="Show verified date card"
                 className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10"
                 style={{ right: "-8%", top: "12%" }}
                 initial={{ rotate: 6, scale: 0.95, opacity: 0 }}
@@ -467,6 +477,13 @@ export function TheDifference() {
                   e.stopPropagation();
                   setActiveCard(prev => prev === "girls1" ? null : "girls1");
                 }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setActiveCard(prev => prev === "girls1" ? null : "girls1");
+                  }
+                }}
               >
                 <Image
                   src="/images/do-this-girls-1.jpg"
@@ -474,12 +491,14 @@ export function TheDifference() {
                   fill
                   sizes="220px"
                   className="object-cover"
-                  priority
                 />
               </motion.div>
 
               {/* Photo 3: Boys 1 (Middle-Center) */}
               <motion.div
+                role="button"
+                tabIndex={0}
+                aria-label="Show verified date card"
                 className="absolute w-[54%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10"
                 style={{ left: "23%", top: "25%" }}
                 initial={{ rotate: -3, scale: 0.95, opacity: 0 }}
@@ -496,6 +515,13 @@ export function TheDifference() {
                   e.stopPropagation();
                   setActiveCard(prev => prev === "boys1" ? null : "boys1");
                 }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setActiveCard(prev => prev === "boys1" ? null : "boys1");
+                  }
+                }}
               >
                 <Image
                   src="/images/do-this-boys-1.jpg"
@@ -508,6 +534,9 @@ export function TheDifference() {
 
               {/* Photo 4: Girls 2 (Bottom-Left) */}
               <motion.div
+                role="button"
+                tabIndex={0}
+                aria-label="Show verified date card"
                 className="absolute w-[56%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10"
                 style={{ left: "-3%", bottom: "2%" }}
                 initial={{ rotate: -6, scale: 0.95, opacity: 0 }}
@@ -524,6 +553,13 @@ export function TheDifference() {
                   e.stopPropagation();
                   setActiveCard(prev => prev === "girls2" ? null : "girls2");
                 }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setActiveCard(prev => prev === "girls2" ? null : "girls2");
+                  }
+                }}
               >
                 <Image
                   src="/images/do-this-girls-2.jpg"
@@ -536,6 +572,9 @@ export function TheDifference() {
 
               {/* Photo 5: Adrian (Bottom-Right) - default z-30 */}
               <motion.div
+                role="button"
+                tabIndex={0}
+                aria-label="Show Adrian match card"
                 className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-2xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10"
                 style={{ right: "-4%", bottom: "-2%" }}
                 initial={{ rotate: 4, scale: 0.95, opacity: 0 }}
@@ -551,6 +590,13 @@ export function TheDifference() {
                 onClick={(e) => {
                   e.stopPropagation();
                   setActiveCard(prev => prev === "adrian" ? null : "adrian");
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setActiveCard(prev => prev === "adrian" ? null : "adrian");
+                  }
                 }}
               >
                 <Image

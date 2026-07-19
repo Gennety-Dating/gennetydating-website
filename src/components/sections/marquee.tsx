@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/language-context";
-import Link from "next/link";
 
 const REPEAT_COUNT = 8;
 
@@ -14,7 +13,7 @@ function MarqueeRow({ text }: { text: string }) {
       className={
         i % 2 === 0
           ? "text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mx-4 md:mx-8 py-2"
-          : "text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-magenta mx-4 md:mx-8 py-2"
+          : "text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-magenta-readable mx-4 md:mx-8 py-2"
       }
     >
       {text}
@@ -26,7 +25,7 @@ function MarqueeRow({ text }: { text: string }) {
       {/* Single wrapper with 2x content — animate-marquee translates -50% for seamless loop */}
       <div className="flex items-center animate-marquee w-max py-1">
         <div className="flex items-center">{items}</div>
-        <div className="flex items-center">{items}</div>
+        <div className="flex items-center" aria-hidden="true">{items}</div>
       </div>
     </div>
   );
@@ -45,11 +44,9 @@ export function Marquee() {
 
         {/* Manifesto button */}
         <div className="flex justify-center mt-16 relative z-10">
-          <Link href="/thesis">
-            <Button variant="outline" size="lg">
-              {t("marquee.manifesto")}
-            </Button>
-          </Link>
+          <Button variant="outline" size="lg" href="/thesis">
+            {t("marquee.manifesto")}
+          </Button>
         </div>
       </div>
     </section>

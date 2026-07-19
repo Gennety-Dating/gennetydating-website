@@ -1,8 +1,9 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { testimonials } from "@/lib/data";
-import { Heading, ScriptHighlight } from "@/components/ui/typography";
+import Image from "next/image";
+import { testimonials } from "@/lib/home-content";
+import { Heading } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/language-context";
 import { cn } from "@/lib/utils";
@@ -13,10 +14,6 @@ const testimonialImages = [
   "/images/testimonial-mars.jpg",
   "/images/testimonial-sophia.jpg",
   "/images/testimonial-justin.jpg",
-  "/images/testimonial-hotdog.jpg",
-  "/images/testimonial-walk.jpg",
-  "/images/testimonial-clasped.jpg",
-  "/images/testimonial-leo-sweet.jpg",
 ];
 
 const testimonialRotations = [
@@ -52,6 +49,7 @@ function TestimonialCard({
   image,
   rotationClass,
   reaction,
+  ariaHidden,
 }: {
   name: string;
   school: string;
@@ -59,15 +57,17 @@ function TestimonialCard({
   image: string;
   rotationClass: string;
   reaction: string;
+  ariaHidden?: boolean;
 }) {
   return (
-    <div className={cn("relative flex-shrink-0 w-[270px] md:w-[300px] h-[370px] md:h-[410px] select-none transition-transform duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-20", rotationClass)}>
+    <div aria-hidden={ariaHidden} className={cn("relative flex-shrink-0 w-[270px] md:w-[300px] h-[370px] md:h-[410px] select-none transition-transform duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-20", rotationClass)}>
       {/* Photo container with sharp corners and no border */}
       <div className="absolute inset-0 rounded-[12px] overflow-hidden bg-[#0A0A0A] shadow-[0_10px_30px_rgba(0,0,0,0.55)] flex items-center justify-center">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={image}
           alt=""
+          fill
+          sizes="(min-width: 768px) 300px, 270px"
           className="absolute inset-0 w-full h-full object-cover opacity-90 transition-opacity duration-700 ease-out"
         />
         {/* Soft dark vignette gradient overlay */}
@@ -118,7 +118,6 @@ function TestimonialsHeading() {
 
 export function TestimonialsCarousel() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number>(0);
   const getSpeed = () => {
     if (typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches) {
       return 1.8; // Increased from 1.2
@@ -133,13 +132,15 @@ export function TestimonialsCarousel() {
     const container = scrollRef.current;
     if (!container) return;
 
-    // Set initial speed based on screen size
     speedRef.current = getSpeed();
 
     let scrollPos = 0;
+    let animationFrame = 0;
+    let isInView = false;
+    let isInteracting = false;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    function animate() {
-      if (!container) return;
+    const animate = () => {
       scrollPos += speedRef.current;
 
       // Reset when we've scrolled through the first set
@@ -149,44 +150,80 @@ export function TestimonialsCarousel() {
       }
 
       container.scrollLeft = scrollPos;
-      animationRef.current = requestAnimationFrame(animate);
-    }
+      animationFrame = requestAnimationFrame(animate);
+    };
 
-    animationRef.current = requestAnimationFrame(animate);
+    const syncAnimation = () => {
+      cancelAnimationFrame(animationFrame);
+      if (isInView && !isInteracting && !document.hidden && !reducedMotion.matches) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isInView = entry.isIntersecting;
+        syncAnimation();
+      },
+      { rootMargin: "200px 0px" },
+    );
+    observer.observe(container);
 
     // Pause on touch to avoid layout fighting during manual scroll
     const handleTouchStart = () => {
-      speedRef.current = 0;
+      isInteracting = true;
+      syncAnimation();
     };
     const handleTouchEnd = () => {
+      isInteracting = false;
       speedRef.current = getSpeed();
+      scrollPos = container.scrollLeft;
+      syncAnimation();
     };
 
     // Synchronize scrollPos with container's scrollLeft during manual user scroll/swipe
     const handleScroll = () => {
-      if (speedRef.current === 0) {
+      if (isInteracting) {
         scrollPos = container.scrollLeft;
       }
     };
 
     // Handle resize to update speed dynamically
     const handleResize = () => {
-      if (speedRef.current !== 0) {
-        speedRef.current = getSpeed();
-      }
+      speedRef.current = getSpeed();
+    };
+
+    const handleVisibilityChange = () => syncAnimation();
+    const handlePointerEnter = () => {
+      isInteracting = true;
+      syncAnimation();
+    };
+    const handlePointerLeave = () => {
+      isInteracting = false;
+      scrollPos = container.scrollLeft;
+      syncAnimation();
     };
 
     container.addEventListener("touchstart", handleTouchStart, { passive: true });
     container.addEventListener("touchend", handleTouchEnd, { passive: true });
+    container.addEventListener("pointerenter", handlePointerEnter);
+    container.addEventListener("pointerleave", handlePointerLeave);
     container.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    reducedMotion.addEventListener("change", syncAnimation);
 
     return () => {
-      cancelAnimationFrame(animationRef.current);
+      cancelAnimationFrame(animationFrame);
+      observer.disconnect();
       container.removeEventListener("touchstart", handleTouchStart);
       container.removeEventListener("touchend", handleTouchEnd);
+      container.removeEventListener("pointerenter", handlePointerEnter);
+      container.removeEventListener("pointerleave", handlePointerLeave);
       container.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      reducedMotion.removeEventListener("change", syncAnimation);
     };
   }, []);
 
@@ -201,6 +238,7 @@ export function TestimonialsCarousel() {
 
       <div
         ref={scrollRef}
+        aria-label={t("testimonials.title.pre")}
         className="flex gap-8 pb-16 pt-4 pl-4 md:pl-10 overflow-x-auto md:overflow-x-hidden [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing"
         style={{ scrollbarWidth: "none" }}
       >
@@ -219,6 +257,7 @@ export function TestimonialsCarousel() {
               image={image}
               rotationClass={rotationClass}
               reaction={reaction}
+              ariaHidden={i >= testimonials.length}
             />
           );
         })}

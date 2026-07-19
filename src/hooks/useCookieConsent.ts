@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import {
   CONSENT_EVENT,
+  OPEN_CONSENT_PREFERENCES_EVENT,
   createConsentCache,
   getSessionId,
   isConsentCacheUsable,
@@ -99,11 +100,16 @@ export function useCookieConsent() {
     void syncConsentCache(cache);
   }, []);
 
+  const openPreferences = useCallback(() => {
+    window.dispatchEvent(new Event(OPEN_CONSENT_PREFERENCES_EVENT));
+  }, []);
+
   return {
     hasConsented,
     currentConsents,
     isLoading,
     submitConsent,
     withdrawConsent,
+    openPreferences,
   };
 }

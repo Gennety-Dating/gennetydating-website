@@ -5,14 +5,16 @@ import { useCookieConsent, type ConsentChoices } from "@/hooks/useCookieConsent"
 import { useLanguage } from "@/lib/language-context";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { OPEN_CONSENT_PREFERENCES_EVENT } from "@/lib/consent-cache";
 
 export function CookieBanner() {
   const pathname = usePathname();
   const isThesisPage = pathname === "/thesis";
   const isPlacesPage = pathname === "/places";
   const isAppPage = pathname === "/app";
-  const { hasConsented, isLoading, submitConsent } = useCookieConsent();
+  const { hasConsented, currentConsents, isLoading, submitConsent } = useCookieConsent();
   const [showCustomize, setShowCustomize] = useState(false);
+  const [preferencesOpen, setPreferencesOpen] = useState(false);
   const [registrationModalOpen, setRegistrationModalOpen] = useState(false);
   const [choices, setChoices] = useState<ConsentChoices>({
     necessary: true,
@@ -30,7 +32,10 @@ export function CookieBanner() {
     const syncRegistrationModalState = () => {
       const isOpen = document.body.dataset.registrationModalOpen === "true";
       setRegistrationModalOpen(isOpen);
-      if (isOpen) setShowCustomize(false);
+      if (isOpen) {
+        setShowCustomize(false);
+        setPreferencesOpen(false);
+      }
     };
 
     syncRegistrationModalState();
@@ -39,6 +44,22 @@ export function CookieBanner() {
       window.removeEventListener("gennety:registration-modal", syncRegistrationModalState);
     };
   }, []);
+
+  useEffect(() => {
+    const openPreferences = () => {
+      setChoices(currentConsents ?? {
+        necessary: true,
+        analytics: false,
+        marketing: false,
+        functional: false,
+      });
+      setShowCustomize(true);
+      setPreferencesOpen(true);
+    };
+
+    window.addEventListener(OPEN_CONSENT_PREFERENCES_EVENT, openPreferences);
+    return () => window.removeEventListener(OPEN_CONSENT_PREFERENCES_EVENT, openPreferences);
+  }, [currentConsents]);
 
   // Focus trap for customize modal
   useEffect(() => {
@@ -58,6 +79,7 @@ export function CookieBanner() {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") {
         setShowCustomize(false);
+        setPreferencesOpen(false);
         return;
       }
       if (e.key !== "Tab") return;
@@ -80,6 +102,7 @@ export function CookieBanner() {
 
   const handleAcceptAll = useCallback(() => {
     setShowCustomize(false);
+    setPreferencesOpen(false);
     submitConsent("accepted", {
       necessary: true,
       analytics: true,
@@ -90,6 +113,7 @@ export function CookieBanner() {
 
   const handleRejectNonEssential = useCallback(() => {
     setShowCustomize(false);
+    setPreferencesOpen(false);
     submitConsent("rejected", {
       necessary: true,
       analytics: false,
@@ -104,9 +128,10 @@ export function CookieBanner() {
     const action = allTrue ? "accepted" : hasAny ? "partial" : "rejected";
     submitConsent(action, choices);
     setShowCustomize(false);
+    setPreferencesOpen(false);
   }, [choices, submitConsent]);
 
-  const showBanner = !isLoading && !hasConsented;
+  const showBanner = !isLoading && (!hasConsented || preferencesOpen);
 
   if (registrationModalOpen) return null;
 
@@ -124,8 +149,8 @@ export function CookieBanner() {
       {showBanner && (
         <div
           ref={dialogRef}
-          role="dialog"
-          aria-modal="true"
+          role={showCustomize ? "dialog" : "region"}
+          aria-modal={showCustomize ? "true" : undefined}
           aria-label={t("cookie.banner_title")}
           className="fixed bottom-[22px] left-3 right-3 z-[101] md:bottom-5 md:left-6 md:right-6"
         >
@@ -180,7 +205,14 @@ export function CookieBanner() {
                 <button
                   ref={firstFocusRef}
                   type="button"
-                  onClick={() => setShowCustomize((v) => !v)}
+                  onClick={() => {
+                    if (preferencesOpen && showCustomize) {
+                      setShowCustomize(false);
+                      setPreferencesOpen(false);
+                      return;
+                    }
+                    setShowCustomize((v) => !v);
+                  }}
                   className={cn(
                     "cookie-liquid-button w-full md:w-auto transition-all duration-300",
                     isOverDarkBg
@@ -215,15 +247,30 @@ export function CookieBanner() {
         </div>
       )}
 
-      {!isThesisPage && !isPlacesPage && !isAppPage && <SpotifyWidget />}
+      {!isThesisPage && !isPlacesPage && !isAppPage && currentConsents?.functional && !showBanner && (
+        <SpotifyWidget />
+      )}
     </>
   );
 }
 
 function SpotifyWidget() {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const sync = () => setIsDesktop(mediaQuery.matches);
+    sync();
+    mediaQuery.addEventListener("change", sync);
+    return () => mediaQuery.removeEventListener("change", sync);
+  }, []);
+
+  if (!isDesktop) return null;
+
   return (
-    <div className="hidden md:block fixed bottom-[104px] right-4 md:right-6 z-[99] w-[280px] md:w-[320px]">
+    <div className="fixed bottom-[104px] right-6 z-[99] w-[320px]">
       <iframe
+        title="Spotify music player"
         data-testid="embed-iframe"
         style={{ borderRadius: 12, display: "block" }}
         src="https://open.spotify.com/embed/track/7BKLCZ1jbUBVqRi2FVlTVw?utm_source=generator"

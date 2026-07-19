@@ -13,12 +13,14 @@ function AccordionItem({
   isOpen,
   onToggle,
   isLast,
+  id,
 }: {
   question: string;
   answer: string;
   isOpen: boolean;
   onToggle: () => void;
   isLast: boolean;
+  id: string;
 }) {
   return (
     <div
@@ -30,6 +32,9 @@ function AccordionItem({
     >
       <button
         onClick={onToggle}
+        aria-expanded={isOpen}
+        aria-controls={`${id}-panel`}
+        id={`${id}-trigger`}
         className="w-full flex items-center justify-between py-5 px-6 md:px-8 text-left cursor-pointer group"
       >
         <span className="text-base md:text-lg font-medium text-white pr-4 group-hover:text-white/80 transition-colors">
@@ -37,7 +42,7 @@ function AccordionItem({
         </span>
         <svg
           className={cn(
-            "w-5 h-5 flex-shrink-0 text-magenta transition-transform duration-300",
+            "w-5 h-5 flex-shrink-0 text-magenta-readable transition-transform duration-300",
             isOpen && "rotate-180"
           )}
           viewBox="0 0 20 20"
@@ -60,6 +65,9 @@ function AccordionItem({
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
+            id={`${id}-panel`}
+            role="region"
+            aria-labelledby={`${id}-trigger`}
             initial={{ height: 0, opacity: 0 }}
             animate={{
               height: "auto",
@@ -122,6 +130,7 @@ export function FAQ() {
                 setOpenIndex(openIndex === index ? null : index)
               }
               isLast={index === faqKeys.length - 1}
+              id={`faq-${num}`}
             />
           ))}
         </div>
@@ -129,4 +138,3 @@ export function FAQ() {
     </section>
   );
 }
-

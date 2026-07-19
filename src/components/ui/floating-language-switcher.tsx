@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useCookieConsent } from "@/hooks/useCookieConsent";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
+import { cn } from "@/lib/utils";
 
 export function FloatingLanguageSwitcher() {
   const { hasConsented, isLoading } = useCookieConsent();
@@ -20,10 +21,13 @@ export function FloatingLanguageSwitcher() {
     };
   }, []);
 
-  if (isLoading || !hasConsented || registrationModalOpen) return null;
+  if (isLoading || registrationModalOpen) return null;
 
   return (
-    <div className="floating-language-switcher fixed bottom-4 right-4 z-40 md:hidden">
+    <div className={cn(
+      "floating-language-switcher fixed right-4 md:hidden",
+      hasConsented ? "bottom-4 z-40" : "bottom-[224px] z-[102]"
+    )}>
       <LanguageSwitcher menuPlacement="top" isFloating />
     </div>
   );

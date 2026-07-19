@@ -11,6 +11,7 @@
   --color-white: #FFFFFF;               /* default white text */
   --color-heading-white: #FFFFFF;       /* default heading white text */
   --color-magenta: #8B253B;             /* accent deep wine / burgundy */
+  --color-magenta-readable: #D65A75;    /* accessible accent for text on dark surfaces */
   --color-magenta-dark: #5a1827;
   --color-magenta-dim: rgba(139, 37, 59, 0.4);
   --color-gray-400: #9ca3af;
@@ -20,7 +21,7 @@
   
   /* Fonts */
   --font-sans: var(--font-geist), "Inter", system-ui, sans-serif;
-  --font-serif: var(--font-playfair), "Playfair Display", Georgia, serif;
+  --font-serif: Georgia, "Times New Roman", serif;
   --font-script: var(--font-caveat), "Caveat", cursive;
 
   /* Shadows — Velvet Aura */
@@ -316,7 +317,7 @@ body[data-registration-modal-open="true"] .floating-language-switcher {
 .cookie-liquid-button,
 .cookie-liquid-primary {
   display: inline-flex;
-  min-height: 38px;
+  min-height: 44px;
   align-items: center;
   justify-content: center;
   border-radius: 999px;
@@ -369,21 +370,36 @@ body[data-registration-modal-open="true"] .floating-language-switcher {
 @media (max-width: 767px) {
   .cookie-liquid-button,
   .cookie-liquid-primary {
-    min-height: 36px;
+    min-height: 44px;
     padding-inline: 0.65rem;
     font-size: 0.72rem;
     white-space: normal;
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* --- Neon Text Glow Utility --- */
 .neon-text {
-  color: #8B253B;
+  color: #D65A75;
   text-shadow: 0 0 15px rgba(139, 37, 59, 0.5);
 }
 
 .neon-text-sm {
-  color: #8B253B;
+  color: #D65A75;
   text-shadow: 0 0 5px rgba(139, 37, 59, 0.3);
 }
 

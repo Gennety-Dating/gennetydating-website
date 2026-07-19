@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const backgroundImages = [
   "/images/matchmaker-bg-1.jpg",
@@ -17,14 +18,6 @@ const backgroundImages = [
 
 export function SlideshowBg() {
   const [bgIndex, setBgIndex] = useState(0);
-
-  // Preload images client-side
-  useEffect(() => {
-    backgroundImages.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, []);
 
   useEffect(() => {
     const bgTimer = setInterval(() => {
@@ -46,9 +39,12 @@ export function SlideshowBg() {
           transition={{ duration: 1.5, ease: "easeInOut" }}
           className="absolute inset-0 pointer-events-none filter blur-[2px] scale-105"
         >
-          <img
+          <Image
             src={currentImage}
-            alt="Slideshow background"
+            alt=""
+            fill
+            sizes="100vw"
+            quality={65}
             className="w-full h-full object-cover"
           />
         </motion.div>

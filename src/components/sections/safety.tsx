@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heading, Highlight } from "@/components/ui/typography";
+import { Heading } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/language-context";
 import type { TranslationKeys } from "@/lib/i18n";

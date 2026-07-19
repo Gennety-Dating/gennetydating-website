@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Playfair_Display } from "next/font/google";
 import { Caveat } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/language-context";
@@ -17,16 +16,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600", "700"],
-});
-
 const caveat = Caveat({
   variable: "--font-caveat",
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "700"],
 });
 
 export const viewport: Viewport = {
@@ -68,7 +61,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${geistMono.variable} ${playfair.variable} ${caveat.variable} h-full antialiased`}
+      className={`${geist.variable} ${geistMono.variable} ${caveat.variable} h-full antialiased`}
     >
       <body className="min-h-full">
         <LanguageProvider>
