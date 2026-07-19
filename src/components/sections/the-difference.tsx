@@ -463,7 +463,7 @@ export function TheDifference() {
                 tabIndex={0}
                 aria-label="Show verified date card"
                 className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-10 hover:z-20"
-                style={{ right: "-8%", top: "12%" }}
+                style={{ right: "calc(-8% - 5px)", top: "calc(12% - 7px)" }}
                 initial={{ rotate: 6, scale: 0.95, opacity: 0 }}
                 animate={{
                   rotate: activeCard === "girls1" ? 2 : 6,
