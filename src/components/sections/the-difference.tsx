@@ -499,7 +499,7 @@ export function TheDifference() {
                 role="button"
                 tabIndex={0}
                 aria-label="Show verified date card"
-                className="absolute w-[54%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-10 hover:z-20"
+                className="absolute w-[54%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-30"
                 style={{ left: "23%", top: "25%" }}
                 initial={{ rotate: -3, scale: 0.95, opacity: 0 }}
                 animate={{
@@ -573,7 +573,7 @@ export function TheDifference() {
                 role="button"
                 tabIndex={0}
                 aria-label="Show Adrian match card"
-                className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-2xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-30"
+                className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-2xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-10 hover:z-20"
                 style={{ right: "calc(-5.5% - 5px)", bottom: "calc(-2% - 5px)" }}
                 initial={{ rotate: 11, scale: 0.95, opacity: 0 }}
                 animate={{
