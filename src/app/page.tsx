@@ -39,8 +39,8 @@ export default function Home() {
           className="sticky top-0 z-0 -mb-[100dvh] h-[100dvh] min-h-[100svh] w-full overflow-hidden pointer-events-none"
           aria-hidden="true"
         >
-          {/* Mobile: beach couple photo */}
-          <div className="absolute -inset-8 bg-[#111111] bg-[url('/images/beach-couple-bg-soft.jpg')] bg-cover bg-center md:hidden" />
+          {/* Mobile: custom how it works & matchmaker couple photo */}
+          <div className="absolute -inset-8 bg-[#111111] bg-[url('/images/mobile-how-it-works-matchmaker-bg-soft.jpg')] bg-cover bg-center md:hidden" />
           {/* Desktop: original ice-cream couple photo */}
           <div className="absolute -inset-8 bg-[#111111] bg-[url('/images/matchmaker-works-bg-soft.jpg')] bg-cover bg-center hidden md:block" />
         </div>
