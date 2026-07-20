@@ -256,11 +256,11 @@ export default function PlacesPage() {
                     href={place.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] py-2 text-xs font-bold text-white transition-all duration-300 cursor-pointer group/btn"
+                    className="inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] py-3.5 md:py-2 text-sm md:text-xs font-bold text-white transition-all duration-300 cursor-pointer group/btn"
                   >
                     <span>{mapsButtonTexts[locale] || mapsButtonTexts.en}</span>
                     <svg
-                      className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
+                      className="w-4 h-4 md:w-3.5 md:h-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"
