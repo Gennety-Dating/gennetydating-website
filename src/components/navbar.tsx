@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { RegistrationButton } from "@/components/registration-button";
+import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { useLanguage } from "@/lib/language-context";
 import { cn } from "@/lib/utils";
@@ -45,8 +45,8 @@ export function Navbar() {
         <div className="hidden md:block">
           <LanguageSwitcher theme={isScrolledPastLight ? "dark" : "light"} />
         </div>
-        <RegistrationButton
-          mode="login"
+        <Button
+          href="/app"
           variant="ghost"
           size="sm"
           className={cn(
@@ -57,9 +57,9 @@ export function Navbar() {
           )}
         >
           {t("nav.login")}
-        </RegistrationButton>
-        <RegistrationButton
-          mode="join"
+        </Button>
+        <Button
+          href="/app"
           variant="solid"
           size="sm"
           className={cn(
@@ -70,7 +70,7 @@ export function Navbar() {
           )}
         >
           {t("nav.join")}
-        </RegistrationButton>
+        </Button>
       </div>
     </nav>
   );

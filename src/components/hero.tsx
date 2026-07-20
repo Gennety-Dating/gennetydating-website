@@ -3,7 +3,7 @@
 import { Heading, ScriptHighlight } from "@/components/ui/typography";
 import { ButterflyLogo } from "@/components/ui/butterfly-logo";
 import { CountdownTimer } from "@/components/countdown-timer";
-import { RegistrationButton } from "@/components/registration-button";
+import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/language-context";
 import Image from "next/image";
 // import { Butterflies } from "@/components/ui/butterflies";
@@ -55,13 +55,13 @@ export function Hero() {
  
       {/* CTA button & Sticker */}
       <div className="relative mt-8 inline-block">
-        <RegistrationButton
-          mode="join"
+        <Button
+          href="/app"
           variant="solid"
           size="lg"
         >
           {t("hero.cta")}
-        </RegistrationButton>
+        </Button>
  
         {/* Postage stamp sticker */}
         <div className="absolute -top-1 -right-6 sm:-top-2 sm:-right-8 z-20 rotate-[15deg] flex items-center justify-center w-[104px] h-[24px] drop-shadow-[0_0_8px_rgba(139,37,59,0.6)] select-none pointer-events-none">

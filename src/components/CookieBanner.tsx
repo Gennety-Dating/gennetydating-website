@@ -15,7 +15,6 @@ export function CookieBanner() {
   const { hasConsented, currentConsents, isLoading, submitConsent } = useCookieConsent();
   const [showCustomize, setShowCustomize] = useState(false);
   const [preferencesOpen, setPreferencesOpen] = useState(false);
-  const [registrationModalOpen, setRegistrationModalOpen] = useState(false);
   const [choices, setChoices] = useState<ConsentChoices>({
     necessary: true,
     analytics: false,
@@ -27,23 +26,6 @@ export function CookieBanner() {
   const firstFocusRef = useRef<HTMLButtonElement>(null);
   const { t } = useLanguage();
   const isOverDarkBg = true;
-
-  useEffect(() => {
-    const syncRegistrationModalState = () => {
-      const isOpen = document.body.dataset.registrationModalOpen === "true";
-      setRegistrationModalOpen(isOpen);
-      if (isOpen) {
-        setShowCustomize(false);
-        setPreferencesOpen(false);
-      }
-    };
-
-    syncRegistrationModalState();
-    window.addEventListener("gennety:registration-modal", syncRegistrationModalState);
-    return () => {
-      window.removeEventListener("gennety:registration-modal", syncRegistrationModalState);
-    };
-  }, []);
 
   useEffect(() => {
     const openPreferences = () => {
@@ -132,8 +114,6 @@ export function CookieBanner() {
   }, [choices, submitConsent]);
 
   const showBanner = !isLoading && (!hasConsented || preferencesOpen);
-
-  if (registrationModalOpen) return null;
 
   return (
     <>
