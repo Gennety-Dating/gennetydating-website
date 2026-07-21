@@ -124,12 +124,12 @@ export function TestimonialsCarousel() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const getSpeed = () => {
     if (typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches) {
-      return 1.8; // Increased from 1.2
+      return 2.0;
     }
-    return 1.0; // Increased from 0.5
+    return 1.8;
   };
 
-  const speedRef = useRef(1.0);
+  const speedRef = useRef(1.8);
   const { t } = useLanguage();
 
   useEffect(() => {
