@@ -66,7 +66,7 @@ function TestimonialCard({
   return (
     <div aria-hidden={ariaHidden} className={cn("relative flex-shrink-0 w-[270px] md:w-[300px] h-[370px] md:h-[410px] select-none transition-transform duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-20 transform-gpu [backface-visibility:hidden]", rotationClass)}>
       {/* Photo container with sharp corners and no border */}
-      <div className="absolute inset-0 rounded-[12px] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.55)] flex items-center justify-center">
+      <div className="absolute inset-0 rounded-[12px] overflow-hidden flex items-center justify-center">
         <Image
           src={image}
           alt=""
@@ -123,10 +123,10 @@ export function TestimonialsCarousel() {
     if (typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches) {
       return 2.0;
     }
-    return 2.3;
+    return 2.0;
   };
 
-  const speedRef = useRef(2.3);
+  const speedRef = useRef(2.0);
   const { t } = useLanguage();
 
   useEffect(() => {
