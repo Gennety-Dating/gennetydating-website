@@ -41,4 +41,24 @@ export const testimonials: Testimonial[] = [
     school: "UCSD",
     quote: "way more efficient than juggling 10 chats on other apps.",
   },
+  {
+    name: "Maya",
+    school: "UCLA",
+    quote: "Our first date was literally just getting hotdogs and walking around, and it was the best date I've had in years.",
+  },
+  {
+    name: "Lucas",
+    school: "Stanford",
+    quote: "I was skeptical about AI matchmakers, but we ended up talking for hours and walking around campus all night.",
+  },
+  {
+    name: "Elena",
+    school: "Cal",
+    quote: "No awkward swiping, no small talk. We just met up and clicked instantly.",
+  },
+  {
+    name: "Dan",
+    school: "USC",
+    quote: "Gennety matched us based on our actual vibe instead of just photos. Couldn't be happier!",
+  },
 ];

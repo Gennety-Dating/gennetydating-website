@@ -14,6 +14,10 @@ const testimonialImages = [
   "/images/testimonial-mars.jpg",
   "/images/testimonial-sophia.jpg",
   "/images/testimonial-justin.jpg",
+  "/images/testimonial-hotdog.jpg",
+  "/images/testimonial-walk.jpg",
+  "/images/testimonial-clasped.jpg",
+  "/images/testimonial-leo-sweet.jpg",
 ];
 
 const testimonialRotations = [
