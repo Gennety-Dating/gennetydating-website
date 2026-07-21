@@ -194,20 +194,12 @@ export function TestimonialsCarousel() {
     };
 
     const handleVisibilityChange = () => syncAnimation();
-    const handlePointerEnter = () => {
-      isInteracting = true;
-      syncAnimation();
-    };
-    const handlePointerLeave = () => {
-      isInteracting = false;
-      scrollPos = container.scrollLeft;
-      syncAnimation();
-    };
 
+    // Note: no pointerenter/pointerleave hover pause on desktop — the carousel
+    // spans the viewport, so hovering it would freeze the auto-scroll almost
+    // permanently. Manual-swipe pausing is handled via touch events (mobile).
     container.addEventListener("touchstart", handleTouchStart, { passive: true });
     container.addEventListener("touchend", handleTouchEnd, { passive: true });
-    container.addEventListener("pointerenter", handlePointerEnter);
-    container.addEventListener("pointerleave", handlePointerLeave);
     container.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
     document.addEventListener("visibilitychange", handleVisibilityChange);
@@ -218,8 +210,6 @@ export function TestimonialsCarousel() {
       observer.disconnect();
       container.removeEventListener("touchstart", handleTouchStart);
       container.removeEventListener("touchend", handleTouchEnd);
-      container.removeEventListener("pointerenter", handlePointerEnter);
-      container.removeEventListener("pointerleave", handlePointerLeave);
       container.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
