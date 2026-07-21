@@ -64,7 +64,7 @@ function TestimonialCard({
   ariaHidden?: boolean;
 }) {
   return (
-    <div aria-hidden={ariaHidden} className={cn("relative flex-shrink-0 w-[270px] md:w-[300px] h-[370px] md:h-[410px] select-none transition-transform duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-20", rotationClass)}>
+    <div aria-hidden={ariaHidden} className={cn("relative flex-shrink-0 w-[270px] md:w-[300px] h-[370px] md:h-[410px] select-none transition-transform duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-20 transform-gpu [backface-visibility:hidden]", rotationClass)}>
       {/* Photo container with sharp corners and no border */}
       <div className="absolute inset-0 rounded-[12px] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.55)] flex items-center justify-center">
         <Image
@@ -123,10 +123,10 @@ export function TestimonialsCarousel() {
     if (typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches) {
       return 2.0;
     }
-    return 1.8;
+    return 2.3;
   };
 
-  const speedRef = useRef(1.8);
+  const speedRef = useRef(2.3);
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -135,26 +135,32 @@ export function TestimonialsCarousel() {
 
     speedRef.current = getSpeed();
 
-    let scrollPos = 0;
+    let lastTime: number | null = null;
+    let scrollPos = container.scrollLeft;
     let animationFrame = 0;
     let isInView = false;
     let isInteracting = false;
 
-    const animate = () => {
-      scrollPos += speedRef.current;
+    const animate = (currentTime: number) => {
+      if (lastTime !== null) {
+        const deltaTime = (currentTime - lastTime) / 1000;
+        const safeDelta = Math.min(deltaTime, 0.1);
+        scrollPos += speedRef.current * 60 * safeDelta;
 
-      // Reset when we've scrolled through the first set
-      const halfWidth = container.scrollWidth / 2;
-      if (scrollPos >= halfWidth) {
-        scrollPos = 0;
+        const halfWidth = container.scrollWidth / 2;
+        if (scrollPos >= halfWidth) {
+          scrollPos -= halfWidth;
+        }
+
+        container.scrollLeft = scrollPos;
       }
-
-      container.scrollLeft = scrollPos;
+      lastTime = currentTime;
       animationFrame = requestAnimationFrame(animate);
     };
 
     const syncAnimation = () => {
       cancelAnimationFrame(animationFrame);
+      lastTime = null;
       if (isInView && !isInteracting && !document.hidden) {
         animationFrame = requestAnimationFrame(animate);
       }
@@ -195,9 +201,6 @@ export function TestimonialsCarousel() {
 
     const handleVisibilityChange = () => syncAnimation();
 
-    // Note: no pointerenter/pointerleave hover pause on desktop — the carousel
-    // spans the viewport, so hovering it would freeze the auto-scroll almost
-    // permanently. Manual-swipe pausing is handled via touch events (mobile).
     container.addEventListener("touchstart", handleTouchStart, { passive: true });
     container.addEventListener("touchend", handleTouchEnd, { passive: true });
     container.addEventListener("scroll", handleScroll, { passive: true });
@@ -227,7 +230,7 @@ export function TestimonialsCarousel() {
       <div
         ref={scrollRef}
         aria-label={t("testimonials.title.pre")}
-        className="flex gap-8 pb-16 pt-4 pl-4 md:pl-10 overflow-x-auto md:overflow-x-hidden [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing"
+        className="flex gap-8 pb-16 pt-4 pl-4 md:pl-10 overflow-x-auto md:overflow-x-hidden [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing will-change-scroll transform-gpu"
         style={{ scrollbarWidth: "none" }}
       >
         {doubled.map((item, i) => {
