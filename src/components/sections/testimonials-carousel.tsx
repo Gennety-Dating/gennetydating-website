@@ -138,7 +138,6 @@ export function TestimonialsCarousel() {
     let animationFrame = 0;
     let isInView = false;
     let isInteracting = false;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const animate = () => {
       scrollPos += speedRef.current;
@@ -155,7 +154,7 @@ export function TestimonialsCarousel() {
 
     const syncAnimation = () => {
       cancelAnimationFrame(animationFrame);
-      if (isInView && !isInteracting && !document.hidden && !reducedMotion.matches) {
+      if (isInView && !isInteracting && !document.hidden) {
         animationFrame = requestAnimationFrame(animate);
       }
     };
@@ -203,7 +202,6 @@ export function TestimonialsCarousel() {
     container.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
     document.addEventListener("visibilitychange", handleVisibilityChange);
-    reducedMotion.addEventListener("change", syncAnimation);
 
     return () => {
       cancelAnimationFrame(animationFrame);
@@ -213,7 +211,6 @@ export function TestimonialsCarousel() {
       container.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
-      reducedMotion.removeEventListener("change", syncAnimation);
     };
   }, []);
 
