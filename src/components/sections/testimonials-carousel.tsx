@@ -66,17 +66,14 @@ function TestimonialCard({
   return (
     <div aria-hidden={ariaHidden} className={cn("relative flex-shrink-0 w-[270px] md:w-[300px] h-[370px] md:h-[410px] select-none transition-transform duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-20", rotationClass)}>
       {/* Photo container with sharp corners and no border */}
-      <div className="absolute inset-0 rounded-[12px] overflow-hidden bg-[#0A0A0A] shadow-[0_10px_30px_rgba(0,0,0,0.55)] flex items-center justify-center">
+      <div className="absolute inset-0 rounded-[12px] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.55)] flex items-center justify-center">
         <Image
           src={image}
           alt=""
           fill
           sizes="(min-width: 768px) 300px, 270px"
-          className="absolute inset-0 w-full h-full object-cover opacity-90 transition-opacity duration-700 ease-out"
+          className="absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-700 ease-out"
         />
-        {/* Soft dark vignette gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/35 pointer-events-none" />
-
       </div>
 
       {/* Overlapping white fully rounded bubble */}
