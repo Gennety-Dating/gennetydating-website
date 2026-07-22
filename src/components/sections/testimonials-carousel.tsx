@@ -147,9 +147,15 @@ export function TestimonialsCarousel() {
         const safeDelta = Math.min(deltaTime, 0.1);
         scrollPos += speedRef.current * 60 * safeDelta;
 
-        const halfWidth = container.scrollWidth / 2;
-        if (scrollPos >= halfWidth) {
-          scrollPos -= halfWidth;
+        const firstChild = container.children[0] as HTMLElement | undefined;
+        const halfChild = container.children[testimonials.length] as HTMLElement | undefined;
+        const loopWidth =
+          firstChild && halfChild
+            ? halfChild.offsetLeft - firstChild.offsetLeft
+            : container.scrollWidth / 2;
+
+        if (loopWidth > 0 && scrollPos >= loopWidth) {
+          scrollPos -= loopWidth;
         }
 
         container.scrollLeft = scrollPos;
