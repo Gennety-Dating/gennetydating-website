@@ -163,6 +163,12 @@ export function Footer({ theme = "light" }: { theme?: "light" | "dark" }) {
             )}>
               {t("footer.privacy")}
             </Link>
+            <Link href="/cookies" className={cn(
+              "inline-flex items-center hover:underline underline-offset-4 transition-colors",
+              theme === "dark" ? "hover:text-white" : "hover:text-black"
+            )}>
+              {t("footer.cookies")}
+            </Link>
             <button
               onClick={openPreferences}
               className={cn(

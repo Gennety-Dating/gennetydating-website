@@ -61,8 +61,8 @@ DATABASE_URL_DIRECT=postgresql://user:password@ep-example.region.aws.neon.tech/d
 CONSENT_IP_SALT=your-long-random-salt-here
 
 # Cookie Policy Version Tracker
-POLICY_VERSION=2026-04-01
-NEXT_PUBLIC_POLICY_VERSION=2026-04-01
+POLICY_VERSION=2026-07-23
+NEXT_PUBLIC_POLICY_VERSION=2026-07-23
 ```
 
 ---
