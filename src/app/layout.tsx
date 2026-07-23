@@ -33,10 +33,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Gennety — AI-Powered Dating for Students",
-  description:
-    "Go on a date with your type. Gennety is an AI-driven dating service that curates personalized dates for college students — no swiping required.",
-  keywords: ["dating", "AI dating", "college dating", "student dating", "Gennety"],
+  title: "Gennety — Your Personal AI Matchmaker",
+  description: "Curated, not swiped.",
+  keywords: ["dating", "AI dating", "college dating", "student dating", "Gennety", "AI matchmaker", "personal matchmaker"],
   icons: {
     icon: [
       { url: "/images/butterfly-favicon.svg", type: "image/svg+xml" },
@@ -46,10 +45,26 @@ export const metadata: Metadata = {
     apple: "/images/butterfly-favicon.png",
   },
   openGraph: {
-    title: "Gennety — AI-Powered Dating for Students",
-    description:
-      "Go on a date with your type. No swiping, no small talk — just real dates.",
+    title: "Gennety — Your Personal AI Matchmaker",
+    description: "Curated, not swiped.",
+    url: "https://gennety.com",
+    siteName: "Gennety",
+    images: [
+      {
+        url: "/images/butterfly-logo-gradient.png",
+        width: 1200,
+        height: 630,
+        alt: "Gennety — Your Personal AI Matchmaker",
+      },
+    ],
+    locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gennety — Your Personal AI Matchmaker",
+    description: "Curated, not swiped.",
+    images: ["/images/butterfly-logo-gradient.png"],
   },
 };
 
