@@ -3,11 +3,14 @@
 import { useCookieConsent } from "@/hooks/useCookieConsent";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 export function FloatingLanguageSwitcher() {
+  const pathname = usePathname();
+  const isAppPage = pathname === "/app" || pathname?.startsWith("/app/");
   const { hasConsented, isLoading } = useCookieConsent();
 
-  if (isLoading) return null;
+  if (isLoading || isAppPage) return null;
 
   return (
     <div className={cn(

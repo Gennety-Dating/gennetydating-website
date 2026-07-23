@@ -11,7 +11,10 @@ export function CookieBanner() {
   const pathname = usePathname();
   const isThesisPage = pathname === "/thesis";
   const isPlacesPage = pathname === "/places";
-  const isAppPage = pathname === "/app";
+  const isAppPage = pathname === "/app" || pathname?.startsWith("/app/");
+
+  if (isAppPage) return null;
+
   const { hasConsented, currentConsents, isLoading, submitConsent } = useCookieConsent();
   const [showCustomize, setShowCustomize] = useState(false);
   const [preferencesOpen, setPreferencesOpen] = useState(false);
