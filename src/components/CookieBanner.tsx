@@ -9,11 +9,9 @@ import { OPEN_CONSENT_PREFERENCES_EVENT } from "@/lib/consent-cache";
 
 export function CookieBanner() {
   const pathname = usePathname();
-  const isThesisPage = pathname === "/thesis";
-  const isPlacesPage = pathname === "/places";
-  const isAppPage = pathname === "/app" || pathname?.startsWith("/app/");
+  const isHomePage = pathname === "/";
 
-  if (isAppPage) return null;
+  if (!isHomePage) return null;
 
   const { hasConsented, currentConsents, isLoading, submitConsent } = useCookieConsent();
   const [showCustomize, setShowCustomize] = useState(false);
@@ -120,31 +118,22 @@ export function CookieBanner() {
 
   return (
     <>
-      {showBanner && showCustomize && (
-        <div
-          aria-hidden
-          className={cn(
-            "cookie-spotify-cover",
-            isOverDarkBg ? "cookie-spotify-cover-dark" : "cookie-spotify-cover-light"
-          )}
-        />
-      )}
       {showBanner && (
         <div
           ref={dialogRef}
           role={showCustomize ? "dialog" : "region"}
           aria-modal={showCustomize ? "true" : undefined}
           aria-label={t("cookie.banner_title")}
-          className="fixed bottom-[22px] left-3 right-3 z-[101] md:bottom-5 md:left-6 md:right-6"
+          className="fixed bottom-4 left-3 right-3 z-[101] md:bottom-4 md:left-6 md:right-6"
         >
           <div
             className={cn(
-              "cookie-liquid-shell mx-auto max-w-screen-2xl overflow-hidden rounded-[24px] px-3 py-3 md:rounded-[28px] md:px-5 md:py-4 transition-all duration-300",
+              "cookie-liquid-shell mx-auto max-w-4xl overflow-hidden rounded-[28px] px-4 py-2.5 md:rounded-[36px] md:px-5 md:py-3 transition-all duration-300",
               isOverDarkBg ? "cookie-liquid-shell-dark" : "cookie-liquid-shell-light"
             )}
           >
             {showCustomize && (
-              <div className="mb-3 grid gap-2.5 md:grid-cols-4">
+              <div className="mb-2.5 grid gap-2 md:grid-cols-4">
                 <ToggleRow
                   label={t("cookie.cat_necessary")}
                   description={t("cookie.cat_necessary_desc")}
@@ -176,15 +165,15 @@ export function CookieBanner() {
               </div>
             )}
 
-            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div className="flex flex-col gap-2.5 md:flex-row md:items-center md:justify-between md:gap-4">
               <p className={cn(
-                "min-w-0 flex-1 text-[12px] leading-5 md:text-sm md:leading-6 transition-colors duration-300",
+                "min-w-0 flex-1 text-[12px] leading-4 md:text-xs md:leading-5 transition-colors duration-300 whitespace-nowrap truncate",
                 isOverDarkBg ? "text-gray-300" : "text-neutral-700"
               )}>
                 {t("cookie.banner_text")}
               </p>
 
-              <div className="flex flex-col gap-2 w-full md:flex-row md:items-center md:gap-2 md:w-auto">
+              <div className="flex flex-col gap-1.5 w-full md:flex-row md:items-center md:gap-1.5 md:w-auto shrink-0">
                 <button
                   ref={firstFocusRef}
                   type="button"
@@ -230,7 +219,7 @@ export function CookieBanner() {
         </div>
       )}
 
-      {!isThesisPage && !isPlacesPage && !isAppPage && currentConsents?.functional && !showBanner && (
+      {currentConsents?.functional && !showBanner && (
         <SpotifyWidget />
       )}
     </>
@@ -300,8 +289,12 @@ function ToggleRow({
           }}
           className={cn(
             "relative h-6 w-10 rounded-full transition-all duration-200 cursor-pointer",
-            checked ? "bg-magenta shadow-[0_0_18px_rgba(139,37,59,0.26)]" : isDark ? "bg-white/[0.12]" : "bg-black/[0.12]",
-            disabled ? "cursor-not-allowed opacity-[0.55]" : isDark ? "hover:bg-white/[0.18]" : "hover:bg-black/[0.18]"
+            checked
+              ? "bg-magenta shadow-[0_0_18px_rgba(139,37,59,0.26)]"
+              : isDark
+              ? "bg-white/[0.12] hover:bg-white/[0.18]"
+              : "bg-black/[0.12] hover:bg-black/[0.18]",
+            disabled && "cursor-not-allowed opacity-[0.55]"
           )}
         >
           <span

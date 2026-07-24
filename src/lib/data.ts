@@ -797,11 +797,11 @@ export const datePlaces: DatePlace[] = [
       pl: "Przytulне bistro"
     },
     name: {
-      en: "Remi Cafe",
-      uk: "remi Кафе",
-      ru: "remi Кафе",
-      de: "Remi Cafe",
-      pl: "Remi Cafe"
+      en: "Remi",
+      uk: "Remi",
+      ru: "Remi",
+      de: "Remi",
+      pl: "Remi"
     },
     description: {
       en: "A stylish urban cafe with a warm aesthetic, serving great coffee, delicious pastries, and fresh modern dishes.",
@@ -814,7 +814,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_remi_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Remi+Cafe+Kyiv",
-    likes: 77
+    likes: 51
   },
   {
     id: "kyiv-hryshko-botanic",
@@ -890,7 +890,7 @@ export const datePlaces: DatePlace[] = [
       pl: "Romantyczny dziedziniec"
     },
     name: {
-      en: "Boutique Sofie",
+      en: "Sofie",
       uk: "Бути Sofie",
       ru: "Бути Sofie",
       de: "Boutique Sofie",
@@ -970,7 +970,8 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_loved_uncle_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Lyubimyy+Dyadya+Kyiv",
-    likes: 65
+    likes: 65,
+    isPremium: true
   },
   {
     id: "kyiv-shevchenko-park",
@@ -1542,38 +1543,6 @@ export const datePlaces: DatePlace[] = [
     isPremium: true
   },
   {
-    id: "kyiv-la-maison",
-    city: "kyiv",
-    type: "restaurant",
-    vibe: {
-      en: "French Chic & Fine Dining",
-      uk: "Французький шик та висока кухня",
-      ru: "Французский шик и высокая кухня",
-      de: "Französischer Schick & Fine Dining",
-      pl: "Francuski szyk i wykwintne jedzenie"
-    },
-    name: {
-      en: "La Maison",
-      uk: "La Maison",
-      ru: "La Maison",
-      de: "La Maison",
-      pl: "La Maison"
-    },
-    description: {
-      en: "A classic French restaurant in the heart of Kyiv, offering an elegant setting, traditional recipes with a modern twist, and an exceptional wine list.",
-      uk: "Класичний французький ресторан у центрі Києва, який пропонує елегантну атмосферу, традиційні рецепти в сучасній інтерпретації та виняткову винну карту.",
-      ru: "Классический французский ресторан в центре Киева, предлагающий элегантную атмосферу, традиционные рецепты в современной интерпретации и исключительную винную карту.",
-      de: "Ein klassisches französisches Restaurant im Herzen von Kiew, das ein elegantes Ambiente, traditionelle Rezepte mit modernem Touch und eine außergewöhnliche Weinkarte bietet.",
-      pl: "Klasyczna francuska restauracja w sercu Kijowa, oferująca eleganckie wnętrza, tradycyjne receptury w nowoczesnym wydaniu oraz wyjątkową kartę win."
-    },
-    images: [
-      "/images/places/kyiv_la_maison_1.png"
-    ],
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Maison+Restaurant+Kyiv",
-    likes: 79,
-    isPremium: true
-  },
-  {
     id: "kyiv-vino-e-cucina",
     city: "kyiv",
     type: "restaurant",
@@ -1644,6 +1613,132 @@ export const datePlaces: DatePlace[] = [
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Veranda+Bogomoltsa+Kyiv",
     likes: 3,
+    isPremium: true
+  },
+  {
+    id: "kyiv-simona",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Italian Bakery & Pizza",
+      uk: "Італійська пекарня та піца",
+      ru: "Итальянская пекарня и пицца",
+      de: "Italienische Bäckerei & Pizza",
+      pl: "Włoska piekarnia i pizza",
+      fr: "Boulangerie italienne & pizza",
+      it: "Panificio italiano e pizza",
+      es: "Panadería italiana y pizza"
+    },
+    name: {
+      en: "Simona",
+      uk: "Simona",
+      ru: "Simona",
+      de: "Simona",
+      pl: "Simona",
+      fr: "Simona",
+      it: "Simona",
+      es: "Simona"
+    },
+    description: {
+      en: "A charming, cozy Italian spot in Kyiv known for its wood-fired pizzas, artisanal baked goods, and warm, intimate atmosphere perfect for a relaxed date.",
+      uk: "Затишний італійський заклад у Києві з атмосферним інтер'єром, піцою з дров'яної печі, свіжою випічкою та чудовим вином для теплих побачень.",
+      ru: "Уютное итальянское заведение в Киеве с атмосферным интерьером, пиццей из дровяной печи, свежей выпечкой и отличным вином для теплых свиданий.",
+      de: "Ein charmantes, gemütliches italienisches Lokal in Kiew, bekannt für seine Holzofenpizzas, handwerklichen Backwaren und die warme Atmosphäre.",
+      pl: "Urocze, przytulne włoskie miejsce w Kijowie znane z pizzy z pieca opalanego drewnem, rzemieślniczych wypieków i ciepłej atmosfery.",
+      fr: "Un charmant endroit italien chaleureux à Kyiv, connu pour ses pizzas au feu de bois, ses viennoiseries et son atmosphère intime.",
+      it: "Un delizioso e accogliente locale italiano a Kyiv, noto per le sue pizze cotte nel forno a legna e un'atmosfera calda e intima.",
+      es: "Un encantador y acogedor lugar italiano en Kyiv, conocido por sus pizzas a la leña, repostería artesanal y ambiente cálido."
+    },
+    images: [
+      "/images/places/kyiv_simona_main.jpg",
+      "/images/places/kyiv_simona_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Simona+Kyiv",
+    likes: 55,
+    isPremium: true
+  },
+  {
+    id: "kyiv-elevato",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Fine Dining & Vibe",
+      uk: "Вишукана кухня та атмосфера",
+      ru: "Изысканная кухня и атмосфера",
+      de: "Gehobene Küche & Flair",
+      pl: "Wykwintna kuchnia i klimat",
+      fr: "Haute gastronomie & ambiance",
+      it: "Alta cucina e atmosfera",
+      es: "Alta cocina y ambiente"
+    },
+    name: {
+      en: "Elevato",
+      uk: "Elevato",
+      ru: "Elevato",
+      de: "Elevato",
+      pl: "Elevato",
+      fr: "Elevato",
+      it: "Elevato",
+      es: "Elevato"
+    },
+    description: {
+      en: "A modern, high-end restaurant in Kyiv offering refined signature cuisine, panoramic views, exceptional wine pairings, and a sophisticated atmosphere for a special date.",
+      uk: "Сучасний преміальний ресторан у Києві з авторською кухнею, вишуканою винною картою, вражаючим інтер'єром та особливою атмосферою для незабутніх побачень.",
+      ru: "Современный премиальный ресторан в Киеве с авторской кухней, изысканной винной картой, впечатляющим интерьером и особой атмосферой для незабываемых свиданий.",
+      de: "Ein modernes, erstklassiges Restaurant in Kiew mit raffinierter Signature-Küche, fantastischer Weinauswahl und anspruchsvoller Atmosphäre.",
+      pl: "Nowoczesna, ekskluzywna restauracja w Kijowie oferująca wyrafinowaną autorską kuchnię, wyjątkowe wina i elegancką atmosferę.",
+      fr: "Un restaurant haut de gamme moderne à Kyiv proposant une cuisine signature raffinée, des accords mets-vins exceptionnels et un cadre sophistiqué.",
+      it: "Un ristorante moderno e raffinato a Kyiv che offre una cucina d'autore ricercata, un'eccezionale carta dei vini e un'atmosfera sofisticata.",
+      es: "Un restaurante moderno de alta cocina en Kyiv que ofrece refinada cocina de autor, una excepcional carta de vinos y un ambiente sofisticado."
+    },
+    images: [
+      "/images/places/kyiv_elevato_main.jpg",
+      "/images/places/kyiv_elevato_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Elevato+Restaurant+Kyiv",
+    likes: 85,
+    isPremium: true
+  },
+  {
+    id: "kyiv-fandom",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Chic Coffee Bar & Dining",
+      uk: "Вишуканий кава-бар та ресторан",
+      ru: "Изысканный кофе-бар и ресторан",
+      de: "Schickes Kaffeehaus & Restaurant",
+      pl: "Stylowy bar kawowy i restauracja",
+      fr: "Bar à café chic & Restaurant",
+      it: "Chic Coffee Bar & Ristorante",
+      es: "Bar de café elegante y restaurante"
+    },
+    name: {
+      en: "Fandom",
+      uk: "Fandom",
+      ru: "Fandom",
+      de: "Fandom",
+      pl: "Fandom",
+      fr: "Fandom",
+      it: "Fandom",
+      es: "Fandom"
+    },
+    description: {
+      en: "A stylish, high-ceilinged venue next to the National Opera House, renowned for its iconic golden wings artwork, specialty coffee, gourmet breakfasts, and exquisite dinners.",
+      uk: "Стильний ресторан та кава-бар біля Національної опери, відомий високою стелею, золотими крилами в інтер'єрі, авторською кавою, вишуканими сніданками та вечерями.",
+      ru: "Стильный ресторан и кофе-бар возле Национальной оперы, известный высокими потолками, золотыми крыльями в интерьере, авторским кофе, изысканными завтраками и ужинами.",
+      de: "Ein stilvolles Lokal neben der Nationaloper, berühmt für sein goldenes Flügel-Kunstwerk, Spezialitätenkaffee, Gourmet-Frühstück und feine Abendessen.",
+      pl: "Stylowy lokal obok Opery Narodowej, słynący z kultowej rzeźby złotych skrzydeł, kawy specialty, wykwintnych śniadań i obiadów.",
+      fr: "Un lieu élégant près de l'Opéra National, réputé pour sa sculpture d'ailes dorées, son café spécialisé, ses petits-déjeuners gourmands et ses dîners raffinés.",
+      it: "Un locale elegante e scenografico vicino all'Opera Nazionale, rinomato per le sculture di ali dorate, caffè specialty, colazioni gourmet e cene raffinate.",
+      es: "Un elegante local con techos altos cerca de la Ópera Nacional, famoso por sus icónicas alas doradas, café de especialidad, desayunos gourmet y cenas exquisitas."
+    },
+    images: [
+      "/images/places/kyiv_fandom_main.jpg",
+      "/images/places/kyiv_fandom_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Fandom+Coffee+Bar+Volodymyrska+Kyiv",
+    likes: 20,
     isPremium: true
   },
 
