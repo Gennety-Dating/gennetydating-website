@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 
 export function FloatingLanguageSwitcher() {
   const pathname = usePathname();
-  const isAppPage = pathname === "/app" || pathname?.startsWith("/app/");
+  const isAppPage = pathname === "/app" || pathname === "/join" || pathname?.startsWith("/app/") || pathname?.startsWith("/join/");
   const { hasConsented, isLoading } = useCookieConsent();
 
   if (isLoading || isAppPage) return null;

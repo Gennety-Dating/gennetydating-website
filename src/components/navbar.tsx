@@ -46,7 +46,7 @@ export function Navbar() {
           <LanguageSwitcher theme={isScrolledPastLight ? "dark" : "light"} />
         </div>
         <Button
-          href="/app"
+          href="/join"
           variant="ghost"
           size="sm"
           className={cn(
@@ -59,7 +59,7 @@ export function Navbar() {
           {t("nav.login")}
         </Button>
         <Button
-          href="/app"
+          href="/join"
           variant="solid"
           size="sm"
           className={cn(

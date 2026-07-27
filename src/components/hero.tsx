@@ -56,7 +56,7 @@ export function Hero() {
       {/* CTA button & Sticker */}
       <div className="relative mt-8 inline-block">
         <Button
-          href="/app"
+          href="/join"
           variant="solid"
           size="lg"
         >
