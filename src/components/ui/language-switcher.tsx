@@ -40,7 +40,7 @@ export function LanguageSwitcher({
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
           "group flex items-center justify-center rounded-full cursor-pointer select-none bg-transparent active:scale-95 transition-all duration-300",
-          isFloating ? "w-12 h-12" : "w-9 h-9 md:w-10 md:h-10",
+          isFloating ? "w-12 h-12" : "w-[42px] h-[42px]",
           isDark 
             ? "text-white hover:bg-white/10" 
             : "text-[#111111] border border-[#111111]/30 hover:bg-[#111111]/10"
@@ -53,7 +53,7 @@ export function LanguageSwitcher({
           className={cn(
             isFloating
               ? "w-7 h-7 fill-none stroke-current transition-all duration-300"
-              : "w-5 h-5 md:w-6 md:h-6 fill-none stroke-current transition-all duration-300",
+              : "w-[23px] h-[23px] md:w-[27px] md:h-[27px] fill-none stroke-current transition-all duration-300",
             isOpen ? "rotate-12 scale-90" : "group-hover:scale-110"
           )}
           strokeWidth={8} 

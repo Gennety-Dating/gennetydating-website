@@ -40,7 +40,7 @@ export function Navbar() {
         showWhiteText ? "text-white" : "text-[#111111]"
       )}
     >
-      <div className="flex items-center">
+      <div className="flex items-center translate-x-[7px] translate-y-[12px]">
         <Link
           href="/"
           className="flex items-center transition-opacity hover:opacity-80"
@@ -49,15 +49,15 @@ export function Navbar() {
           <Image
             src="/images/logo-wordmark.png"
             alt="Gennety"
-            width={121}
-            height={30}
+            width={145}
+            height={36}
             priority
-            className="h-6 md:h-7 w-auto object-contain"
+            className="h-[27px] md:h-[31.5px] w-auto object-contain"
           />
         </Link>
       </div>
 
-      <div className="flex items-center gap-2 md:gap-3">
+      <div className="flex items-center gap-2 md:gap-3 -translate-x-[7px] translate-y-[12px]">
         <div className="hidden md:block">
           <LanguageSwitcher theme={showWhiteText ? "dark" : "light"} />
         </div>
