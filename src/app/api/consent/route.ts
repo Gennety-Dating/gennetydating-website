@@ -166,6 +166,15 @@ function getPgErrorCode(error: unknown): string | undefined {
 }
 
 export async function POST(request: NextRequest) {
+  // CSRF: reject cross-origin requests
+  const origin = request.headers.get("origin");
+  if (origin && origin !== request.nextUrl.origin) {
+    return NextResponse.json(
+      { success: false, error: "Forbidden" },
+      { status: 403 },
+    );
+  }
+
   if (isOversizedRequest(request)) {
     return NextResponse.json(
       { success: false, error: "Payload is too large" },

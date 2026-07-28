@@ -6,7 +6,7 @@ const contentSecurityPolicy = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self' data:",
-  "connect-src 'self' https://dating-api.gennety.com https://*.gennety.com",
+  "connect-src 'self' https://dating-api.gennety.com https://api.telegram.org",
   "frame-src https://open.spotify.com",
   "object-src 'none'",
   "base-uri 'self'",
@@ -27,6 +27,7 @@ const nextConfig: NextConfig = {
           { key: "X-Frame-Options", value: "DENY" },
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(self)" },
           { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
+          { key: "X-DNS-Prefetch-Control", value: "off" },
         ],
       },
     ];

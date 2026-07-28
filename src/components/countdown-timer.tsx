@@ -17,44 +17,39 @@ const dateLocales: Record<Locale, string> = {
 
 function getNextThursdayKyiv(): Date {
   const now = new Date();
-  const dtf = new Intl.DateTimeFormat("en-US", {
+  // Extract Kyiv date/time parts safely using Intl (works in all browsers, DST-safe)
+  const formatter = new Intl.DateTimeFormat("en-US", {
     timeZone: "Europe/Kyiv",
     year: "numeric",
-    month: "numeric",
-    day: "numeric",
-    hour: "numeric",
-    weekday: "short",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
     hour12: false,
   });
+  const parts = Object.fromEntries(
+    formatter.formatToParts(now).map((p) => [p.type, p.value])
+  );
+  const kyivYear = Number(parts.year);
+  const kyivMonth = Number(parts.month) - 1;
+  const kyivDay = Number(parts.day);
+  const kyivHour = Number(parts.hour === "24" ? "0" : parts.hour);
 
-  const parts = dtf.formatToParts(now);
-  let year = now.getUTCFullYear();
-  let month = now.getUTCMonth();
-  let day = now.getUTCDate();
-  let hour = 0;
-  let weekdayStr = "Thu";
-
-  for (const part of parts) {
-    if (part.type === "year") year = parseInt(part.value, 10);
-    if (part.type === "month") month = parseInt(part.value, 10) - 1;
-    if (part.type === "day") day = parseInt(part.value, 10);
-    if (part.type === "hour") hour = parseInt(part.value, 10) % 24;
-    if (part.type === "weekday") weekdayStr = part.value;
+  // Build a "fake-local" Date using Kyiv values to determine the weekday
+  const kyivNow = new Date(kyivYear, kyivMonth, kyivDay, kyivHour, Number(parts.minute), Number(parts.second));
+  const day = kyivNow.getDay(); // 0=Sun … 4=Thu
+  let daysUntilThursday = (4 - day + 7) % 7;
+  if (daysUntilThursday === 0) {
+    if (kyivHour >= 18) daysUntilThursday = 7;
   }
-
-  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const dayIndex = weekdays.indexOf(weekdayStr) !== -1 ? weekdays.indexOf(weekdayStr) : 4;
-
-  let daysUntilThursday = (4 - dayIndex + 7) % 7;
-  if (daysUntilThursday === 0 && hour >= 18) {
-    daysUntilThursday = 7;
-  }
-
-  const targetKyivLocal = new Date(year, month, day + daysUntilThursday, 18, 0, 0, 0);
-  const kyivLocalNow = new Date(year, month, day, hour, 0, 0, 0);
-  const offsetMs = kyivLocalNow.getTime() - now.getTime();
-
-  return new Date(targetKyivLocal.getTime() - offsetMs);
+  // Build target as Kyiv local values in a "fake-local" Date
+  const targetKyiv = new Date(kyivNow);
+  targetKyiv.setDate(kyivNow.getDate() + daysUntilThursday);
+  targetKyiv.setHours(18, 0, 0, 0);
+  // Convert back to real UTC by applying the offset
+  const offset = now.getTime() - kyivNow.getTime();
+  return new Date(targetKyiv.getTime() + offset);
 }
 
 function formatDate(date: Date, locale: Locale): string {
