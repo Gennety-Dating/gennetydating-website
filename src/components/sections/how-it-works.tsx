@@ -50,7 +50,7 @@ export function HowItWorks() {
                   </h3>
                 </div>
                 <p className={`text-gray-400 text-xs md:text-sm leading-relaxed ${
-                  num === 2 ? "max-w-[380px]" : "max-w-[280px]"
+                  num === 2 ? "max-w-[380px]" : "whitespace-nowrap"
                 }`}>
                   {t(`step.${num}.desc` as TranslationKeys)}
                 </p>
@@ -60,7 +60,7 @@ export function HowItWorks() {
               <div className={`relative w-full aspect-square flex items-center justify-center bg-transparent transform transition-all duration-500 hover:scale-[1.03] ${
                 num === 1 ? "max-w-[320px] rotate-1 hover:rotate-2" :
                 num === 2 ? "max-w-[320px] -rotate-2 hover:-rotate-1" :
-                num === 3 ? "max-w-[320px] rotate-2 hover:rotate-3" :
+                num === 3 ? "max-w-[282px] translate-x-[5px] -translate-y-[5px] rotate-2 hover:rotate-3" :
                 "max-w-[270px] rotate-[5deg] hover:rotate-[7deg] mt-10"
               }`}>
                 {/* Мягкое свечение сзади */}
@@ -70,6 +70,8 @@ export function HowItWorks() {
                   src={
                     num === 1
                       ? "/images/how-it-works-1-final.png"
+                      : num === 3
+                      ? "/images/how-it-works-3-user.png"
                       : num === 4
                       ? "/images/how-it-works-4-new.png"
                       : `/images/how-it-works-${num}.png`

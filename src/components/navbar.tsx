@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -11,24 +12,39 @@ import { cn } from "@/lib/utils";
 export function Navbar() {
   const { t } = useLanguage();
   const pathname = usePathname();
-  
-  const isScrolledPastLight = true;
+  const [isScrolledPastLight, setIsScrolledPastLight] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolledPastLight(window.scrollY > 50);
+    };
+    // Check initial position
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const isThesisPage = pathname === "/thesis";
   const isPlacesPage = pathname === "/places";
   const isWhiteHeaderPage = isThesisPage || isPlacesPage;
 
+  // On dark pages, text should always be white regardless of scroll
+  const showWhiteText = !isWhiteHeaderPage || isScrolledPastLight;
+
   return (
     <nav
+      aria-label="Main navigation"
       className={cn(
         "site-navbar fixed w-full z-40 flex items-center justify-between px-4 py-3 md:top-0 md:px-10 md:pt-[calc(env(safe-area-inset-top)+16px)] md:pb-4 transition-all duration-300",
         "md:bg-transparent md:backdrop-blur-none",
-        isScrolledPastLight ? "text-white" : "text-[#111111]"
+        showWhiteText ? "text-white" : "text-[#111111]"
       )}
     >
       <div className="flex items-center">
         <Link
           href="/"
           className="flex items-center transition-opacity hover:opacity-80"
+          aria-label="Gennety — Go to homepage"
         >
           <Image
             src="/images/logo-wordmark.png"
@@ -43,7 +59,7 @@ export function Navbar() {
 
       <div className="flex items-center gap-2 md:gap-3">
         <div className="hidden md:block">
-          <LanguageSwitcher theme={isScrolledPastLight ? "dark" : "light"} />
+          <LanguageSwitcher theme={showWhiteText ? "dark" : "light"} />
         </div>
         <Button
           href="/join"
@@ -51,7 +67,7 @@ export function Navbar() {
           size="sm"
           className={cn(
             "px-5 py-2.5 text-sm md:px-4 md:py-2 md:text-sm transition-all duration-300",
-            isScrolledPastLight
+            showWhiteText
               ? "text-white border-white/60 hover:bg-white/10"
               : "text-[#111111] border-[#111111]/60 hover:bg-[#111111]/10"
           )}

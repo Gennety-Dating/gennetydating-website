@@ -110,7 +110,6 @@
 
 /* --- Base Styles --- */
 html {
-  font-size: 14px;
   scroll-behavior: smooth;
   background-color: #111111;
 }
@@ -389,6 +388,20 @@ body[data-registration-modal-open="true"] .floating-language-switcher {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* --- Focus-Visible (Keyboard Navigation) --- */
+:focus-visible {
+  outline: 2px solid var(--color-magenta);
+  outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-magenta);
+  outline-offset: 2px;
 }
 
 /* --- Neon Text Glow Utility --- */

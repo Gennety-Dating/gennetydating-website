@@ -59,19 +59,19 @@ export default function PlacesPage() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const [likedIds, setLikedIds] = useState<string[]>(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("gennety-liked-places");
-      if (saved) {
-        try {
-          return JSON.parse(saved);
-        } catch {
-          // ignore
-        }
+  const [likedIds, setLikedIds] = useState<string[]>([]);
+
+  // Load liked places from localStorage after mount
+  useEffect(() => {
+    const saved = localStorage.getItem("gennety-liked-places");
+    if (saved) {
+      try {
+        setLikedIds(JSON.parse(saved));
+      } catch {
+        // ignore invalid data
       }
     }
-    return [];
-  });
+  }, []);
   const backText = backTexts[locale] || backTexts.en;
 
   const toggleLike = (id: string) => {

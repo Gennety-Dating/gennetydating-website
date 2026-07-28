@@ -41,7 +41,7 @@ export function Hero() {
       <div className="relative mt-8 mb-6 flex justify-center z-10">
         <Image
           src="/images/polaroid-couple.png"
-          alt="Couple"
+          alt="Polaroid photo of a happy couple"
           width={819}
           height={1024}
           sizes="(min-width: 768px) 147px, (min-width: 640px) 125px, 110px"
@@ -64,7 +64,7 @@ export function Hero() {
         </Button>
  
         {/* Postage stamp sticker */}
-        <div className="absolute -top-1 -right-6 sm:-top-2 sm:-right-8 z-20 rotate-[15deg] flex items-center justify-center w-[104px] h-[24px] drop-shadow-[0_0_8px_rgba(139,37,59,0.6)] select-none pointer-events-none">
+        <div className="absolute -top-1 -right-6 sm:-top-2 sm:-right-8 z-20 rotate-[15deg] flex items-center justify-center w-[104px] h-[24px] drop-shadow-[0_0_8px_rgba(139,37,59,0.6)] select-none pointer-events-none" aria-hidden="true">
           {/* Perforated background */}
           <div 
             className="absolute inset-0 bg-white"

@@ -33,6 +33,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://gennety.com"),
   title: "Gennety — Your Personal AI Matchmaker",
   description: "Curated, not swiped.",
   keywords: ["dating", "AI dating", "college dating", "student dating", "Gennety", "AI matchmaker", "personal matchmaker"],
@@ -80,6 +81,13 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full" suppressHydrationWarning>
+        {/* Skip-to-content link for keyboard users (WCAG 2.4.1) */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:rounded-full focus:bg-magenta focus:text-white focus:text-sm focus:font-semibold"
+        >
+          Skip to content
+        </a>
         <LanguageProvider>
           {children}
           <CookieBanner />
