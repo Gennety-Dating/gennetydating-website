@@ -51,6 +51,11 @@ NEXT_PUBLIC_GENNETY_API_URL=https://dating-api.gennety.com/v1
 # Primary Telegram Bot URI
 NEXT_PUBLIC_TELEGRAM_BOT_URL=https://t.me/GennetyBot
 
+# Server-only: private Telegram destination for consented /join visit alerts.
+# Never expose the bot token with a NEXT_PUBLIC_ prefix.
+TELEGRAM_ALERT_BOT_TOKEN=123456789:replace-with-your-bot-token
+TELEGRAM_ALERT_CHAT_ID=-1001234567890
+
 # Neon Postgres (Pooled connection for Next.js runtime API)
 DATABASE_URL=postgresql://user:password@ep-example-pooler.region.aws.neon.tech/dbname?sslmode=require
 
@@ -61,9 +66,17 @@ DATABASE_URL_DIRECT=postgresql://user:password@ep-example.region.aws.neon.tech/d
 CONSENT_IP_SALT=your-long-random-salt-here
 
 # Cookie Policy Version Tracker
-POLICY_VERSION=2026-07-23
-NEXT_PUBLIC_POLICY_VERSION=2026-07-23
+POLICY_VERSION=2026-07-27
+NEXT_PUBLIC_POLICY_VERSION=2026-07-27
 ```
+
+---
+
+## Join visit alerts
+
+With Analytics cookies enabled, `/join` sends one notification per browser session to the configured Telegram chat. The alert contains only a minimised technical visit summary: time, language, time zone, device class, browser/OS family, screen dimensions, and hosting-provider approximate location. It never asks for precise browser GPS location, retains a raw IP address, or fingerprints a device. The alert is delivered directly and is not stored by this website.
+
+To enable it, create a `.env.local` file with `TELEGRAM_ALERT_BOT_TOKEN` and `TELEGRAM_ALERT_CHAT_ID`, add the bot to that private chat, and redeploy. The Analytics category remains opt-in and the Cookie/Privacy Policies were updated as part of this change.
 
 ---
 
