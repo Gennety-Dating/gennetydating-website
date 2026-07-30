@@ -55,7 +55,7 @@ export function HowItWorks() {
               {/* Изображение шага с эффектом scrapbook-поворота */}
               <div className={`relative w-full aspect-square flex items-center justify-center bg-transparent transform transition-all duration-500 hover:scale-[1.03] ${
                 num === 1 ? "max-w-[320px] rotate-1 hover:rotate-2" :
-                num === 2 ? "max-w-[320px] -rotate-2 hover:-rotate-1" :
+                num === 2 ? "max-w-[340px] -rotate-2 hover:-rotate-1" :
                 num === 3 ? "max-w-[282px] translate-x-[5px] -translate-y-[5px] rotate-2 hover:rotate-3" :
                 "max-w-[270px] rotate-[5deg] hover:rotate-[7deg] mt-10"
               }`}>
@@ -66,6 +66,8 @@ export function HowItWorks() {
                   src={
                     num === 1
                       ? "/images/how-it-works-1-final.png"
+                      : num === 2
+                      ? "/images/website how it works section.png"
                       : num === 3
                       ? "/images/how-it-works-3-user.png"
                       : num === 4
@@ -73,8 +75,8 @@ export function HowItWorks() {
                       : `/images/how-it-works-${num}.png`
                   }
                   alt={t(`step.${num}.title` as TranslationKeys)}
-                  width={320}
-                  height={320}
+                  width={340}
+                  height={340}
                   className="w-full h-full object-contain select-none drop-shadow-[0_8px_25px_rgba(0,0,0,0.5)]"
                 />
               </div>
