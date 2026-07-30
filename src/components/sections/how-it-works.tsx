@@ -35,9 +35,7 @@ export function HowItWorks() {
               }`}
             >
               {/* Номер и Заголовок с описанием */}
-              <div className={`flex flex-col items-center md:items-start mb-4 w-full ${
-                num === 4 ? "translate-x-[25px]" : ""
-              }`}>
+              <div className="flex flex-col items-center md:items-start mb-4 w-full">
                 <div className="flex items-center gap-3 mb-2 justify-center md:justify-start w-full">
                   {/* Вертикальный овальный бейдж для цифры */}
                   <span className="shrink-0 flex items-center justify-center w-8 h-10 bg-black border-2 border-magenta text-magenta font-mono font-bold text-lg rounded-full select-none">
