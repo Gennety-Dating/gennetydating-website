@@ -52,16 +52,13 @@ export function HowItWorks() {
                 </p>
               </div>
 
-              {/* Изображение шага с эффектом scrapbook-поворота */}
+              {/* Изображение шага без внешних фоновых свечений и рамок */}
               <div className={`relative w-full aspect-square flex items-center justify-center bg-transparent transform transition-all duration-500 hover:scale-[1.03] ${
                 num === 1 ? "max-w-[320px] rotate-1 hover:rotate-2" :
                 num === 2 ? "max-w-[365px] -translate-x-[33px] translate-y-[5px] -rotate-2 hover:-rotate-1" :
                 num === 3 ? "max-w-[282px] translate-x-[5px] -translate-y-[5px] rotate-2 hover:rotate-3" :
                 "max-w-[270px] rotate-[5deg] hover:rotate-[7deg] mt-10"
               }`}>
-                {/* Мягкое свечение сзади */}
-                <div className="absolute w-36 h-36 bg-magenta/[0.04] rounded-full blur-2xl pointer-events-none" />
-                
                 <Image
                   src={
                     num === 1
@@ -75,9 +72,9 @@ export function HowItWorks() {
                       : `/images/how-it-works-${num}.png`
                   }
                   alt={t(`step.${num}.title` as TranslationKeys)}
-                  width={365}
-                  height={365}
-                  className="w-full h-full object-contain select-none drop-shadow-[0_8px_25px_rgba(0,0,0,0.5)]"
+                  width={num === 2 ? 365 : 320}
+                  height={num === 2 ? 365 : 320}
+                  className="w-full h-full object-contain select-none"
                 />
               </div>
             </motion.div>
