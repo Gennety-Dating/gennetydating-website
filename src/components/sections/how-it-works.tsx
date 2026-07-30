@@ -55,7 +55,7 @@ export function HowItWorks() {
               {/* Изображение шага с эффектом scrapbook-поворота */}
               <div className={`relative w-full aspect-square flex items-center justify-center bg-transparent transform transition-all duration-500 hover:scale-[1.03] ${
                 num === 1 ? "max-w-[320px] rotate-1 hover:rotate-2" :
-                num === 2 ? "max-w-[365px] -translate-x-[7px] translate-y-[5px] -rotate-2 hover:-rotate-1" :
+                num === 2 ? "max-w-[365px] -translate-x-[15px] translate-y-[5px] -rotate-2 hover:-rotate-1" :
                 num === 3 ? "max-w-[282px] translate-x-[5px] -translate-y-[5px] rotate-2 hover:rotate-3" :
                 "max-w-[270px] rotate-[5deg] hover:rotate-[7deg] mt-10"
               }`}>
