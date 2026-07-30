@@ -20,13 +20,13 @@ export const steps: Step[] = [
   {
     number: 1,
     title: "Tell Gennety Your Type",
-    description: "Submit your preferences by Tuesday 11:59 PM.",
+    description: "Fill out your profile and specify your preferences.",
   },
   {
     number: 2,
-    title: "The Thursday Drop",
+    title: "Daily Match Drop",
     description:
-      "Check your Telegram at 7pm. We will send you one personalized match and curate your date for you!",
+      "Check your Telegram every day at 7pm.",
   },
   {
     number: 3,

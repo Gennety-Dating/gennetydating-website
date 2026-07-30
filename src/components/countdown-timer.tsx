@@ -15,7 +15,7 @@ const dateLocales: Record<Locale, string> = {
   es: "es-ES",
 };
 
-function getNextThursdayKyiv(): Date {
+function getNextDailyDropKyiv(): Date {
   const now = new Date();
   // Extract Kyiv date/time parts safely using Intl (works in all browsers, DST-safe)
   const formatter = new Intl.DateTimeFormat("en-US", {
@@ -35,18 +35,19 @@ function getNextThursdayKyiv(): Date {
   const kyivMonth = Number(parts.month) - 1;
   const kyivDay = Number(parts.day);
   const kyivHour = Number(parts.hour === "24" ? "0" : parts.hour);
+  const kyivMinute = Number(parts.minute);
+  const kyivSecond = Number(parts.second);
 
-  // Build a "fake-local" Date using Kyiv values to determine the weekday
-  const kyivNow = new Date(kyivYear, kyivMonth, kyivDay, kyivHour, Number(parts.minute), Number(parts.second));
-  const day = kyivNow.getDay(); // 0=Sun … 4=Thu
-  let daysUntilThursday = (4 - day + 7) % 7;
-  if (daysUntilThursday === 0) {
-    if (kyivHour >= 18) daysUntilThursday = 7;
-  }
-  // Build target as Kyiv local values in a "fake-local" Date
+  // Build a "fake-local" Date using Kyiv values
+  const kyivNow = new Date(kyivYear, kyivMonth, kyivDay, kyivHour, kyivMinute, kyivSecond);
+  
   const targetKyiv = new Date(kyivNow);
-  targetKyiv.setDate(kyivNow.getDate() + daysUntilThursday);
+  // If current Kyiv time is 18:00:00 or later, target next day's 18:00
+  if (kyivHour >= 18) {
+    targetKyiv.setDate(kyivNow.getDate() + 1);
+  }
   targetKyiv.setHours(18, 0, 0, 0);
+
   // Convert back to real UTC by applying the offset
   const offset = now.getTime() - kyivNow.getTime();
   return new Date(targetKyiv.getTime() + offset);
@@ -96,14 +97,14 @@ export function CountdownTimer() {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    targetRef.current = getNextThursdayKyiv();
+    targetRef.current = getNextDailyDropKyiv();
 
     const updateCountdown = () => {
       if (!targetRef.current) return;
 
       // Reset when timer expires
       if (targetRef.current.getTime() - Date.now() <= 0) {
-        targetRef.current = getNextThursdayKyiv();
+        targetRef.current = getNextDailyDropKyiv();
       }
 
       setTime(calcTimeLeft(targetRef.current));

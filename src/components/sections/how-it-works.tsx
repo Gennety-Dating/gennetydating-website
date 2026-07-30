@@ -43,7 +43,7 @@ export function HowItWorks() {
                   }`}>
                     {num}
                   </span>
-                  <h3 className={`font-sans font-bold text-2xl md:text-3xl text-heading-white tracking-tight ${
+                  <h3 className={`font-sans font-bold text-2xl md:text-3xl text-heading-white tracking-tight whitespace-nowrap ${
                     num === 4 ? "translate-x-[25px]" : ""
                   }`}>
                     {t(`step.${num}.title` as TranslationKeys)}
