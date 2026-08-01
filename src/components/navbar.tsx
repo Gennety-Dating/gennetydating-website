@@ -40,7 +40,7 @@ export function Navbar() {
         showWhiteText ? "text-white" : "text-[#111111]"
       )}
     >
-      <div className="flex items-center translate-x-[7px] translate-y-[12px]">
+      <div className="flex items-center translate-x-[7px]">
         <Link
           href="/"
           className="flex items-center transition-opacity hover:opacity-80"
@@ -57,7 +57,7 @@ export function Navbar() {
         </Link>
       </div>
 
-      <div className="flex items-center gap-2 md:gap-3 -translate-x-[7px] translate-y-[12px]">
+      <div className="flex items-center gap-2 md:gap-3 -translate-x-[7px]">
         <div className="hidden md:block">
           <LanguageSwitcher theme={showWhiteText ? "dark" : "light"} />
         </div>
