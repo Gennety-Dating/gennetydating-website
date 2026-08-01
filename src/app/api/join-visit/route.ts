@@ -1,6 +1,6 @@
 import { createHmac, randomBytes } from "crypto";
 import { NextRequest, NextResponse } from "next/server";
-import { parseUserAgent, type JoinVisitInput } from "@/lib/join-visit";
+import { parseUserAgent, type JoinVisitInput, type VisitPage } from "@/lib/join-visit";
 
 export const runtime = "nodejs";
 
@@ -35,6 +35,7 @@ function dimensions(value: unknown): { width: number; height: number } | null {
 
 function validate(body: unknown): ValidatedInput | null {
   if (!isRecord(body)) return null;
+  const page = body.page;
   const language = text(body.language);
   const timeZone = body.timeZone === null ? null : text(body.timeZone);
   const viewport = dimensions(body.viewport);
@@ -42,6 +43,7 @@ function validate(body: unknown): ValidatedInput | null {
   const deviceClass = body.deviceClass;
   const rawLanguages = body.languages;
 
+  if (page !== "join" && page !== "app") return null;
   if (!language || !viewport || !screen) return null;
   if (!Array.isArray(rawLanguages) || rawLanguages.length > 8) return null;
   const languages = rawLanguages.map((item) => text(item, 35));
@@ -49,6 +51,7 @@ function validate(body: unknown): ValidatedInput | null {
   if (deviceClass !== "mobile" && deviceClass !== "tablet" && deviceClass !== "desktop") return null;
 
   return {
+    page,
     language,
     languages: languages as string[],
     timeZone,
@@ -95,12 +98,17 @@ function formatLocation(request: NextRequest): string {
   return pieces.length > 0 ? pieces.join(", ") : "Unavailable";
 }
 
+const PAGE_TITLES: Record<VisitPage, string> = {
+  join: "New Join visit",
+  app: "New App visit",
+};
+
 function createTelegramMessage(request: NextRequest, visit: ValidatedInput): string {
   const { browser, operatingSystem } = parseUserAgent(request.headers.get("user-agent") ?? "");
   const url = new URL(request.url);
   const values = [
     ["Time", new Date().toISOString()],
-    ["Page", `${url.origin}/join`],
+    ["Page", `${url.origin}/${visit.page}`],
     ["Approx. location", formatLocation(request)],
     ["Device", visit.deviceClass],
     ["OS", operatingSystem],
@@ -112,7 +120,7 @@ function createTelegramMessage(request: NextRequest, visit: ValidatedInput): str
     ["Screen", `${visit.screen.width} × ${visit.screen.height}`],
   ];
 
-  return ["<b>New Join visit</b>", ...values.map(([label, value]) => `<b>${label}:</b> ${escapeTelegramHtml(value)}`)].join("\n");
+  return [`<b>${PAGE_TITLES[visit.page]}</b>`, ...values.map(([label, value]) => `<b>${label}:</b> ${escapeTelegramHtml(value)}`)].join("\n");
 }
 
 function isAllowedOrigin(request: NextRequest): boolean {

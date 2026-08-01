@@ -8,7 +8,7 @@ import { useLanguage } from "@/lib/language-context";
 import { ButterflyLogo } from "@/components/ui/butterfly-logo";
 import { TELEGRAM_BOT_PLAIN_URL } from "@/lib/site-config";
 import Image from "next/image";
-import { JoinVisitTracker } from "@/components/join-visit-tracker";
+import { VisitTracker } from "@/components/visit-tracker";
 
 const localDict = {
   en: {
@@ -79,7 +79,7 @@ export default function JoinPage() {
 
   return (
     <main className="h-[100dvh] w-full bg-[#050505] text-white flex flex-col justify-between items-center py-8 px-6 font-sans relative overflow-hidden select-none">
-      <JoinVisitTracker />
+      <VisitTracker page="join" />
       {/* Background images (Desktop & Mobile) */}
       <div className="fixed -inset-10 pointer-events-none filter blur-[4px] opacity-85 z-0 scale-105 hidden md:block" aria-hidden="true">
         <Image src="/images/app-desktop-bg-v3.jpg" alt="" fill priority sizes="100vw" className="object-cover object-center" />

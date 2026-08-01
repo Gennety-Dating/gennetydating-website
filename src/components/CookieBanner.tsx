@@ -9,7 +9,7 @@ import { OPEN_CONSENT_PREFERENCES_EVENT } from "@/lib/consent-cache";
 
 export function CookieBanner() {
   const pathname = usePathname();
-  const supportsCookieConsent = pathname === "/" || pathname === "/join";
+  const supportsCookieConsent = pathname === "/" || pathname === "/join" || pathname === "/app";
 
   const { hasConsented, currentConsents, isLoading, submitConsent } = useCookieConsent();
   const [showCustomize, setShowCustomize] = useState(false);

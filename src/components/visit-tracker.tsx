@@ -2,10 +2,12 @@
 
 import { useEffect, useRef } from "react";
 import { useCookieConsent } from "@/hooks/useCookieConsent";
+import type { VisitPage } from "@/lib/join-visit";
 
-const JOIN_VISIT_MARKER = "gennety_join_visit_reported";
+const VISIT_MARKER_PREFIX = "gennety_visit_reported_";
 
-type JoinVisitPayload = {
+type VisitPayload = {
+  page: VisitPage;
   language: string;
   languages: string[];
   timeZone: string | null;
@@ -14,17 +16,18 @@ type JoinVisitPayload = {
   deviceClass: "mobile" | "tablet" | "desktop";
 };
 
-function getDeviceClass(width: number): JoinVisitPayload["deviceClass"] {
+function getDeviceClass(width: number): VisitPayload["deviceClass"] {
   if (width < 768) return "mobile";
   if (width < 1024) return "tablet";
   return "desktop";
 }
 
-function createPayload(): JoinVisitPayload {
+function createPayload(page: VisitPage): VisitPayload {
   const screenWidth = window.screen?.width ?? window.innerWidth;
   const screenHeight = window.screen?.height ?? window.innerHeight;
 
   return {
+    page,
     language: navigator.language || "unknown",
     languages: navigator.languages ? [...navigator.languages].slice(0, 8) : [],
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone ?? null,
@@ -35,19 +38,20 @@ function createPayload(): JoinVisitPayload {
 }
 
 /**
- * Reports a single Join-page visit after analytics consent is present.
+ * Reports a single visit to the given page after analytics consent is present.
  * It deliberately does not request browser geolocation or create a device fingerprint.
  */
-export function JoinVisitTracker() {
+export function VisitTracker({ page }: { page: VisitPage }) {
   const { currentConsents, isLoading } = useCookieConsent();
   const attempted = useRef(false);
 
   useEffect(() => {
     if (isLoading || !currentConsents?.analytics || attempted.current) return;
-    if (window.sessionStorage.getItem(JOIN_VISIT_MARKER)) return;
+    const marker = `${VISIT_MARKER_PREFIX}${page}`;
+    if (window.sessionStorage.getItem(marker)) return;
 
     attempted.current = true;
-    const payload = createPayload();
+    const payload = createPayload(page);
 
     void fetch("/api/join-visit", {
       method: "POST",
@@ -56,12 +60,12 @@ export function JoinVisitTracker() {
       keepalive: true,
     }).then((response) => {
       if (response.ok) {
-        window.sessionStorage.setItem(JOIN_VISIT_MARKER, "1");
+        window.sessionStorage.setItem(marker, "1");
       }
     }).catch(() => {
-      // Analytics must never affect the Join experience.
+      // Analytics must never affect the page experience.
     });
-  }, [currentConsents?.analytics, isLoading]);
+  }, [currentConsents?.analytics, isLoading, page]);
 
   return null;
 }

@@ -1,4 +1,7 @@
+export type VisitPage = "join" | "app";
+
 export type JoinVisitInput = {
+  page: VisitPage;
   language: string;
   languages: string[];
   timeZone: string | null;
