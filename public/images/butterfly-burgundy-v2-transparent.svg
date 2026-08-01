@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <radialGradient id="v2-trans-core-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF2A6D" />
+      <stop offset="35%" stop-color="#C82356" />
+      <stop offset="70%" stop-color="#800020" />
+      <stop offset="100%" stop-color="#380A10" />
+    </radialGradient>
+  </defs>
+
+  <!-- Logo Path: Transparent Background -->
+  <path d="M 50 35 
+            C 20 0, -10 30, 15 55 
+            C -5 75, 25 100, 48 65 
+            L 52 65 
+            C 75 100, 105 75, 85 55 
+            C 110 30, 80 0, 50 35 
+            Z" 
+        fill="url(#v2-trans-core-glow)" />
+</svg>
