@@ -86,7 +86,7 @@ export function Comparison() {
                     />
                   </div>
                   <span 
-                    className="absolute -top-[15px] left-[42%] bg-red-500 text-white text-base md:text-lg font-semibold px-2.5 rounded-full shadow-lg flex items-center justify-center min-w-[62px] h-[32px] z-10"
+                    className="absolute -top-[15px] left-[42%] bg-red-500 text-white text-base md:text-lg font-semibold px-2.5 rounded-full shadow-lg flex items-center justify-center min-w-[62px] h-[32px] z-10 whitespace-nowrap"
                     style={{ fontFamily: "ui-rounded, 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}
                   >
                     {t("comparison.tinderMessages")}
@@ -105,7 +105,7 @@ export function Comparison() {
                     />
                   </div>
                   <span 
-                    className="absolute -top-[15px] left-[42%] bg-red-500 text-white text-base md:text-lg font-semibold px-2.5 rounded-full shadow-lg flex items-center justify-center min-w-[62px] h-[32px] z-10"
+                    className="absolute -top-[15px] left-[42%] bg-red-500 text-white text-base md:text-lg font-semibold px-2.5 rounded-full shadow-lg flex items-center justify-center min-w-[62px] h-[32px] z-10 whitespace-nowrap"
                     style={{ fontFamily: "ui-rounded, 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}
                   >
                     {t("comparison.badooMessages")}

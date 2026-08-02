@@ -1,9 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { useLanguage } from "@/lib/language-context";
@@ -11,33 +9,13 @@ import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const { t } = useLanguage();
-  const pathname = usePathname();
-  const [isScrolledPastLight, setIsScrolledPastLight] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolledPastLight(window.scrollY > 50);
-    };
-    // Check initial position
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const isThesisPage = pathname === "/thesis";
-  const isPlacesPage = pathname === "/places";
-  const isWhiteHeaderPage = isThesisPage || isPlacesPage;
-
-  // On dark pages, text should always be white regardless of scroll
-  const showWhiteText = !isWhiteHeaderPage || isScrolledPastLight;
 
   return (
     <nav
       aria-label="Main navigation"
       className={cn(
         "site-navbar fixed w-full z-40 flex items-center justify-between px-4 py-3 md:top-0 md:px-10 md:pt-[calc(env(safe-area-inset-top)+16px)] md:pb-4 transition-all duration-300",
-        "md:bg-transparent md:backdrop-blur-none",
-        showWhiteText ? "text-white" : "text-[#111111]"
+        "md:bg-transparent md:backdrop-blur-none text-white"
       )}
     >
       <div className="flex items-center translate-x-[7px]">
@@ -59,18 +37,13 @@ export function Navbar() {
 
       <div className="flex items-center gap-2 md:gap-3 -translate-x-[7px]">
         <div className="hidden md:block">
-          <LanguageSwitcher theme={showWhiteText ? "dark" : "light"} />
+          <LanguageSwitcher theme="dark" />
         </div>
         <Button
           href="/join"
           variant="ghost"
           size="sm"
-          className={cn(
-            "px-5 py-2.5 text-sm md:px-4 md:py-2 md:text-sm transition-all duration-300",
-            showWhiteText
-              ? "text-white border-white/60 hover:bg-white/10"
-              : "text-[#111111] border-[#111111]/60 hover:bg-[#111111]/10"
-          )}
+          className="px-5 py-2.5 text-sm md:px-4 md:py-2 md:text-sm transition-all duration-300 text-white border-white/60 hover:bg-white/10"
         >
           {t("nav.login")}
         </Button>
@@ -78,12 +51,7 @@ export function Navbar() {
           href="/join"
           variant="solid"
           size="sm"
-          className={cn(
-            "px-5 py-2.5 text-sm md:px-4 md:py-2 md:text-sm transition-all duration-300",
-            isWhiteHeaderPage
-              ? "bg-white text-black hover:bg-white/90 hover:text-black shadow-none hover:shadow-none"
-              : ""
-          )}
+          className="px-5 py-2.5 text-sm md:px-4 md:py-2 md:text-sm transition-all duration-300"
         >
           {t("nav.join")}
         </Button>

@@ -476,9 +476,9 @@ export const translations = {
     "comparison.viewDetails": "Переглянути деталі.",
     "comparison.newMessage": "1 нове повідомлення",
     "comparison.gennetyDesc": "Один підібраний метч. Одне повідомлення. Готово.",
-    "comparison.unread": "1 000+ непрочитаних повідомлень",
-    "comparison.tinderMessages": "2 192",
-    "comparison.badooMessages": "1 778",
+    "comparison.unread": "1\u00A0000+ непрочитаних повідомлень",
+    "comparison.tinderMessages": "2\u00A0192",
+    "comparison.badooMessages": "1\u00A0778",
     "comparison.competitorsDesc":
       "Нескінченні свайпи. Нескінченні розмови ні про що. Жодних реальних побачень.",
 
@@ -755,9 +755,9 @@ export const translations = {
     "comparison.viewDetails": "Посмотреть детали.",
     "comparison.newMessage": "1 новое сообщение",
     "comparison.gennetyDesc": "Один подобранный мэтч. Одно сообщение. Готово.",
-    "comparison.unread": "1 000+ непрочитанных сообщений",
-    "comparison.tinderMessages": "2 192",
-    "comparison.badooMessages": "1 778",
+    "comparison.unread": "1\u00A0000+ непрочитанных сообщений",
+    "comparison.tinderMessages": "2\u00A0192",
+    "comparison.badooMessages": "1\u00A0778",
     "comparison.competitorsDesc":
       "Бесконечные свайпы. Бесконечные разговоры ни о чем. Никаких реальных свиданий.",
 
@@ -1313,9 +1313,9 @@ export const translations = {
     "comparison.viewDetails": "Wyświetl szczegóły.",
     "comparison.newMessage": "1 nowa wiadomość",
     "comparison.gennetyDesc": "Jedno idealne dopasowanie. Jedna wiadomość. Gotowe.",
-    "comparison.unread": "1 000+ nieprzeczytanych wiadomości",
-    "comparison.tinderMessages": "2 192",
-    "comparison.badooMessages": "1 778",
+    "comparison.unread": "1\u00A0000+ nieprzeczytanych wiadomości",
+    "comparison.tinderMessages": "2\u00A0192",
+    "comparison.badooMessages": "1\u00A0778",
     "comparison.competitorsDesc":
       "Nieskończone swajpowanie. Rozmowy o niczym. Brak prawdziwych randek.",
 
@@ -1587,9 +1587,9 @@ export const translations = {
     "comparison.viewDetails": "Voir les détails.",
     "comparison.newMessage": "1 nouveau message",
     "comparison.gennetyDesc": "Un match sélectionné. Une notification. C'est fait.",
-    "comparison.unread": "1 000+ messages non lus",
-    "comparison.tinderMessages": "2 192",
-    "comparison.badooMessages": "1 778",
+    "comparison.unread": "1\u00A0000+ messages non lus",
+    "comparison.tinderMessages": "2\u00A0192",
+    "comparison.badooMessages": "1\u00A0778",
     "comparison.competitorsDesc": "Swipement infini. Petites discussions sans fin. Aucun vrai rendez-vous.",
 
     // Safety
