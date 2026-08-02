@@ -49,7 +49,7 @@ export function Navbar() {
           href="/join"
           variant="ghost"
           size="sm"
-          className="px-5 py-2.5 text-sm md:px-4 md:py-2 md:text-sm transition-all duration-300 text-white border-white/60 hover:bg-white/10"
+          className="px-5 py-2.5 text-sm md:px-4 md:py-2 md:text-sm transition-all duration-300 text-white border-white hover:bg-white/10"
         >
           {t("nav.login")}
         </Button>

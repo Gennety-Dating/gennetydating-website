@@ -1,49 +1,89 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/language-context";
 
-const REPEAT_COUNT = 8;
-
-function MarqueeRow({ text }: { text: string }) {
-  // Build items: alternating white / magenta-neon
-  const items = Array.from({ length: REPEAT_COUNT }, (_, i) => (
-    <span
-      key={i}
-      className={
-        i % 2 === 0
-          ? "text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mx-4 md:mx-8 py-2"
-          : "text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-magenta mx-4 md:mx-8 py-2"
-      }
-    >
-      {text}
-    </span>
-  ));
-
-  return (
-    <div className="overflow-hidden whitespace-nowrap py-2">
-      {/* Single wrapper with 2x content — animate-marquee translates -50% for seamless loop */}
-      <div className="flex items-center animate-marquee w-max py-1">
-        <div className="flex items-center">{items}</div>
-        <div className="flex items-center" aria-hidden="true">{items}</div>
-      </div>
-    </div>
-  );
-}
+const CREDITS = [
+  { role: "Product Visionary & Concept Creator", name: "Gleb Gosha" },
+  { role: "Creative Director", name: "Gleb Gosha" },
+  { role: "Lead Experience Designer", name: "Gleb Gosha" },
+  { role: "Brand Architect & Identity Strategist", name: "Gleb Gosha" },
+  { role: "Chief Narrative & Storytelling Lead", name: "Gleb Gosha" },
+  { role: "Head of Product Design", name: "Gleb Gosha" },
+  { role: "AI Matchmaking Experience Architect", name: "Gleb Gosha" },
+  { role: "Art Director & Visual Stylist", name: "Gleb Gosha" },
+  { role: "Principal Interaction Designer", name: "Gleb Gosha" },
+  { role: "Sound & Atmosphere Curator", name: "Gleb Gosha" },
+  { role: "UX Research & Human Psychology Lead", name: "Gleb Gosha" },
+  { role: "Design Systems & Token Architecture", name: "Gleb Gosha" },
+  { role: "Motion Graphics & Visual FX Lead", name: "Gleb Gosha" },
+  { role: "Content Strategy & Copywriting Lead", name: "Gleb Gosha" },
+  { role: "Cultural & Social Dynamics Researcher", name: "Gleb Gosha" },
+  { role: "Product Strategy & Roadmap Lead", name: "Gleb Gosha" },
+  { role: "Aesthetic & Spatial Experience Lead", name: "Gleb Gosha" },
+  { role: "Brand Campaign & Comms Strategist", name: "Gleb Gosha" },
+  { role: "Digital Experience Craftsman", name: "Gleb Gosha" },
+  { role: "Creative Technology Lead", name: "Gleb Gosha" },
+  { role: "Lead Product Architect", name: "Gleb Gosha" },
+  { role: "Interface Design Engineer", name: "Gleb Gosha" },
+  { role: "Frontend Architecture Lead", name: "Gleb Gosha" },
+  { role: "AI Logic & Matching Models Engineer", name: "Gleb Gosha" },
+  { role: "Core Systems & Security Architect", name: "Gleb Gosha" },
+  { role: "Performance & Optimization Specialist", name: "Gleb Gosha" },
+  { role: "Experience Quality & Curation Lead", name: "Gleb Gosha" },
+  { role: "Launch & Ecosystem Strategy Lead", name: "Gleb Gosha" },
+  { role: "Community Atmosphere Architect", name: "Gleb Gosha" },
+  { role: "Executive Producer", name: "Gleb Gosha" },
+];
 
 export function Marquee() {
   const { t } = useLanguage();
 
+  // Duplicate list for infinite seamless vertical loop
+  const creditsList = [...CREDITS, ...CREDITS];
+
   return (
-    <section className="relative py-[140px] overflow-hidden bg-transparent">
-      <div className="relative">
-        {/* Tape container: tilted and slightly scaled/translated to go beyond screen boundaries */}
-        <div className="w-[110%] -left-[5%] relative rotate-[-2deg] bg-[#1A1A1A] py-3 border-y border-white/[0.06] shadow-[0_12px_40px_rgba(0,0,0,0.5)] z-10">
-          <MarqueeRow text={t("marquee.text")} />
+    <section className="relative pt-16 pb-20 md:pt-20 md:pb-24 overflow-hidden bg-transparent">
+      <div className="relative max-w-4xl mx-auto px-4">
+        {/* Film Credits Container with Top & Bottom Soft Fade Masks */}
+        <div
+          className="h-[260px] md:h-[280px] max-w-xl mx-auto overflow-hidden relative select-none translate-x-[20px]"
+          style={{
+            maskImage:
+              "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+          }}
+        >
+          <motion.div
+            className="flex flex-col"
+            animate={{ y: ["0%", "-50%"] }}
+            transition={{
+              duration: 35,
+              ease: "linear",
+              repeat: Infinity,
+              repeatType: "loop",
+            }}
+          >
+            {creditsList.map((credit, index) => (
+              <div
+                key={index}
+                className="grid grid-cols-2 gap-4 sm:gap-8 items-center py-2.5 px-2"
+              >
+                <span className="text-[11px] sm:text-xs font-medium tracking-wider uppercase text-gray-400 text-right">
+                  {credit.role}
+                </span>
+                <span className="text-xs sm:text-sm font-semibold text-white text-left">
+                  {credit.name}
+                </span>
+              </div>
+            ))}
+          </motion.div>
         </div>
 
-        {/* Manifesto button */}
-        <div className="flex justify-center mt-16 relative z-10">
+        {/* Manifesto button shifted ~25px lower */}
+        <div className="flex justify-center mt-20 md:mt-24 relative z-10">
           <Button variant="outline" size="lg" href="/thesis">
             {t("marquee.manifesto")}
           </Button>
