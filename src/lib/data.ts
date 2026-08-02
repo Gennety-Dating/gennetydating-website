@@ -227,6 +227,39 @@ export interface DatePlace {
 export const datePlaces: DatePlace[] = [
   // Kyiv Places
   {
+    id: "kyiv-marco",
+    city: "kyiv",
+    type: "cafe",
+    vibe: {
+      en: "Cozy Patio & Cafe",
+      uk: "Затишне кафе з двориком",
+      ru: "Уютное кафе с двориком",
+      de: "Gemütliches Café mit Innenhof",
+      pl: "Przytulna kawiarnia z dziedzińcem"
+    },
+    name: {
+      en: "Cafe Marko",
+      uk: "Cafe Marko",
+      ru: "Cafe Marko",
+      de: "Cafe Marko",
+      pl: "Cafe Marko"
+    },
+    description: {
+      en: "A stylish cafe located in the heart of Kyiv on Sophia Square (inside Sophia Hotel). Famous for its tranquil glass-roofed patio, signature breakfasts, and aesthetic modern interior.",
+      uk: "Стильний заклад у самому серці Києва біля Софійської площі (в будівлі Sophia Hotel). Відомий затишним двориком під скляним дахом, вишуканими сніданками та естетичним інтер'єром.",
+      ru: "Стильное заведение в самом сердце Киева возле Софийской площади (в здании Sophia Hotel). Известно уютным двориком под стеклянной крышей, изысканными завтраками и эстетичным интерьером.",
+      de: "Ein stilvolles Café im Herzen von Kiew am Sophienplatz. Bekannt für seinen ruhigen glasüberdachten Innenhof, köstliche Frühstücke und ein ästhetisches modernes Interieur.",
+      pl: "Stylowa kawiarnia w samym sercu Kijowa przy Placu Zofii. Słynie z przytulnego przeszklonego dziedzińca, wyśmienitych śniadań i estetyчного wnętrza."
+    },
+    images: [
+      "/images/places/kyiv_marco_patio.jpg",
+      "/images/places/kyiv_marco_2.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Cafe+Marko+Sophia+Hotel+Kyiv",
+    likes: 47,
+    isPremium: true
+  },
+  {
     id: "kyiv-milk-bar",
     city: "kyiv",
     type: "cafe",
@@ -876,7 +909,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_foodmarket_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Kyiv+Food+Market+Kyiv",
-    likes: 92
+    likes: 197
   },
   {
     id: "kyiv-boutique-sofie",
