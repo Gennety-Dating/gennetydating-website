@@ -260,6 +260,38 @@ export const datePlaces: DatePlace[] = [
     isPremium: true
   },
   {
+    id: "kyiv-porto-maltese",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Seafood Restaurant",
+      uk: "Рибний ресторан",
+      ru: "Рыбный ресторан",
+      de: "Fischrestaurant",
+      pl: "Restauracja rybna"
+    },
+    name: {
+      en: "Porto Maltese",
+      uk: "Porto Maltese",
+      ru: "Porto Maltese",
+      de: "Porto Maltese",
+      pl: "Porto Maltese"
+    },
+    description: {
+      en: "Elegant Mediterranean seafood restaurant with fresh fish selection, refined coastal interior, and an ideal atmosphere for romantic dinners.",
+      uk: "Вишуканий середземноморський рибний ресторан із вибором свіжої риби, витонченим морським інтер'єром та ідеальною атмосферою для романтичних вечерь.",
+      ru: "Изысканный средиземноморский рыбный ресторан с выбором свежей рыбы, утонченным морским интерьером и идеальной атмосферой для романтических ужинов.",
+      de: "Elegantes mediterranes Fischrestaurant mit frischer Fischauswahl, feinem küstennahem Interieur und einer idealen Atmosphäre für romantische Abendessen.",
+      pl: "Elegancka śródziemnomorska restauracja rybna z wyborem świeżych ryb, wyrafinowanym wnętrzem i idealną atmosferą na romantyczną kolację."
+    },
+    images: [
+      "/images/places/kyiv_porto_maltese_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Porto+Maltese+Kyiv",
+    likes: 23,
+    isPremium: true
+  },
+  {
     id: "kyiv-milk-bar",
     city: "kyiv",
     type: "cafe",
