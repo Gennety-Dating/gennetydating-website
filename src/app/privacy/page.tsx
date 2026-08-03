@@ -48,7 +48,7 @@ export default function PrivacyPage() {
 <h2 className="text-2xl font-semibold text-white mt-12 mb-4">2. Data Controller</h2>
 <p className="text-gray-300 leading-relaxed my-4">The data controller responsible for your personal data is:</p>
 <ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
-<li><strong>Gennety</strong> — operated by Gleb Gosha, Kyiv, Ukraine.</li>
+<li><strong>Gennety</strong> — operated by sverkaus labs, Kyiv, Ukraine.</li>
 <li>Privacy contact: <strong>legal@gennety.com</strong></li>
 </ul>
 <blockquote className="border-l-4 border-magenta bg-magenta/5 p-4 my-6 rounded text-sm italic text-gray-400">*To be confirmed before publication: full legal entity name, registration number, and registered address. If a separate EU representative is appointed under Article 27 GDPR, their details will be added here.*</blockquote>
