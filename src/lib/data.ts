@@ -227,6 +227,102 @@ export interface DatePlace {
 export const datePlaces: DatePlace[] = [
   // Kyiv Places
   {
+    id: "kyiv-tsum",
+    city: "kyiv",
+    type: "cafe",
+    vibe: {
+      en: "Rooftop & Iconic Shopping Destination",
+      uk: "Дах та культовий універмаг",
+      ru: "Крыша и культовый универмаг",
+      de: "Dachterrasse & Kult-Shopping-Spot",
+      pl: "Taras na dachu i kultowe centrum handlowe"
+    },
+    name: {
+      en: "TSUM Kyiv",
+      uk: "ЦУМ Київ",
+      ru: "ЦУМ Киев",
+      de: "TSUM Kiew",
+      pl: "TSUM Kijów"
+    },
+    description: {
+      en: "Iconic central department store in Kyiv featuring panoramic rooftop dining, premium cafes, futuristic atrium aesthetics, and a vibrant atmosphere perfect for dates.",
+      uk: "Культовий головний універмаг Києва з панорамними ресторанами на даху, преміальними кав'ярнями, футуристичною атріумною архітектурою та яскравою атмосферою для побачень.",
+      ru: "Культовый главный универмаг Киева с панорамными ресторанами на крыше, премиальными кофейнями, футуристичной архитектурой атриума и атмосферным пространством для свиданий.",
+      de: "Legendäres zentrales Kaufhaus in Kiew mit Panoramarestaurants auf dem Dach, Premium-Cafés, futuristischer Atrium-Ästhetik und einer lebendigen Atmosphäre für Dates.",
+      pl: "Kultowy dom towarowy w Kijowie z panoramicznymi restauracjami na dachu, kawiarniami premium, futurystyczną architekturą atrium i świetną atmosferą na randkę."
+    },
+    images: [
+      "/images/places/kyiv_tsum_1.png"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=TSUM+Kyiv",
+    likes: 103,
+    isPremium: true
+  },
+  {
+    id: "kyiv-yistetyka",
+    city: "kyiv",
+    type: "cafe",
+    vibe: {
+      en: "Aesthetic Fast-Casual & Healthy Dining",
+      uk: "Естетичний фаст-кежуал та корисна їжа",
+      ru: "Эстетичный фаст-кэжуал и полезная еда",
+      de: "Ästhetisches Fast-Casual & Gesunde Küche",
+      pl: "Estetyczny fast-casual i zdrowe jedzenie"
+    },
+    name: {
+      en: "Yistetyka",
+      uk: "Їстетика",
+      ru: "Їстетика",
+      de: "Yistetyka",
+      pl: "Yistetyka"
+    },
+    description: {
+      en: "A stylish modern eatery in Kyiv combining clean minimalist interior aesthetics with nutritious, high-quality dishes and specialty coffee.",
+      uk: "Стильний сучасний заклад у Києві, що поєднує витончений мінімалістичний інтер'єр із корисними, якісними стравами та спешелті кавою.",
+      ru: "Стильное современное заведение в Киеве, сочетающее утонченный минималистичный интерьер с полезными качественными блюдами и спешелти кофе.",
+      de: "Ein stilvolles modernes Lokal in Kiew, das ein meisterhaftes minimalistisches Interieur mit gesunden, hochwertigen Gerichten und Spezialitätenkaffee kombiniert.",
+      pl: "Stylowy, nowoczesny lokal w Kijowie łączący czystą, minimalistyczną estetykę wnętrza z pożywnymi, wysokiej jakości daniami i kawą specialty."
+    },
+    images: [
+      "/images/places/kyiv_yistetyka_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Yistetyka+Kyiv",
+    likes: 23,
+    isPremium: true
+  },
+  {
+    id: "kyiv-kuvshin",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Caucasian Cuisine & Park Terrace",
+      uk: "Кавказька кухня та тераса в сквері",
+      ru: "Кавказская кухня и терраса в сквере",
+      de: "Kaukasische Küche & Parkterrasse",
+      pl: "Kuchnia kaukaska i taras w parku"
+    },
+    name: {
+      en: "Kuvshin",
+      uk: "Кувшин",
+      ru: "Кувшин",
+      de: "Kuvshin",
+      pl: "Kuvshin"
+    },
+    description: {
+      en: "Legendary Caucasian restaurant nestled in a green Kyiv park. Renowned for its authentic shashlik, rich wine cellar, cozy brick interior, and warm hospitable date ambiance.",
+      uk: "Легендарний ресторан кавказької кухні у затишному київському сквері. Відомий автентичним шашликом, багатим винним погребом, теплим цегляним інтер'єром та гостинною атмосферою для побачень.",
+      ru: "Легендарный ресторан кавказской кухни в уютном киевском сквере. Известен аутентичным шашлыком, богатым винным погребом, теплым кирпичным интерьером и гостеприимной атмосферой для свиданий.",
+      de: "Legendäres kaukasisches Restaurant in einem grünen Kiewer Park. Bekannt für authentischen Schaschlik, reichen Weinkeller, gemütliches Backsteininterieur und gastfreundliches Date-Ambiente.",
+      pl: "Legendarna kaukaska restauracja w urokliwym kijowskim parku. Słynie z autentycznego szaszłyka, bogatej piwnicy winnej, przytulnego ceglanego wnętrza i gościnnej atmosfery na randkę."
+    },
+    images: [
+      "/images/places/kyiv_kuvshin_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Kuvshin+Restaurant+Kyiv",
+    likes: 2,
+    isPremium: true
+  },
+  {
     id: "kyiv-marco",
     city: "kyiv",
     type: "cafe",
