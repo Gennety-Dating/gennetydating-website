@@ -199,22 +199,6 @@ export default function PlacesPage() {
                       </div>
                     )}
                     
-                    {/* Premium Badge (Top Left) */}
-                    {place.isPremium && (
-                      <div className="absolute top-4 left-4 z-10">
-                        <div className="inline-flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-black/60 text-white">
-                          <svg
-                            viewBox="0 0 100 100"
-                            className="w-5 h-5 fill-white text-white"
-                          >
-                            <path d="M 50 35 C 20 0, -10 30, 15 55 C -5 75, 25 100, 48 65 L 52 65 C 75 100, 105 75, 85 55 C 110 30, 80 0, 50 35 Z" />
-                          </svg>
-                          <span className="text-white/95">
-                            premium
-                          </span>
-                        </div>
-                      </div>
-                    )}
 
                     {/* Likes Button (Top Right) */}
                     <button
