@@ -8,11 +8,18 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 
-export function Footer({ theme = "light" }: { theme?: "light" | "dark" }) {
+export function Footer({ 
+  theme = "light",
+  showAppBadges = true,
+}: { 
+  theme?: "light" | "dark";
+  showAppBadges?: boolean;
+}) {
   const { t } = useLanguage();
   const { openPreferences } = useCookieConsent();
   const pathname = usePathname();
   const isMainPage = pathname === "/";
+  const displayAppBadges = showAppBadges && pathname !== "/merch";
 
   return (
     <footer className="bg-transparent px-6 md:px-10 py-20">
@@ -33,7 +40,8 @@ export function Footer({ theme = "light" }: { theme?: "light" | "dark" }) {
           </div>
 
           {/* App Store & Google Play Block */}
-          <div className="flex flex-wrap items-center gap-4.5">
+          {displayAppBadges && (
+            <div className="flex flex-wrap items-center gap-4.5">
             {/* App Store Badge */}
             <div className="relative select-none">
               <div className="flex items-center gap-3.5 bg-black/75 hover:bg-black/85 border border-white/10 backdrop-blur-md rounded-2xl px-6 py-3 transition-all duration-200 shadow-[0_4px_12px_rgba(0,0,0,0.05)]">
@@ -79,6 +87,7 @@ export function Footer({ theme = "light" }: { theme?: "light" | "dark" }) {
               </span>
             </div>
           </div>
+          )}
         </div>
 
         {/* Bottom links */}
@@ -141,6 +150,12 @@ export function Footer({ theme = "light" }: { theme?: "light" | "dark" }) {
             >
               {t("footer.contact")}
             </a>
+            <Link href="/merch" className={cn(
+              "inline-flex items-center hover:underline underline-offset-4 transition-colors",
+              theme === "dark" ? "hover:text-white" : "hover:text-black"
+            )}>
+              {t("footer.merch")}
+            </Link>
             <Link href="/thesis" className={cn(
               "inline-flex items-center hover:underline underline-offset-4 transition-colors",
               theme === "dark" ? "hover:text-white" : "hover:text-black"

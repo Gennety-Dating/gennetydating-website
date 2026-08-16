@@ -63,13 +63,18 @@ export default function PlacesPage() {
 
   // Load liked places from localStorage after mount
   useEffect(() => {
-    const saved = localStorage.getItem("gennety-liked-places");
-    if (saved) {
-      try {
-        setLikedIds(JSON.parse(saved));
-      } catch {
-        // ignore invalid data
+    try {
+      const saved = localStorage.getItem("gennety-liked-places");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          queueMicrotask(() => {
+            setLikedIds(parsed);
+          });
+        }
       }
+    } catch {
+      // ignore invalid data
     }
   }, []);
   const backText = backTexts[locale] || backTexts.en;
@@ -168,6 +173,7 @@ export default function PlacesPage() {
             const hasImage = place.images && place.images.length > 0;
             const name = place.name[locale] || place.name.en;
             const description = place.description[locale] || place.description.en;
+            const isComingSoon = place.isComingSoon || place.city === "warsaw";
 
             return (
               <motion.div
@@ -188,7 +194,10 @@ export default function PlacesPage() {
                         alt={name}
                         fill
                         sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        className={cn(
+                          "h-full w-full object-cover transition-transform duration-500 group-hover:scale-105",
+                          isComingSoon && "grayscale contrast-[1.1] brightness-[0.55]"
+                        )}
                       />
                     ) : (
                       /* Premium minimal gradient fallback with grain */
@@ -198,7 +207,39 @@ export default function PlacesPage() {
                         </span>
                       </div>
                     )}
+
+                    {/* Dark overlay for coming soon places */}
+                    {isComingSoon && (
+                      <div className="absolute inset-0 bg-neutral-950/40 pointer-events-none z-[5]" />
+                    )}
+
+                    {/* SOON Overlay Label */}
+                    {isComingSoon && (
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+                        <div className="px-7 py-2 md:px-8 md:py-2.5 rounded-full bg-black/75 backdrop-blur-md border border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.8)] flex items-center justify-center">
+                          <span className="font-sans text-xl md:text-2xl font-black tracking-[0.35em] text-white uppercase pl-[0.35em] select-none">
+                            SOON
+                          </span>
+                        </div>
+                      </div>
+                    )}
                     
+                    {/* Premium Badge (Top Left) */}
+                    {place.isPremium && (
+                      <div className="absolute top-4 left-4 z-10">
+                        <div className="inline-flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white select-none">
+                          <svg
+                            viewBox="0 0 100 100"
+                            className="w-5 h-5 fill-white text-white"
+                          >
+                            <path d="M 50 35 C 20 0, -10 30, 15 55 C -5 75, 25 100, 48 65 L 52 65 C 75 100, 105 75, 85 55 C 110 30, 80 0, 50 35 Z" />
+                          </svg>
+                          <span className="text-white/95">
+                            premium
+                          </span>
+                        </div>
+                      </div>
+                    )}
 
                     {/* Likes Button (Top Right) */}
                     <button

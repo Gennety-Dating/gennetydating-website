@@ -274,7 +274,7 @@ export function TheDifference() {
           
           {/* LEFT COLUMN: Tinder Mockup */}
           <div className="flex flex-col items-center">
-            <div className="text-center mb-6">
+            <div className="text-center mb-6 h-8 md:h-9 flex items-center justify-center">
               <h3 className="text-xl md:text-2xl font-bold font-sans text-gray-400/90">
                 {t("difference.insteadOfThis")}
               </h3>
@@ -409,8 +409,8 @@ export function TheDifference() {
 
           {/* RIGHT COLUMN: Overlapping Polaroids Collage */}
           <div className="flex flex-col items-center">
-            <div className="text-center mb-6">
-              <h3 className="text-xl md:text-2xl font-bold font-sans text-heading-white">
+            <div className="text-center mb-6 h-8 md:h-9 flex items-center justify-center">
+              <h3 className="text-xl md:text-2xl font-bold font-sans text-white">
                 {t("difference.doThis")}
               </h3>
             </div>
@@ -418,189 +418,270 @@ export function TheDifference() {
             {/* Overlapping Polaroids Container */}
             <div
               ref={containerRef}
-              className="relative w-full max-w-[380px] h-[500px] sm:h-[580px] select-none z-10 my-auto"
+              className="relative w-full max-w-[380px] h-[520px] sm:h-[600px] select-none z-10 my-auto"
             >
-              {/* Photo 1: Mia (Top-Left) */}
+              {/* Photo 1: Museum (Top-Left) */}
               <motion.div
                 role="button"
                 tabIndex={0}
-                aria-label="Show Mia match card"
-                className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-10 hover:z-20"
-                style={{ left: "2%", top: "4%" }}
-                initial={{ rotate: -8, scale: 0.95, opacity: 0 }}
+                aria-label="Show museum date card"
+                className="absolute w-[50%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-10 hover:z-40"
+                style={{ left: "-2%", top: "2%" }}
+                initial={{ rotate: -9, scale: 0.95, opacity: 0 }}
                 animate={{
-                  rotate: activeCard === "mia" ? -2 : -8,
-                  scale: activeCard === "mia" ? 1.06 : 1,
-                  y: activeCard === "mia" ? -8 : 0,
+                  rotate: activeCard === "museum" ? -2 : -9,
+                  scale: activeCard === "museum" ? 1.08 : 1,
+                  y: activeCard === "museum" ? -8 : 0,
+                  zIndex: activeCard === "museum" ? 50 : 10,
                   opacity: 1,
                 }}
-                whileHover={{ scale: 1.06, rotate: -2, y: -8 }}
+                whileHover={{ scale: 1.06, rotate: -2, y: -6, zIndex: 45 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 onClick={(e) => {
                   e.stopPropagation();
-                  setActiveCard(prev => prev === "mia" ? null : "mia");
+                  setActiveCard(prev => prev === "museum" ? null : "museum");
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault();
                     e.stopPropagation();
-                    setActiveCard(prev => prev === "mia" ? null : "mia");
+                    setActiveCard(prev => prev === "museum" ? null : "museum");
                   }
                 }}
               >
                 <Image
-                  src="/images/do-this-mia.jpg"
-                  alt="Match Mia"
-                  fill
-                  sizes="220px"
-                  className="object-cover"
-                />
-              </motion.div>
-
-              {/* Photo 2: Girls 1 (Top-Right) */}
-              <motion.div
-                role="button"
-                tabIndex={0}
-                aria-label="Show verified date card"
-                className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-10 hover:z-20"
-                style={{ right: "calc(-8% - 10px)", top: "calc(12% - 20px)" }}
-                initial={{ rotate: 6, scale: 0.95, opacity: 0 }}
-                animate={{
-                  rotate: activeCard === "girls1" ? 2 : 6,
-                  scale: activeCard === "girls1" ? 1.06 : 1,
-                  y: activeCard === "girls1" ? -8 : 0,
-                  opacity: 1,
-                }}
-                whileHover={{ scale: 1.06, rotate: 2, y: -8 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setActiveCard(prev => prev === "girls1" ? null : "girls1");
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setActiveCard(prev => prev === "girls1" ? null : "girls1");
-                  }
-                }}
-              >
-                <Image
-                  src="/images/do-this-girls-1.jpg"
-                  alt="Verified Date"
-                  fill
-                  sizes="220px"
-                  className="object-cover"
-                />
-              </motion.div>
-
-              {/* Photo 3: Boys 1 (Middle-Center) */}
-              <motion.div
-                role="button"
-                tabIndex={0}
-                aria-label="Show verified date card"
-                className="absolute w-[54%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-30"
-                style={{ left: "23%", top: "25%" }}
-                initial={{ rotate: -3, scale: 0.95, opacity: 0 }}
-                animate={{
-                  rotate: activeCard === "boys1" ? 0 : -3,
-                  scale: activeCard === "boys1" ? 1.06 : 1,
-                  y: activeCard === "boys1" ? -8 : 0,
-                  opacity: 1,
-                }}
-                whileHover={{ scale: 1.06, rotate: 0, y: -8 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setActiveCard(prev => prev === "boys1" ? null : "boys1");
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setActiveCard(prev => prev === "boys1" ? null : "boys1");
-                  }
-                }}
-              >
-                <Image
-                  src="/images/do-this-boys-1.jpg"
-                  alt="Verified Date"
+                  src="/images/do-this-museum.png"
+                  alt="Museum Date"
                   fill
                   sizes="200px"
                   className="object-cover"
                 />
               </motion.div>
 
-              {/* Photo 4: Girls 2 (Bottom-Left) */}
+              {/* Photo 2: Cafe Kiss (Top-Right) */}
               <motion.div
                 role="button"
                 tabIndex={0}
-                aria-label="Show verified date card"
-                className="absolute w-[56%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-10 hover:z-20"
-                style={{ left: "-3%", bottom: "2%" }}
-                initial={{ rotate: -6, scale: 0.95, opacity: 0 }}
+                aria-label="Show cafe date card"
+                className="absolute w-[50%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-10 hover:z-40"
+                style={{ right: "-4%", top: "4%" }}
+                initial={{ rotate: 8, scale: 0.95, opacity: 0 }}
                 animate={{
-                  rotate: activeCard === "girls2" ? -1 : -6,
-                  scale: activeCard === "girls2" ? 1.06 : 1,
-                  y: activeCard === "girls2" ? -8 : 0,
+                  rotate: activeCard === "cafe" ? 2 : 8,
+                  scale: activeCard === "cafe" ? 1.08 : 1,
+                  y: activeCard === "cafe" ? -8 : 0,
+                  zIndex: activeCard === "cafe" ? 50 : 10,
                   opacity: 1,
                 }}
-                whileHover={{ scale: 1.06, rotate: -1, y: -8 }}
+                whileHover={{ scale: 1.06, rotate: 2, y: -6, zIndex: 45 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 onClick={(e) => {
                   e.stopPropagation();
-                  setActiveCard(prev => prev === "girls2" ? null : "girls2");
+                  setActiveCard(prev => prev === "cafe" ? null : "cafe");
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault();
                     e.stopPropagation();
-                    setActiveCard(prev => prev === "girls2" ? null : "girls2");
+                    setActiveCard(prev => prev === "cafe" ? null : "cafe");
                   }
                 }}
               >
                 <Image
-                  src="/images/do-this-girls-2.jpg"
-                  alt="Verified Date"
+                  src="/images/do-this-cafe.jpg"
+                  alt="Cafe Date"
+                  fill
+                  sizes="200px"
+                  className="object-cover"
+                />
+              </motion.div>
+
+              {/* Photo 3: Paris Romance (Focal Center) */}
+              <motion.div
+                role="button"
+                tabIndex={0}
+                aria-label="Show romantic date card"
+                className="absolute w-[52%] aspect-[819/1024] cursor-pointer shadow-2xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-30 hover:z-40"
+                style={{ left: "24%", top: "18%" }}
+                initial={{ rotate: -2, scale: 0.95, opacity: 0 }}
+                animate={{
+                  rotate: activeCard === "paris" ? 0 : -2,
+                  scale: activeCard === "paris" ? 1.08 : 1,
+                  y: activeCard === "paris" ? -8 : 0,
+                  zIndex: activeCard === "paris" ? 50 : 30,
+                  opacity: 1,
+                }}
+                whileHover={{ scale: 1.06, rotate: 0, y: -6, zIndex: 45 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveCard(prev => prev === "paris" ? null : "paris");
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setActiveCard(prev => prev === "paris" ? null : "paris");
+                  }
+                }}
+              >
+                <Image
+                  src="/images/do-this-paris.jpg"
+                  alt="Romantic Date"
                   fill
                   sizes="210px"
                   className="object-cover"
                 />
               </motion.div>
 
-              {/* Photo 5: Adrian (Bottom-Right) - default z-30 */}
+              {/* Photo 4: Milkshakes Date (Mid-Left) */}
               <motion.div
                 role="button"
                 tabIndex={0}
-                aria-label="Show Adrian match card"
-                className="absolute w-[58%] aspect-[819/1024] cursor-pointer shadow-2xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-10 hover:z-20"
-                style={{ right: "calc(-5.5% - 15px)", bottom: "-2%" }}
-                initial={{ rotate: 11, scale: 0.95, opacity: 0 }}
+                aria-label="Show milkshakes date card"
+                className="absolute w-[49%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-20 hover:z-40"
+                style={{ left: "-4%", top: "38%" }}
+                initial={{ rotate: 5, scale: 0.95, opacity: 0 }}
                 animate={{
-                  rotate: activeCard === "adrian" ? 5 : 11,
-                  scale: activeCard === "adrian" ? 1.06 : 1,
-                  y: activeCard === "adrian" ? -8 : 0,
+                  rotate: activeCard === "milkshake" ? 1 : 5,
+                  scale: activeCard === "milkshake" ? 1.08 : 1,
+                  y: activeCard === "milkshake" ? -8 : 0,
+                  zIndex: activeCard === "milkshake" ? 50 : 20,
                   opacity: 1,
                 }}
-                whileHover={{ scale: 1.06, rotate: 5, y: -8 }}
+                whileHover={{ scale: 1.06, rotate: 1, y: -6, zIndex: 45 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 onClick={(e) => {
                   e.stopPropagation();
-                  setActiveCard(prev => prev === "adrian" ? null : "adrian");
+                  setActiveCard(prev => prev === "milkshake" ? null : "milkshake");
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault();
                     e.stopPropagation();
-                    setActiveCard(prev => prev === "adrian" ? null : "adrian");
+                    setActiveCard(prev => prev === "milkshake" ? null : "milkshake");
                   }
                 }}
               >
                 <Image
-                  src="/images/do-this-adrian.jpg"
-                  alt="Match Adrian"
+                  src="/images/do-this-milkshake.jpg"
+                  alt="Milkshakes Date"
                   fill
-                  sizes="220px"
+                  sizes="195px"
+                  className="object-cover"
+                />
+              </motion.div>
+
+              {/* Photo 5: Playing Cards Date (Mid-Right) */}
+              <motion.div
+                role="button"
+                tabIndex={0}
+                aria-label="Show cozy cards date card"
+                className="absolute w-[49%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-20 hover:z-40"
+                style={{ right: "-5%", top: "37%" }}
+                initial={{ rotate: -7, scale: 0.95, opacity: 0 }}
+                animate={{
+                  rotate: activeCard === "cards" ? -1 : -7,
+                  scale: activeCard === "cards" ? 1.08 : 1,
+                  y: activeCard === "cards" ? -8 : 0,
+                  zIndex: activeCard === "cards" ? 50 : 20,
+                  opacity: 1,
+                }}
+                whileHover={{ scale: 1.06, rotate: -1, y: -6, zIndex: 45 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveCard(prev => prev === "cards" ? null : "cards");
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setActiveCard(prev => prev === "cards" ? null : "cards");
+                  }
+                }}
+              >
+                <Image
+                  src="/images/do-this-cards.jpg"
+                  alt="Cozy Cards Date"
+                  fill
+                  sizes="195px"
+                  className="object-cover"
+                />
+              </motion.div>
+
+              {/* Photo 6: Pizza Date (Bottom-Left) */}
+              <motion.div
+                role="button"
+                tabIndex={0}
+                aria-label="Show pizza date card"
+                className="absolute w-[50%] aspect-[819/1024] cursor-pointer shadow-xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-25 hover:z-40"
+                style={{ left: "2%", bottom: "0%" }}
+                initial={{ rotate: -5, scale: 0.95, opacity: 0 }}
+                animate={{
+                  rotate: activeCard === "pizza" ? -1 : -5,
+                  scale: activeCard === "pizza" ? 1.08 : 1,
+                  y: activeCard === "pizza" ? -8 : 0,
+                  zIndex: activeCard === "pizza" ? 50 : 25,
+                  opacity: 1,
+                }}
+                whileHover={{ scale: 1.06, rotate: -1, y: -6, zIndex: 45 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveCard(prev => prev === "pizza" ? null : "pizza");
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setActiveCard(prev => prev === "pizza" ? null : "pizza");
+                  }
+                }}
+              >
+                <Image
+                  src="/images/do-this-pizza.jpg"
+                  alt="Pizza Date"
+                  fill
+                  sizes="200px"
+                  className="object-cover"
+                />
+              </motion.div>
+
+              {/* Photo 7: Drinks Date (Bottom-Right) */}
+              <motion.div
+                role="button"
+                tabIndex={0}
+                aria-label="Show drinks date card"
+                className="absolute w-[51%] aspect-[819/1024] cursor-pointer shadow-2xl rounded-[8px] overflow-hidden bg-white/5 border border-white/10 z-30 hover:z-40"
+                style={{ right: "-3%", bottom: "-1%" }}
+                initial={{ rotate: 9, scale: 0.95, opacity: 0 }}
+                animate={{
+                  rotate: activeCard === "drinks" ? 3 : 9,
+                  scale: activeCard === "drinks" ? 1.08 : 1,
+                  y: activeCard === "drinks" ? -8 : 0,
+                  zIndex: activeCard === "drinks" ? 50 : 30,
+                  opacity: 1,
+                }}
+                whileHover={{ scale: 1.06, rotate: 3, y: -6, zIndex: 45 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveCard(prev => prev === "drinks" ? null : "drinks");
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setActiveCard(prev => prev === "drinks" ? null : "drinks");
+                  }
+                }}
+              >
+                <Image
+                  src="/images/do-this-drinks.jpg"
+                  alt="Coffee and Matcha Date"
+                  fill
+                  sizes="205px"
                   className="object-cover"
                 />
               </motion.div>

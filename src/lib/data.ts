@@ -222,10 +222,125 @@ export interface DatePlace {
   mapsUrl: string;
   likes: number;
   isPremium?: boolean;
+  isComingSoon?: boolean;
 }
 
 export const datePlaces: DatePlace[] = [
   // Kyiv Places
+  {
+    id: "kyiv-frou-frou",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "French Haute Cuisine & Chic Bistro",
+      uk: "Французька висока кухня та шикарне бістро",
+      ru: "Французская высокая кухня и шикарное бистро",
+      de: "Französische Haute Cuisine & Schickes Bistro",
+      pl: "Francuska haute cuisine i eleganckie bistro",
+      fr: "Haute cuisine française & bistrot chic",
+      it: "Alta cucina francese & bistrot chic",
+      es: "Alta cocina francesa y bistró elegante"
+    },
+    name: {
+      en: "Frou Frou",
+      uk: "Frou Frou",
+      ru: "Frou Frou",
+      de: "Frou Frou",
+      pl: "Frou Frou",
+      fr: "Frou Frou",
+      it: "Frou Frou",
+      es: "Frou Frou"
+    },
+    description: {
+      en: "An elegant French restaurant in Pechersk offering classic Parisian aesthetics, refined haute cuisine, champagne, and an exquisitely romantic ambiance.",
+      uk: "Елегантний французький ресторан на Печерську з класичною паризькою естетикою, вишуканою авторською кухнею, шампанським та витонченою романтичною атмосферою.",
+      ru: "Элегантный французский ресторан на Печерске с классической парижской эстетикой, изысканной авторской кухней, шампанским и утонченной романтической атмосферой.",
+      de: "Ein elegantes französisches Restaurant in Petschersk mit klassischer Pariser Ästhetik, raffinierter Haute Cuisine, Champagner und einem exquisiten romantischen Ambiente.",
+      pl: "Elegancka francuska restauracja na Peczersku z klasyczną paryską estetyką, wykwintną haute cuisine, szampanem i wyrafinowaną romantyczną atmosferą.",
+      fr: "Un élégant restaurant français à Petchersk offrant une esthétique parisienne classique, une haute cuisine raffinée, du champagne et une ambiance délicieusement romantique.",
+      it: "Un elegante ristorante francese a Pechersk con una classica estetica parigina, raffinata alta cucina, champagne e un'atmosfera squisitamente romantica.",
+      es: "Un elegante restaurante francés en Pechersk que ofrece la clásica estética parisina, refinada alta cocina, champán y un ambiente exquisitamente romántico."
+    },
+    images: [
+      "/images/places/kyiv_frou_frou_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Frou+Frou+Kyiv",
+    likes: 81,
+    isPremium: true
+  },
+  {
+    id: "kyiv-mario",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Italian Fine Dining & Classic Elegance",
+      uk: "Італійська висока кухня та класична елегантність",
+      ru: "Итальянская высокая кухня и классическая элегантность",
+      de: "Italienische Gourmetküche & Klassische Eleganz",
+      pl: "Włoska wykwintna kuchnia i klasyczna elegancja",
+      fr: "Haute gastronomie italienne & élégance classique",
+      it: "Alta gastronomia italiana ed eleganza classica",
+      es: "Alta cocina italiana y elegancia clásica"
+    },
+    name: {
+      en: "Mario",
+      uk: "Mario",
+      ru: "Mario",
+      de: "Mario",
+      pl: "Mario",
+      fr: "Mario",
+      it: "Mario",
+      es: "Mario"
+    },
+    description: {
+      en: "A prestigious Italian restaurant in central Kyiv known for its exquisite Mediterranean cuisine, luxurious classic interior with coffered ceilings, and intimate candlelit atmosphere for romantic dates.",
+      uk: "Престижний ресторан італійської кухні в центрі Києва з вишуканими середземноморськими стравами, розкішним класичним інтер'єром та затишною атмосферою при свічках для романтичних побачень.",
+      ru: "Престижный ресторан итальянской кухни в центре Киева с изысканными средиземноморскими блюдами, роскошным классическим интерьером и уютной атмосферой при свечах для романтических свиданий.",
+      de: "Ein renommiertes italienisches Restaurant im Zentrum von Kiew mit erlesener mediterraner Küche, prachtvollem klassischem Interieur und romantischer Atmosphäre bei Kerzenschein.",
+      pl: "Prestiżowa restauracja włoska w centrum Kijowa znana z wykwintnej kuchni śródziemnomorskiej, luksusowego klasycznego wnętrza i romantycznej atmosfery przy świecach.",
+      fr: "Un prestigieux restaurant italien au centre de Kyiv réputé pour sa cuisine méditerranéenne raffinée, son intérieur classique somptueux et son ambiance intime aux chandelles.",
+      it: "Un prestigioso ristorante italiano nel centro di Kyiv noto per la sua raffinata cucina mediterranea, i sontuosi interni classici e l'atmosfera intima a lume di candela.",
+      es: "Un prestigioso restaurante italiano en el centro de Kyiv conocido por su exquisita cocina mediterránea, sus lujosos interiores clásicos y un ambiente íntimo a la luz de las velas."
+    },
+    images: [
+      "/images/places/kyiv_mario_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Mario+Restaurant+Kyiv",
+    likes: 12,
+    isPremium: true
+  },
+  {
+    id: "kyiv-sarto",
+    city: "kyiv",
+    type: "restaurant",
+    vibe: {
+      en: "Italian Fine Dining & Enoteca",
+      uk: "Італійська висока кухня та енотека",
+      ru: "Итальянская высокая кухня и энотека",
+      de: "Italienische Gourmetküche & Enoteca",
+      pl: "Włoska kuchnia gourmet i enoteka"
+    },
+    name: {
+      en: "Sarto",
+      uk: "Sarto",
+      ru: "Sarto",
+      de: "Sarto",
+      pl: "Sarto"
+    },
+    description: {
+      en: "An exquisite Italian restaurant and cocktail bar located in the Passage. Renowned for authentic gastronomy by Stefano Antoniolli, a curated enoteca, and a refined aesthetic atmosphere.",
+      uk: "Вишуканий ресторан італійської кухні та коктейльний бар у Пасажі на Хрещатику. Відомий авторською гастрономією Стефано Антоніоллі, розкішною енотекою та витонченою естетикою для побачень.",
+      ru: "Изысканный ресторан итальянской кухни и коктейльный бар в Пассаже на Крещатике. Известен авторской гастрономией Стефано Антониолли, роскошной энотекой и утонченной атмосферой для свиданий.",
+      de: "Ein exquisites italienisches Restaurant und eine Cocktailbar in der Passage. Bekannt für authentische Küche von Stefano Antoniolli, eine erlesene Enoteca und eine elegante Atmosphäre.",
+      pl: "Wykwintna włoska restauracja i bar koktajlowy w Pasażu. Słynie z autentycznej kuchni Stefano Antoniolli, bogatej enoteki i wyrafinowanej atmosfery na randkę."
+    },
+    images: [
+      "/images/places/kyiv_sarto_1.jpg"
+    ],
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Sarto+Restaurant+Kyiv",
+    likes: 31,
+    isPremium: true
+  },
   {
     id: "kyiv-tsum",
     city: "kyiv",
@@ -600,7 +715,7 @@ export const datePlaces: DatePlace[] = [
       pl: "Bardzo popularna piekarnia oferująca gigantyczne, świeżo wypiekane rogaliki z różnorodnymi nadzieniami słodkimi i słonymi w swobodnej atmosferze."
     },
     images: [
-      "/images/places/kyiv_lviv_croissants_1.jpg"
+      "/images/places/kyiv_lviv_croissants_main.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Lviv+Croissants+Kyiv",
     likes: 63
@@ -1934,7 +2049,8 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_charlotte_2.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Charlotte+Plac+Zbawiciela+Warsaw",
-    likes: 80
+    likes: 80,
+    isComingSoon: true
   },
   {
     id: "warsaw-koszyki",
@@ -1966,7 +2082,8 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_koszyki_2.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Hala+Koszyki+Warsaw",
-    likes: 75
+    likes: 75,
+    isComingSoon: true
   },
   {
     id: "warsaw-lazienki",
@@ -1998,40 +2115,10 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_lazienki_2.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Lazienki+Krolewskie+Warsaw",
-    likes: 70
+    likes: 70,
+    isComingSoon: true
   },
 
-  {
-    id: "warsaw-baken",
-    city: "warsaw",
-    type: "cafe",
-    vibe: {
-      en: "Artisanal Bakery & Bistro",
-      uk: "Реміснича пекарня та бістро",
-      ru: "Ремесленная пекарня и бистро",
-      de: "Handwerkliche Bäckerei & Bistro",
-      pl: "Piekarnia rzemieślnicza i bistro"
-    },
-    name: {
-      en: "BAKEN",
-      uk: "BAKEN",
-      ru: "BAKEN",
-      de: "BAKEN",
-      pl: "BAKEN"
-    },
-    description: {
-      en: "A trendy bakery and bistro offering outstanding sourdough bread, Copenhagen-style breakfasts by day, and cozy plates with natural wine by night.",
-      uk: "Трендова пекарня та бістро, що пропонує видатний хліб на заквасці, сніданки в стилі Копенгагена вдень та затишні тарілки з натуральним вином увечері.",
-      ru: "Трендовая пекарня и бистро, предлагающее выдающийся хлеб на закваске, завтраки в копенгагенском стиле днем и уютные тарелки с натуральным вином вечером.",
-      de: "Eine trendige Bäckerei und Bistro mit hervorragendem Sauerteigbrot, Kopenhagen-Frühstück tagsüber und gemütlichen Platten mit Naturwein abends.",
-      pl: "Modna piekarnia i bistro oferująca wybitny chleb na zakwasie, śniadania w stylu kopenhaskim w ciągu dnia i przytulne talerzyki z winem naturalnym wieczorem."
-    },
-    images: [
-      "/images/places/warsaw_baken_1.jpg"
-    ],
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=BAKEN+Krochmalna+Warsaw",
-    likes: 74
-  },
   {
     id: "warsaw-bibenda",
     city: "warsaw",
@@ -2062,38 +2149,8 @@ export const datePlaces: DatePlace[] = [
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bibenda+Nowogrodzka+Warsaw",
     likes: 79,
-    isPremium: true
-  },
-  {
-    id: "warsaw-muus",
-    city: "warsaw",
-    type: "cafe",
-    vibe: {
-      en: "Aesthetic Pastry Shop",
-      uk: "Естетична кондитерська",
-      ru: "Эстетичная кондитерская",
-      de: "Ästhetische Konditorei",
-      pl: "Estetyczna cukiernia"
-    },
-    name: {
-      en: "MUUS",
-      uk: "MUUS",
-      ru: "MUUS",
-      de: "MUUS",
-      pl: "MUUS"
-    },
-    description: {
-      en: "A gorgeous, Instagram-worthy pastry shop with a beautiful pastel interior, exceptional tarts, and delicious specialty coffee.",
-      uk: "Прекрасна кондитерська з ніжним пастельним інтер'єром, винятковими тартами та чудовою спешелті-кавою. Ідеальне місце для солодкого побачення.",
-      ru: "Прекрасная кондитерская с нежным пастельным интерьером, исключительными тартами и отличным спешелти-кофе. Идеально для сладкого свидания.",
-      de: "Eine wunderschöne Konditorei mit hübschem Pastell-Interieur, außergewöhnlichen Törtchen und köstlichem Kaffeespezialitäten.",
-      pl: "Piękna cukiernia o pastelowym wnętrzu, słynąca z wyjątkowych tartaletek i doskonałej kawy specialty. Idealna na słodką randkę."
-    },
-    images: [
-      "/images/places/warsaw_muus_1.jpg"
-    ],
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=MUUS+Tamka+Warsaw",
-    likes: 71
+    isPremium: true,
+    isComingSoon: true
   },
   {
     id: "warsaw-bulke-przez-bibulke",
@@ -2124,7 +2181,8 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_bulke_przez_bibulke_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bulke+przez+Bibulke+Zurawia+Warsaw",
-    likes: 76
+    likes: 76,
+    isComingSoon: true
   },
   {
     id: "warsaw-coffeedesk",
@@ -2155,38 +2213,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_coffeedesk_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Coffeedesk+Wilcza+Warsaw",
-    likes: 72
-  },
-  {
-    id: "warsaw-deseo",
-    city: "warsaw",
-    type: "cafe",
-    vibe: {
-      en: "Premium Dessert Boutique",
-      uk: "Бутик преміум десертів",
-      ru: "Бутик премиум десертов",
-      de: "Premium Dessert Boutique",
-      pl: "Ekskluzywna cukiernia"
-    },
-    name: {
-      en: "DESEO",
-      uk: "DESEO",
-      ru: "DESEO",
-      de: "DESEO",
-      pl: "DESEO"
-    },
-    description: {
-      en: "A high-end dessert boutique offering visually stunning, glaze-coated modern pastries and premium craft chocolates that look like actual art.",
-      uk: "Преміальний бутик десертів, що пропонує візуально вражаючі сучасні тістечка з глянцевою глазур'ю та крафтовий шоколад.",
-      ru: "Премиальный бутик десертов, предлагающий визуально потрясающие современные пирожные с глянцевой глазурью и крафтовый шоколад.",
-      de: "Eine exklusive Dessert-Boutique mit visuell beeindruckenden modernen Törtchen und erstklassiger handwerklicher Schokolade.",
-      pl: "Ekskluzywna cukiernia oferująca spektakularne wizualnie, nowoczesne desery z błyszczącą polewą oraz rzemieślnicze czekolady."
-    },
-    images: [
-      "/images/places/warsaw_deseo_1.jpg"
-    ],
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=DESEO+Patisserie+Chocolaterie+Warsaw",
-    likes: 73,
-    isPremium: true
+    likes: 72,
+    isComingSoon: true
   }
 ];

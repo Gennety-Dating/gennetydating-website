@@ -14,7 +14,8 @@ export function Navbar() {
 
   const isThesisPage = pathname === "/thesis";
   const isPlacesPage = pathname === "/places";
-  const isWhiteHeaderPage = isThesisPage || isPlacesPage;
+  const isMerchPage = pathname === "/merch";
+  const isWhiteHeaderPage = isThesisPage || isPlacesPage || isMerchPage;
 
   return (
     <nav
@@ -27,7 +28,7 @@ export function Navbar() {
       <div className="flex items-center translate-x-[7px]">
         <Link
           href="/"
-          className="flex items-center transition-opacity hover:opacity-80"
+          className="flex items-center transition-opacity hover:opacity-85"
           aria-label="Gennety — Go to homepage"
         >
           <Image
@@ -36,7 +37,7 @@ export function Navbar() {
             width={145}
             height={36}
             priority
-            className="h-[27px] md:h-[31.5px] w-auto object-contain"
+            className="h-[27px] md:h-[31.5px] w-auto object-contain select-none"
           />
         </Link>
       </div>
