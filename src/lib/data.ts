@@ -695,37 +695,6 @@ export const datePlaces: DatePlace[] = [
     likes: 63
   },
   {
-    id: "kyiv-ministerstvo-desertiv",
-    city: "kyiv",
-    type: "cafe",
-    vibe: {
-      en: "Aesthetic Desserts",
-      uk: "Естетичні десерти",
-      ru: "Естетичні десерти",
-      de: "Ästhetische Desserts",
-      pl: "Estetyczne desery"
-    },
-    name: {
-      en: "Ministerstvo Desertiv",
-      uk: "Міністерство Десертів",
-      ru: "Министерство Десертов",
-      de: "Ministerstvo Desertiv",
-      pl: "Ministerstvo Desertiv"
-    },
-    description: {
-      en: "A visually stunning dessert studio offering colorful, artistic cakes and premium coffee. An absolute favorite for photography-loving couples.",
-      uk: "Візуально приголомшлива студія десертів, що пропонує яскраві мистецькі тістечка та преміальну каву. Фаворит для любителів естетичних побачень.",
-      ru: "Визуально потрясающая студия десертов, предлагающая яркие художественные пирожные и премиальный кофе. Фаворит для любителей эстетичных свиданий.",
-      de: "Ein visuell beeindruckendes Dessertstudio mit farbenfrohen, kunstvollen Kuchen und erstklassigem Kaffee. Ein absoluter Favorit für fotobegeisterte Paare.",
-      pl: "Spektakularne wizualnie studio deserowe oferujące kolorowe, artystyczne ciasta i kawę premium. Absolutny faworyt dla par lubiących estetyczne zdjęcia."
-    },
-    images: [
-      "/images/places/kyiv_ministerstvo_desertiv_1.png"
-    ],
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Ministerstvo+Desertiv+Kyiv",
-    likes: 27
-  },
-  {
     id: "kyiv-natalka-park",
     city: "kyiv",
     type: "park",
@@ -1380,37 +1349,6 @@ export const datePlaces: DatePlace[] = [
     likes: 59
   },
   {
-    id: "kyiv-bonco",
-    city: "kyiv",
-    type: "cafe",
-    vibe: {
-      en: "Pastry Shop & Cafe",
-      uk: "Кав’ярня-кондитерська",
-      ru: "Кофейня-кондитерская",
-      de: "Café & Konditorei",
-      pl: "Kawiarnia-cukiernia"
-    },
-    name: {
-      en: "Bonco",
-      uk: "Bonco",
-      ru: "Bonco",
-      de: "Bonco",
-      pl: "Bonco"
-    },
-    description: {
-      en: "A beautiful, intimate pastry shop near Lvivska Square. Famed for its exceptional croissants, artful tarts, and delicious signature drinks.",
-      uk: "Красива затишна кав’ярня-кондитерська біля Львівської площі. Відома винятковими круасанами, авторськими тартами та кавовими напоями.",
-      ru: "Красивая уютная кофейня-кондитерская возле Львовской площади. Известна исключительными круассанами, авторскими тартами и кофейными напитками.",
-      de: "Ein wunderschönes, gemütliches Café in der Nähe des Lwiwska-Platzes. Bekannt für hervorragende Croissants, kunstvolle Törtchen und erstklassige Getränke.",
-      pl: "Piękna, kameralna kawiarnia-cukiernia w pobliżu Placu Lwowskiego. Słynie z wyjątkowych rogalików, artystycznych tart i wyśmienitych napojów."
-    },
-    images: [
-      "/images/places/kyiv_bonco_1.png"
-    ],
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bonco+Kyiv+Velyka+Zhytomyrska",
-    likes: 54
-  },
-  {
     id: "kyiv-italianska-redaktsiia",
     city: "kyiv",
     type: "restaurant",
@@ -1696,38 +1634,6 @@ export const datePlaces: DatePlace[] = [
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Biggoli+Restaurant+Climb+Klovsky+Descent+7A+Kyiv",
     likes: 7,
-    isPremium: true
-  },
-  {
-    id: "kyiv-vino-e-cucina",
-    city: "kyiv",
-    type: "restaurant",
-    vibe: {
-      en: "Italian Restaurant & Enoteca",
-      uk: "Італійський ресторан та енотека",
-      ru: "Итальянский ресторан и энотека",
-      de: "Italienisches Restaurant & Enoteca",
-      pl: "Włoska restauracja i enoteka"
-    },
-    name: {
-      en: "VINO e CUCINA",
-      uk: "VINO e CUCINA",
-      ru: "VINO e CUCINA",
-      de: "VINO e CUCINA",
-      pl: "VINO e CUCINA"
-    },
-    description: {
-      en: "An award-winning Italian restaurant featuring a spacious terrace, an impressive multi-level wine cellar, and excellent wood-fired pizzas.",
-      uk: "Знаменитий італійський ресторан із просторою терасою, вражаючим багаторівневим винним льохом та вишуканою піцою на дровах.",
-      ru: "Знаменитый итальянский ресторан с просторной террасой, впечатляющим многоуровневым винным погребом и изысканной пиццей на дровах.",
-      de: "Ein preisgekröntes italienisches Restaurant mit einer weitläufigen Terrasse, einem beeindruckenden mehrstöckigen Weinkeller und hervorragenden Pizzen aus dem Holzofen.",
-      pl: "Nagradzana włoska restauracja z przestronnym tarasem, imponującą wielopoziomową piwniczką winną oraz wyśmienitą pizzą z pieca opalanego drewnem."
-    },
-    images: [
-      "/images/places/kyiv_vino_e_cucina_1.jpg"
-    ],
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Vino+e+Cucina+Kyiv+Sichovykh+Striltsiv+82",
-    likes: 12,
     isPremium: true
   },
   {

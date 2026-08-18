@@ -169,7 +169,7 @@ export default function PlacesPage() {
 
         {/* Places Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredPlaces.map((place, index) => {
+          {filteredPlaces.map((place) => {
             const hasImage = place.images && place.images.length > 0;
             const name = place.name[locale] || place.name.en;
             const description = place.description[locale] || place.description.en;
@@ -178,13 +178,23 @@ export default function PlacesPage() {
 
             return (
               <motion.div
+                layout
                 key={place.id}
-                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                whileHover={isMobile ? {} : { scale: 1.01 }}
-                viewport={{ once: true, margin: isMobile ? "100px" : "-50px" }}
-                transition={isMobile ? { duration: 0 } : { duration: 0.5, delay: index * 0.05 }}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[#1c1c1e] hover:bg-[#252528] transition-[background-color,box-shadow] duration-300 hover:shadow-2xl max-md:opacity-100! max-md:transform-none!"
+                whileHover={isMobile ? undefined : { scale: 1.01 }}
+                viewport={{ once: true, margin: "80px" }}
+                transition={{
+                  opacity: { duration: 0.35 },
+                  y: { duration: 0.35 },
+                  layout: {
+                    type: "spring",
+                    stiffness: 350,
+                    damping: 30,
+                    mass: 0.8,
+                  },
+                }}
+                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[#1c1c1e] hover:bg-[#252528] transition-[background-color,box-shadow] duration-300 hover:shadow-2xl"
               >
                 <div className="flex flex-col">
                   {/* Card Header Image / Gradient */}
@@ -249,7 +259,7 @@ export default function PlacesPage() {
                         toggleLike(place.id);
                       }}
                       className={cn(
-                        "absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1 rounded-full transition-all duration-300 cursor-pointer select-none backdrop-blur-md",
+                        "absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1 rounded-full transition-all duration-300 cursor-pointer select-none backdrop-blur-md active:scale-90",
                         place.isLikedByUser
                           ? "bg-magenta text-white shadow-lg"
                           : "bg-black/50 text-gray-300 hover:text-white hover:bg-black/70"
@@ -305,11 +315,15 @@ export default function PlacesPage() {
           })}
           {selectedCity === "warsaw" && (
             <motion.div
-              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: isMobile ? "100px" : "-50px" }}
-              transition={isMobile ? { duration: 0 } : { duration: 0.5, delay: filteredPlaces.length * 0.05 }}
-              className="flex items-center justify-center min-h-[350px] rounded-2xl border border-dashed border-white/10 bg-white/[0.01] p-6 text-center select-none max-md:opacity-100! max-md:transform-none!"
+              layout
+              key="warsaw-placeholder"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.4,
+                layout: { type: "spring", stiffness: 350, damping: 30, mass: 0.8 },
+              }}
+              className="flex items-center justify-center min-h-[350px] rounded-2xl border border-dashed border-white/10 bg-white/[0.01] p-6 text-center select-none"
             >
               <span className="text-white/30 text-sm font-sans font-light tracking-wider">
                 More places soon
