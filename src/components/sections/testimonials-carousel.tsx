@@ -17,7 +17,8 @@ const testimonialImages = [
   "/images/testimonial-hotdog.jpg",
   "/images/testimonial-walk.jpg",
   "/images/testimonial-clasped.jpg",
-  "/images/testimonial-leo-sweet.jpg",
+  "/images/testimonial-dan.jpg",
+  "/images/testimonial-chloe.jpg",
 ];
 
 const testimonialRotations = [
@@ -30,6 +31,7 @@ const testimonialRotations = [
   "rotate-[-2.2deg] sm:rotate-[-2.5deg]",
   "rotate-[1.5deg] sm:rotate-[2deg]",
   "rotate-[-1.2deg] sm:rotate-[-1.5deg]",
+  "rotate-[1.8deg] sm:rotate-[2.2deg]",
 ];
 
 const testimonialReactions = [
@@ -42,6 +44,7 @@ const testimonialReactions = [
   "fire",  // Lucas
   "heart", // Elena
   "star",  // Dan
+  "heart", // Chloe
 ];
 
 

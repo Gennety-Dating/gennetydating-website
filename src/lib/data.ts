@@ -138,6 +138,12 @@ export const testimonials: Testimonial[] = [
     quote:
       "Gennety matched us based on our actual vibe instead of just photos. Couldn't be happier!",
   },
+  {
+    name: "Chloe",
+    school: "NYU",
+    quote:
+      "Felt like a scene straight out of a movie. We ended up talking until the place closed.",
+  },
 ];
 
 // --- FAQ ---
@@ -406,38 +412,6 @@ export const datePlaces: DatePlace[] = [
     isPremium: true
   },
   {
-    id: "kyiv-kuvshin",
-    city: "kyiv",
-    type: "restaurant",
-    vibe: {
-      en: "Caucasian Cuisine & Park Terrace",
-      uk: "Кавказька кухня та тераса в сквері",
-      ru: "Кавказская кухня и терраса в сквере",
-      de: "Kaukasische Küche & Parkterrasse",
-      pl: "Kuchnia kaukaska i taras w parku"
-    },
-    name: {
-      en: "Kuvshin",
-      uk: "Кувшин",
-      ru: "Кувшин",
-      de: "Kuvshin",
-      pl: "Kuvshin"
-    },
-    description: {
-      en: "Legendary Caucasian restaurant nestled in a green Kyiv park. Renowned for its authentic shashlik, rich wine cellar, cozy brick interior, and warm hospitable date ambiance.",
-      uk: "Легендарний ресторан кавказької кухні у затишному київському сквері. Відомий автентичним шашликом, багатим винним погребом, теплим цегляним інтер'єром та гостинною атмосферою для побачень.",
-      ru: "Легендарный ресторан кавказской кухни в уютном киевском сквере. Известен аутентичным шашлыком, богатым винным погребом, теплым кирпичным интерьером и гостеприимной атмосферой для свиданий.",
-      de: "Legendäres kaukasisches Restaurant in einem grünen Kiewer Park. Bekannt für authentischen Schaschlik, reichen Weinkeller, gemütliches Backsteininterieur und gastfreundliches Date-Ambiente.",
-      pl: "Legendarna kaukaska restauracja w urokliwym kijowskim parku. Słynie z autentycznego szaszłyka, bogatej piwnicy winnej, przytulnego ceglanego wnętrza i gościnnej atmosfery na randkę."
-    },
-    images: [
-      "/images/places/kyiv_kuvshin_1.jpg"
-    ],
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Kuvshin+Restaurant+Kyiv",
-    likes: 2,
-    isPremium: true
-  },
-  {
     id: "kyiv-marco",
     city: "kyiv",
     type: "cafe",
@@ -460,7 +434,7 @@ export const datePlaces: DatePlace[] = [
       uk: "Стильний заклад у самому серці Києва біля Софійської площі (в будівлі Sophia Hotel). Відомий затишним двориком під скляним дахом, вишуканими сніданками та естетичним інтер'єром.",
       ru: "Стильное заведение в самом сердце Киева возле Софийской площади (в здании Sophia Hotel). Известно уютным двориком под стеклянной крышей, изысканными завтраками и эстетичным интерьером.",
       de: "Ein stilvolles Café im Herzen von Kiew am Sophienplatz. Bekannt für seinen ruhigen glasüberdachten Innenhof, köstliche Frühstücke und ein ästhetisches modernes Interieur.",
-      pl: "Stylowa kawiarnia w samym sercu Kijowa przy Placu Zofii. Słynie z przytulnego przeszklonego dziedzińca, wyśmienitych śniadań i estetyчного wnętrza."
+      pl: "Stylowa kawiarnia w samym sercu Kijowa przy Placu Zofii. Słynie z przytulnego przeszklonego dziedzińca, wyśmienitych śniadań i estetycznego wnętrza."
     },
     images: [
       "/images/places/kyiv_marco_patio.jpg",
@@ -619,7 +593,7 @@ export const datePlaces: DatePlace[] = [
       uk: "Сучасна кав'ярня третьої хвилі з мінімалістичним інтер'єром та фокусом на якісному зерні. Чудове місце для теплих розмов за чашкою фільтру.",
       ru: "Современная кофейня третьей волны с минималистичным и уютным дизайном, где ценят качественное зерно. Идеально для душевной беседы.",
       de: "Ein modernes Spezialitäten-Café mit minimalistischem Interieur und Fokus auf Premium-Bohnen. Perfekt für ein entspanntes Date.",
-      pl: "Nowoczesna kawiarnia specialty o minimalistycznym wnętrzu i wyjątkowej kawie. Świetna на ciepłą rozmowę при filiżance dobrego przelewu."
+      pl: "Nowoczesna kawiarnia specialty o minimalistycznym wnętrzu i wyjątkowej kawie. Świetna na ciepłą rozmowę przy filiżance dobrego przelewu."
     },
     images: [
       "/images/places/kyiv_idealist_1.jpg"
@@ -650,7 +624,7 @@ export const datePlaces: DatePlace[] = [
       uk: "Вишукане кафе-кондитерська з легендарними десертами, шоколадом ручної роботи та світлою стильною атмосферою для солодкого побачення.",
       ru: "Изысканное кафе-кондитерская с легендарными десертами, шоколадом ручной работы и светлой стильной атмосферой для сладкого свидания.",
       de: "Ein exquisites Dessert-Café mit ikonischen Backwaren, handgemachten Pralinen und einer hellen, stilvollen Atmosphäre, perfekt für ein süßes Date.",
-      pl: "Wykwintna kawiarnia deserowa z kultowymi wypiekami, ręcznie robionymi czekoladkami i jasną, stylową atmosferą doskonałą на słodką randkę."
+      pl: "Wykwintna kawiarnia deserowa z kultowymi wypiekami, ręcznie robionymi czekoladkami i jasną, stylową atmosferą doskonałą na słodką randkę."
     },
     images: [
       "/images/places/kyiv_honey_1.jpg"
@@ -822,7 +796,7 @@ export const datePlaces: DatePlace[] = [
       uk: "Затишне бістро",
       ru: "Уютное бистро",
       de: "Gemütliches Bistro",
-      pl: "Przytulне bistro"
+      pl: "Przytulne bistro"
     },
     name: {
       en: "Zigzag",
@@ -898,44 +872,13 @@ export const datePlaces: DatePlace[] = [
       uk: "Яскраве та трендове бістро китайської кухні з автентичною вуличною їжею, неоновим світлом та крутою атмосферою для невимушеного побачення.",
       ru: "Яркое и трендовое бистро китайской кухни с аутентичной уличной едой, неоновым светом и крутой атмосферой для непринужденного свидания.",
       de: "Ein lebhaftes und trendiges chinesisches Restaurant mit authentischem Streetfood, Neonlichtern und einer coolen, modernen Atmosphäre.",
-      pl: "Tętniąca życiem i modna chińska restauracja z autentycznym jedzeniem ulicznym, neoniastym klimatem и nowoczesną atmosferą."
+      pl: "Tętniąca życiem i modna chińska restauracja z autentycznym jedzeniem ulicznym, neoniastym klimatem i nowoczesną atmosferą."
     },
     images: [
       "/images/places/kyiv_china_hi_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Chinese+Hi+Kyiv",
     likes: 73
-  },
-  {
-    id: "kyiv-goodgirl",
-    city: "kyiv",
-    type: "cafe",
-    vibe: {
-      en: "Healthy & Organic",
-      uk: "Корисна їжа",
-      ru: "Здоровая еда",
-      de: "Gesund & Bio",
-      pl: "Zdrowa żywność"
-    },
-    name: {
-      en: "Goodgirl",
-      uk: "Goodgirl",
-      ru: "Goodgirl",
-      de: "Goodgirl",
-      pl: "Goodgirl"
-    },
-    description: {
-      en: "A stylish cafe focusing on wholesome, organic, and exceptionally tasty food. A beautiful, bright space for health-conscious couples.",
-      uk: "Стильне кафе з фокусом на корисну, органічну та винятково смачну їжу. Красивий, світлий простір для прихильників здорового способу життя.",
-      ru: "Стильное кафе с фокусом на полезную, органическую и исключительно вкусную еду. Красивое, светлое пространство для здорового свидания.",
-      de: "Ein stilvolles Café mit Fokus auf gesunde, biologische und köstliche Gerichte. Ein schöner, heller Ort für gesundheitsbewusste Paare.",
-      pl: "Stylowa kawiarnia serwująca zdrowe, organiczne i wyjątkowo smaczne dania. Piękna, jasna przestrzeń для пар dbających о zdrowie."
-    },
-    images: [
-      "/images/places/kyiv_goodgirl_1.jpg"
-    ],
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Goodgirl+Kyiv",
-    likes: 6
   },
   {
     id: "kyiv-landscape-alley",
@@ -969,37 +912,6 @@ export const datePlaces: DatePlace[] = [
     likes: 57
   },
   {
-    id: "kyiv-breakfast-club",
-    city: "kyiv",
-    type: "cafe",
-    vibe: {
-      en: "All-Day Breakfast",
-      uk: "Сніданки весь день",
-      ru: "Завтраки весь день",
-      de: "Frühstück den ganzen Tag",
-      pl: "Śnia-dania przez cały dzień"
-    },
-    name: {
-      en: "Breakfast Club",
-      uk: "Breakfast Club",
-      ru: "Breakfast Club",
-      de: "Breakfast Club",
-      pl: "Breakfast Club"
-    },
-    description: {
-      en: "A modern spot dedicated to all-day breakfasts. Perfect for casual morning dates that stretch into warm afternoon chats.",
-      uk: "Сучасне місце, присвячене сніданкам упродовж усього дня. Ідеально підходить для невимушених ранкових побачень і довгих розмов.",
-      ru: "Современное место, посвященное завтракам в течение всего дня. Идеально подходит для непринужденных утренних свиданий и долгих разговоров.",
-      de: "Ein moderner Ort, der dem Frühstück den ganzen Tag gewidmet ist. Perfekt для утренних свиданий.",
-      pl: "Nowoczesne miejsce serwujące śniadania przez cały dzień. Idealne na swobodne poranne randki, które przeciągają się w długie rozmowy."
-    },
-    images: [
-      "/images/places/kyiv_breakfast_club_1.jpg"
-    ],
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Breakfast+Club+Kyiv",
-    likes: 1
-  },
-  {
     id: "kyiv-sens",
     city: "kyiv",
     type: "cafe",
@@ -1022,7 +934,7 @@ export const datePlaces: DatePlace[] = [
       uk: "Унікальне поєднання сучної книгарні та затишної кав'ярні. Чудово підходить для обговорення улюблених книг за чашкою кави.",
       ru: "Уникальное сочетание современного книжного магазина и уютной кофейни. Прекрасно подходит для обсуждения любимых книг за чашкой кофе.",
       de: "Eine einzigartige Kombination aus moderner Buchhandlung und gemütlichem Café. Ideal, um Buchtipps auszutauschen.",
-      pl: "Wyjątkowe połączenie nowoczesnej księgarni i przytulnej kawiarni. Świetne miejsce na randkę z książką в tle."
+      pl: "Wyjątkowe połączenie nowoczesnej księgarni i przytulnej kawiarni. Świetne miejsce na randkę z książką w tle."
     },
     images: [
       "/images/places/kyiv_sens_1.jpg"
@@ -1070,7 +982,7 @@ export const datePlaces: DatePlace[] = [
       uk: "Затишне бістро",
       ru: "Уютное бистро",
       de: "Gemütliches Bistro",
-      pl: "Przytulне bistro"
+      pl: "Przytulne bistro"
     },
     name: {
       en: "Remi",
@@ -1146,45 +1058,13 @@ export const datePlaces: DatePlace[] = [
       uk: "Жвавий гастрономічний простір, що об'єднує найкращі кулінарні концепти Києва під одним дахом. Ідеально підходить для різноманітних побачень.",
       ru: "Оживленное гастрономическое пространство, объединяющее лучшие кулинарные концепты Киева под одной крышей. Идеально для свиданий.",
       de: "Ein lebhafter Gastronomiemarkt, der die besten Kiewer Restaurantkonzepte unter einem Dach vereint. Ideal für abwechslungsreiche Dates.",
-      pl: "Gwarna hala gastronomiczna zrzeszająca najlepsze koncepty kulinarne Kijowa. Idealne miejsce на randkę."
+      pl: "Gwarna hala gastronomiczna zrzeszająca najlepsze koncepty kulinarne Kijowa. Idealne miejsce na randkę."
     },
     images: [
       "/images/places/kyiv_foodmarket_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Kyiv+Food+Market+Kyiv",
     likes: 197
-  },
-  {
-    id: "kyiv-boutique-sofie",
-    city: "kyiv",
-    type: "restaurant",
-    vibe: {
-      en: "Romantic Courtyard",
-      uk: "Романтичний дворик",
-      ru: "Романтичный дворик",
-      de: "Romantischer Innenhof",
-      pl: "Romantyczny dziedziniec"
-    },
-    name: {
-      en: "Sofie",
-      uk: "Бути Sofie",
-      ru: "Бути Sofie",
-      de: "Boutique Sofie",
-      pl: "Boutique Sofie"
-    },
-    description: {
-      en: "An exceptionally romantic cafe set in a quiet courtyard of Saint Sophia Cathedral, styled like a cozy French boutique garden.",
-      uk: "Винятково романтичне кафе в тихому дворику Софійського собору, стилізоване під затишний французький прованський сад.",
-      ru: "Исключительно романтичное кафе в тихом дворике Софийского собора, стилизованное под уютный французский прованский сад.",
-      de: "Ein außergewöhnlich романтическое Café im ruhigen Innenhof der Sophienkathedrale, im Stil eines gemütlichen französischen Gartens.",
-      pl: "Niezwykle romantyczna kawiarnia położona w cichym dziedzińcu Soboru Mądrości Bożej, stylizowana na przytulny francuski ogród."
-    },
-    images: [
-      "/images/places/kyiv_boutique_sofie_1.jpg"
-    ],
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Boutique+Sofie+Kyiv",
-    likes: 42,
-    isPremium: true
   },
   {
     id: "kyiv-franyk",
@@ -1209,7 +1089,7 @@ export const datePlaces: DatePlace[] = [
       uk: "Улюблена місцева пекарня, відома своєю теплою атмосферою, свіжою випічкою та повітряними круасанами. Чудове місце для невимушеної зустрічі.",
       ru: "Любимая местная пекарня, известная своей теплой атмосферой, свежей выпечкой и воздушными круассанами. Отличное место для встречи.",
       de: "Eine beliebte Bäckerei, bekannt für freundlichen Service, frisches Gebäck und besonders fluffige Croissants. Ideal für ein süßes Treffen.",
-      pl: "Lubiana piekarnia słynąca z przyjaznej obsługi, świeżych wypieków i puszystych rogalików. Świetne miejsce на randkę."
+      pl: "Lubiana piekarnia słynąca z przyjaznej obsługi, świeżych wypieków i puszystych rogalików. Świetne miejsce na randkę."
     },
     images: [
       "/images/places/kyiv_franyk_1.png"
@@ -1287,7 +1167,7 @@ export const datePlaces: DatePlace[] = [
     vibe: {
       en: "California Sushi",
       uk: "Каліфорнійські суші",
-      ru: "Калифорниские суши",
+      ru: "Калифорнийские суши",
       de: "Kalifornisches Sushi",
       pl: "Sushibar kalifornijski"
     },
@@ -1301,7 +1181,7 @@ export const datePlaces: DatePlace[] = [
     description: {
       en: "A trendy California-style sushi bar with vibrant, artful interiors, excellent raw bar options, and a chic urban crowd.",
       uk: "Модний суші-бар у каліфорнійському стилі з яскравим артовим інтер'єром, свіжою рибою та стильною міською атмосферою.",
-      ru: "Модный суши-бар в калифорниском стиле с ярким артовым интерьером, свежей рыбой и стильной городской атмосферой.",
+      ru: "Модный суши-бар в калифорнийском стиле с ярким артовым интерьером, свежей рыбой и стильной городской атмосферой.",
       de: "Eine trendige Sushi-Bar im kalifornischen Stil mit lebendigem, kunstvollem Interieur, exzellentem Sushi.",
       pl: "Modny sushibar w stylu kalifornijskim z jasnym, artystycznym wnętrzem, doskonałym sushi."
     },
@@ -1365,7 +1245,7 @@ export const datePlaces: DatePlace[] = [
       en: "An immersive Japanese restaurant styled like a retro Tokyo diner, serving authentic ramen, katsu, and street snacks in a fun neon environment.",
       uk: "Атмосферний японський ресторан, стилізований під ретро-заклад Токіо, що подає рамен, кацу та вуличні закуски в оточенні яскравого неону.",
       ru: "Атмосферный японский ресторан, стилизованный под ретро-заведение Токио, подающий рамен, кацу и уличные закуски.",
-      de: "Ein stimmungsvolles japanisches Restaurant im Stil eines Retro-Tokyo-Lokals, das Ramen, Katsu в neonfarbener Umgebung serviert.",
+      de: "Ein stimmungsvolles japanisches Restaurant im Stil eines Retro-Tokyo-Lokals, das Ramen, Katsu in neonfarbener Umgebung serviert.",
       pl: "Klimatyczna japońska restauracja stylizowana na retro lokal z Tokio, serwująca ramen."
     },
     images: [
@@ -1397,7 +1277,7 @@ export const datePlaces: DatePlace[] = [
       uk: "Дуже естетичний та затишний простір, що вдень працює як кав'ярня, а ввечері перетворюється на вишуканий коктейльний лаунж.",
       ru: "Очень эстетичное и уютное пространство, которое днем работает как кофейня, а вечером превращается в изысканный коктейльный лаунж.",
       de: "Ein sehr ästhetischer und intimer Ort, der sich tagsüber als Café und abends als anspruchsvolle Cocktail-Lounge präsentiert.",
-      pl: "Niezwykle estetyczna i kameralna przestrzeń, która w ciągu dnia działa jako kawiarnia, a wieczorem zmienia się в lounge."
+      pl: "Niezwykle estetyczna i kameralna przestrzeń, która w ciągu dnia działa jako kawiarnia, a wieczorem zmienia się w lounge."
     },
     images: [
       "/images/places/kyiv_suit_13_1.jpg"
@@ -1412,7 +1292,7 @@ export const datePlaces: DatePlace[] = [
     vibe: {
       en: "Italian Piazza",
       uk: "Італійська тераса",
-      ru: "Італійська тераса",
+      ru: "Итальянская терраса",
       de: "Italienische Terrasse",
       pl: "Włoski taras"
     },
@@ -1427,8 +1307,8 @@ export const datePlaces: DatePlace[] = [
       en: "A picturesque Italian restaurant in Podil, centered around a cooling fountain on a spacious summer terrace. Perfect for romantic dinners.",
       uk: "Мальовничий італійський ресторан на Подолі з просторою літньою терасою навколо фонтану. Ідеальне місце для романтичної вечері.",
       ru: "Живописный итальянский ресторан на Подоле с просторной летней террасой вокруг фонтана. Идеальное место для романтического ужина.",
-      de: "Ein malerisches italienisches Restaurant in Podil mit einer großen Sommerterrasse rund um einen Brunnen. Perfekt для романтического ужина.",
-      pl: "Malownicza włoska restauracja na Podolu z przestronnym letnim tarasem wokół fontanny. Idealne miejsce на kolację."
+      de: "Ein malerisches italienisches Restaurant in Podil mit einer großen Sommerterrasse rund um einen Brunnen. Perfekt für ein romantisches Abendessen.",
+      pl: "Malownicza włoska restauracja na Podolu z przestronnym letnim tarasem wokół fontanny. Idealne miejsce na romantyczną kolację."
     },
     images: [
       "/images/places/kyiv_vero_vero_1.jpg"
@@ -1491,7 +1371,7 @@ export const datePlaces: DatePlace[] = [
       uk: "Культова пекарня та кафе на Подолі, відома своїм видатним хлібом на заквасці, сучасною випічкою та стильною мінімалістичною атмосферою.",
       ru: "Культовая пекарня и кафе на Подоле, известная своим выдающимся хлебом на закваске, современной выпечкой и стильной минималистичной атмосферой.",
       de: "Eine Kult-Bäckerei und ein Café in Podil, berühmt für ihr hervorragendes Sauerteigbrot, moderne Backwaren und eine schicke, minimalistische Atmosphäre.",
-      pl: "Kultowa piekarnia i kawiarnia na Padole, słynąca z wyjątkowego chleba na zakwasie, nowoczesnych wypieków i stylowej, minimalistycznej atmosfery."
+      pl: "Kultowa piekarnia i kawiarnia na Podolu, słynąca z wyjątkowego chleba na zakwasie, nowoczesnych wypieków i stylowej, minimalistycznej atmosfery."
     },
     images: [
       "/images/places/kyiv_spelta_1.jpg"
@@ -2040,7 +1920,7 @@ export const datePlaces: DatePlace[] = [
     description: {
       en: "A popular French cafe on Plac Zbawiciela, famous for freshly baked bread, delicious pastries, and a bustling social scene.",
       uk: "Популярне французьке кафе на Plac Zbawiciela, відоме свіжим хлібом, смачною випічкою та жвавою атмосферою.",
-      ru: "Популярное французское кафе на Plac Zbawiciela, известно свежим хлебом, вкусной выпечаткой и оживленной атмосферой.",
+      ru: "Популярное французское кафе на Plac Zbawiciela, известно свежим хлебом, вкусной выпечкой и оживленной атмосферой.",
       de: "Ein beliebtes französisches Café am Plac Zbawiciela, bekannt für frisch gebackenes Brot, leckeres Gebäck und eine lebhafte soziale Szene.",
       pl: "Popularna francuska kawiarnia na Placu Zbawiciela, słynąca ze świeżo pieczonego chleba, pysznych wypieków i tętniącego życiem klimatu."
     },
@@ -2049,8 +1929,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_charlotte_2.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Charlotte+Plac+Zbawiciela+Warsaw",
-    likes: 80,
-    isComingSoon: true
+    likes: 80
   },
   {
     id: "warsaw-koszyki",
@@ -2082,8 +1961,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_koszyki_2.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Hala+Koszyki+Warsaw",
-    likes: 75,
-    isComingSoon: true
+    likes: 75
   },
   {
     id: "warsaw-lazienki",
@@ -2115,10 +1993,8 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_lazienki_2.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Lazienki+Krolewskie+Warsaw",
-    likes: 70,
-    isComingSoon: true
+    likes: 70
   },
-
   {
     id: "warsaw-bibenda",
     city: "warsaw",
@@ -2148,9 +2024,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_bibenda_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bibenda+Nowogrodzka+Warsaw",
-    likes: 79,
-    isPremium: true,
-    isComingSoon: true
+    likes: 79
   },
   {
     id: "warsaw-bulke-przez-bibulke",
@@ -2175,14 +2049,13 @@ export const datePlaces: DatePlace[] = [
       uk: "Світле та дружнє кафе, відоме сніданками цілий день, смачними бейглами, панкейками та недорогим просекко в жвавій атмосфері.",
       ru: "Светлое и дружелюбное кафе, известное завтраками весь день, вкусными бейглами, панкейками и недорогим просекко в оживленной атмосфере.",
       de: "Ein helles und freundliches Café, bekannt für Frühstück den ganzen Tag, leckere Bagels, Pfannkuchen und erschwinglichen Prosecco.",
-      pl: "Jasna i przyjazna kawiarnia słynąca ze śniadań serwowanych przez cały dzień, pysznych bajgli, naleśników i niedrogiego prosecco."
+      pl: "Jasna i przyjazna kawiarnia słynąca ze śniadań serwowanych przez cały день, pysznych bajgli, naleśników i niedrogiego prosecco."
     },
     images: [
       "/images/places/warsaw_bulke_przez_bibulke_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bulke+przez+Bibulke+Zurawia+Warsaw",
-    likes: 76,
-    isComingSoon: true
+    likes: 76
   },
   {
     id: "warsaw-coffeedesk",
@@ -2206,14 +2079,13 @@ export const datePlaces: DatePlace[] = [
       en: "A modern, work-friendly and date-friendly specialty coffee shop with a clean minimalist design, premium beans, and friendly baristas.",
       uk: "Сучасна кав'ярня третьої хвилі з мінімалістичним дизайном, великим вибором зерна та затишною атмосферою для теплих розмов.",
       ru: "Современная кофейня третьей волны с минималистичным дизайном, огромным выбором зерна и уютной атмосферой для теплых разговоров.",
-      de: "Ein modernes, arbeits- und datefreundliches Spezialitäten-Café mit minimalistischem Design, Premium-Bohnen und freundlicher Atmosphäre.",
+      de: "Ein modernes, arbeits- und datefreundliches Spezialitäten-Café mit minimalistischem Design, Premium-Bohnen und friendly Atmosphäre.",
       pl: "Nowoczesna kawiarnia specialty o minimalistycznym designie, ogromnym wyborze kaw oraz bardzo przyjaznej i swobodnej atmosferze."
     },
     images: [
       "/images/places/warsaw_coffeedesk_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Coffeedesk+Wilcza+Warsaw",
-    likes: 72,
-    isComingSoon: true
+    likes: 72
   }
 ];

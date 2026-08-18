@@ -173,7 +173,8 @@ export default function PlacesPage() {
             const hasImage = place.images && place.images.length > 0;
             const name = place.name[locale] || place.name.en;
             const description = place.description[locale] || place.description.en;
-            const isComingSoon = place.isComingSoon || place.city === "warsaw";
+            const isWarsaw = place.city === "warsaw";
+            const isComingSoon = place.isComingSoon;
 
             return (
               <motion.div
@@ -196,7 +197,7 @@ export default function PlacesPage() {
                         sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                         className={cn(
                           "h-full w-full object-cover transition-transform duration-500 group-hover:scale-105",
-                          isComingSoon && "grayscale contrast-[1.1] brightness-[0.55]"
+                          (isWarsaw || isComingSoon) && "grayscale contrast-[1.1]"
                         )}
                       />
                     ) : (
@@ -225,7 +226,7 @@ export default function PlacesPage() {
                     )}
                     
                     {/* Premium Badge (Top Left) */}
-                    {place.isPremium && (
+                    {place.isPremium && !isWarsaw && (
                       <div className="absolute top-4 left-4 z-10">
                         <div className="inline-flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white select-none">
                           <svg

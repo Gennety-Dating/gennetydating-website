@@ -7,10 +7,16 @@ import { usePathname } from "next/navigation";
 
 export function FloatingLanguageSwitcher() {
   const pathname = usePathname();
-  const isAppPage = pathname === "/app" || pathname === "/join" || pathname?.startsWith("/app/") || pathname?.startsWith("/join/");
+  const isHiddenPage =
+    pathname === "/app" ||
+    pathname === "/join" ||
+    pathname === "/merch" ||
+    pathname?.startsWith("/app/") ||
+    pathname?.startsWith("/join/") ||
+    pathname?.startsWith("/merch/");
   const { hasConsented, isLoading } = useCookieConsent();
 
-  if (isLoading || isAppPage) return null;
+  if (isLoading || isHiddenPage) return null;
 
   return (
     <div className={cn(

@@ -61,4 +61,9 @@ export const testimonials: Testimonial[] = [
     school: "USC",
     quote: "Gennety matched us based on our actual vibe instead of just photos. Couldn't be happier!",
   },
+  {
+    name: "Chloe",
+    school: "NYU",
+    quote: "Felt like a scene straight out of a movie. We ended up talking until the place closed.",
+  },
 ];

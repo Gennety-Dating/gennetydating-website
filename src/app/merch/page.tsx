@@ -301,7 +301,7 @@ const merchItems: MerchItem[] = [
         label: viewBackTexts,
       },
       {
-        src: "/images/merch/tshirt-white-front.png",
+        src: "/images/merch/white-parents-fan-front.png",
         label: viewFrontTexts,
       },
     ],
