@@ -5,4 +5,5 @@ export const INSTAGRAM_URL = "https://www.instagram.com/gennety.ai/";
 export const TIKTOK_URL = "https://www.tiktok.com/@gennety.ai?is_from_webapp=1&sender_device=pc";
 export const CONTACT_EMAIL = "dating@gennety.com";
 export const TELEGRAM_SUPPORT_URL = "https://t.me/gennetysupport";
+export const CAREERS_URL = "https://sverkaus.com/#careers";
 

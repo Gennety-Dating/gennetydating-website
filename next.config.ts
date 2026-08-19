@@ -16,6 +16,15 @@ const contentSecurityPolicy = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/careers",
+        destination: "https://sverkaus.com/#careers",
+        permanent: false,
+      },
+    ];
+  },
   async headers() {
     return [
       {

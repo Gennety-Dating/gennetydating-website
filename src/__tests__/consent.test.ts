@@ -45,9 +45,38 @@ describe("IP hashing", () => {
   });
 });
 
+class LocalStorageMock implements Storage {
+  private store: Record<string, string> = {};
+  get length() {
+    return Object.keys(this.store).length;
+  }
+  clear() {
+    this.store = {};
+  }
+  getItem(key: string) {
+    return this.store[key] ?? null;
+  }
+  key(index: number) {
+    return Object.keys(this.store)[index] ?? null;
+  }
+  removeItem(key: string) {
+    delete this.store[key];
+  }
+  setItem(key: string, value: string) {
+    this.store[key] = String(value);
+  }
+}
+
+const mockStorage = new LocalStorageMock();
+Object.defineProperty(window, "localStorage", {
+  value: mockStorage,
+  configurable: true,
+  writable: true,
+});
+
 describe("cookie consent UX cache", () => {
   beforeEach(() => {
-    localStorage.clear();
+    window.localStorage.clear();
     vi.restoreAllMocks();
   });
 
@@ -95,7 +124,7 @@ describe("cookie consent UX cache", () => {
   });
 
   it("returns null for the legacy pre-Neon cache shape", () => {
-    localStorage.setItem(
+    window.localStorage.setItem(
       LS_CONSENT_KEY,
       JSON.stringify({
         version: POLICY_VERSION,
@@ -110,7 +139,7 @@ describe("cookie consent UX cache", () => {
 
 describe("cookie consent sync", () => {
   beforeEach(() => {
-    localStorage.clear();
+    window.localStorage.clear();
     vi.restoreAllMocks();
   });
 
