@@ -21,8 +21,8 @@ export function Navbar() {
     <nav
       aria-label="Main navigation"
       className={cn(
-        "site-navbar fixed top-0 inset-x-0 w-full z-40 flex items-center justify-between px-4 pt-[calc(env(safe-area-inset-top,0px)+6px)] pb-2 md:px-10 md:pt-[calc(env(safe-area-inset-top,0px)+16px)] md:pb-4 transition-all duration-300",
-        "bg-[#1A1A1A]/85 backdrop-blur-md md:bg-transparent md:backdrop-blur-none text-white"
+        "site-navbar fixed w-full z-40 flex items-center justify-between px-4 py-3 md:top-0 md:px-10 md:pt-[calc(env(safe-area-inset-top)+16px)] md:pb-4 transition-all duration-300",
+        "md:bg-transparent md:backdrop-blur-none text-white"
       )}
     >
       <div className="flex items-center translate-x-[7px]">
@@ -37,7 +37,7 @@ export function Navbar() {
             width={145}
             height={36}
             priority
-            className="h-[25px] md:h-[31.5px] w-auto object-contain select-none"
+            className="h-[27px] md:h-[31.5px] w-auto object-contain select-none"
           />
         </Link>
       </div>
@@ -50,7 +50,7 @@ export function Navbar() {
           href="/join"
           variant="ghost"
           size="sm"
-          className="px-3.5 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm md:px-4 md:py-2 md:text-sm transition-all duration-300 text-white border-white hover:bg-white/10"
+          className="px-5 py-2.5 text-sm md:px-4 md:py-2 md:text-sm transition-all duration-300 text-white border-white hover:bg-white/10"
         >
           {t("nav.login")}
         </Button>
@@ -59,7 +59,7 @@ export function Navbar() {
           variant="solid"
           size="sm"
           className={cn(
-            "px-3.5 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm md:px-4 md:py-2 md:text-sm transition-all duration-300",
+            "px-5 py-2.5 text-sm md:px-4 md:py-2 md:text-sm transition-all duration-300",
             isWhiteHeaderPage
               ? "bg-white text-black hover:bg-white/90 hover:text-black shadow-none hover:shadow-none"
               : ""

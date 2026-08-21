@@ -93,6 +93,10 @@ export default function RootLayout({
           <CookieBanner />
           <FloatingLanguageSwitcher />
         </LanguageProvider>
+        {/* Opaque mobile browser zones. Their heights come from iOS itself, so
+            they remain aligned while Safari expands or collapses its controls. */}
+        <div aria-hidden="true" className="ios-status-bar-backdrop" />
+        <div aria-hidden="true" className="ios-browser-bar-backdrop" />
       </body>
     </html>
   );
