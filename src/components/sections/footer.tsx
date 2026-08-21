@@ -226,8 +226,17 @@ export function Footer({
               </svg>
             </FooterIconLink>
 
-            {/* Subtle Divider */}
-            <div className={cn("h-4 w-px mx-1 sm:mx-1.5", isDark ? "bg-white/15" : "bg-black/15")} aria-hidden="true" />
+          </div>
+
+          {/* Legal & Copyright Row */}
+          <div className="flex flex-wrap items-center justify-between md:justify-end gap-x-5 gap-y-3 w-full md:w-auto">
+            {/* Copyright */}
+            <p className={cn(
+              "text-xs md:text-sm transition-colors duration-300 shrink-0",
+              theme === "dark" ? "text-gray-400" : "text-gray-600"
+            )}>
+              &copy; {new Date().getFullYear()} {t("footer.rights")}
+            </p>
 
             {/* Legal Dropdown Button */}
             <div className="relative" ref={legalRef}>
@@ -253,7 +262,7 @@ export function Footer({
               {legalOpen && (
                 <div 
                   className={cn(
-                    "absolute bottom-full mb-3 left-0 z-50 min-w-[215px] p-1.5 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] border backdrop-blur-2xl animate-[fadeIn_0.15s_ease-out]",
+                    "absolute bottom-full mb-2.5 right-0 z-50 min-w-[215px] p-1.5 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] border backdrop-blur-2xl animate-[fadeIn_0.15s_ease-out]",
                     isDark
                       ? "bg-[#0d0d0d]/95 border-white/15 text-white"
                       : "bg-[#f9f9f9]/95 border-black/15 text-black shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
@@ -310,14 +319,6 @@ export function Footer({
               )}
             </div>
           </div>
-
-          {/* Copyright */}
-          <p className={cn(
-            "text-xs md:text-sm transition-colors duration-300 shrink-0",
-            theme === "dark" ? "text-gray-400" : "text-gray-600"
-          )}>
-            &copy; {new Date().getFullYear()} {t("footer.rights")}
-          </p>
         </div>
       </div>
     </footer>

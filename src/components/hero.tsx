@@ -12,7 +12,7 @@ export function Hero() {
   const { t, locale } = useLanguage();
 
   return (
-    <section className="relative flex flex-col items-center justify-center min-h-screen pt-24 pb-16 px-4 text-center overflow-hidden">
+    <section className="relative flex flex-col items-center justify-center min-h-screen pt-[calc(env(safe-area-inset-top,0px)+64px)] pb-12 sm:pt-24 sm:pb-16 px-4 text-center overflow-hidden">
       {/* Fluttering butterflies animation */}
       {/* <Butterflies /> */}
 
