@@ -214,7 +214,7 @@ export default function PlacesPage() {
                     {/* Premium Badge (Top Left) */}
                     {place.isPremium && !isWarsaw && (
                       <div className="absolute top-4 left-4 z-10">
-                        <div className="inline-flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white select-none border-0 outline-none">
+                        <div className="inline-flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-[#1c1c1e] text-white select-none border-0 outline-none">
                           <svg
                             viewBox="0 0 100 100"
                             className="w-5 h-5 fill-white text-white"
@@ -236,10 +236,10 @@ export default function PlacesPage() {
                         toggleLike(place.id);
                       }}
                       className={cn(
-                        "absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1 rounded-full transition-all duration-300 cursor-pointer select-none backdrop-blur-md active:scale-90 border-0 outline-none focus:outline-none focus-visible:outline-none ring-0",
+                        "absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1 rounded-full transition-[background-color,color,transform,box-shadow] duration-300 cursor-pointer select-none active:scale-90 border-0 outline-none focus:outline-none focus-visible:outline-none ring-0",
                         place.isLikedByUser
                           ? "bg-magenta text-white shadow-lg"
-                          : "bg-black/50 text-gray-300 hover:text-white hover:bg-black/70"
+                          : "bg-[#1c1c1e] text-gray-300 hover:text-white hover:bg-[#252528]"
                       )}
                     >
                       <Heart

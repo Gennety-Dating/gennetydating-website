@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
 import { CONTACT_EMAIL, TIKTOK_URL, TWITTER_URL, INSTAGRAM_URL } from "@/lib/site-config";
 import { useLanguage } from "@/lib/language-context";
 import { useCookieConsent } from "@/hooks/useCookieConsent";
@@ -8,7 +7,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { Shield, ChevronUp, FileText, Cookie, SlidersHorizontal } from "lucide-react";
 
 interface FooterIconProps {
   href: string;
@@ -74,30 +72,12 @@ export function Footer({
   const pathname = usePathname();
   const isMainPage = pathname === "/";
   const displayAppBadges = showAppBadges && pathname !== "/merch";
-
-  const [legalOpen, setLegalOpen] = useState(false);
-  const legalRef = useRef<HTMLDivElement>(null);
-
-  // Close legal popover on click outside
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (legalRef.current && !legalRef.current.contains(event.target as Node)) {
-        setLegalOpen(false);
-      }
-    }
-    if (legalOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [legalOpen]);
-
   const isDark = theme === "dark";
 
   return (
     <footer className="bg-transparent px-6 md:px-10 py-20">
       <div className="max-w-6xl mx-auto">
+        {/* Top Section: Wordmark + App Badges */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 mb-16">
           {/* Large wordmark */}
           <div className="flex items-center">
@@ -164,12 +144,12 @@ export function Footer({
           )}
         </div>
 
-        {/* Bottom Bar: Sleek Icon Dock + Legal Popover & Copyright */}
+        {/* Bottom Bar: Sleek Icon Dock (Left) + Legal Links (Right) */}
         <div className={cn(
           "flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pt-8 border-t transition-colors duration-300",
           theme === "dark" ? "border-white/10" : "border-[#111111]/10"
         )}>
-          {/* Icons & Legal Cluster */}
+          {/* Icons Group */}
           <div className="flex flex-wrap items-center gap-1 sm:gap-1.5">
             {/* Socials Group */}
             <FooterIconLink href={TIKTOK_URL} label="TikTok" isExternal theme={theme}>
@@ -225,100 +205,58 @@ export function Footer({
                 <path d="M12 12v3" />
               </svg>
             </FooterIconLink>
-
           </div>
 
-          {/* Legal & Copyright Row */}
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4 shrink-0">
-            {/* Legal Dropdown Button */}
-            <div className="relative" ref={legalRef}>
-              <button
-                type="button"
-                onClick={() => setLegalOpen((prev) => !prev)}
-                className={cn(
-                  "group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer select-none",
-                  isDark
-                    ? "bg-white/[0.05] hover:bg-white/[0.12] text-gray-300 hover:text-white border border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
-                    : "bg-black/[0.05] hover:bg-black/[0.1] text-gray-700 hover:text-black border border-black/10 shadow-[0_2px_8px_rgba(0,0,0,0.05)]",
-                  legalOpen && (isDark ? "bg-white/[0.15] text-white border-white/25" : "bg-black/[0.15] text-black border-black/25")
-                )}
-                aria-expanded={legalOpen}
-                aria-label="Legal documents menu"
-              >
-                <Shield className="w-3.5 h-3.5 opacity-80" />
-                <span>{t("footer.legal")}</span>
-                <ChevronUp className={cn("w-3.5 h-3.5 transition-transform duration-200 opacity-70", legalOpen ? "rotate-180" : "")} />
-              </button>
-
-              {/* Legal Popover Menu */}
-              {legalOpen && (
-                <div 
-                  className={cn(
-                    "absolute bottom-full mb-2.5 left-0 md:left-auto md:right-0 z-50 min-w-[215px] p-1.5 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] border backdrop-blur-2xl animate-[fadeIn_0.15s_ease-out]",
-                    isDark
-                      ? "bg-[#0d0d0d]/95 border-white/15 text-white"
-                      : "bg-[#f9f9f9]/95 border-black/15 text-black shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
-                  )}
-                >
-                  <Link
-                    href="/terms"
-                    onClick={() => setLegalOpen(false)}
-                    className={cn(
-                      "flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium transition-colors",
-                      isDark ? "text-gray-300 hover:text-white hover:bg-white/10" : "text-gray-700 hover:text-black hover:bg-black/5"
-                    )}
-                  >
-                    <FileText className="w-3.5 h-3.5 opacity-60" />
-                    <span>{t("footer.terms")}</span>
-                  </Link>
-                  <Link
-                    href="/privacy"
-                    onClick={() => setLegalOpen(false)}
-                    className={cn(
-                      "flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium transition-colors",
-                      isDark ? "text-gray-300 hover:text-white hover:bg-white/10" : "text-gray-700 hover:text-black hover:bg-black/5"
-                    )}
-                  >
-                    <Shield className="w-3.5 h-3.5 opacity-60" />
-                    <span>{t("footer.privacy")}</span>
-                  </Link>
-                  <Link
-                    href="/cookies"
-                    onClick={() => setLegalOpen(false)}
-                    className={cn(
-                      "flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium transition-colors",
-                      isDark ? "text-gray-300 hover:text-white hover:bg-white/10" : "text-gray-700 hover:text-black hover:bg-black/5"
-                    )}
-                  >
-                    <Cookie className="w-3.5 h-3.5 opacity-60" />
-                    <span>{t("footer.cookies")}</span>
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setLegalOpen(false);
-                      openPreferences();
-                    }}
-                    className={cn(
-                      "w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium transition-colors text-left cursor-pointer",
-                      isDark ? "text-gray-300 hover:text-white hover:bg-white/10" : "text-gray-700 hover:text-black hover:bg-black/5"
-                    )}
-                  >
-                    <SlidersHorizontal className="w-3.5 h-3.5 opacity-60" />
-                    <span>{t("footer.cookie_preferences")}</span>
-                  </button>
-                </div>
+          {/* Legal Links directly on the right */}
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6 shrink-0">
+            <Link
+              href="/terms"
+              className={cn(
+                "text-xs md:text-sm font-medium hover:underline transition-colors whitespace-nowrap",
+                isDark ? "text-gray-400 hover:text-white" : "text-gray-600 hover:text-black"
               )}
-            </div>
-
-            {/* Copyright */}
-            <p className={cn(
-              "text-xs md:text-sm transition-colors duration-300 shrink-0",
-              theme === "dark" ? "text-gray-400" : "text-gray-600"
-            )}>
-              &copy; {new Date().getFullYear()} {t("footer.rights")}
-            </p>
+            >
+              {t("footer.terms")}
+            </Link>
+            <Link
+              href="/privacy"
+              className={cn(
+                "text-xs md:text-sm font-medium hover:underline transition-colors whitespace-nowrap",
+                isDark ? "text-gray-400 hover:text-white" : "text-gray-600 hover:text-black"
+              )}
+            >
+              {t("footer.privacy")}
+            </Link>
+            <Link
+              href="/cookies"
+              className={cn(
+                "text-xs md:text-sm font-medium hover:underline transition-colors whitespace-nowrap",
+                isDark ? "text-gray-400 hover:text-white" : "text-gray-600 hover:text-black"
+              )}
+            >
+              {t("footer.cookies")}
+            </Link>
+            <button
+              type="button"
+              onClick={openPreferences}
+              className={cn(
+                "text-xs md:text-sm font-medium hover:underline transition-colors whitespace-nowrap cursor-pointer",
+                isDark ? "text-gray-400 hover:text-white" : "text-gray-600 hover:text-black"
+              )}
+            >
+              {t("footer.cookie_preferences")}
+            </button>
           </div>
+        </div>
+
+        {/* Copyright at the very bottom, centered, subtle/almost unnoticeable */}
+        <div className="pt-10 md:pt-12 text-center">
+          <p className={cn(
+            "text-[11px] md:text-xs tracking-wide select-none transition-colors duration-300",
+            theme === "dark" ? "text-white/25" : "text-black/25"
+          )}>
+            &copy; {new Date().getFullYear()} {t("footer.rights")}
+          </p>
         </div>
       </div>
     </footer>

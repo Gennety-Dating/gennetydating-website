@@ -84,7 +84,11 @@ export function Marquee() {
 
         {/* Manifesto button shifted ~25px lower */}
         <div className="flex justify-center mt-20 md:mt-24 relative z-10">
-          <Button variant="outline" size="lg" href="/thesis">
+          <Button
+            variant="outline"
+            href="/thesis"
+            className="min-h-0 py-2.5 px-8 text-base tracking-wide transition-colors"
+          >
             {t("marquee.manifesto")}
           </Button>
         </div>

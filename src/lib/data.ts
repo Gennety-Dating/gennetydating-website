@@ -271,7 +271,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_frou_frou_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Frou+Frou+Kyiv",
-    likes: 81,
+    likes: 53,
     isPremium: true
   },
   {
@@ -312,7 +312,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_mario_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Mario+Restaurant+Kyiv",
-    likes: 12,
+    likes: 7,
     isPremium: true
   },
   {
@@ -344,7 +344,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_sarto_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Sarto+Restaurant+Kyiv",
-    likes: 31,
+    likes: 20,
     isPremium: true
   },
   {
@@ -376,7 +376,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_tsum_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=TSUM+Kyiv",
-    likes: 103,
+    likes: 102,
     isPremium: true
   },
   {
@@ -408,7 +408,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_yistetyka_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Yistetyka+Kyiv",
-    likes: 23,
+    likes: 15,
     isPremium: true
   },
   {
@@ -441,7 +441,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_marco_2.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Cafe+Marko+Sophia+Hotel+Kyiv",
-    likes: 47,
+    likes: 27,
     isPremium: true
   },
   {
@@ -473,7 +473,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_porto_maltese_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Porto+Maltese+Kyiv",
-    likes: 23,
+    likes: 13,
     isPremium: true
   },
   {
@@ -506,7 +506,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_milk_bar_2.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Milk+Bar+Shota+Rustaveli+Kyiv",
-    likes: 76
+    likes: 50
   },
   {
     id: "kyiv-mimosa",
@@ -537,7 +537,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_mimosa_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Mimosa+Brooklyn+Pizza+Kyiv",
-    likes: 78
+    likes: 52
   },
   {
     id: "kyiv-volodymyr-hill",
@@ -568,7 +568,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_volodymyr_hill_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Volodymyr+Hill+Kyiv",
-    likes: 62
+    likes: 36
   },
   {
     id: "kyiv-idealist",
@@ -599,7 +599,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_idealist_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Idealist+Coffee+Kyiv",
-    likes: 71
+    likes: 47
   },
   {
     id: "kyiv-honey",
@@ -630,7 +630,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_honey_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Honey+Kyiv",
-    likes: 69
+    likes: 43
   },
   {
     id: "kyiv-zavertailo",
@@ -661,7 +661,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_zavertailo_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Zavertailo+Kyiv",
-    likes: 71
+    likes: 46
   },
   {
     id: "kyiv-lviv-croissants",
@@ -692,7 +692,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_lviv_croissants_main.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Lviv+Croissants+Kyiv",
-    likes: 63
+    likes: 35
   },
   {
     id: "kyiv-natalka-park",
@@ -723,7 +723,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_natalka_park_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Natalka+Park+Kyiv",
-    likes: 64
+    likes: 37
   },
   {
     id: "kyiv-paul",
@@ -754,7 +754,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_paul_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Paul+Bakery+Kyiv",
-    likes: 63
+    likes: 34
   },
   {
     id: "kyiv-zigzag",
@@ -785,7 +785,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_zigzag_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Zigzag+Kyiv",
-    likes: 69
+    likes: 42
   },
   {
     id: "kyiv-kitsunya",
@@ -816,7 +816,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_kitsunya_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Kitsunya+Bistro+Velyka+Zhytomyrska+Kyiv",
-    likes: 56
+    likes: 31
   },
   {
     id: "kyiv-china-hi",
@@ -847,7 +847,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_china_hi_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Chinese+Hi+Kyiv",
-    likes: 73
+    likes: 48
   },
   {
     id: "kyiv-landscape-alley",
@@ -878,7 +878,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_landscape_alley_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Landscape+Alley+Kyiv",
-    likes: 57
+    likes: 32
   },
   {
     id: "kyiv-sens",
@@ -909,7 +909,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_sens_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Sens+Bookstore+Kyiv",
-    likes: 75
+    likes: 49
   },
   {
     id: "kyiv-coffee-records",
@@ -940,7 +940,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_coffee_records_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Coffee+Records+Podil+Kyiv",
-    likes: 50
+    likes: 29
   },
   {
     id: "kyiv-remi",
@@ -971,7 +971,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_remi_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Remi+Cafe+Kyiv",
-    likes: 51
+    likes: 28
   },
   {
     id: "kyiv-hryshko-botanic",
@@ -1002,7 +1002,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_hryshko_botanic_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Hryshko+National+Botanical+Garden+Kyiv",
-    likes: 47
+    likes: 26
   },
   {
     id: "kyiv-foodmarket",
@@ -1033,7 +1033,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_foodmarket_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Kyiv+Food+Market+Kyiv",
-    likes: 197
+    likes: 195
   },
   {
     id: "kyiv-franyk",
@@ -1064,7 +1064,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_franyk_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Franyk+Kyiv",
-    likes: 38
+    likes: 23
   },
   {
     id: "kyiv-loved-uncle",
@@ -1095,7 +1095,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_loved_uncle_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Lyubimyy+Dyadya+Kyiv",
-    likes: 65,
+    likes: 38,
     isPremium: true
   },
   {
@@ -1127,7 +1127,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_shevchenko_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Shevchenko+Park+Kyiv",
-    likes: 67
+    likes: 40
   },
   {
     id: "kyiv-fish-pussycat",
@@ -1158,7 +1158,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_fish_pussycat_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Fish+and+Pussycat+Sushi+Kyiv",
-    likes: 70,
+    likes: 45,
     isPremium: true
   },
   {
@@ -1190,7 +1190,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_thai_hi_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Thai+Hi+Kyiv",
-    likes: 10
+    likes: 5
   },
   {
     id: "kyiv-japanese-hi",
@@ -1221,7 +1221,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_japanese_hi_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Japanese+Hi+Kyiv",
-    likes: 43
+    likes: 25
   },
   {
     id: "kyiv-suit-13",
@@ -1252,7 +1252,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_suit_13_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Suit+13+Kyiv",
-    likes: 69
+    likes: 41
   },
   {
     id: "kyiv-vero-vero",
@@ -1283,7 +1283,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_vero_vero_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Vero+Vero+Kyiv",
-    likes: 70,
+    likes: 44,
     isPremium: true
   },
   {
@@ -1315,7 +1315,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_foodspot_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Foodspot+Kyiv",
-    likes: 83
+    likes: 55
   },
   {
     id: "kyiv-spelta",
@@ -1346,7 +1346,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_spelta_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Spelta+Kyiv+Yaroslavska",
-    likes: 59
+    likes: 33
   },
   {
     id: "kyiv-italianska-redaktsiia",
@@ -1377,7 +1377,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_italianska_redaktsiia_1.png"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Italianska+Redaktsiia+Kyiv",
-    likes: 77,
+    likes: 51,
     isPremium: true
   },
   {
@@ -1409,7 +1409,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_catch_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Catch+Seafood+Restaurant+Kyiv+Volodymyrska+12",
-    likes: 67,
+    likes: 39,
     isPremium: true
   },
   {
@@ -1441,7 +1441,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_citronelle_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Citronelle+Kyiv+Bohdana+Khmelnytskoho+23",
-    likes: 11,
+    likes: 6,
     isPremium: true
   },
   {
@@ -1473,7 +1473,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_nam_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=N%C4%82M+Modern+Vietnamese+Cuisine+Kyiv",
-    likes: 82,
+    likes: 54,
     isPremium: true
   },
   {
@@ -1505,7 +1505,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_bao_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=BAO+Modern+Chinese+Cuisine+Kyiv+Mechnykova+14/1",
-    likes: 89,
+    likes: 58,
     isPremium: true
   },
   {
@@ -1537,7 +1537,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_lucky_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Lucky+Restaurant+Vinoteque+Mechnykova+9+Kyiv",
-    likes: 84,
+    likes: 56,
     isPremium: true
   },
   {
@@ -1569,7 +1569,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_11mirrors_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=11+Mirrors+Rooftop+Restaurant+%26+Bar+Kyiv",
-    likes: 91,
+    likes: 59,
     isPremium: true
   },
   {
@@ -1601,7 +1601,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_bassano_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bassano+Ristorante+Velyka+Vasylkivska+100+Kyiv",
-    likes: 19,
+    likes: 10,
     isPremium: true
   },
   {
@@ -1633,7 +1633,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_biggoli_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Biggoli+Restaurant+Climb+Klovsky+Descent+7A+Kyiv",
-    likes: 7,
+    likes: 4,
     isPremium: true
   },
   {
@@ -1674,7 +1674,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_la_veranda_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Veranda+Bogomoltsa+Kyiv",
-    likes: 3,
+    likes: 2,
     isPremium: true
   },
   {
@@ -1716,7 +1716,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_simona_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Simona+Kyiv",
-    likes: 55,
+    likes: 30,
     isPremium: true
   },
   {
@@ -1758,7 +1758,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_elevato_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Elevato+Restaurant+Kyiv",
-    likes: 85,
+    likes: 57,
     isPremium: true
   },
   {
@@ -1800,7 +1800,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/kyiv_fandom_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Fandom+Coffee+Bar+Volodymyrska+Kyiv",
-    likes: 20,
+    likes: 11,
     isPremium: true
   },
 
@@ -1835,7 +1835,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_charlotte_2.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Charlotte+Plac+Zbawiciela+Warsaw",
-    likes: 80
+    likes: 79
   },
   {
     id: "warsaw-koszyki",
@@ -1867,7 +1867,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_koszyki_2.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Hala+Koszyki+Warsaw",
-    likes: 75
+    likes: 60
   },
   {
     id: "warsaw-lazienki",
@@ -1899,7 +1899,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_lazienki_2.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Lazienki+Krolewskie+Warsaw",
-    likes: 70
+    likes: 43
   },
   {
     id: "warsaw-bibenda",
@@ -1930,7 +1930,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_bibenda_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bibenda+Nowogrodzka+Warsaw",
-    likes: 79
+    likes: 75
   },
   {
     id: "warsaw-bulke-przez-bibulke",
@@ -1961,7 +1961,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_bulke_przez_bibulke_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bulke+przez+Bibulke+Zurawia+Warsaw",
-    likes: 76
+    likes: 67
   },
   {
     id: "warsaw-coffeedesk",
@@ -1992,6 +1992,6 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_coffeedesk_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Coffeedesk+Wilcza+Warsaw",
-    likes: 72
+    likes: 51
   }
 ];

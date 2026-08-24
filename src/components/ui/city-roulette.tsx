@@ -200,22 +200,33 @@ export function CityRoulette({
   // Pointer / Touch drag handling
   const handlePointerDown = (e: React.PointerEvent) => {
     isInteractingRef.current = true;
-    isDraggingRef.current = true;
+    isDraggingRef.current = false;
     startYRef.current = e.clientY;
     dragStartPosRef.current = positionRef.current;
     velocityRef.current = 0;
 
     const now = performance.now();
     dragPointsRef.current = [{ y: e.clientY, time: now }];
-
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   };
 
   const handlePointerMove = (e: React.PointerEvent) => {
-    if (!isDraggingRef.current) return;
     const deltaY = e.clientY - startYRef.current;
-    const newPos = dragStartPosRef.current - deltaY / ITEM_HEIGHT;
 
+    // Only engage drag after passing the small 4px threshold
+    if (!isDraggingRef.current) {
+      if (Math.abs(deltaY) > 4) {
+        isDraggingRef.current = true;
+        try {
+          (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+        } catch {
+          // ignore if capture fails
+        }
+      } else {
+        return;
+      }
+    }
+
+    const newPos = dragStartPosRef.current - deltaY / ITEM_HEIGHT;
     positionRef.current = newPos;
     setPosition(newPos);
     checkCityChange(newPos);
@@ -227,31 +238,51 @@ export function CityRoulette({
     );
   };
 
-  const handlePointerUp = () => {
-    if (!isDraggingRef.current) return;
-    isDraggingRef.current = false;
-
-    // Compute release velocity from recent drag points
-    const pts = dragPointsRef.current;
-    if (pts.length >= 2) {
-      const first = pts[0];
-      const last = pts[pts.length - 1];
-      const dt = (last.time - first.time) / 1000;
-      if (dt > 0.008) {
-        const dy = last.y - first.y;
-        const velPxPerSec = -dy / dt;
-        const velSlotsPerSec = velPxPerSec / ITEM_HEIGHT;
-        velocityRef.current = Math.max(-45, Math.min(45, velSlotsPerSec * 0.85));
+  const handlePointerUp = (e: React.PointerEvent) => {
+    if (isDraggingRef.current) {
+      isDraggingRef.current = false;
+      try {
+        if ((e.currentTarget as HTMLElement).hasPointerCapture(e.pointerId)) {
+          (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+        }
+      } catch {
+        // ignore
       }
-    }
 
-    runPhysicsLoop();
+      // Compute release velocity from recent drag points
+      const pts = dragPointsRef.current;
+      if (pts.length >= 2) {
+        const first = pts[0];
+        const last = pts[pts.length - 1];
+        const dt = (last.time - first.time) / 1000;
+        if (dt > 0.008) {
+          const dy = last.y - first.y;
+          const velPxPerSec = -dy / dt;
+          const velSlotsPerSec = velPxPerSec / ITEM_HEIGHT;
+          velocityRef.current = Math.max(-45, Math.min(45, velSlotsPerSec * 0.85));
+        }
+      }
+
+      runPhysicsLoop();
+    } else {
+      isInteractingRef.current = false;
+    }
   };
 
-  const handlePointerCancel = () => {
-    if (!isDraggingRef.current) return;
-    isDraggingRef.current = false;
-    runPhysicsLoop();
+  const handlePointerCancel = (e: React.PointerEvent) => {
+    if (isDraggingRef.current) {
+      isDraggingRef.current = false;
+      try {
+        if ((e.currentTarget as HTMLElement).hasPointerCapture(e.pointerId)) {
+          (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+        }
+      } catch {
+        // ignore
+      }
+      runPhysicsLoop();
+    } else {
+      isInteractingRef.current = false;
+    }
   };
 
   // Keyboard controls (Arrow Up / Down)
@@ -294,7 +325,7 @@ export function CityRoulette({
           WebkitMaskImage:
             "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 10%, black 28%, black 72%, rgba(0,0,0,0.3) 90%, transparent 100%)",
         }}
-        className="relative w-full max-w-sm h-[170px] flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing touch-none bg-transparent"
+        className="relative w-44 md:w-48 h-[170px] flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing touch-none bg-transparent"
       >
         {/* 3D Cylinder Container */}
         <div className="relative w-full h-full flex items-center justify-center preserve-3d pointer-events-auto">
@@ -327,12 +358,10 @@ export function CityRoulette({
               <div
                 key={`${slotIndex}-${actualIndex}`}
                 onClick={(e) => {
-                  if (absDist > 0.3) {
-                    e.stopPropagation();
-                    springToSlot(slotIndex);
-                  }
+                  e.stopPropagation();
+                  springToSlot(slotIndex);
                 }}
-                className="absolute flex items-center justify-center cursor-pointer will-change-transform"
+                className="absolute flex items-center justify-center cursor-pointer will-change-transform py-1 px-2"
                 style={{
                   transform: `translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) scale(${scale})`,
                   opacity,
@@ -342,13 +371,15 @@ export function CityRoulette({
               >
                 <div
                   className={cn(
-                    "px-7 py-2 md:px-8 md:py-2 rounded-full text-xs md:text-sm tracking-wider uppercase font-bold transition-[background-color,color,box-shadow,border-color] duration-150 select-none whitespace-nowrap",
+                    "h-8 md:h-9 px-5 md:px-6 inline-flex items-center justify-center rounded-full text-xs md:text-sm tracking-wider uppercase font-bold transition-all duration-150 select-none whitespace-nowrap leading-none active:scale-95",
                     isCenter
-                      ? "bg-white text-midnight shadow-[0_4px_25px_rgba(255,255,255,0.28)] ring-1 ring-white/70"
-                      : "bg-white/[0.04] text-white/40 hover:text-white/80 hover:bg-white/[0.09] backdrop-blur-sm border border-transparent"
+                      ? "bg-white text-midnight shadow-[0_4px_25px_rgba(255,255,255,0.28)] ring-1 ring-white/70 cursor-default"
+                      : "bg-white/[0.05] text-white/50 hover:text-white hover:bg-white/[0.14] hover:border-white/20 backdrop-blur-sm border border-transparent cursor-pointer"
                   )}
                 >
-                  {cityName}
+                  <span className="inline-block translate-y-[0.5px] md:translate-y-[1px] leading-none select-none">
+                    {cityName}
+                  </span>
                 </div>
               </div>
             );
