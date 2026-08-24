@@ -228,8 +228,8 @@ export function Footer({
 
           </div>
 
-          {/* Legal & Copyright Column */}
-          <div className="flex flex-col items-start md:items-end gap-2.5">
+          {/* Legal & Copyright Row */}
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 shrink-0">
             {/* Legal Dropdown Button */}
             <div className="relative" ref={legalRef}>
               <button
