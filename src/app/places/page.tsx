@@ -113,19 +113,19 @@ export default function PlacesPage() {
         {/* Back Link */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-12 self-start group text-sm cursor-pointer"
+          className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-8 self-start group text-sm cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           <span>{backText}</span>
         </Link>
 
         {/* Header Section */}
-        <div className="text-center mb-16 relative">
+        <div className="text-center mb-6 md:mb-8 relative">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-magenta/10 rounded-full blur-3xl opacity-50 pointer-events-none" />
 
-          <h1 className="font-sans font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6 lowercase">
+          <h1 className="font-sans font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight mb-4 lowercase">
             {t("places.title.pre")}{" "}
-            <span className="inline-flex items-center justify-center text-center leading-none bg-white text-midnight px-5 py-2.5 rounded-full font-script text-3xl md:text-4xl lg:text-5xl select-none align-middle md:ml-2">
+            <span className="inline-flex items-center justify-center text-center leading-none bg-white text-midnight px-5 py-2 rounded-full font-script text-3xl md:text-4xl lg:text-5xl select-none align-middle md:ml-2">
               {t("places.title.highlight")}
             </span>
           </h1>
@@ -136,7 +136,7 @@ export default function PlacesPage() {
         </div>
 
         {/* City Drum Roulette */}
-        <div className="mb-12">
+        <div className="mb-6 md:mb-8">
           <CityRoulette
             selectedCityId={selectedCity}
             onCityChange={setSelectedCity}
