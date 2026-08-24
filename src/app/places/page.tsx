@@ -8,6 +8,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/sections/footer";
 import { useLanguage } from "@/lib/language-context";
 import { datePlaces } from "@/lib/data";
+import { CityRoulette } from "@/components/ui/city-roulette";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
@@ -23,17 +24,6 @@ const backTexts = {
   es: "Volver al inicio",
 };
 
-const cityNames = {
-  en: { kyiv: "Kyiv", warsaw: "Warsaw" },
-  uk: { kyiv: "Київ", warsaw: "Варшава" },
-  ru: { kyiv: "Киев", warsaw: "Варшава" },
-  de: { kyiv: "Kiew", warsaw: "Warschau" },
-  pl: { kyiv: "Kijów", warsaw: "Warszawa" },
-  fr: { kyiv: "Kyiv", warsaw: "Varsovie" },
-  it: { kyiv: "Kyiv", warsaw: "Varsavia" },
-  es: { kyiv: "Kyiv", warsaw: "Varsovia" },
-};
-
 const mapsButtonTexts = {
   en: "Open in Maps",
   uk: "Відкрити на карті",
@@ -47,7 +37,7 @@ const mapsButtonTexts = {
 
 export default function PlacesPage() {
   const { t, locale } = useLanguage();
-  const [selectedCity, setSelectedCity] = useState<"kyiv" | "warsaw">("kyiv");
+  const [selectedCity, setSelectedCity] = useState<string>("kyiv");
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -145,26 +135,12 @@ export default function PlacesPage() {
           </p>
         </div>
 
-        {/* City Filter Switcher */}
-        <div className="flex justify-center gap-4 mb-12">
-          {(["kyiv", "warsaw"] as const).map((city) => {
-            const isActive = selectedCity === city;
-            const name = cityNames[locale]?.[city] || cityNames.en[city];
-            return (
-              <button
-                key={city}
-                onClick={() => setSelectedCity(city)}
-                className={cn(
-                  "px-6 py-2.5 rounded-full text-xs md:text-sm font-bold tracking-wider transition-all duration-300 cursor-pointer uppercase",
-                  isActive
-                    ? "bg-white text-midnight shadow-lg"
-                    : "bg-white/[0.03] text-gray-400 hover:text-white hover:bg-white/[0.08]"
-                )}
-              >
-                {name}
-              </button>
-            );
-          })}
+        {/* City Drum Roulette */}
+        <div className="mb-12">
+          <CityRoulette
+            selectedCityId={selectedCity}
+            onCityChange={setSelectedCity}
+          />
         </div>
 
         {/* Places Grid */}
@@ -324,6 +300,24 @@ export default function PlacesPage() {
                 layout: { type: "spring", stiffness: 350, damping: 30, mass: 0.8 },
               }}
               className="flex items-center justify-center min-h-[350px] rounded-2xl border border-dashed border-white/10 bg-white/[0.01] p-6 text-center select-none"
+            >
+              <span className="text-white/30 text-sm font-sans font-light tracking-wider">
+                More places soon
+              </span>
+            </motion.div>
+          )}
+
+          {filteredPlaces.length === 0 && (
+            <motion.div
+              layout
+              key={`${selectedCity}-placeholder`}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.4,
+                layout: { type: "spring", stiffness: 350, damping: 30, mass: 0.8 },
+              }}
+              className="col-span-1 md:col-span-2 lg:col-span-3 flex items-center justify-center min-h-[350px] rounded-2xl border border-dashed border-white/10 bg-white/[0.01] p-6 text-center select-none"
             >
               <span className="text-white/30 text-sm font-sans font-light tracking-wider">
                 More places soon
