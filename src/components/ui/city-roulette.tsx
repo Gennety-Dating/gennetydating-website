@@ -11,9 +11,9 @@ interface CityRouletteProps {
   className?: string;
 }
 
-const ITEM_HEIGHT = 34; // Vertical spacing base in px
-const RADIUS = 100; // 3D cylinder radius
-const ANGLE_STEP = 18; // Degrees per item slot
+const ITEM_HEIGHT = 38; // Vertical spacing base in px
+const RADIUS = 115; // 3D cylinder radius
+const ANGLE_STEP = 20; // Degrees per item slot
 const FRICTION = 0.93; // Velocity decay per frame at 60fps
 const SPRING_STIFFNESS = 190;
 const SPRING_DAMPING = 24;
@@ -294,7 +294,7 @@ export function CityRoulette({
           WebkitMaskImage:
             "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 10%, black 28%, black 72%, rgba(0,0,0,0.3) 90%, transparent 100%)",
         }}
-        className="relative w-full max-w-sm h-[150px] flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing touch-none bg-transparent"
+        className="relative w-full max-w-sm h-[170px] flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing touch-none bg-transparent"
       >
         {/* 3D Cylinder Container */}
         <div className="relative w-full h-full flex items-center justify-center preserve-3d pointer-events-auto">
@@ -321,7 +321,7 @@ export function CityRoulette({
             const isCenter = absDist < 0.45;
             const scale = Math.max(0.76, 1.05 - absDist * 0.08);
             const opacity = Math.max(0, Math.cos(angleRad) ** 2.2);
-            const zIndex = Math.round(100 - absDist * 15);
+            const zIndex = Math.round(100 - absDist * 10);
 
             return (
               <div
@@ -342,10 +342,10 @@ export function CityRoulette({
               >
                 <div
                   className={cn(
-                    "px-6 py-2 md:px-7 md:py-2 rounded-full text-xs md:text-sm tracking-wider uppercase font-bold transition-[background-color,color,box-shadow,border-color] duration-150 select-none whitespace-nowrap",
+                    "px-7 py-2 md:px-8 md:py-2 rounded-full text-xs md:text-sm tracking-wider uppercase font-bold transition-[background-color,color,box-shadow,border-color] duration-150 select-none whitespace-nowrap",
                     isCenter
                       ? "bg-white text-midnight shadow-[0_4px_25px_rgba(255,255,255,0.28)] ring-1 ring-white/70"
-                      : "bg-[#161619] text-white/50 hover:text-white/90 hover:bg-[#222226] border border-white/[0.08] shadow-[0_2px_10px_rgba(0,0,0,0.5)]"
+                      : "bg-white/[0.04] text-white/40 hover:text-white/80 hover:bg-white/[0.09] backdrop-blur-sm border border-transparent"
                   )}
                 >
                   {cityName}
