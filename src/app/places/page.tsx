@@ -35,6 +35,95 @@ const mapsButtonTexts = {
   es: "Abrir en Maps",
 };
 
+// 4 Minimalist Map Icon Variants for Live Comparison
+function MapNavIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M3.8 11.3a1 1 0 0 1 .4-1.2L19.2 3.6a1 1 0 0 1 1.2 1.2L13.9 19.8a1 1 0 0 1-1.2.4l-3-1.5a1 1 0 0 0-.5-.1L3.8 11.3Z" />
+      <path d="M10.2 13.8 15 9" />
+    </svg>
+  );
+}
+
+function MapPinIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 21.5c-3.5-3.8-7-8.2-7-12a7 7 0 1 1 14 0c0 3.8-3.5 8.2-7 12Z" />
+      <circle cx="12" cy="9.5" r="2.5" />
+    </svg>
+  );
+}
+
+function MapFoldIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M9 5 3.5 7.5v12L9 17l6 2.5 5.5-2.5V5L15 7.5 9 5Z" />
+      <path d="M9 5v12M15 7.5v12" />
+    </svg>
+  );
+}
+
+function MapRouteIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="6" cy="18" r="2.5" />
+      <circle cx="18" cy="6" r="2.5" />
+      <path d="M6 15.5V11a5 5 0 0 1 5-5h4.5" />
+    </svg>
+  );
+}
+
+function renderMapIcon(
+  index: number,
+  className = "w-4 h-4 md:w-3.5 md:h-3.5 transition-transform duration-300 group-hover/btn:scale-110"
+) {
+  const variant = Math.abs(index) % 4;
+  switch (variant) {
+    case 0:
+      return <MapNavIcon className={className} />;
+    case 1:
+      return <MapPinIcon className={className} />;
+    case 2:
+      return <MapFoldIcon className={className} />;
+    case 3:
+      return <MapRouteIcon className={className} />;
+    default:
+      return <MapNavIcon className={className} />;
+  }
+}
+
 export default function PlacesPage() {
   const { t, locale } = useLanguage();
   const [selectedCity, setSelectedCity] = useState<string>("kyiv");
@@ -145,7 +234,7 @@ export default function PlacesPage() {
 
         {/* Places Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredPlaces.map((place) => {
+          {filteredPlaces.map((place, index) => {
             const hasImage = place.images && place.images.length > 0;
             const name = place.name[locale] || place.name.en;
             const description = place.description[locale] || place.description.en;
@@ -269,22 +358,10 @@ export default function PlacesPage() {
                     href={place.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] py-3.5 md:py-2 text-sm md:text-xs font-bold text-white transition-all duration-300 cursor-pointer group/btn"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] py-3.5 md:py-2 text-sm md:text-xs font-bold text-white transition-all duration-300 cursor-pointer group/btn"
                   >
                     <span>{mapsButtonTexts[locale] || mapsButtonTexts.en}</span>
-                    <svg
-                      className="w-4 h-4 md:w-3.5 md:h-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                      />
-                    </svg>
+                    {renderMapIcon(index)}
                   </a>
                 </div>
               </motion.div>
