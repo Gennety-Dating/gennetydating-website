@@ -321,6 +321,7 @@ export function CityRoulette({
             const isCenter = absDist < 0.45;
             const scale = Math.max(0.76, 1.05 - absDist * 0.08);
             const opacity = Math.max(0, Math.cos(angleRad) ** 2.2);
+            const zIndex = Math.round(100 - absDist * 15);
 
             return (
               <div
@@ -331,13 +332,11 @@ export function CityRoulette({
                     springToSlot(slotIndex);
                   }
                 }}
-                className={cn(
-                  "absolute flex items-center justify-center cursor-pointer will-change-transform",
-                  isCenter ? "z-20" : "z-10"
-                )}
+                className="absolute flex items-center justify-center cursor-pointer will-change-transform"
                 style={{
                   transform: `translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) scale(${scale})`,
                   opacity,
+                  zIndex,
                   transformStyle: "preserve-3d",
                 }}
               >
@@ -346,7 +345,7 @@ export function CityRoulette({
                     "px-6 py-2 md:px-7 md:py-2 rounded-full text-xs md:text-sm tracking-wider uppercase font-bold transition-[background-color,color,box-shadow,border-color] duration-150 select-none whitespace-nowrap",
                     isCenter
                       ? "bg-white text-midnight shadow-[0_4px_25px_rgba(255,255,255,0.28)] ring-1 ring-white/70"
-                      : "bg-white/[0.03] text-white/40 hover:text-white/80 hover:bg-white/[0.08] backdrop-blur-sm border border-transparent"
+                      : "bg-[#161619] text-white/50 hover:text-white/90 hover:bg-[#222226] border border-white/[0.08] shadow-[0_2px_10px_rgba(0,0,0,0.5)]"
                   )}
                 >
                   {cityName}
