@@ -35,24 +35,6 @@ const mapsButtonTexts = {
   es: "Abrir en Maps",
 };
 
-// Minimalist Solid Geo-Pin icon with cutout
-function MapPinIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"
-      />
-    </svg>
-  );
-}
-
 export default function PlacesPage() {
   const { t, locale } = useLanguage();
   const [selectedCity, setSelectedCity] = useState<string>("kyiv");
@@ -287,10 +269,9 @@ export default function PlacesPage() {
                     href={place.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] py-3.5 md:py-2 text-sm md:text-xs font-bold text-white transition-all duration-300 cursor-pointer group/btn"
+                    className="inline-flex w-full items-center justify-center rounded-xl bg-white/[0.03] hover:bg-white/[0.08] py-3.5 md:py-2 text-sm md:text-xs font-bold text-white transition-all duration-300 cursor-pointer group/btn"
                   >
                     <span>{mapsButtonTexts[locale] || mapsButtonTexts.en}</span>
-                    <MapPinIcon className="w-3.5 h-3.5 md:w-3 md:h-3 transition-transform duration-300 group-hover/btn:scale-110 opacity-90 group-hover/btn:opacity-100 flex-shrink-0" />
                   </a>
                 </div>
               </motion.div>
