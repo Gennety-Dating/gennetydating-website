@@ -35,93 +35,22 @@ const mapsButtonTexts = {
   es: "Abrir en Maps",
 };
 
-// 4 Minimalist Map Icon Variants for Live Comparison
-function MapNavIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M3.8 11.3a1 1 0 0 1 .4-1.2L19.2 3.6a1 1 0 0 1 1.2 1.2L13.9 19.8a1 1 0 0 1-1.2.4l-3-1.5a1 1 0 0 0-.5-.1L3.8 11.3Z" />
-      <path d="M10.2 13.8 15 9" />
-    </svg>
-  );
-}
-
+// Minimalist Solid Geo-Pin icon with cutout
 function MapPinIcon({ className }: { className?: string }) {
   return (
     <svg
       className={className}
       viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      fill="currentColor"
+      aria-hidden="true"
     >
-      <path d="M12 21.5c-3.5-3.8-7-8.2-7-12a7 7 0 1 1 14 0c0 3.8-3.5 8.2-7 12Z" />
-      <circle cx="12" cy="9.5" r="2.5" />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"
+      />
     </svg>
   );
-}
-
-function MapFoldIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M9 5 3.5 7.5v12L9 17l6 2.5 5.5-2.5V5L15 7.5 9 5Z" />
-      <path d="M9 5v12M15 7.5v12" />
-    </svg>
-  );
-}
-
-function MapRouteIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="6" cy="18" r="2.5" />
-      <circle cx="18" cy="6" r="2.5" />
-      <path d="M6 15.5V11a5 5 0 0 1 5-5h4.5" />
-    </svg>
-  );
-}
-
-function renderMapIcon(
-  index: number,
-  className = "w-4 h-4 md:w-3.5 md:h-3.5 transition-transform duration-300 group-hover/btn:scale-110"
-) {
-  const variant = Math.abs(index) % 4;
-  switch (variant) {
-    case 0:
-      return <MapNavIcon className={className} />;
-    case 1:
-      return <MapPinIcon className={className} />;
-    case 2:
-      return <MapFoldIcon className={className} />;
-    case 3:
-      return <MapRouteIcon className={className} />;
-    default:
-      return <MapNavIcon className={className} />;
-  }
 }
 
 export default function PlacesPage() {
@@ -358,10 +287,10 @@ export default function PlacesPage() {
                     href={place.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] py-3.5 md:py-2 text-sm md:text-xs font-bold text-white transition-all duration-300 cursor-pointer group/btn"
+                    className="inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] py-3.5 md:py-2 text-sm md:text-xs font-bold text-white transition-all duration-300 cursor-pointer group/btn"
                   >
                     <span>{mapsButtonTexts[locale] || mapsButtonTexts.en}</span>
-                    {renderMapIcon(index)}
+                    <MapPinIcon className="w-3.5 h-3.5 md:w-3 md:h-3 transition-transform duration-300 group-hover/btn:scale-110 opacity-90 group-hover/btn:opacity-100 flex-shrink-0" />
                   </a>
                 </div>
               </motion.div>
