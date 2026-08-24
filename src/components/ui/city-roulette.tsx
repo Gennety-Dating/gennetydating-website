@@ -296,9 +296,6 @@ export function CityRoulette({
         }}
         className="relative w-full max-w-sm h-[210px] flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing touch-none bg-transparent"
       >
-        {/* Subtle center focus background guide */}
-        <div className="absolute w-56 md:w-64 h-12 rounded-full bg-white/[0.02] border border-white/[0.09] shadow-[0_0_25px_rgba(255,255,255,0.03)] pointer-events-none z-0" />
-
         {/* 3D Cylinder Container */}
         <div className="relative w-full h-full flex items-center justify-center preserve-3d pointer-events-auto">
           {visibleSlotOffsets.map((offset) => {
