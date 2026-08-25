@@ -277,37 +277,21 @@ export default function PlacesPage() {
               </motion.div>
             );
           })}
-          {selectedCity === "warsaw" && (
-            <motion.div
-              layout
-              key="warsaw-placeholder"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.4,
-                layout: { type: "spring", stiffness: 350, damping: 30, mass: 0.8 },
-              }}
-              className="flex items-center justify-center min-h-[350px] rounded-2xl border border-dashed border-white/10 bg-white/[0.01] p-6 text-center select-none"
-            >
-              <span className="text-white/30 text-sm font-sans font-light tracking-wider">
-                More places soon
-              </span>
-            </motion.div>
-          )}
-
-          {filteredPlaces.length === 0 && (
+          {/* Placeholder card for Warsaw or cities without places yet (single standard-size card) */}
+          {(filteredPlaces.length === 0 || selectedCity === "warsaw") && (
             <motion.div
               layout
               key={`${selectedCity}-placeholder`}
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
+              whileHover={isMobile ? undefined : { scale: 1.01 }}
               transition={{
-                duration: 0.4,
+                duration: 0.35,
                 layout: { type: "spring", stiffness: 350, damping: 30, mass: 0.8 },
               }}
-              className="col-span-1 md:col-span-2 lg:col-span-3 flex items-center justify-center min-h-[350px] rounded-2xl border border-dashed border-white/10 bg-white/[0.01] p-6 text-center select-none"
+              className="group relative flex flex-col items-center justify-center min-h-[390px] rounded-2xl border border-dashed border-white/10 bg-white/[0.01] hover:bg-white/[0.03] transition-colors p-6 text-center select-none"
             >
-              <span className="text-white/30 text-sm font-sans font-light tracking-wider">
+              <span className="text-white/30 text-sm font-sans font-light tracking-wider uppercase">
                 More places soon
               </span>
             </motion.div>

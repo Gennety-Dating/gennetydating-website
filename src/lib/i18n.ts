@@ -305,6 +305,11 @@ export const translations = {
     "places.subtitle": "These places",
     "places.desc": "These locations show the real picture: specific venues and spots approved by our team for dates that are actively integrated into our matchmaking algorithm.",
     "places.view_all": "Explore all approved places",
+    "places.search.placeholder": "Search city...",
+    "places.search.notFound": "No cities found",
+    "places.search.buttonTitle": "Search city",
+    "places.search.activePlaces": "Places ready",
+    "places.search.comingSoon": "Coming soon",
 
     // Mission
     "mission.title": "our mission",
@@ -587,6 +592,11 @@ export const translations = {
     "places.subtitle": "Ці місця",
     "places.desc": "Ці локації відображають реальну картину: які саме заклади та місця загалом схвалені нашою командою для проведення побачень і реально беруть участь в алгоритмі підбору.",
     "places.view_all": "Переглянути всі схвалені місця",
+    "places.search.placeholder": "Пошук міста...",
+    "places.search.notFound": "Місто не знайдено",
+    "places.search.buttonTitle": "Пошук міста",
+    "places.search.activePlaces": "Є локації",
+    "places.search.comingSoon": "Скоро",
 
     // Mission
     "mission.title": "наша місія",
@@ -869,6 +879,11 @@ export const translations = {
     "places.subtitle": "Эти места",
     "places.desc": "Эти локации отображают реальную картину: какие конкретно заведения и места в целом одобрены нашей командой для проведения свиданий и реально участвуют в алгоритме подбора.",
     "places.view_all": "Посмотреть все одобренные места",
+    "places.search.placeholder": "Поиск города...",
+    "places.search.notFound": "Город не найден",
+    "places.search.buttonTitle": "Поиск города",
+    "places.search.activePlaces": "Есть локации",
+    "places.search.comingSoon": "Скоро",
 
     // Mission
     "mission.title": "наша миссия",
@@ -1151,6 +1166,11 @@ export const translations = {
     "places.subtitle": "Diese Orte",
     "places.desc": "Diese Orte zeigen das echte Bild: bestimmte Locations und Plätze, die von unserem Team für Dates genehmigt wurden und aktiv in unserem Matchmaking-Algorithmus verwendet werden.",
     "places.view_all": "Alle genehmigten Orte ansehen",
+    "places.search.placeholder": "Stadt suchen...",
+    "places.search.notFound": "Keine Stadt gefunden",
+    "places.search.buttonTitle": "Stadt suchen",
+    "places.search.activePlaces": "Verfügbar",
+    "places.search.comingSoon": "Demnächst",
 
     // Mission
     "mission.title": "unsere mission",
@@ -1433,6 +1453,11 @@ export const translations = {
     "places.subtitle": "Te miejsca",
     "places.desc": "Te lokalizacje pokazują rzeczywisty obraz: konkretne lokale i miejsca zatwierdzone przez nasz zespół do randek, które aktywnie uczestniczą w algorytmie dopasowywania.",
     "places.view_all": "Zobacz wszystkie zatwierdzone miejsca",
+    "places.search.placeholder": "Szukaj miasta...",
+    "places.search.notFound": "Nie znaleziono miasta",
+    "places.search.buttonTitle": "Szukaj miasta",
+    "places.search.activePlaces": "Dostępne",
+    "places.search.comingSoon": "Wkrótce",
 
     // Mission
     "mission.title": "nasza misja",
@@ -1697,6 +1722,11 @@ export const translations = {
     "places.subtitle": "Ces lieux",
     "places.desc": "Ces emplacements montrent la réalité du terrain : des établissements et des lieux spécifiques approuvés par notre équipe pour les rendez-vous, qui sont activement intégrés dans notre algorithme de mise en relation.",
     "places.view_all": "Explorer tous les lieux approuvés",
+    "places.search.placeholder": "Rechercher une ville...",
+    "places.search.notFound": "Aucune ville trouvée",
+    "places.search.buttonTitle": "Rechercher une ville",
+    "places.search.activePlaces": "Disponible",
+    "places.search.comingSoon": "Bientôt",
 
     // Mission
     "mission.title": "notre mission",
@@ -1961,6 +1991,11 @@ export const translations = {
     "places.subtitle": "Questi luoghi",
     "places.desc": "Questi luoghi mostrano la realtà dei fatti: locali e punti specifici approvati dal nostro team per gli appuntamenti, che sono attivamente integrati nel nostro algoritmo di matchmaking.",
     "places.view_all": "Esplora tutti i luoghi approvati",
+    "places.search.placeholder": "Cerca città...",
+    "places.search.notFound": "Nessuna città trovata",
+    "places.search.buttonTitle": "Cerca città",
+    "places.search.activePlaces": "Disponibile",
+    "places.search.comingSoon": "Prossimamente",
 
     // Mission
     "mission.title": "la nostra missione",
@@ -2225,6 +2260,11 @@ export const translations = {
     "places.subtitle": "Estos lugares",
     "places.desc": "Estas ubicaciones muestran el panorama real: locales y puntos específicos aprobados por nuestro equipo para citas que están integrados activamente en nuestro algoritmo de matchmaking.",
     "places.view_all": "Explorar todos los lugares aprobados",
+    "places.search.placeholder": "Buscar ciudad...",
+    "places.search.notFound": "Ciudad no encontrada",
+    "places.search.buttonTitle": "Buscar ciudad",
+    "places.search.activePlaces": "Disponible",
+    "places.search.comingSoon": "Próximamente",
 
     // Mission
     "mission.title": "nuestra misión",

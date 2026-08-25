@@ -1835,7 +1835,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_charlotte_2.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Charlotte+Plac+Zbawiciela+Warsaw",
-    likes: 79
+    likes: 0
   },
   {
     id: "warsaw-koszyki",
@@ -1867,7 +1867,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_koszyki_2.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Hala+Koszyki+Warsaw",
-    likes: 60
+    likes: 0
   },
   {
     id: "warsaw-lazienki",
@@ -1899,7 +1899,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_lazienki_2.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Lazienki+Krolewskie+Warsaw",
-    likes: 43
+    likes: 0
   },
   {
     id: "warsaw-bibenda",
@@ -1930,7 +1930,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_bibenda_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bibenda+Nowogrodzka+Warsaw",
-    likes: 75
+    likes: 0
   },
   {
     id: "warsaw-bulke-przez-bibulke",
@@ -1961,7 +1961,7 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_bulke_przez_bibulke_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bulke+przez+Bibulke+Zurawia+Warsaw",
-    likes: 67
+    likes: 0
   },
   {
     id: "warsaw-coffeedesk",
@@ -1992,6 +1992,6 @@ export const datePlaces: DatePlace[] = [
       "/images/places/warsaw_coffeedesk_1.jpg"
     ],
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Coffeedesk+Wilcza+Warsaw",
-    likes: 51
+    likes: 0
   }
 ];
