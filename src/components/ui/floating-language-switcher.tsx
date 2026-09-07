@@ -11,9 +11,11 @@ export function FloatingLanguageSwitcher() {
     pathname === "/app" ||
     pathname === "/join" ||
     pathname === "/merch" ||
+    pathname === "/places" ||
     pathname?.startsWith("/app/") ||
     pathname?.startsWith("/join/") ||
-    pathname?.startsWith("/merch/");
+    pathname?.startsWith("/merch/") ||
+    pathname?.startsWith("/places/");
   const { hasConsented, isLoading } = useCookieConsent();
 
   if (isLoading || isHiddenPage) return null;
