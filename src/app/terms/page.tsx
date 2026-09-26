@@ -16,7 +16,7 @@ export default function TermsPage() {
         </h1>
 
         <div className="prose prose-invert max-w-none text-gray-300">
-          <p className="text-gray-300 leading-relaxed my-4"><strong>Last Updated: 23 July 2026</strong> · <strong>Version 2.0</strong></p>
+          <p className="text-gray-300 leading-relaxed my-4"><strong>Last Updated: 1 August 2026</strong> · <strong>Version 3.0</strong></p>
 <p className="text-gray-300 leading-relaxed my-4">These Terms of Service (&quot;<strong>Terms</strong>&quot;) are a binding agreement between you and Gennety (&quot;<strong>Gennety</strong>&quot;, &quot;<strong>we</strong>&quot;, &quot;<strong>us</strong>&quot;, or &quot;<strong>our</strong>&quot;) governing your use of the Gennety matchmaking service through our Telegram bot (<code className="bg-gray-800 px-1 py-0.5 rounded text-magenta font-mono text-sm">@gennetybot</code>), our Telegram Mini Apps, our native mobile application, and our website at <code className="bg-gray-800 px-1 py-0.5 rounded text-magenta font-mono text-sm">gennety.com</code> (together, the &quot;<strong>Service</strong>&quot;).</p>
 <p className="text-gray-300 leading-relaxed my-4">By creating an account, tapping &quot;I agree&quot;, or otherwise using the Service, you accept these Terms and our <a href="https://gennety.com/privacy" className="text-magenta hover:underline">Privacy Policy</a>. <strong>If you do not agree, do not use the Service.</strong></p>
 <hr className="border-gray-800 my-8" />
@@ -53,9 +53,10 @@ export default function TermsPage() {
 <p className="text-gray-300 leading-relaxed my-4">You are responsible for all activity under your account and for keeping your Telegram account, phone number, email, and device access secure. Tell us immediately at <strong>legal@gennety.com</strong> if you believe your account has been compromised. We may refuse, suspend, or terminate accounts that breach these Terms (Section 12).</p>
 <hr className="border-gray-800 my-8" />
 <h2 className="text-2xl font-semibold text-white mt-12 mb-4">4. Identity Verification Is Mandatory</h2>
-<p className="text-gray-300 leading-relaxed my-4">We use a liveness check (via our verification provider) and a photo-to-selfie face comparison to confirm you are a real person and that your photos are of you.</p>
+<p className="text-gray-300 leading-relaxed my-4">We use a liveness check (<strong>Amazon Rekognition Face Liveness</strong>) and a photo-to-selfie face comparison to confirm you are a real person and that your photos are of you.</p>
 <ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
-<li>Verification involves <strong>biometric data</strong> and is processed <strong>only with your explicit consent</strong>, as described in the Privacy Policy. If you do not consent, you cannot be matched — that is the trade-off that keeps the community real.</li>
+<li>Verification involves <strong>biometric data</strong> and is processed <strong>only with your explicit consent</strong>, which we ask for on a dedicated screen before the check starts (Privacy Policy, Sections 6 and 10). If you do not consent, you cannot be matched — that is the trade-off that keeps the community real, and you can delete your account instead.</li>
+<li>The liveness video streams from your device <strong>directly to Amazon Web Services</strong>; it does not pass through our servers. We store only the single reference still that AWS returns, and we delete it 90 days after verification.</li>
 <li><strong>You must pass verification to be matched.</strong> Until you do, you will not be shown to other users and no match will be proposed to you. There is no skip. (A small legacy group who skipped verification before it became mandatory, and who accepted a rating penalty at the time, remain matchable on those older terms.)</li>
 <li>Verification <strong>re-runs automatically</strong> whenever you add, replace, or delete a profile photo. A previously verified account can therefore return to review status after a photo change.</li>
 <li>If verification fails or is inconclusive, you may ask a human to review it (Privacy Policy, Section 8).</li>
