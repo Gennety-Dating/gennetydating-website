@@ -37,12 +37,12 @@ function ButterflyMark() {
     <>
       <div className={cn(styles.wing, styles.wingLeft)}>
         <svg viewBox="0 0 50 100" className={styles.svg} aria-hidden="true">
-          <path d="M 50 35 C 20 0, -10 30, 15 55 C -5 75, 25 100, 48 65 Z" fill="#8B253B" />
+          <path d="M 50 35 C 20 0, -10 30, 15 55 C -5 75, 25 100, 50 65 Z" fill="#8B253B" />
         </svg>
       </div>
       <div className={cn(styles.wing, styles.wingRight)}>
         <svg viewBox="50 0 50 100" className={styles.svg} aria-hidden="true">
-          <path d="M 52 65 C 75 100, 105 75, 85 55 C 110 30, 80 0, 50 35 Z" fill="#8B253B" />
+          <path d="M 50 65 C 75 100, 105 75, 85 55 C 110 30, 80 0, 50 35 Z" fill="#8B253B" />
         </svg>
       </div>
     </>

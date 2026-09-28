@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface ButterflyLogoProps {
@@ -80,8 +81,16 @@ export function ButterflyLogo({
       )}
       style={containerStyle}
     >
-
-      <svg
+      {variant === "gradient-bg" ? (
+        <Image
+          src="/images/gennety-app-icon.png"
+          alt="Gennety"
+          width={size}
+          height={size}
+          className="h-full w-full rounded-3xl object-cover"
+        />
+      ) : (
+        <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 100 100"
         className="w-[66%] h-[66%] drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)]"
@@ -90,14 +99,14 @@ export function ButterflyLogo({
         <path
           d="M 50 35 
              C 20 0, -10 30, 15 55 
-             C -5 75, 25 100, 48 65 
-             L 52 65 
+             C -5 75, 25 100, 50 65
              C 75 100, 105 75, 85 55 
              C 110 30, 80 0, 50 35 
              Z"
           fill={pathFill}
         />
-      </svg>
+        </svg>
+      )}
     </div>
   );
 }

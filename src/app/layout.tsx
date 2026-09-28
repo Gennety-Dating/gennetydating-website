@@ -39,7 +39,6 @@ export const metadata: Metadata = {
   keywords: ["dating", "AI dating", "college dating", "student dating", "Gennety", "AI matchmaker", "personal matchmaker"],
   icons: {
     icon: [
-      { url: "/images/butterfly-favicon.svg", type: "image/svg+xml" },
       { url: "/images/butterfly-favicon.png", type: "image/png" },
     ],
     shortcut: "/images/butterfly-favicon.png",
@@ -53,8 +52,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/butterfly-logo-gradient.png",
-        width: 1200,
-        height: 630,
+        width: 512,
+        height: 512,
         alt: "Gennety — Your Personal AI Matchmaker",
       },
     ],

@@ -219,7 +219,7 @@ export default function PlacesPage() {
                             viewBox="0 0 100 100"
                             className="w-5 h-5 fill-white text-white"
                           >
-                            <path d="M 50 35 C 20 0, -10 30, 15 55 C -5 75, 25 100, 48 65 L 52 65 C 75 100, 105 75, 85 55 C 110 30, 80 0, 50 35 Z" />
+                            <path d="M 50 35 C 20 0, -10 30, 15 55 C -5 75, 25 100, 50 65 C 75 100, 105 75, 85 55 C 110 30, 80 0, 50 35 Z" />
                           </svg>
                           <span className="text-white/95">
                             premium
