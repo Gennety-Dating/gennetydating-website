@@ -72,8 +72,7 @@ export function ButterflyLogo({
   return (
     <div
       className={cn(
-        "relative flex items-center justify-center select-none",
-        variant !== "gradient-bg" && "rounded-3xl",
+        "relative flex items-center justify-center rounded-3xl overflow-hidden select-none",
         containerClasses,
         className
       )}
@@ -81,14 +80,14 @@ export function ButterflyLogo({
     >
       {variant === "gradient-bg" ? (
         <Image
-          src="/images/butterfly-logo-1024.png"
+          src="/images/gennety-app-icon.png"
           alt="Gennety"
           width={size}
           height={size}
           sizes={`${size}px`}
           priority
           unoptimized
-          className="h-full w-full object-contain pointer-events-none select-none"
+          className="h-full w-full rounded-3xl object-cover pointer-events-none select-none"
         />
       ) : (
         <svg
