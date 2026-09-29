@@ -5,16 +5,17 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 // Official Master Standard from /Users/pro/Desktop/Message Bubble Standard/
-// - R = 28px, r = 18px, tailDrop = 13px
+// - R = 28px, r = 18px (for grouped), tailDrop = 13px
+// - Single Message: all non-tail corners maintain full corner radius R = 28px
 // - Apple Organic Beak (cornerOrganicBeak)
 // - 100% Borderless with Ambient Gradient & Soft Air Float Shadow
-// - Parallel double-checkmarks (dx = 6px)
 
-export type BubblePalette = "cherry" | "dark" | "light";
+export type BubblePalette = "white" | "gray" | "cherry" | "dark" | "light";
 
 export interface BrandMessageBubbleProps {
   children: React.ReactNode;
   isOutgoing?: boolean;
+  isSingle?: boolean;
   palette?: BubblePalette;
   timestamp?: string;
   status?: "sent" | "delivered" | "read";
@@ -31,11 +32,14 @@ const useIsomorphicLayoutEffect =
 /**
  * Calculates continuous G2 Bezier curve path matching master_bubble.svg
  * and official Custom iMessage Bubble standard.
+ *
+ * When isSingle is true, all non-tail corners retain the full radius R (28px).
  */
 export function getCornerBeakPath(
   w: number,
   h: number,
   isOutgoing: boolean,
+  isSingle = true,
   r = 28,
   smallR = 18,
   tailDrop = 13
@@ -51,8 +55,9 @@ export function getCornerBeakPath(
   const effectiveR = Math.min(r, maxR);
   const effectiveSmallR = Math.min(smallR, Math.floor(effectiveR * 0.7));
 
-  const tl = isOutgoing ? effectiveR : effectiveSmallR;
-  const tr = isOutgoing ? effectiveSmallR : effectiveR;
+  // Single bubbles have full radius R on all non-tail corners
+  const tl = isSingle ? effectiveR : (isOutgoing ? effectiveR : effectiveSmallR);
+  const tr = isSingle ? effectiveR : (isOutgoing ? effectiveSmallR : effectiveR);
   const bl = effectiveR;
   const br = effectiveR;
 
@@ -94,6 +99,7 @@ export function getCornerBeakPath(
 export function BrandMessageBubble({
   children,
   isOutgoing = true,
+  isSingle = true,
   palette,
   timestamp,
   status = "read",
@@ -104,8 +110,8 @@ export function BrandMessageBubble({
   const [size, setSize] = useState<{ w: number; h: number }>({ w: 0, h: 0 });
   const uniqueId = useId().replace(/:/g, "_");
 
-  // Determine active palette: default is cherry for outgoing, dark ambient for incoming
-  const activePalette: BubblePalette = palette || (isOutgoing ? "cherry" : "dark");
+  // Default palettes: white for incoming, gray for outgoing
+  const activePalette: BubblePalette = palette || (isOutgoing ? "gray" : "white");
 
   useIsomorphicLayoutEffect(() => {
     const el = containerRef.current;
@@ -130,21 +136,23 @@ export function BrandMessageBubble({
   }, []);
 
   const currentW = size.w || (isOutgoing ? 260 : 300);
-  const currentH = size.h || (timestamp ? 74 : 58);
-  const pathD = getCornerBeakPath(currentW, currentH, isOutgoing);
+  const currentH = size.h || (timestamp ? 74 : 54);
+  const pathD = getCornerBeakPath(currentW, currentH, isOutgoing, isSingle);
 
   const gradId = `grad_${uniqueId}_${activePalette}`;
   const readAccent = activePalette === "cherry" ? "#FBCFE8" : "#38BDF8";
   const defaultCheckColor = "rgba(255, 255, 255, 0.55)";
+
+  const isLightText = activePalette === "gray" || activePalette === "cherry" || activePalette === "dark";
 
   return (
     <div
       ref={containerRef}
       className={cn(
         "relative inline-flex flex-col select-none",
-        "min-w-[140px] max-w-[88%] sm:max-w-[340px] md:max-w-[380px]",
+        "min-w-[100px] max-w-[88%] sm:max-w-[320px] md:max-w-[360px]",
         // Air Float Shadow from the official spec
-        "filter drop-shadow-[0_6px_16px_rgba(0,0,0,0.45)] drop-shadow-[0_1.5px_4px_rgba(0,0,0,0.25)]",
+        "filter drop-shadow-[0_4px_14px_rgba(0,0,0,0.35)] drop-shadow-[0_1.5px_4px_rgba(0,0,0,0.2)]",
         "transition-transform duration-150 active:scale-[0.98]",
         className
       )}
@@ -158,6 +166,18 @@ export function BrandMessageBubble({
         aria-hidden="true"
       >
         <defs>
+          {activePalette === "white" && (
+            <linearGradient id={gradId} x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#FFFFFF" />
+              <stop offset="100%" stopColor="#FFFFFF" />
+            </linearGradient>
+          )}
+          {activePalette === "gray" && (
+            <linearGradient id={gradId} x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#3a3a3c" />
+              <stop offset="100%" stopColor="#3a3a3c" />
+            </linearGradient>
+          )}
           {activePalette === "cherry" && (
             <linearGradient id={gradId} x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="#941D3C" />
@@ -186,14 +206,19 @@ export function BrandMessageBubble({
           "relative z-10 flex flex-col",
           "pt-[11px] pb-[15px]",
           isOutgoing ? "pl-[17px] pr-[22px]" : "pl-[22px] pr-[17px]",
-          activePalette === "light" ? "text-[#1C1C1E]" : "text-white"
+          isLightText ? "text-white" : "text-black"
         )}
       >
-        <div className="text-[14px] md:text-[15px] leading-[1.38] font-normal tracking-[-0.01em] break-words text-left">
+        <div
+          className={cn(
+            "text-[14px] md:text-[15px] leading-[1.4] tracking-[-0.01em] break-words text-left",
+            activePalette === "gray" ? "font-medium" : "font-normal"
+          )}
+        >
           {children}
         </div>
 
-        {/* Footer Row: Reaction Pill (Left) & Metadata (Right) */}
+        {/* Footer Row: Reaction Pill (Left) & Metadata (Right) - rendered only if metadata provided */}
         {(timestamp || reaction) && (
           <div className="flex items-center justify-between gap-3 mt-1.5 min-h-[20px] w-full">
             {/* Reaction Pill */}
@@ -201,7 +226,7 @@ export function BrandMessageBubble({
               <div
                 className={cn(
                   "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs leading-none shadow-sm",
-                  activePalette === "cherry" ? "bg-black/25" : "bg-white/10"
+                  activePalette === "white" ? "bg-black/8 text-black" : "bg-white/12 text-white"
                 )}
               >
                 <span className="text-[13px] leading-none">{reaction.emoji}</span>
@@ -223,7 +248,12 @@ export function BrandMessageBubble({
 
             {/* Timestamp & Parallel Checkmarks */}
             {timestamp && (
-              <div className="inline-flex items-center gap-1.5 ml-auto text-[11px] font-medium leading-none text-white/60">
+              <div
+                className={cn(
+                  "inline-flex items-center gap-1.5 ml-auto text-[11px] font-medium leading-none",
+                  isLightText ? "text-white/60" : "text-black/50"
+                )}
+              >
                 <span>{timestamp}</span>
                 {isOutgoing && (
                   <span className="inline-flex items-center" aria-label={`Status: ${status}`}>

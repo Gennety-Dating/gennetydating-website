@@ -7,52 +7,12 @@ import { cn } from "@/lib/utils";
 import { BrandMessageBubble } from "@/components/ui/brand-message-bubble";
 import type { TranslationKeys } from "@/lib/i18n";
 
-interface ChatMessageItem {
-  id: number;
-  sender: "agent" | "user";
-  translationKey: TranslationKeys;
-  time: string;
-  reaction?: {
-    emoji: string;
-    avatarUrl?: string;
-  };
-}
-
-const chatMessages: ChatMessageItem[] = [
-  {
-    id: 1,
-    sender: "agent",
-    translationKey: "matchmaker.chat.msg1",
-    time: "21:14",
-  },
-  {
-    id: 2,
-    sender: "user",
-    translationKey: "matchmaker.chat.msg2",
-    time: "21:15",
-  },
-  {
-    id: 3,
-    sender: "agent",
-    translationKey: "matchmaker.chat.msg3",
-    time: "21:15",
-  },
-  {
-    id: 4,
-    sender: "user",
-    translationKey: "matchmaker.chat.msg4",
-    time: "21:16",
-  },
-  {
-    id: 5,
-    sender: "agent",
-    translationKey: "matchmaker.chat.msg5",
-    time: "21:17",
-    reaction: {
-      emoji: "❤️",
-      avatarUrl: "/images/reaction-avatar.png",
-    },
-  },
+const chatMessages = [
+  { id: 1, sender: "agent" as const, translationKey: "matchmaker.chat.msg1" as TranslationKeys },
+  { id: 2, sender: "user" as const, translationKey: "matchmaker.chat.msg2" as TranslationKeys },
+  { id: 3, sender: "agent" as const, translationKey: "matchmaker.chat.msg3" as TranslationKeys },
+  { id: 4, sender: "user" as const, translationKey: "matchmaker.chat.msg4" as TranslationKeys },
+  { id: 5, sender: "agent" as const, translationKey: "matchmaker.chat.msg5" as TranslationKeys },
 ];
 
 const containerVariants = {
@@ -109,7 +69,7 @@ export function Matchmaker() {
         </p>
       </div>
 
-      {/* Безрамочный чат-контейнер с авторскими пузырями сообщений Gennety */}
+      {/* Безрамочный чат-контейнер с авторскими одиночными пузырями сообщений Gennety */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -130,10 +90,8 @@ export function Matchmaker() {
             >
               <BrandMessageBubble
                 isOutgoing={!isAgent}
-                palette={isAgent ? "dark" : "cherry"}
-                timestamp={msg.time}
-                status={isAgent ? undefined : "read"}
-                reaction={msg.reaction}
+                isSingle={true}
+                palette={isAgent ? "white" : "gray"}
               >
                 {t(msg.translationKey)}
               </BrandMessageBubble>
@@ -144,4 +102,5 @@ export function Matchmaker() {
     </section>
   );
 }
+
 
