@@ -136,7 +136,7 @@ export function BrandMessageBubble({
   }, []);
 
   const currentW = size.w || (isOutgoing ? 260 : 300);
-  const currentH = size.h || (timestamp ? 74 : 54);
+  const currentH = size.h || (timestamp ? 80 : 64);
   const pathD = getCornerBeakPath(currentW, currentH, isOutgoing, isSingle);
 
   const gradId = `grad_${uniqueId}_${activePalette}`;
@@ -150,7 +150,7 @@ export function BrandMessageBubble({
       ref={containerRef}
       className={cn(
         "relative inline-flex flex-col select-none",
-        "min-w-[100px] max-w-[88%] sm:max-w-[320px] md:max-w-[360px]",
+        "min-w-[110px] max-w-[88%] sm:max-w-[320px] md:max-w-[360px]",
         // Air Float Shadow from the official spec
         "filter drop-shadow-[0_4px_14px_rgba(0,0,0,0.35)] drop-shadow-[0_1.5px_4px_rgba(0,0,0,0.2)]",
         "transition-transform duration-150 active:scale-[0.98]",
@@ -200,18 +200,18 @@ export function BrandMessageBubble({
         <path d={pathD} fill={`url(#${gradId})`} stroke="none" />
       </svg>
 
-      {/* Message Content Container */}
+      {/* Message Content Container — Vertically centered within bubble body */}
       <div
         className={cn(
-          "relative z-10 flex flex-col",
-          "pt-[11px] pb-[15px]",
-          isOutgoing ? "pl-[17px] pr-[22px]" : "pl-[22px] pr-[17px]",
+          "relative z-10 flex flex-col justify-center",
+          "pt-[15px] pb-[28px]",
+          isOutgoing ? "pl-[24px] pr-[28px]" : "pl-[28px] pr-[24px]",
           isLightText ? "text-white" : "text-black"
         )}
       >
         <div
           className={cn(
-            "text-[14px] md:text-[15px] leading-[1.4] tracking-[-0.01em] break-words text-left",
+            "text-[14px] md:text-[15px] leading-[1.45] tracking-[-0.01em] break-words text-left",
             activePalette === "gray" ? "font-medium" : "font-normal"
           )}
         >
