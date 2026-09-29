@@ -104,7 +104,7 @@ export default function JoinPage() {
 
         <div className="flex flex-col items-center w-full text-center">
           {/* Logo */}
-          <ButterflyLogo size={80} variant="gradient-bg" className="mb-10 shadow-[0_8px_30px_rgba(139,37,59,0.3)]" />
+          <ButterflyLogo size={80} variant="gradient-bg" className="mb-10" />
 
         {/* Buttons Stack */}
         <div className="flex flex-col gap-4 w-full px-2">

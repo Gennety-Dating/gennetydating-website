@@ -4,15 +4,55 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/lib/language-context";
 import { cn } from "@/lib/utils";
-import { BubbleTail } from "@/components/ui/bubble-tail";
+import { BrandMessageBubble } from "@/components/ui/brand-message-bubble";
 import type { TranslationKeys } from "@/lib/i18n";
 
-const chatMessages = [
-  { id: 1, sender: "agent" as const, translationKey: "matchmaker.chat.msg1" as TranslationKeys },
-  { id: 2, sender: "user" as const, translationKey: "matchmaker.chat.msg2" as TranslationKeys },
-  { id: 3, sender: "agent" as const, translationKey: "matchmaker.chat.msg3" as TranslationKeys },
-  { id: 4, sender: "user" as const, translationKey: "matchmaker.chat.msg4" as TranslationKeys },
-  { id: 5, sender: "agent" as const, translationKey: "matchmaker.chat.msg5" as TranslationKeys },
+interface ChatMessageItem {
+  id: number;
+  sender: "agent" | "user";
+  translationKey: TranslationKeys;
+  time: string;
+  reaction?: {
+    emoji: string;
+    avatarUrl?: string;
+  };
+}
+
+const chatMessages: ChatMessageItem[] = [
+  {
+    id: 1,
+    sender: "agent",
+    translationKey: "matchmaker.chat.msg1",
+    time: "21:14",
+  },
+  {
+    id: 2,
+    sender: "user",
+    translationKey: "matchmaker.chat.msg2",
+    time: "21:15",
+  },
+  {
+    id: 3,
+    sender: "agent",
+    translationKey: "matchmaker.chat.msg3",
+    time: "21:15",
+  },
+  {
+    id: 4,
+    sender: "user",
+    translationKey: "matchmaker.chat.msg4",
+    time: "21:16",
+  },
+  {
+    id: 5,
+    sender: "agent",
+    translationKey: "matchmaker.chat.msg5",
+    time: "21:17",
+    reaction: {
+      emoji: "❤️",
+      avatarUrl: "/images/reaction-avatar.png",
+    },
+  },
 ];
 
 const containerVariants = {
@@ -69,13 +109,13 @@ export function Matchmaker() {
         </p>
       </div>
 
-      {/* Прозрачный и безрамочный контейнер чата (Chat screen container) */}
+      {/* Безрамочный чат-контейнер с авторскими пузырями сообщений Gennety */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: viewportMargin }}
-        className="relative z-10 w-full max-w-[480px] mx-auto min-h-[380px] p-6 bg-transparent flex flex-col gap-4 justify-start"
+        className="relative z-10 w-full max-w-[480px] mx-auto min-h-[380px] p-4 sm:p-6 bg-transparent flex flex-col gap-3.5 justify-start"
       >
         {chatMessages.map((msg) => {
           const isAgent = msg.sender === "agent";
@@ -86,25 +126,17 @@ export function Matchmaker() {
               style={{
                 transformOrigin: isAgent ? "bottom left" : "bottom right",
               }}
-              className={cn(
-                "relative w-fit max-w-[280px] sm:max-w-[300px] md:max-w-[320px] rounded-[20px] px-[18px] py-2.5 text-[14px] md:text-[15px] leading-relaxed text-left",
-                isAgent
-                  ? "bg-white text-black self-start rounded-bl-[8px]"
-                  : "bg-[#3a3a3c] text-white self-end rounded-br-[8px] font-medium"
-              )}
+              className={cn("w-fit", isAgent ? "self-start" : "self-end")}
             >
-              <span>{t(msg.translationKey)}</span>
-              <BubbleTail
-                side={isAgent ? "left" : "right"}
-                className="absolute"
-                width={20}
-                height={19}
-                style={
-                  isAgent
-                    ? { color: "#ffffff", left: "-7px", bottom: "0px" }
-                    : { color: "#3a3a3c", right: "-7px", bottom: "0px" }
-                }
-              />
+              <BrandMessageBubble
+                isOutgoing={!isAgent}
+                palette={isAgent ? "dark" : "cherry"}
+                timestamp={msg.time}
+                status={isAgent ? undefined : "read"}
+                reaction={msg.reaction}
+              >
+                {t(msg.translationKey)}
+              </BrandMessageBubble>
             </motion.div>
           );
         })}
@@ -112,3 +144,4 @@ export function Matchmaker() {
     </section>
   );
 }
+

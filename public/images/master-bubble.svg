@@ -1,0 +1,11 @@
+<!-- Borderless Ambient Message Bubble (304x110) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 304 110" width="304" height="110">
+  <defs>
+    <linearGradient id="bubbleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#941D3C" />
+      <stop offset="100%" stop-color="#4F0C1E" />
+    </linearGradient>
+  </defs>
+  <!-- G2 continuous squircle with centered-left sharp hook -->
+  <path d="M 28,0 L 281,0 C 290.9,0 299,8.1 299,18 L 299,87 C 299,93.5 303.5,105.2 304,108 C 304.2,109.5 302.8,110 301.5,110 C 295,110 287,97 275,97 L 28,97 C 12.6,97 0,84.4 0,69 L 0,28 C 0,12.6 12.6,0 28,0 Z" fill="url(#bubbleGrad)" />
+</svg>
