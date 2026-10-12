@@ -210,6 +210,15 @@ export function Footer({
           {/* Legal Links directly on the right */}
           <div className="flex flex-wrap items-center gap-4 sm:gap-6 shrink-0">
             <Link
+              href="/careers"
+              className={cn(
+                "text-xs md:text-sm font-medium hover:underline transition-colors whitespace-nowrap",
+                isDark ? "text-gray-400 hover:text-white" : "text-gray-600 hover:text-black"
+              )}
+            >
+              {t("footer.careers")}
+            </Link>
+            <Link
               href="/terms"
               className={cn(
                 "text-xs md:text-sm font-medium hover:underline transition-colors whitespace-nowrap",

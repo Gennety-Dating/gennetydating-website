@@ -15,7 +15,8 @@ export function Navbar() {
   const isThesisPage = pathname === "/thesis";
   const isPlacesPage = pathname === "/places";
   const isMerchPage = pathname === "/merch";
-  const isWhiteHeaderPage = isThesisPage || isPlacesPage || isMerchPage;
+  const isCareersPage = pathname === "/careers";
+  const isWhiteHeaderPage = isThesisPage || isPlacesPage || isMerchPage || isCareersPage;
 
   return (
     <nav
