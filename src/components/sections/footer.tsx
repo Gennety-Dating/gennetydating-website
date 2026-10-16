@@ -219,6 +219,15 @@ export function Footer({
               {t("footer.careers")}
             </Link>
             <Link
+              href="/support"
+              className={cn(
+                "text-xs md:text-sm font-medium hover:underline transition-colors whitespace-nowrap",
+                isDark ? "text-gray-400 hover:text-white" : "text-gray-600 hover:text-black"
+              )}
+            >
+              {t("footer.support")}
+            </Link>
+            <Link
               href="/terms"
               className={cn(
                 "text-xs md:text-sm font-medium hover:underline transition-colors whitespace-nowrap",
