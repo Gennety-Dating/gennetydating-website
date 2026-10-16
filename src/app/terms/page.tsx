@@ -16,7 +16,7 @@ export default function TermsPage() {
         </h1>
 
         <div className="prose prose-invert max-w-none text-gray-300">
-          <p className="text-gray-300 leading-relaxed my-4"><strong>Last Updated: 1 August 2026</strong> · <strong>Version 3.0</strong></p>
+          <p className="text-gray-300 leading-relaxed my-4"><strong>Last Updated: 13 October 2026</strong> · <strong>Version 3.2</strong></p>
 <p className="text-gray-300 leading-relaxed my-4">These Terms of Service (&quot;<strong>Terms</strong>&quot;) are a binding agreement between you and Gennety (&quot;<strong>Gennety</strong>&quot;, &quot;<strong>we</strong>&quot;, &quot;<strong>us</strong>&quot;, or &quot;<strong>our</strong>&quot;) governing your use of the Gennety matchmaking service through our Telegram bot (<code className="bg-gray-800 px-1 py-0.5 rounded text-magenta font-mono text-sm">@gennetybot</code>), our Telegram Mini Apps, our native mobile application, and our website at <code className="bg-gray-800 px-1 py-0.5 rounded text-magenta font-mono text-sm">gennety.com</code> (together, the &quot;<strong>Service</strong>&quot;).</p>
 <p className="text-gray-300 leading-relaxed my-4">By creating an account, tapping &quot;I agree&quot;, or otherwise using the Service, you accept these Terms and our <a href="https://gennety.com/privacy" className="text-magenta hover:underline">Privacy Policy</a>. <strong>If you do not agree, do not use the Service.</strong></p>
 <hr className="border-gray-800 my-8" />
@@ -31,8 +31,13 @@ export default function TermsPage() {
 <li><strong>Date Ticket</strong> (or &quot;<strong>Ticket</strong>&quot;) — an optional premium item used to confirm a scheduled date. Tickets are a virtual item, not currency.</li>
 <li><strong>Premium</strong> — the optional <strong>Gennety Premium</strong> recurring subscription.</li>
 <li><strong>Content</strong> — any text, photos, video, voice notes, or other material you submit.</li>
-<li><strong>AI Export</strong> — the optional psychological analysis you paste from your own AI assistant during onboarding.</li>
 <li><strong>Virtual Items</strong> — Tickets, bonuses, discounts, and any other non-monetary in-service item.</li>
+<li><strong>Mutual interest</strong> — when, the morning after a date, you and your match <strong>both</strong> answer that it was great and you want to see each other again (Section 5).</li>
+<li><strong>Date Wishlist</strong> — an optional list of things you love (places, drinks, flowers, perfume, beauty, fashion, jewellery, gifts, experiences) that you build with our AI agent and may agree to share with a person with whom you have mutual interest, as a <strong>cheat sheet</strong> for a second date (Section 6).</li>
+<li><strong>Date Wishlist unlock</strong> — a one-off purchase that opens the rest of one match&apos;s cheat sheet (Section 11.5).</li>
+<li><strong>Venue change</strong> — replacing the venue chosen for a scheduled date with another one (Sections 9 and 11.3).</li>
+<li><strong>Prime Time Pass</strong> — a one-off purchase that opens the late-evening times in the calendar of one date (Section 11.6).</li>
+<li><strong>App</strong> — our iOS application, also called the &quot;Licensed Application&quot; in Section 18.</li>
 </ul>
 <hr className="border-gray-800 my-8" />
 <h2 className="text-2xl font-semibold text-white mt-12 mb-4">3. Eligibility, Sign-Up Tracks, and Account Security</h2>
@@ -65,14 +70,15 @@ export default function TermsPage() {
 <p className="text-gray-300 leading-relaxed my-4">Verification confirms liveness and photo consistency <strong>only</strong>. It is not a background check and does not vouch for anyone&apos;s character, safety, intentions, or honesty (Section 10).</p>
 <hr className="border-gray-800 my-8" />
 <h2 className="text-2xl font-semibold text-white mt-12 mb-4">5. How the Service Works (and Your Responsibilities)</h2>
-<p className="text-gray-300 leading-relaxed my-4">Gennety relies on the information you provide. You are responsible for the accuracy and honesty of your profile, answers, photos, and any AI Export.</p>
+<p className="text-gray-300 leading-relaxed my-4">Gennety relies on the information you provide. You are responsible for the accuracy and honesty of your profile, answers, photos, and recordings.</p>
 <ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
 <li>Our matching is <strong>automated</strong> and based on the data you give us. We do <strong>not</strong> guarantee any match, any number of matches, any particular quality of match, chemistry, a response, or a successful date.</li>
 <li>Matches are proposed in <strong>weekly rounds</strong>. Some weeks you may receive no match. This is normal and is not a failure of the Service.</li>
 <li>A <strong>blind decision</strong> applies: you will not learn your match&apos;s accept/decline choice before you make your own.</li>
 <li>Once you decline, <strong>the decision is final</strong>, and we do <strong>not</strong> show you the same person twice — a matched pair is never re-proposed. Please decide carefully.</li>
 <li>If you do not respond to a proposal within the stated window, it expires, and repeatedly ignoring proposals affects your internal rating and priority.</li>
-<li>AI-generated suggestions (pitches, icebreakers, hints, venue choices, bios) are <strong>aids, not advice</strong>, and may be inaccurate. Use your own judgement.</li>
+<li><strong>The Morning After.</strong> The morning after a date, we ask each of you, separately, one question: &quot;It was great, I want to see them again&quot; or &quot;Didn&apos;t click&quot;. The same blind rule applies: a &quot;Didn&apos;t click&quot; is <strong>never</strong> passed on, and only if you <strong>both</strong> say it was great are you both told that the interest is mutual. Your answer also helps us choose your future matches.</li>
+<li>AI-generated suggestions (pitches, icebreakers, hints, venue choices, bios, Date Wishlist suggestions) are <strong>aids, not advice</strong>, and may be inaccurate. Use your own judgement.</li>
 <li>We use an internal rating derived in part from an automated assessment of your photos. It influences who you are considered compatible with. It is an operational signal, not a statement about you as a person, and we do not publish it to other users.</li>
 </ul>
 <p className="text-gray-300 leading-relaxed my-4">You must not misrepresent your identity, age, appearance, affiliation, or intentions.</p>
@@ -80,7 +86,15 @@ export default function TermsPage() {
 <h2 className="text-2xl font-semibold text-white mt-12 mb-4">6. Your Content and Licence</h2>
 <p className="text-gray-300 leading-relaxed my-4">You retain ownership of your Content. By submitting Content, you grant Gennety a worldwide, non-exclusive, royalty-free, sublicensable (to our processors only) licence to host, store, process, analyse, adapt, and display it <strong>solely to operate and provide the Service to you and your matches</strong> — including generating your profile, summaries, embeddings, icebreakers, date cards, and matches. This licence ends when you delete the Content or your account, except for copies we must retain by law or hold in anonymised/aggregated form.</p>
 <p className="text-gray-300 leading-relaxed my-4">You represent that you own or have the rights to your Content, that it does not infringe anyone&apos;s rights or violate any law, and that every identifiable person in a photo you upload has agreed to appear in it.</p>
-<p className="text-gray-300 leading-relaxed my-4"><strong>Other users&apos; content.</strong> Photos and information about your match are shown to you <strong>only</strong> to facilitate a date. You must <strong>not</strong> copy, save, screenshot-and-share, forward, publish, reverse-image-search, or otherwise misuse another user&apos;s photos or personal information. Doing so is a breach of these Terms and may be unlawful. Where we offer a shareable date card, it is deliberately produced with your partner&apos;s face blurred — do not attempt to defeat that.</p>
+<p className="text-gray-300 leading-relaxed my-4"><strong>Other users&apos; content.</strong> Photos and information about your match are shown to you <strong>only</strong> to facilitate a date. You must <strong>not</strong> copy, save, screenshot-and-share, forward, publish, reverse-image-search, or otherwise misuse another user&apos;s photos or personal information. Doing so is a breach of these Terms and may be unlawful. Where we offer a shareable date card, it is deliberately produced with your partner&apos;s face blurred — do not attempt to defeat that. The same applies to a match&apos;s Date Wishlist and to any taste hint you are shown about them: they are that person&apos;s personal information, to be used only to plan a date with them, and not to be shared.</p>
+<p className="text-gray-300 leading-relaxed my-4"><strong>Your Date Wishlist.</strong> The Date Wishlist is optional. It exists to be shown: when you make one, a person with whom you have mutual interest can see it as a cheat sheet for a second date — about a tenth of it for free, and the rest once they buy an unlock or if they have Premium (Section 11.5; Privacy Policy, Section 12.1). Nobody else sees it. You can delete any item, and hide the whole list (&quot;Don&apos;t show my list&quot;) or show it again, at any time; your changes reach the cheat sheet too. When you put something on your wishlist:</p>
+<ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
+<li>add only things <strong>you</strong> would like, and no one&apos;s personal information — no names, photos, contact details, social-media handles or addresses, yours or anyone else&apos;s;</li>
+<li>add nothing illegal, nothing that cannot lawfully be sold or given to you (for example weapons, drugs or prescription medicines), and nothing sexually explicit, hateful or offensive;</li>
+<li>a link must be a <strong>public page of a shop or a venue</strong> — not a private, personal or log-in page, a file, a payment request or fundraiser, or a referral or affiliate link;</li>
+<li>a wishlist is an idea for a date, <strong>not a request</strong>: nobody is obliged to buy anything, and you must not use it to ask for money, to ask for gifts in exchange for a date, or to advertise or sell (Section 8).</li>
+</ul>
+<p className="text-gray-300 leading-relaxed my-4">Product names, brands, images and prices belong to the shops and brands they come from and are shown for reference only. Prices are shown as approximate ranges and may be out of date. We do not sell, endorse or deliver the products; anything you or your match buy from a shop is between you and that shop. We may remove an item that breaks these rules, or that a rights holder asks us to remove.</p>
 <hr className="border-gray-800 my-8" />
 <h2 className="text-2xl font-semibold text-white mt-12 mb-4">7. No User-to-User Chat (and the Narrow Exceptions)</h2>
 <p className="text-gray-300 leading-relaxed my-4">Gennety deliberately does <strong>not</strong> offer open messaging between users. Your conversations are with our bot and AI concierge, plus the structured pitch, decision, scheduling, venue, safety, and reporting flows.</p>
@@ -89,7 +103,7 @@ export default function TermsPage() {
 <li>an optional <strong>contact exchange</strong> — you may share your own Telegram handle, or ask for your match&apos;s (which requires their explicit approval); and</li>
 <li>an optional, time-boxed <strong>anonymous pre-date relay chat</strong> so you can find each other. It is text-only, opens and closes automatically around the date, and <strong>every message is logged</strong> for safety and moderation, with an in-line report control.</li>
 </ul>
-<p className="text-gray-300 leading-relaxed my-4">You must not use these, or any free-text field the Service provides (a decline reason, an emergency-cancellation reason, feedback, or a report), to harass, threaten, solicit, advertise, or share another person&apos;s private information.</p>
+<p className="text-gray-300 leading-relaxed my-4">You must not use these, or any free-text field the Service provides (a decline reason, an emergency-cancellation reason, feedback, a report, or a Date Wishlist item or note), to harass, threaten, solicit, advertise, or share another person&apos;s private information. A Date Wishlist is not a way round the no-chat rule: do not put messages or contact details in it.</p>
 <hr className="border-gray-800 my-8" />
 <h2 className="text-2xl font-semibold text-white mt-12 mb-4">8. Acceptable Use and Prohibited Conduct</h2>
 <p className="text-gray-300 leading-relaxed my-4">You agree <strong>not</strong> to:</p>
@@ -105,13 +119,15 @@ export default function TermsPage() {
 <li>resell, trade, or transfer your account, Tickets, or any Virtual Item; or</li>
 <li>use the Service if you are under 18 or otherwise ineligible.</li>
 </ul>
+<p className="text-gray-300 leading-relaxed my-4"><strong>Zero tolerance.</strong> There is no tolerance on Gennety for objectionable content — including sexual, hateful, violent, harassing or threatening content, and content that sexualises minors — or for abusive users. Every photo and video is checked automatically before anyone else can see it, and free text is moderated.</p>
+<p className="text-gray-300 leading-relaxed my-4"><strong>Report and block.</strong> You can <strong>report</strong> a match from the match or date screen, from the anonymous relay chat, or by writing to <strong>@gennetysupport</strong> on Telegram or <strong>legal@gennety.com</strong>; and you can <strong>block</strong> a match at any time, which ends any match you have with them, stops them from being proposed to you again, and is never shown to them. Reports are triaged at once (Section 12), safety reports are reviewed by a person, and we aim to act on a report of objectionable content or abusive behaviour <strong>within 24 hours</strong> — by removing the content and, where it is warranted, suspending or removing the user who posted it.</p>
 <p className="text-gray-300 leading-relaxed my-4">We may remove Content, restrict features, suspend, or terminate accounts that breach this Section, and we may report unlawful conduct to the authorities.</p>
 <hr className="border-gray-800 my-8" />
 <h2 className="text-2xl font-semibold text-white mt-12 mb-4">9. Dates, Venues, and Changes</h2>
 <ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
 <li>After both of you accept, you agree a time through the scheduling flow, and our concierge selects a venue based on where each of you is setting off from and what kind of place you each said you wanted.</li>
 <li>Venue selection is automated and constrained to real, operating, open-at-the-time public places. We do <strong>not</strong> book, reserve, or hold a table for you, and we are not responsible if a venue is full, changes its hours, or closes.</li>
-<li>Where offered, you may agree a <strong>venue change</strong> with your match before the date. Changing the venue is a paid action (Section 11). If nobody pays, or one of you decides against it, <strong>the originally assigned venue simply stands</strong> — the date is never cancelled because a venue change did not go through.</li>
+<li>Where offered, you may agree a <strong>venue change</strong> with your match before the date — at most <strong>two per date</strong>. Changing the venue is a paid action unless it is included in Premium (Section 11). If nobody pays, or one of you decides against it, <strong>the originally assigned venue simply stands</strong> — the date is never cancelled because a venue change did not go through.</li>
 <li>You may cancel a date through the emergency flow. Cancellation is <strong>irreversible</strong> — the match cannot be restored — and your reason is passed to the other person as you wrote it. Repeated or bad-faith cancellations may affect your standing.</li>
 </ul>
 <hr className="border-gray-800 my-8" />
@@ -140,28 +156,47 @@ export default function TermsPage() {
 <li>In an opposite-sex pair, a male user may choose to cover <strong>both</strong> tickets. This is voluntary; nobody is ever required to pay for another person.</li>
 <li><strong>Tickets are a licence, not property.</strong> They have <strong>no cash value</strong>, are not currency, cannot be exchanged for money, and are <strong>non-transferable</strong> outside the flows we provide.</li>
 <li>If a ticket-gated date does not proceed because payment stalls or the window expires, we return the ticket or the Stars charge and open scheduling anyway — an accepted match is never cancelled by a payment problem.</li>
+<li><strong>Gennety Premium does not cover your Date Ticket</strong>, except for the remainder of a Premium period paid for before that change took effect (Section 11.4).</li>
 </ul>
 <h3 className="text-xl font-semibold text-white mt-6 mb-3">11.3 Venue changes</h3>
 <ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
-<li>Where offered, agreeing a venue change is a <strong>flat one-off charge</strong>. Browsing, liking, and agreeing are free; you only pay at the moment a change is finalised, so there is nothing to refund if it does not happen.</li>
-<li>Only one paid venue change per date.</li>
-<li>If two payments race, the losing payment is <strong>automatically refunded</strong>.</li>
+<li>Where offered, agreeing a venue change is a <strong>flat one-off charge</strong> (at launch, 150 Telegram Stars or the App Store price shown before you confirm). Browsing, liking, and agreeing are free; you only pay at the moment a change is finalised, so there is nothing to refund if it does not happen.</li>
+<li>At most <strong>two venue changes per date</strong>. Gennety Premium includes them.</li>
+<li>If two payments race, or a change cannot be completed after you paid in Telegram Stars, the payment is <strong>automatically refunded</strong>. For an App Store payment that could not be completed, Apple issues the refund; write to us and we will support your request (Section 11.7).</li>
 </ul>
-<h3 className="text-xl font-semibold text-white mt-6 mb-3">11.4 Gennety Premium (recurring subscription)</h3>
+<h3 className="text-xl font-semibold text-white mt-6 mb-3">11.4 Gennety Premium</h3>
 <ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
-<li><strong>Gennety Premium is an auto-renewing subscription.</strong> It renews every 30 days at the then-current price until you cancel. The price is shown before you subscribe.</li>
-<li><strong>How to cancel.</strong> In Telegram: through Telegram → Settings → Subscriptions, or by simply telling our bot you want to cancel, which gives you a confirmation button. On iOS: through iOS Settings → your Apple Account → Subscriptions — <strong>Apple, not Gennety, controls App Store subscriptions and we cannot cancel them for you.</strong></li>
+<li><strong>Two ways to buy it.</strong> The <strong>monthly plan</strong> is an <strong>auto-renewing subscription</strong>: it renews every 30 days at the then-current price until you cancel. In Telegram you may instead buy a <strong>three-month or six-month package</strong>, paid once in Telegram Stars at a discount shown before you buy; a package <strong>does not renew</strong> — it simply ends, and we remind you shortly before it does. Prices are always shown before you confirm.</li>
+<li><strong>App Store subscription terms.</strong> If you subscribe in our iOS app: - the subscription is <strong>Gennety Premium — Monthly</strong>, one month long, at the price shown in the app before you confirm; - payment is charged to your <strong>Apple Account</strong> when you confirm the purchase; - the subscription <strong>renews automatically</strong> unless auto-renew is turned off <strong>at least 24 hours before the end of the current period</strong>, and your account is charged for the renewal within the 24 hours before the period ends; - you can manage the subscription and turn off auto-renew at any time in iOS Settings → your name → Subscriptions, after purchase; - if a free trial or introductory offer is ever made available, any unused part of it ends when you buy a subscription.</li>
+<li><strong>How to cancel.</strong> In Telegram: through Telegram → Settings → My Stars → Subscriptions, or by simply telling our bot you want to cancel, which gives you a confirmation button. On iOS: through iOS Settings → your name → Subscriptions — <strong>Apple, not Gennety, controls App Store subscriptions and we cannot cancel them for you.</strong> Deleting the app never cancels a subscription. Deleting your Gennety account cancels a Telegram Stars subscription automatically (and any renewal charged after deletion is refunded in Stars), but does <strong>not</strong> cancel an App Store subscription; cancel that one in iOS Settings first.</li>
 <li><strong>Cancellation stops the next renewal.</strong> Your Premium access continues to the end of the period you already paid for; there is <strong>no partial refund of the current period</strong>.</li>
-<li>Cancel at least 24 hours before the renewal date to avoid being charged for the next period.</li>
-<li>We may change Premium&apos;s price or benefits for <strong>future</strong> periods. We will tell you before a price change takes effect, and you may cancel.</li>
+<li><strong>What Premium includes.</strong> The current benefits are listed on the Premium screen before you subscribe. Today they are: opening the <strong>Date Wishlist cheat sheet</strong> of a person with whom you have mutual interest, without buying an unlock (Section 11.5); <strong>all the late-evening times</strong> in the calendar, without a Prime Time Pass (Section 11.6); <strong>up to two venue changes per date</strong> at no extra charge, with a wider choice of venues (Section 11.3); and access to our top venues. <strong>Premium does not cover your own Date Ticket.</strong></li>
+<li><strong>Ticket cover paid for before the change.</strong> Premium used to cover your own Date Ticket. If you paid for a Premium period before that change took effect, your own ticket stays covered until the end of that period. A renewal or a new purchase after the change does not include it.</li>
+<li>We may change Premium&apos;s price or benefits for <strong>future</strong> periods. We will tell you before a price change, or a change that reduces what Premium includes, takes effect for you, and you may cancel before your next renewal.</li>
 <li>An entitlement you have already paid for stays valid even if we change or withdraw the offer.</li>
 </ul>
-<h3 className="text-xl font-semibold text-white mt-6 mb-3">11.5 Refunds</h3>
+<h3 className="text-xl font-semibold text-white mt-6 mb-3">11.5 Date Wishlist unlock</h3>
+<ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
+<li>When you and your match have <strong>mutual interest</strong> (Section 5), you may be offered their Date Wishlist as a cheat sheet for a second date — but only if they have made one and have not hidden it. About a tenth of it is visible for free. If they have not added or removed anything for 45 days or more, you are told when they last did, before you buy: some ideas may be out of date. Opening the rest is a <strong>one-off purchase for that match</strong> (at launch, $2.99 through Apple In-App Purchase or 150 Telegram Stars; the price that applies to you is always shown before you confirm), or it is included with Gennety Premium.</li>
+<li>It is <strong>digital content supplied immediately</strong>: the rest of the list opens as soon as your payment is confirmed, and you can come back to it later. You buy it once per match; it does not open anyone else&apos;s list.</li>
+<li><strong>You are buying access to a list that its owner controls.</strong> The list is that person&apos;s personal information. They may add, edit or delete items, or hide the list, at any time — that is their right, and we respect it immediately. When they do, the cheat sheet changes or closes for you as well. <strong>The price is not refunded, in whole or in part, because the other person later changes, shortens or hides their list</strong>, or because a second date does not happen. If the list could not be opened at all when you paid — for example because it was hidden at that same moment — write to <strong>legal@gennety.com</strong>: we refund a Telegram Stars purchase, and for an Apple purchase we support your refund request to Apple (Section 11.7). Your rights under mandatory consumer law are not affected.</li>
+<li>You pay Gennety. The owner of the list is not paid and pays nothing, and nobody is obliged to buy anything from it.</li>
+<li>Use the cheat sheet only to plan a date with that person, and do not share it (Section 6). We do not sell or deliver the products on it.</li>
+</ul>
+<h3 className="text-xl font-semibold text-white mt-6 mb-3">11.6 Prime Time Pass</h3>
+<ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
+<li>The last times of each evening in the date calendar (at launch 18:30, 19:00 and 19:30) are <strong>Prime Time</strong>. They are open to a pair if either of you has Gennety Premium, or once one of you buys a <strong>Prime Time Pass</strong>.</li>
+<li>A Prime Time Pass is a <strong>one-off purchase for one date</strong> (at launch, 50 Telegram Stars, or the App Store price shown before you confirm). It opens those times <strong>for both of you, for that date</strong>, as soon as payment is confirmed; it does not renew and does not carry over to another date.</li>
+<li>Buying a pass does not guarantee that your match picks a Prime Time slot, or that a venue is available then.</li>
+<li><strong>If the date does not happen</strong> — for example the match is cancelled before a time is agreed — a pass paid in Telegram Stars is <strong>refunded automatically</strong>, as is a payment that lost a race with your match&apos;s. For an App Store pass, Apple issues refunds: write to <strong>legal@gennety.com</strong> and we will support your request to Apple (Section 11.7).</li>
+</ul>
+<h3 className="text-xl font-semibold text-white mt-6 mb-3">11.7 Refunds</h3>
 <ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
 <li><strong>EEA/UK consumers — right of withdrawal.</strong> You normally have 14 days to withdraw from a distance contract for digital content. By confirming a purchase you <strong>expressly request immediate performance</strong> and acknowledge that once the digital content or service has been fully supplied you <strong>lose that right of withdrawal</strong>. For a subscription, the right of withdrawal applies to the first period and, if exercised, we may charge for the part already supplied.</li>
 <li>Except where consumer law requires otherwise, purchases are otherwise <strong>non-refundable</strong>.</li>
-<li>Where a paid date does not proceed for a reason the Service recognises (a payment window expiring, a moderation action, a lost payment race), we return the <strong>ticket or charge</strong> automatically as described above.</li>
+<li>Where a paid date does not proceed for a reason the Service recognises (a payment window expiring, the date being cancelled before it happens, a moderation action, a lost payment race), we return the <strong>ticket, the Prime Time Pass or the Telegram Stars charge</strong> automatically as described above. A ticket that was used comes back to the wallet of whoever paid for it.</li>
 <li>A no-show, a bad date, a declined match, or your own change of mind does <strong>not</strong> entitle you to a refund.</li>
+<li>A <strong>Date Wishlist unlock</strong> is fully supplied when the cheat sheet opens. It is not refunded because the owner later changes, shortens or withdraws the list (Section 11.5); if it could not be opened at all, it is refunded as described there.</li>
 <li><strong>Apple purchases are refunded by Apple</strong>, under Apple&apos;s policies. Contact Apple Support; we cannot issue a refund for an App Store transaction.</li>
 <li><strong>Telegram Stars purchases</strong> are refunded through the Telegram rail; contact us at <strong>legal@gennety.com</strong> and we will process the request where a refund is due.</li>
 <li>Deleting your account does not entitle you to a refund of unused Virtual Items or of the remainder of a subscription period, except where the law requires.</li>
@@ -176,13 +211,15 @@ export default function TermsPage() {
 <li>immediate <strong>investigation and suspension</strong> for a safety threat, with cancellation of any in-flight matches.</li>
 </ul>
 <p className="text-gray-300 leading-relaxed my-4">You may contest any restriction by writing to <strong>legal@gennety.com</strong>; a person will review it.</p>
-<p className="text-gray-300 leading-relaxed my-4">We may suspend or terminate your account, with or without notice, if you breach these Terms or applicable law, or where necessary to protect users or the Service. We may also discontinue the Service or any feature. On termination, Sections 6 (as to licences already granted), 10, 11.5, 14, 15, 16, 17, 19 and 20 survive.</p>
+<p className="text-gray-300 leading-relaxed my-4">We may suspend or terminate your account, with or without notice, if you breach these Terms or applicable law, or where necessary to protect users or the Service. We may also discontinue the Service or any feature. On termination, Sections 6 (as to licences already granted), 10, 11.7, 14, 15, 16, 17, 19 and 20 survive.</p>
 <hr className="border-gray-800 my-8" />
 <h2 className="text-2xl font-semibold text-white mt-12 mb-4">13. Account Freeze and Deletion (&quot;The Total Wipe-Out&quot;)</h2>
 <ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
 <li>You may <strong>pause matching</strong> at any time — you keep everything and simply stop receiving proposals.</li>
 <li>You may <strong>freeze</strong> your account, a soft-delete that removes you from matching and hides your status while keeping your profile so you can return instantly. Any in-flight match is cancelled and your counterpart is told neutrally.</li>
-<li>You may <strong>delete</strong> your account at any time. Deletion is <strong>permanent and irreversible</strong>: it erases your stored media and triggers a cascading wipe-out of your data, subject to records we must keep by law or hold in anonymised form (see the Privacy Policy, Section 16).</li>
+<li>You may <strong>delete</strong> your account at any time. Deletion is <strong>permanent and irreversible</strong>: it erases your stored media and triggers a cascading wipe-out of your data, subject to records we must keep by law or hold in anonymised form (see the Privacy Policy, Section 16). It also deletes your Date Wishlist, so a match who unlocked it no longer sees it.</li>
+<li><strong>You delete your account yourself, inside the Service</strong>: in the iOS app in Settings → Delete account, or in Telegram in ⚙️ Settings → 🗑 Delete Account. You do not need to write to us. If a refund connected to your account is still being processed, we ask you to retry once it has gone through, so the money has somewhere to go.</li>
+<li><strong>Deleting the app is not deleting the account.</strong> Deleting the account cancels a Telegram Stars subscription for you, but <strong>not one billed by Apple</strong> — cancel that in iOS Settings first (Section 11.4). Unused Virtual Items are lost on deletion (Section 11.7).</li>
 </ul>
 <hr className="border-gray-800 my-8" />
 <h2 className="text-2xl font-semibold text-white mt-12 mb-4">14. Intellectual Property</h2>
@@ -203,17 +240,20 @@ export default function TermsPage() {
 <h2 className="text-2xl font-semibold text-white mt-12 mb-4">17. Indemnification</h2>
 <p className="text-gray-300 leading-relaxed my-4">You agree to indemnify and hold Gennety harmless from any claims, damages, losses, and expenses (including reasonable legal fees) arising from your Content, your use of the Service, your interactions with other users, or your breach of these Terms or any law. This does not apply to the extent the claim arises from our own breach or negligence, or where the law does not allow it.</p>
 <hr className="border-gray-800 my-8" />
-<h2 className="text-2xl font-semibold text-white mt-12 mb-4">18. Apple App Store — Additional Terms</h2>
-<p className="text-gray-300 leading-relaxed my-4">These Terms apply to your use of our iOS application. Where you obtained the app from Apple&apos;s App Store, the following also applies and prevails over any conflicting provision:</p>
+<h2 className="text-2xl font-semibold text-white mt-12 mb-4">18. Apple App Store — Additional Terms (End User Licence)</h2>
+<p className="text-gray-300 leading-relaxed my-4">These Terms are the end-user licence agreement for our iOS application (the &quot;<strong>Licensed Application</strong>&quot;). Where you obtained it from Apple&apos;s App Store, the following also applies and prevails over any conflicting provision:</p>
 <ul className="list-disc pl-6 space-y-2 my-2 text-gray-300">
-<li>These Terms are between you and <strong>Gennety only, not Apple</strong>. Apple is not responsible for the app or its content.</li>
-<li>Apple has <strong>no obligation</strong> to furnish any maintenance or support for the app.</li>
-<li>If the app fails to conform to any applicable warranty, you may notify Apple, and Apple will refund the purchase price (if any). To the maximum extent permitted by law, Apple has <strong>no other warranty obligation</strong> with respect to the app.</li>
-<li><strong>Gennety, not Apple</strong>, is responsible for addressing any claim relating to the app, including product-liability claims, claims that the app fails to conform to a legal requirement, and claims under consumer-protection or privacy law.</li>
-<li><strong>Gennety, not Apple</strong>, is responsible for the investigation, defence, settlement, and discharge of any third-party intellectual-property infringement claim relating to the app.</li>
-<li>You represent that you are not located in a country subject to a U.S. Government embargo or designated as &quot;terrorist supporting&quot;, and that you are not on any U.S. Government list of prohibited or restricted parties.</li>
-<li>Apple and its subsidiaries are <strong>third-party beneficiaries</strong> of these Terms and may enforce them against you.</li>
-<li>Your use of the app must comply with the <strong>Apple Media Services Terms and Conditions</strong> in force.</li>
+<li><strong>Parties.</strong> These Terms are between you and <strong>Gennety only, not Apple</strong>. Gennety, not Apple, is solely responsible for the Licensed Application and its content.</li>
+<li><strong>Scope of licence.</strong> We grant you a limited, non-transferable, revocable licence to use the Licensed Application on any Apple-branded products that you own or control, as permitted by the <strong>Usage Rules</strong> in the Apple Media Services Terms and Conditions — except that it may also be accessed by other accounts associated with you through Family Sharing or volume purchasing, where applicable.</li>
+<li><strong>Maintenance and support.</strong> Gennety is solely responsible for maintenance and support of the Licensed Application, as described in these Terms or as required by law — contact us at <strong>legal@gennety.com</strong> or <strong>@gennetysupport</strong> on Telegram. Apple has <strong>no obligation</strong> to furnish any maintenance or support for it.</li>
+<li><strong>Warranty.</strong> If the Licensed Application fails to conform to any applicable warranty, you may notify Apple, and Apple will refund the purchase price (if any) for it. To the maximum extent permitted by law, Apple has <strong>no other warranty obligation</strong> with respect to the Licensed Application, and any other claims, losses, liabilities, damages, costs or expenses attributable to a failure to conform to a warranty are Gennety&apos;s responsibility.</li>
+<li><strong>Product claims.</strong> <strong>Gennety, not Apple</strong>, is responsible for addressing any claim by you or a third party relating to the Licensed Application or your possession and use of it, including (i) product-liability claims; (ii) any claim that it fails to conform to an applicable legal or regulatory requirement; and (iii) claims arising under consumer-protection, privacy, or similar legislation, including in connection with its use of HealthKit.</li>
+<li><strong>Intellectual property.</strong> If a third party claims that the Licensed Application or your possession and use of it infringes that third party&apos;s intellectual-property rights, <strong>Gennety, not Apple</strong>, is solely responsible for the investigation, defence, settlement and discharge of that claim.</li>
+<li><strong>Legal compliance.</strong> You represent and warrant that you are not located in a country subject to a U.S. Government embargo or designated by the U.S. Government as &quot;terrorist supporting&quot;, and that you are not listed on any U.S. Government list of prohibited or restricted parties.</li>
+<li><strong>Developer contact.</strong> Questions, complaints or claims about the Licensed Application go to Gennety: <strong>legal@gennety.com</strong> (Gleb Gosha, Kyiv, Ukraine).</li>
+<li><strong>Third-party terms.</strong> You must comply with the terms of any third-party service you use with the app — for example Telegram when you continue with Telegram, and your mobile carrier.</li>
+<li><strong>In-app purchases.</strong> Purchases in the app are made with Apple&apos;s In-App Purchase and are subject to the Apple Media Services Terms and Conditions; App Store refunds are handled by Apple (Section 11.7).</li>
+<li><strong>Third-party beneficiary.</strong> Apple and its subsidiaries are <strong>third-party beneficiaries</strong> of these Terms, and once you accept them Apple will have the right (and will be deemed to have accepted the right) to enforce them against you as a third-party beneficiary.</li>
 </ul>
 <hr className="border-gray-800 my-8" />
 <h2 className="text-2xl font-semibold text-white mt-12 mb-4">19. Changes to These Terms and the Service</h2>
