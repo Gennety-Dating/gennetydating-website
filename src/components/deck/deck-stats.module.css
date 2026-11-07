@@ -1,0 +1,349 @@
+.page {
+  --porcelain: #fbf8f7;
+  --wine: #8b253b;
+  --ink: #24191c;
+  --muted: #6f6266;
+  --hair: rgba(139, 37, 59, 0.14);
+  --card: #ffffff;
+
+  position: relative;
+  z-index: 60;
+  min-height: 100vh;
+  padding: calc(env(safe-area-inset-top) + 28px) clamp(16px, 4vw, 48px) 48px;
+  max-width: 1280px;
+  margin: 0 auto;
+  color: var(--ink);
+  font-family: var(--font-geologica), system-ui, sans-serif;
+  font-size: 15px;
+}
+
+:global(html):has(.page),
+:global(html):has(.page) :global(body) {
+  background-color: #fbf8f7;
+  color: #24191c;
+}
+:global(html):has(.page) :global(.ios-status-bar-backdrop),
+:global(html):has(.page) :global(.ios-browser-bar-backdrop),
+:global(html):has(.page) :global(.ios-status-bar-backdrop)::before,
+:global(html):has(.page) :global(.ios-browser-bar-backdrop)::before {
+  background: #fbf8f7 !important;
+}
+:global(html):has(.page) :global(.floating-language-switcher) {
+  display: none;
+}
+
+.page h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--wine);
+}
+.page h2 {
+  margin: 0 0 6px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+.page h3 {
+  margin: 18px 0 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.page a {
+  color: var(--wine);
+}
+.page button,
+.page select,
+.page input {
+  font: inherit;
+}
+.page button {
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 0;
+  background: var(--wine);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.page input:not([type="checkbox"]),
+.page select {
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid var(--hair);
+  background: #fff;
+  color: var(--ink);
+}
+.page :focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 2px;
+}
+
+.login {
+  max-width: 420px;
+  margin: 12vh auto 0;
+  display: grid;
+  gap: 14px;
+}
+.login p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.head p {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+.headControls {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+.headControls label {
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.error {
+  color: #b3261e;
+  font-weight: 600;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.tiles > div {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 16px 18px;
+  display: grid;
+  gap: 4px;
+}
+.tiles strong {
+  font-size: 1.9rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.tiles span {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 18px;
+  padding: 20px clamp(16px, 2vw, 24px);
+  margin-bottom: 16px;
+  overflow-x: auto;
+}
+.hint {
+  margin: 0 0 14px;
+  color: var(--muted);
+  line-height: 1.45;
+  max-width: 70ch;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 960px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .grid > .card {
+    margin-bottom: 0;
+  }
+}
+.grid + .card,
+.grid {
+  margin-bottom: 16px;
+}
+
+.inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.inline input {
+  flex: 1 1 260px;
+}
+.created {
+  margin: 12px 0 0;
+  font-weight: 600;
+  word-break: break-all;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.table th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 0.82rem;
+  padding: 8px 10px 8px 0;
+  border-bottom: 1px solid var(--hair);
+  white-space: nowrap;
+}
+.table td {
+  padding: 10px 10px 10px 0;
+  border-bottom: 1px solid var(--hair);
+  vertical-align: top;
+}
+.visits tbody tr {
+  cursor: pointer;
+}
+.visits tbody tr:hover,
+.selected {
+  background: rgba(139, 37, 59, 0.05);
+}
+.page .linkCopy {
+  min-height: 0;
+  padding: 0;
+  background: none;
+  color: var(--wine);
+  font-weight: 600;
+}
+
+/* Single-series bars: one hue, thin marks, rounded data end, value labels in ink. */
+.bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.barRow {
+  display: grid;
+  grid-template-columns: minmax(120px, 180px) 1fr 72px;
+  align-items: center;
+  gap: 10px;
+}
+.barName {
+  font-size: 0.86rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.barTrack {
+  position: relative;
+  height: 22px;
+  display: flex;
+  align-items: center;
+}
+.bar {
+  display: block;
+  height: 12px;
+  min-width: 2px;
+  background: var(--wine);
+  border-radius: 0 4px 4px 0;
+}
+.barValue {
+  text-align: right;
+  font-size: 0.86rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.tip {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 4px);
+  z-index: 2;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  pointer-events: none;
+  visibility: hidden;
+}
+.barRow:hover .tip {
+  visibility: visible;
+}
+
+.detailHead {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.page .danger {
+  background: rgba(179, 38, 30, 0.1);
+  color: #b3261e;
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+  max-height: 520px;
+  overflow-y: auto;
+}
+.timeline li {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 10px;
+  font-size: 0.9rem;
+}
+.timeline time {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.foot label {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+.page .foot button {
+  background: none;
+  color: var(--muted);
+  padding: 0;
+}
+
+@media (max-width: 640px) {
+  .barRow {
+    grid-template-columns: 110px 1fr 58px;
+  }
+}

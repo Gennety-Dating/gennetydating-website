@@ -1,0 +1,17 @@
+name = "gennety-deck-stats"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+# Telegram summary of each finished /deck visit.
+[triggers]
+crons = ["*/5 * * * *"]
+
+# Created with: wrangler d1 create gennety-deck-stats
+# Schema:       wrangler d1 execute gennety-deck-stats --remote --file schema.sql
+[[d1_databases]]
+binding = "DB"
+database_name = "gennety-deck-stats"
+database_id = "REPLACE_WITH_D1_ID"
+
+# Secrets (wrangler secret put): STATS_TOKEN, TG_BOT_TOKEN, TG_CHAT_ID

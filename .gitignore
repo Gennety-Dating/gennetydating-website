@@ -42,3 +42,7 @@ yarn-error.log*
 next-env.d.ts
 .gstack/
 .venv/
+
+# deck-stats worker local secrets
+workers/deck-stats/.dev.vars
+workers/deck-stats/.wrangler/
