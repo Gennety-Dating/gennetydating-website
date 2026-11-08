@@ -28,8 +28,16 @@ export function DeckViewer() {
 
   useEffect(() => {
     deckTracker.setSlide(index);
-    const thumb = strip.current?.children[index] as HTMLElement | undefined;
-    thumb?.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+    // Keep the current thumbnail centred by scrolling the strip itself only:
+    // scrollIntoView would also scroll the page and jump visitors to the deck.
+    const list = strip.current;
+    const thumb = list?.children[index] as HTMLElement | undefined;
+    if (!list || !thumb) return;
+    const offset = thumb.getBoundingClientRect().left - list.getBoundingClientRect().left + list.scrollLeft;
+    const left = offset - (list.clientWidth - thumb.clientWidth) / 2;
+    if (Math.abs(list.scrollLeft - Math.max(0, left)) < 2) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    list.scrollTo({ left: Math.max(0, left), behavior: reduce ? "auto" : "smooth" });
   }, [index]);
 
   useEffect(() => {

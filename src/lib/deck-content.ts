@@ -82,4 +82,23 @@ export const COMPETITORS = [
 /** Screens from the iOS app, one per step of the flow, in order. */
 export type AppScreen = { src: string; step: string; caption: string };
 
-export const APP_SCREENS: AppScreen[] = [];
+const screen = (file: string, step: string, caption: string): AppScreen => ({
+  src: `/deck/screens/${file}.webp`,
+  step,
+  caption,
+});
+
+export const APP_SCREENS: AppScreen[] = [
+  screen("01-profile-name", "profile", "A one-minute profile"),
+  screen("02-who-to-meet", "profile", "Who you want to meet"),
+  screen("03-ai-search", "search", "The AI searches every evening"),
+  screen("04-match-pitch", "match", "One match, not a feed"),
+  screen("05-music-and-places", "match", "His music and the places he goes"),
+  screen("06-ticket", "ticket", "A ticket per real date"),
+  screen("07-pick-a-time", "time", "Pick a time you are both free"),
+  screen("08-its-a-date", "time", "It's a date"),
+  screen("09-what-kind-of-evening", "place", "Choose the kind of evening"),
+  screen("10-date-is-set", "place", "Time and place, set for both"),
+  screen("11-date-mode-stamp", "date", "Date mode: a stamp of the evening"),
+  screen("12-date-album", "date", "The album you keep"),
+];

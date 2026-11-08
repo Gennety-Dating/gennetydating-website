@@ -54,7 +54,7 @@ export default function DeckPage() {
         <section id="walkthrough" className={styles.block} data-deck-section="video" aria-labelledby="video-title">
           <div className={styles.blockHead}>
             <h2 id="video-title">The app, start to finish</h2>
-            <p>Recorded in the iOS app. Every screen is the real product.</p>
+            <p>90 seconds in the iOS app, from the first question to the date itself. Every screen is the real product.</p>
           </div>
           <WalkthroughVideo />
         </section>
