@@ -2,296 +2,165 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  ChevronDown,
-  MapPin,
-  Clock,
-  Sparkles,
-  CheckCircle2,
-  Mail,
-} from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/sections/footer";
-import { TelegramIcon } from "@/components/ui/telegram-icon";
 import { useLanguage } from "@/lib/language-context";
 import { CONTACT_EMAIL, TELEGRAM_SUPPORT_URL } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 import type { Locale } from "@/lib/i18n";
 
-// Localized header and UI texts matching Gennety multi-language format
-const headerTexts: Record<
-  Locale,
-  {
-    back: string;
-    badge: string;
-    title: string;
-    atGennety: string;
-    tagline: string;
-    details: string;
-    collapse: string;
-    aboutGennetyTitle: string;
-    aboutRoleTitle: string;
-    whatYouDoTitle: string;
-    lookingForTitle: string;
-    mustHave: string;
-    niceToHave: string;
-    whatWeOfferTitle: string;
-    howToApplyTitle: string;
-    baseSalary: string;
-    bonuses: string;
-    totalPotential: string;
-    perks: string;
-    format: string;
-    focus: string;
-    startDate: string;
-    applyTelegram: string;
-    orEmail: string;
-    includeInMessage: string;
-    footerTitle: string;
-    footerNote: string;
-    footerContact: string;
-  }
-> = {
+// Localized header and UI texts matching Sverkaus Labs multi-language format
+const headerTexts: Record<Locale, {
+  back: string;
+  title: string;
+  tagline: string;
+  details: string;
+  collapse: string;
+  aboutGennetyTitle: string;
+  aboutRoleTitle: string;
+  whatYouDoTitle: string;
+  lookingForTitle: string;
+  mustHave: string;
+  niceToHave: string;
+  whatWeOfferTitle: string;
+  howToApplyTitle: string;
+  footerNote: string;
+  footerContact: string;
+}> = {
   en: {
     back: "Back to Home",
-    badge: "Early Team · We're Hiring",
-    title: "Careers",
-    atGennety: "at gennety",
+    title: "CAREERS",
     tagline: "Simplifying human-to-human interaction.",
     details: "Details",
     collapse: "Close",
-    aboutGennetyTitle: "About Gennety",
-    aboutRoleTitle: "About the Role",
-    whatYouDoTitle: "What You'll Do",
-    lookingForTitle: "What We're Looking For",
-    mustHave: "Must-Have",
-    niceToHave: "Nice to Have",
-    whatWeOfferTitle: "What We Offer",
-    howToApplyTitle: "How to Apply",
-    baseSalary: "Base Salary",
-    bonuses: "Performance Bonuses",
-    totalPotential: "Total Potential",
-    perks: "Perks",
-    format: "Format",
-    focus: "Focus",
-    startDate: "Start Date",
-    applyTelegram: "Apply on Telegram (@gennetysupport)",
-    orEmail: "Or email",
-    includeInMessage: "In your message, please include:",
-    footerTitle: "Don't see your role?",
-    footerNote: "We're always open to exceptional engineers, designers, and growth builders.",
+    aboutGennetyTitle: "// ABOUT GENNETY",
+    aboutRoleTitle: "// ABOUT THE ROLE",
+    whatYouDoTitle: "// WHAT YOU'LL DO",
+    lookingForTitle: "// WHAT WE'RE LOOKING FOR",
+    mustHave: "MUST-HAVE",
+    niceToHave: "NICE TO HAVE",
+    whatWeOfferTitle: "// WHAT WE OFFER",
+    howToApplyTitle: "// HOW TO APPLY",
+    footerNote: "Don't see your role? We're always open to exceptional engineers and builders: ",
     footerContact: CONTACT_EMAIL,
   },
   uk: {
     back: "Назад на головну",
-    badge: "Рання команда · Ми наймаємо",
-    title: "Вакансії",
-    atGennety: "у gennety",
+    title: "ВАКАНСІЇ",
     tagline: "Спрощуємо взаємодію між людьми.",
     details: "Деталі",
     collapse: "Згорнути",
-    aboutGennetyTitle: "Про Gennety",
-    aboutRoleTitle: "Про роль",
-    whatYouDoTitle: "Що ти робитимеш",
-    lookingForTitle: "Вимоги до кандидата",
-    mustHave: "Обов'язково",
-    niceToHave: "Буде плюсом",
-    whatWeOfferTitle: "Що ми пропонуємо",
-    howToApplyTitle: "Як податися",
-    baseSalary: "Базова оплата",
-    bonuses: "Бонусна система",
-    totalPotential: "Потенціал доходу",
-    perks: "Переваги",
-    format: "Формат",
-    focus: "Фокус",
-    startDate: "Старт",
-    applyTelegram: "Відгукнутися в Telegram (@gennetysupport)",
-    orEmail: "Або написати на",
-    includeInMessage: "У повідомленні вкажи:",
-    footerTitle: "Не знайшов своєї ролі?",
-    footerNote: "Ми завжди відкриті до сильних інженерів, дизайнерів і творців.",
+    aboutGennetyTitle: "// ПРО GENNETY",
+    aboutRoleTitle: "// ПРО РОЛЬ",
+    whatYouDoTitle: "// ЩО ТИ РОБИТИМЕШ",
+    lookingForTitle: "// ВИМОГИ ДО КАНДИДАТА",
+    mustHave: "ОБОВ'ЯЗКОВО",
+    niceToHave: "БУДЕ ПЛЮСОМ",
+    whatWeOfferTitle: "// ЩО МИ ПРОПОНУЄМО",
+    howToApplyTitle: "// ЯК ПОДАТИСЯ",
+    footerNote: "Не знайшов своєї ролі? Ми завжди відкриті до сильних інженерів і творців: ",
     footerContact: CONTACT_EMAIL,
   },
   ru: {
     back: "Назад на главную",
-    badge: "Ранняя команда · Мы нанимаем",
-    title: "Карьера",
-    atGennety: "в gennety",
+    title: "КАРЬЕРА",
     tagline: "Упрощаем взаимодействие между людьми.",
     details: "Детали",
     collapse: "Свернуть",
-    aboutGennetyTitle: "О Gennety",
-    aboutRoleTitle: "О роли",
-    whatYouDoTitle: "Что предстоит делать",
-    lookingForTitle: "Требования",
-    mustHave: "Обязательно",
-    niceToHave: "Будет плюсом",
-    whatWeOfferTitle: "Что мы предлагаем",
-    howToApplyTitle: "Как откликнуться",
-    baseSalary: "Базовая оплата",
-    bonuses: "Бонусная сетка",
-    totalPotential: "Потенциал дохода",
-    perks: "Бонусы и условия",
-    format: "Формат",
-    focus: "Фокус",
-    startDate: "Старт",
-    applyTelegram: "Откликнуться в Telegram (@gennetysupport)",
-    orEmail: "Или написать на",
-    includeInMessage: "В сообщении укажи:",
-    footerTitle: "Не нашёл подходящей роли?",
-    footerNote: "Мы всегда открыты для сильных инженеров, дизайнеров и созидателей.",
+    aboutGennetyTitle: "// О GENNETY",
+    aboutRoleTitle: "// О РОЛИ",
+    whatYouDoTitle: "// ЧТО ПРЕДСТОИТ ДЕЛАТЬ",
+    lookingForTitle: "// ТРЕБОВАНИЯ",
+    mustHave: "ОБЯЗАТЕЛЬНО",
+    niceToHave: "БУДЕТ ПЛЮСОМ",
+    whatWeOfferTitle: "// ЧТО МЫ ПРЕДЛАГАЕМ",
+    howToApplyTitle: "// КАК ОТКЛИКНУТЬСЯ",
+    footerNote: "Не нашёл своей роли? Мы всегда открыты для сильных инженеров и созидателей: ",
     footerContact: CONTACT_EMAIL,
   },
   de: {
     back: "Zurück zur Startseite",
-    badge: "Frühes Team · Wir stellen ein",
-    title: "Karriere",
-    atGennety: "bei gennety",
+    title: "KARRIERE",
     tagline: "Vereinfachung der zwischenmenschlichen Interaktion.",
     details: "Details",
     collapse: "Schließen",
-    aboutGennetyTitle: "Über Gennety",
-    aboutRoleTitle: "Über die Rolle",
-    whatYouDoTitle: "Deine Aufgaben",
-    lookingForTitle: "Anforderungen",
-    mustHave: "Must-Have",
-    niceToHave: "Nice to Have",
-    whatWeOfferTitle: "Was wir bieten",
-    howToApplyTitle: "Bewerbung",
-    baseSalary: "Grundgehalt",
-    bonuses: "Leistungsboni",
-    totalPotential: "Gesamtpotenzial",
-    perks: "Vorteile",
-    format: "Format",
-    focus: "Fokus",
-    startDate: "Start",
-    applyTelegram: "Über Telegram bewerben (@gennetysupport)",
-    orEmail: "Oder per E-Mail an",
-    includeInMessage: "Bitte füge deiner Nachricht bei:",
-    footerTitle: "Deine Rolle nicht dabei?",
-    footerNote: "Wir sind immer offen für außergewöhnliche Entwickler und Macher.",
+    aboutGennetyTitle: "// ÜBER GENNETY",
+    aboutRoleTitle: "// ÜBER DIE ROLLE",
+    whatYouDoTitle: "// DEINE AUFGABEN",
+    lookingForTitle: "// ANFORDERUNGEN",
+    mustHave: "MUST-HAVE",
+    niceToHave: "NICE TO HAVE",
+    whatWeOfferTitle: "// WAS WIR BIETEN",
+    howToApplyTitle: "// BEWERBUNG",
+    footerNote: "Deine Rolle nicht dabei? Wir sind immer offen für außergewöhnliche Entwickler und Macher: ",
     footerContact: CONTACT_EMAIL,
   },
   pl: {
     back: "Powrót do strony głównej",
-    badge: "Wczesny zespół · Rekrutujemy",
-    title: "Kariera",
-    atGennety: "w gennety",
+    title: "KARIERA",
     tagline: "Upraszczanie interakcji międzyludzkich.",
     details: "Szczegóły",
     collapse: "Zwiń",
-    aboutGennetyTitle: "O Gennety",
-    aboutRoleTitle: "O stanowisku",
-    whatYouDoTitle: "Co będziesz robić",
-    lookingForTitle: "Wymagania",
-    mustHave: "Wymagania obowiązkowe",
-    niceToHave: "Mile widziane",
-    whatWeOfferTitle: "Co oferujemy",
-    howToApplyTitle: "Jak aplikować",
-    baseSalary: "Wynagrodzenie podstawowe",
-    bonuses: "Premie za wyniki",
-    totalPotential: "Całkowity potencjał",
-    perks: "Benefity",
-    format: "Format",
-    focus: "Fokus",
-    startDate: "Początek",
-    applyTelegram: "Aplikuj przez Telegram (@gennetysupport)",
-    orEmail: "Lub napisz na",
-    includeInMessage: "W wiadomości dołącz:",
-    footerTitle: "Nie ma Twojej roli?",
-    footerNote: "Zawsze chętnie rozmawiamy z wyjątkowymi inżynierami i twórcami.",
+    aboutGennetyTitle: "// O GENNETY",
+    aboutRoleTitle: "// O STANOWISKU",
+    whatYouDoTitle: "// CO BĘDZIESZ ROBIĆ",
+    lookingForTitle: "// WYMAGANIA",
+    mustHave: "WYMAGANIA OBOWIĄZKOWE",
+    niceToHave: "MILE WIDZIANE",
+    whatWeOfferTitle: "// CO OFERUJEMY",
+    howToApplyTitle: "// JAK APLIKOWAĆ",
+    footerNote: "Nie ma Twojej roli? Zawsze chętnie rozmawiamy z wyjątkowymi inżynierami i twórcami: ",
     footerContact: CONTACT_EMAIL,
   },
   fr: {
     back: "Retour à l'accueil",
-    badge: "Équipe initiale · Nous recrutons",
-    title: "Carrières",
-    atGennety: "chez gennety",
+    title: "CARRIÈRES",
     tagline: "Simplifier les interactions humaines.",
     details: "Détails",
     collapse: "Fermer",
-    aboutGennetyTitle: "À propos de Gennety",
-    aboutRoleTitle: "À propos du poste",
-    whatYouDoTitle: "Vos missions",
-    lookingForTitle: "Profil recherché",
-    mustHave: "Indispensable",
-    niceToHave: "Atouts",
-    whatWeOfferTitle: "Ce que nous offrons",
-    howToApplyTitle: "Comment postuler",
-    baseSalary: "Salaire de base",
-    bonuses: "Primes de performance",
-    totalPotential: "Potentiel total",
-    perks: "Avantages",
-    format: "Format",
-    focus: "Focus",
-    startDate: "Début",
-    applyTelegram: "Postuler sur Telegram (@gennetysupport)",
-    orEmail: "Ou par e-mail à",
-    includeInMessage: "Dans votre message, indiquez :",
-    footerTitle: "Votre rôle ne figure pas ici ?",
-    footerNote: "Nous sommes toujours à l'écoute des talents exceptionnels.",
+    aboutGennetyTitle: "// À PROPOS DE GENNETY",
+    aboutRoleTitle: "// À PROPOS DU POSTE",
+    whatYouDoTitle: "// VOS MISSIONS",
+    lookingForTitle: "// PROFIL RECHERCHÉ",
+    mustHave: "INDISPENSABLE",
+    niceToHave: "ATOUTS",
+    whatWeOfferTitle: "// CE QUE NOUS OFFRONS",
+    howToApplyTitle: "// COMMENT POSTULER",
+    footerNote: "Votre rôle ne figure pas ici ? Nous sommes toujours à l'écoute des talents exceptionnels : ",
     footerContact: CONTACT_EMAIL,
   },
   it: {
     back: "Torna alla Home",
-    badge: "Team iniziale · Stiamo assumendo",
-    title: "Carriere",
-    atGennety: "in gennety",
+    title: "CARRIERE",
     tagline: "Semplificare le interazioni umane.",
     details: "Dettagli",
     collapse: "Chiudi",
-    aboutGennetyTitle: "Su Gennety",
-    aboutRoleTitle: "Sul ruolo",
-    whatYouDoTitle: "Cosa farai",
-    lookingForTitle: "Cosa cerchiamo",
-    mustHave: "Requisiti fondamentali",
-    niceToHave: "Requisiti graditi",
-    whatWeOfferTitle: "Cosa offriamo",
-    howToApplyTitle: "Come candidarsi",
-    baseSalary: "Compenso base",
-    bonuses: "Bonus di rendimento",
-    totalPotential: "Potenziale totale",
-    perks: "Vantaggi",
-    format: "Formato",
-    focus: "Focus",
-    startDate: "Inizio",
-    applyTelegram: "Candidati su Telegram (@gennetysupport)",
-    orEmail: "O via email a",
-    includeInMessage: "Nel tuo messaggio includi:",
-    footerTitle: "Non vedi il tuo ruolo?",
-    footerNote: "Siamo sempre aperti a ingegneri e talenti straordinari.",
+    aboutGennetyTitle: "// SU GENNETY",
+    aboutRoleTitle: "// SUL RUOLO",
+    whatYouDoTitle: "// COSA FARAI",
+    lookingForTitle: "// COSA CERCHIAMO",
+    mustHave: "REQUISITI FONDAMENTALI",
+    niceToHave: "REQUISITI GRADITI",
+    whatWeOfferTitle: "// COSA OFFRIAMO",
+    howToApplyTitle: "// COME CANDIDARSI",
+    footerNote: "Non vedi il tuo ruolo? Siamo sempre aperti a ingegneri e talenti straordinari: ",
     footerContact: CONTACT_EMAIL,
   },
   es: {
     back: "Volver al inicio",
-    badge: "Equipo inicial · Estamos contratando",
-    title: "Carreras",
-    atGennety: "en gennety",
+    title: "CARRERAS",
     tagline: "Simplificando la interacción humana.",
     details: "Detalles",
     collapse: "Cerrar",
-    aboutGennetyTitle: "Sobre Gennety",
-    aboutRoleTitle: "Sobre el puesto",
-    whatYouDoTitle: "Lo que harás",
-    lookingForTitle: "Lo que buscamos",
-    mustHave: "Imprescindible",
-    niceToHave: "Deseable",
-    whatWeOfferTitle: "Lo que ofrecemos",
-    howToApplyTitle: "Cómo postularse",
-    baseSalary: "Salario base",
-    bonuses: "Bonos por rendimiento",
-    totalPotential: "Potencial total",
-    perks: "Beneficios",
-    format: "Formato",
-    focus: "Enfoque",
-    startDate: "Inicio",
-    applyTelegram: "Postularse en Telegram (@gennetysupport)",
-    orEmail: "O por correo a",
-    includeInMessage: "En tu mensaje incluye:",
-    footerTitle: "¿No encuentras tu puesto?",
-    footerNote: "Siempre buscamos creadores e ingenieros excepcionales.",
+    aboutGennetyTitle: "// SOBRE GENNETY",
+    aboutRoleTitle: "// SOBRE EL PUESTO",
+    whatYouDoTitle: "// LO QUE HARÁS",
+    lookingForTitle: "// LO QUE BUSCAMOS",
+    mustHave: "IMPRESCINDIBLE",
+    niceToHave: "DESEABLE",
+    whatWeOfferTitle: "// LO QUE OFRECEMOS",
+    howToApplyTitle: "// CÓMO POSTULARSE",
+    footerNote: "¿No encuentras tu puesto? Siempre buscamos creadores e ingenieros excepcionales: ",
     footerContact: CONTACT_EMAIL,
   },
 };
@@ -305,23 +174,17 @@ interface VacancyItem {
   whatYouDo: Record<string, string[]>;
   mustHave: Record<string, string[]>;
   niceToHave: Record<string, string[]>;
-  whatWeOffer: Record<
-    string,
-    {
-      base: string;
-      bonuses: string[];
-      potential: string;
-      perks?: string;
-    }
-  >;
-  howToApply: Record<
-    string,
-    {
-      intro: string;
-      steps: string[];
-      note: string;
-    }
-  >;
+  whatWeOffer: Record<string, {
+    base: string;
+    bonuses: string[];
+    potential: string;
+    perks?: string;
+  }>;
+  howToApply: Record<string, {
+    intro: string;
+    steps: string[];
+    note: string;
+  }>;
 }
 
 const VACANCIES: VacancyItem[] = [
@@ -344,25 +207,22 @@ const VACANCIES: VacancyItem[] = [
     },
     aboutRole: {
       en: {
-        summary:
-          "Build and scale an end-to-end creator growth engine for Gennety: from sourcing creators and writing viral hooks to running rapid creative experiments, analyzing performance, and scaling winning ads.",
-        format: "Full-time (Remote)",
-        focus: "TikTok, Reels, UGC, Creator Marketing & Paid Social",
-        start: "ASAP",
+        summary: "Build and scale an end-to-end creator growth engine for Gennety: from sourcing creators and writing viral hooks to running rapid creative experiments, analyzing performance, and scaling winning ads.",
+        format: "Full-time (Remote).",
+        focus: "TikTok, Reels, UGC, Creator Marketing & Paid Social.",
+        start: "ASAP.",
       },
       uk: {
-        summary:
-          "Створення та масштабування повної системи зростання через креаторів: від пошуку авторів та написання вірусних хуків до швидких експериментів, аналізу метрик і масштабування реклами.",
-        format: "Full-time (Remote)",
-        focus: "TikTok, Reels, UGC, Creator Marketing & Paid Social",
-        start: "ASAP",
+        summary: "Створення та масштабування повної системи зростання через креаторів: від пошуку авторів та написання вірусних хуків до швидких експериментів, аналізу метрик і масштабування реклами.",
+        format: "Full-time (Remote).",
+        focus: "TikTok, Reels, UGC, Creator Marketing & Paid Social.",
+        start: "ASAP.",
       },
       ru: {
-        summary:
-          "Построение и масштабирование системы роста через креаторов: от поиска авторов и написания вирусных хуков до быстрых экспериментов, аналитики перформанса и масштабирования рекламы.",
-        format: "Full-time (Remote)",
-        focus: "TikTok, Reels, UGC, Creator Marketing & Paid Social",
-        start: "ASAP",
+        summary: "Построение и масштабирование системы роста через креаторов: от поиска авторов и написания вирусных хуков до быстрых экспериментов, аналитики перформанса и масштабирования рекламы.",
+        format: "Full-time (Remote).",
+        focus: "TikTok, Reels, UGC, Creator Marketing & Paid Social.",
+        start: "ASAP.",
       },
     },
     whatYouDo: {
@@ -433,7 +293,7 @@ const VACANCIES: VacancyItem[] = [
     },
     whatWeOffer: {
       en: {
-        base: "$1,000 / month (Remote, Full-time)",
+        base: "$1,000 / month (Remote, Full-time).",
         bonuses: [
           "Execution Bonus (up to +$300/mo): for hitting creator pipeline and testing volume targets",
           "Creative Winner Bonus (up to +$500/mo): for producing high-performing benchmark-beating creatives",
@@ -443,7 +303,7 @@ const VACANCIES: VacancyItem[] = [
         potential: "$1,500–$3,000+ / month with uncapped upside based on growth impact.",
       },
       uk: {
-        base: "$1,000 / місяць (Remote, Full-time)",
+        base: "$1,000 / місяць (Remote, Full-time).",
         bonuses: [
           "Бонус за виконання плану (до +$300/міс): за виконання обсягів тестів та виробництва контенту",
           "Бонус за креативи-переможці (до +$500/міс): за відео з рекордними показниками конверсії",
@@ -453,7 +313,7 @@ const VACANCIES: VacancyItem[] = [
         potential: "$1,500–$3,000+ / місяць без обмежень, залежно від результатів зростання.",
       },
       ru: {
-        base: "$1,000 / месяц (Remote, Full-time)",
+        base: "$1,000 / месяц (Remote, Full-time).",
         bonuses: [
           "Бонус за выполнение плана (до +$300/мес): за объем тестирования и пайплайн авторов",
           "Бонус за креативы-победители (до +$500/мес): за ролики с рекордными метриками",
@@ -512,25 +372,22 @@ const VACANCIES: VacancyItem[] = [
     },
     aboutRole: {
       en: {
-        summary:
-          "Launch Gennety across key Kyiv campuses within 1–2 months (primary focus on КІМО, університет Шевченка (КНУ), and НаУКМА), build an ambassador network, and ensure every student knows about us.",
-        format: "Full-time or intensive part-time (20–30 hours/week)",
-        focus: "Campus Launches, Student Ambassador Network, Offline Events & Speed Dating",
-        start: "ASAP",
+        summary: "Launch Gennety across key Kyiv campuses within 1–2 months (primary focus on КІМО, університет Шевченка (КНУ), and НаУКМА), build an ambassador network, and ensure every student knows about us.",
+        format: "Full-time or intensive part-time (20–30 hours/week).",
+        focus: "Campus Launches, Student Ambassador Network, Offline Events & Speed Dating.",
+        start: "ASAP.",
       },
       uk: {
-        summary:
-          "Запуск Gennety у ключових університетах Києва за 1–2 місяці (фокус на КІМО, КНУ ім. Шевченка та НаУКМА), побудова мережі амбасадорів та залучення студентської спільноти.",
-        format: "Full-time або інтенсивний part-time (20–30 годин/тиждень)",
-        focus: "Запуск на кампусах, мережа амбасадорів, офлайн-івенти та спід-дейтинги",
-        start: "ASAP",
+        summary: "Запуск Gennety у ключових університетах Києва за 1–2 місяці (фокус на КІМО, КНУ ім. Шевченка та НаУКМА), побудова мережі амбасадорів та залучення студентської спільноти.",
+        format: "Full-time або інтенсивний part-time (20–30 годин/тиждень).",
+        focus: "Запуск на кампусах, мережа амбасадорів, офлайн-івенти та спід-дейтинги.",
+        start: "ASAP.",
       },
       ru: {
-        summary:
-          "Запуск Gennety в ведущих вузах Киева за 1–2 месяца (фокус на КИМО, КНУ им. Шевченко и НаУКМА), построение сети амбассадоров и вовлечение студенческого сообщества.",
-        format: "Full-time или интенсивный part-time (20–30 часов/неделю)",
-        focus: "Запуск в университетах, сеть амбассадоров, офлайн-мероприятия и спид-дейтинги",
-        start: "ASAP",
+        summary: "Запуск Gennety в ведущих вузах Киева за 1–2 месяца (фокус на КИМО, КНУ им. Шевченко и НаУКМА), построение сети амбассадоров и вовлечение студенческого сообщества.",
+        format: "Full-time или интенсивный part-time (20–30 часов/неделю).",
+        focus: "Запуск в университетах, сеть амбассадоров, офлайн-мероприятия и спид-дейтинги.",
+        start: "ASAP.",
       },
     },
     whatYouDo: {
@@ -604,37 +461,34 @@ const VACANCIES: VacancyItem[] = [
     },
     whatWeOffer: {
       en: {
-        base: "$1,000 / month",
+        base: "$1,000 / month.",
         bonuses: [
           "+$100 for every 500 new campus registrations",
           "+$200 for each successful event (50+ attendees)",
           "+$500 for reaching 5,000 active users per quarter",
         ],
         potential: "$2,000–$3,000 / month when hitting ambitious goals.",
-        perks:
-          "Direct mentorship from founders (growth marketing & product), strong network of student community leaders, and the opportunity to reshape student dating culture.",
+        perks: "Direct mentorship from founders (growth marketing & product), strong network of student community leaders, and the opportunity to reshape student dating culture.",
       },
       uk: {
-        base: "$1,000 / місяць",
+        base: "$1,000 / місяць.",
         bonuses: [
           "+$100 за кожні 500 нових верифікованих студентів",
           "+$200 за кожен успішний івент (від 50+ учасників)",
           "+$500 за досягнення планки в 5,000 активних користувачів за квартал",
         ],
         potential: "$2,000–$3,000 / місяць при досягненні амбітних цілей.",
-        perks:
-          "Прямий менторшип від засновників (growth маркетинг та продукт), потужний нетворкінг серед лідерів університетів та можливість перезапустити культуру студентських побачень.",
+        perks: "Прямий менторшип від засновників (growth маркетинг та продукт), потужний нетворкінг серед лідерів університетів та можливість перезапустити культуру студентських побачень.",
       },
       ru: {
-        base: "$1,000 / месяц",
+        base: "$1,000 / месяц.",
         bonuses: [
           "+$100 за каждые 500 подтвержденных студентов на кампусе",
           "+$200 за каждое успешное мероприятие (50+ участников)",
           "+$500 за достижение 5,000 активных пользователей в квартал",
         ],
         potential: "$2,000–$3,000 / месяц при выполнении целей.",
-        perks:
-          "Прямое менторство от фаундеров (маркетинг и продукт), сильный нетворкинг и возможность изменить культуру студенческих знакомств.",
+        perks: "Прямое менторство от фаундеров (маркетинг и продукт), сильный нетворкинг и возможность изменить культуру студенческих знакомств.",
       },
     },
     howToApply: {
@@ -689,25 +543,22 @@ const VACANCIES: VacancyItem[] = [
     },
     aboutRole: {
       en: {
-        summary:
-          "Build, profile, and scale core Gennety user touchpoints: Next.js 14+ App Router components, Telegram Mini Apps, real-time matchmaking APIs, and biometric AWS verification.",
-        format: "Full-time (Remote / Hybrid)",
-        focus: "TypeScript, Next.js, React, Tailwind CSS, PostgreSQL / Neon, Telegram Web Apps",
-        start: "ASAP",
+        summary: "Build, profile, and scale core Gennety user touchpoints: Next.js 14+ App Router components, Telegram Mini Apps, real-time matchmaking APIs, and biometric AWS verification.",
+        format: "Full-time (Remote / Hybrid).",
+        focus: "TypeScript, Next.js, React, Tailwind CSS, PostgreSQL / Neon, Telegram Web Apps.",
+        start: "ASAP.",
       },
       uk: {
-        summary:
-          "Розробка та масштабування інтерфейсів Gennety: компоненти Next.js 14+ App Router, Telegram Mini Apps, API матчмейкінгу та біометрична верифікація AWS.",
-        format: "Full-time (Remote / Hybrid)",
-        focus: "TypeScript, Next.js, React, Tailwind CSS, PostgreSQL / Neon, Telegram Web Apps",
-        start: "ASAP",
+        summary: "Розробка та масштабування інтерфейсів Gennety: компоненти Next.js 14+ App Router, Telegram Mini Apps, API матчмейкінгу та біометрична верифікація AWS.",
+        format: "Full-time (Remote / Hybrid).",
+        focus: "TypeScript, Next.js, React, Tailwind CSS, PostgreSQL / Neon, Telegram Web Apps.",
+        start: "ASAP.",
       },
       ru: {
-        summary:
-          "Разработка и оптимизация интерфейсов Gennety: компоненты Next.js 14+ App Router, Telegram Mini Apps, API матчинга и биометрия AWS.",
-        format: "Full-time (Remote / Hybrid)",
-        focus: "TypeScript, Next.js, React, Tailwind CSS, PostgreSQL / Neon, Telegram Web Apps",
-        start: "ASAP",
+        summary: "Разработка и оптимизация интерфейсов Gennety: компоненты Next.js 14+ App Router, Telegram Mini Apps, API матчинга и биометрия AWS.",
+        format: "Full-time (Remote / Hybrid).",
+        focus: "TypeScript, Next.js, React, Tailwind CSS, PostgreSQL / Neon, Telegram Web Apps.",
+        start: "ASAP.",
       },
     },
     whatYouDo: {
@@ -772,7 +623,7 @@ const VACANCIES: VacancyItem[] = [
     },
     whatWeOffer: {
       en: {
-        base: "Competitive monthly salary aligned with seniority (Remote / Hybrid)",
+        base: "Competitive monthly salary aligned with seniority (Remote / Hybrid).",
         bonuses: [
           "Meaningful early equity/token option pool",
           "Full tooling, hardware, and AI compute allowance",
@@ -781,7 +632,7 @@ const VACANCIES: VacancyItem[] = [
         potential: "Competitive market compensation with high equity upside.",
       },
       uk: {
-        base: "Конкурентна щомісячна оплата відповідно до досвіду (Remote / Hybrid)",
+        base: "Конкурентна щомісячна оплата відповідно до досвіду (Remote / Hybrid).",
         bonuses: [
           "Опціонний пул для ранніх інженерів команди",
           "Повне забезпечення необхідними інструментами та AI API",
@@ -790,7 +641,7 @@ const VACANCIES: VacancyItem[] = [
         potential: "Гідна компенсація на рівні ринку з високим потенціалом опціонів.",
       },
       ru: {
-        base: "Конкурентная оплата по результатам собеседования (Remote / Hybrid)",
+        base: "Конкурентная оплата по результатам собеседования (Remote / Hybrid).",
         bonuses: [
           "Опционный пул для ключевых участников команды",
           "Бюджет на технику, сервисы и вычислительные ресурсы",
@@ -848,25 +699,22 @@ const VACANCIES: VacancyItem[] = [
     },
     aboutRole: {
       en: {
-        summary:
-          "Design the cognitive engine of romance: transforming psychometric profiles, conversation dynamics, and post-date feedback into high-chemistry, authentic matches.",
-        format: "Full-time or Contract (Remote)",
-        focus: "LLM Orchestration, Semantic Embeddings, Recommender Systems, Vector Search, Behavioral Psychology",
-        start: "ASAP",
+        summary: "Design the cognitive engine of romance: transforming psychometric profiles, conversation dynamics, and post-date feedback into high-chemistry, authentic matches.",
+        format: "Full-time or Contract (Remote).",
+        focus: "LLM Orchestration, Semantic Embeddings, Recommender Systems, Vector Search, Behavioral Psychology.",
+        start: "ASAP.",
       },
       uk: {
-        summary:
-          "Розробка алгоритмічного серця дейтингу: перетворення психологічних профілів, стилю спілкування та відгуків після зустрічей на пари з високою сумісністю.",
-        format: "Full-time або контракт (Remote)",
-        focus: "LLM-пайплайни, семантичні ембеддінги, рекомендаційні моделі, векторний пошук, поведінкова психологія",
-        start: "ASAP",
+        summary: "Розробка алгоритмічного серця дейтингу: перетворення психологічних профілів, стилю спілкування та відгуків після зустрічей на пари з високою сумісністю.",
+        format: "Full-time або контракт (Remote).",
+        focus: "LLM-пайплайни, семантичні ембеддінги, рекомендаційні моделі, векторний пошук, поведінкова психологія.",
+        start: "ASAP.",
       },
       ru: {
-        summary:
-          "Создание алгоритмического ядра романтической совместимости: перевод психометрических данных, динамики общения и отзывов в точные рекомендации.",
-        format: "Full-time или контракт (Remote)",
-        focus: "LLM-пайплайны, семантические эмбеддинги, рекомендательные системы, векторный поиск, психология",
-        start: "ASAP",
+        summary: "Создание алгоритмического ядра романтической совместимости: перевод психометрических данных, динамики общения и отзывов в точные рекомендации.",
+        format: "Full-time или контракт (Remote).",
+        focus: "LLM-пайплайны, семантические эмбеддинги, рекомендательные системы, векторный поиск, психология.",
+        start: "ASAP.",
       },
     },
     whatYouDo: {
@@ -922,7 +770,7 @@ const VACANCIES: VacancyItem[] = [
     },
     whatWeOffer: {
       en: {
-        base: "Competitive salary or contract retainer",
+        base: "Competitive salary or contract retainer.",
         bonuses: [
           "Performance incentives tied to match conversion and 2nd-date success rates",
           "Full research compute, GPU, and LLM API budget",
@@ -931,7 +779,7 @@ const VACANCIES: VacancyItem[] = [
         potential: "Competitive compensation package with high project upside.",
       },
       uk: {
-        base: "Конкурентна оплата або контрактний ретейнер",
+        base: "Конкурентна оплата або контрактний ретейнер.",
         bonuses: [
           "Бонуси за якість матчів та конверсію у повторні побачення",
           "Повний бюджет на обчислювальні потужності, GPU та LLM API",
@@ -940,7 +788,7 @@ const VACANCIES: VacancyItem[] = [
         potential: "Гідна винагорода з бонусами за якість роботи алгоритму.",
       },
       ru: {
-        base: "Конкурентная оплата или контрактный ретейнер",
+        base: "Конкурентная оплата или контрактный ретейнер.",
         bonuses: [
           "Премии за качество рекомендаций и процент вторых свиданий",
           "Полное покрытие затрат на GPU, вычисления и LLM API",
@@ -1000,50 +848,29 @@ export default function CareersPage() {
   };
 
   return (
-    <main className="min-h-screen bg-midnight text-white flex flex-col font-sans relative overflow-x-hidden selection:bg-magenta selection:text-white">
-      {/* Ambient nocturnal photo backdrop matching Gennety subpages */}
-      <div
-        className="fixed -inset-10 bg-[url('/images/matchmaker-bg-8.jpg')] bg-cover bg-center pointer-events-none filter blur-[36px] opacity-20 z-0 scale-105"
-        aria-hidden="true"
-      />
-      {/* Ambient magenta/velvet aura glow */}
-      <div
-        className="fixed top-24 left-1/2 -translate-x-1/2 w-[650px] h-[360px] bg-magenta/15 rounded-full blur-[140px] pointer-events-none z-0"
-        aria-hidden="true"
-      />
-      {/* Dark overlay for contrast */}
-      <div className="fixed -inset-10 bg-midnight/80 z-0 pointer-events-none" />
-
+    <main className="min-h-screen bg-[#111111] text-[#f0f0f0] font-sans flex flex-col relative overflow-x-hidden">
       <Navbar />
 
-      <div className="w-full flex-grow pt-32 md:pt-36 pb-24 px-4 sm:px-6 md:px-10 box-border relative z-10">
-        <div className="max-w-4xl mx-auto w-full flex flex-col gap-10">
-          {/* Back link */}
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors group cursor-pointer self-start"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span>{t.back}</span>
-          </Link>
+      {/* Minimalist Careers Section */}
+      <section className="w-full flex-grow pt-[120px] md:pt-[130px] pb-20 px-6 sm:px-8 box-border">
+        <div className="max-w-[780px] mx-auto w-full flex flex-col gap-10">
+          {/* Subtle Back link */}
+          <div className="flex items-center justify-between">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-xs text-[#888888] hover:text-white transition-colors duration-200 group tracking-wide"
+            >
+              <span className="group-hover:-translate-x-1 transition-transform duration-200">←</span>
+              <span>{t.back}</span>
+            </Link>
+          </div>
 
           {/* Careers Header */}
-          <header className="flex flex-col gap-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs text-gray-300 w-fit backdrop-blur-md">
-              <span className="w-2 h-2 rounded-full bg-magenta shadow-[0_0_8px_rgba(139,37,59,0.9)] animate-pulse" />
-              <span className="font-medium tracking-wide uppercase text-[11px] text-gray-300">
-                {t.badge}
-              </span>
-            </div>
-
-            <h1 className="font-sans font-bold text-4xl sm:text-5xl md:text-6xl tracking-tight text-white lowercase leading-[1.15] flex flex-wrap items-center gap-x-3 gap-y-2">
-              <span>{t.title.toLowerCase()}</span>
-              <span className="inline-flex items-center justify-center text-center leading-none bg-white text-midnight px-5 py-1.5 rounded-full font-script text-3xl sm:text-4xl md:text-5xl select-none font-normal shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
-                {t.atGennety}
-              </span>
+          <header className="flex flex-col gap-2.5 border-b border-white/[0.08] pb-6">
+            <h1 className="font-sans text-[40px] sm:text-[52px] md:text-[64px] font-bold tracking-tight uppercase text-white leading-none select-none">
+              {t.title}
             </h1>
-
-            <p className="text-base sm:text-lg text-gray-300 font-light max-w-2xl leading-relaxed">
+            <p className="text-sm text-[#888888] leading-relaxed">
               {t.tagline}
             </p>
           </header>
@@ -1065,12 +892,7 @@ export default function CareersPage() {
               return (
                 <article
                   key={vacancy.id}
-                  className={cn(
-                    "group rounded-2xl md:rounded-3xl border transition-all duration-300 overflow-hidden",
-                    isExpanded
-                      ? "bg-black/60 border-white/20 shadow-[0_16px_48px_rgba(0,0,0,0.6),0_0_24px_rgba(139,37,59,0.16)] backdrop-blur-xl"
-                      : "bg-black/40 hover:bg-black/50 border-white/[0.1] hover:border-white/20 backdrop-blur-xl"
-                  )}
+                  className="border-b border-white/[0.08] pb-6 transition-colors duration-200"
                 >
                   {/* Vacancy Row Header */}
                   <div
@@ -1084,361 +906,275 @@ export default function CareersPage() {
                         toggleVacancy(vacancy.id);
                       }
                     }}
-                    className="p-6 md:p-8 cursor-pointer select-none flex items-start sm:items-center justify-between gap-4 transition-colors"
+                    className="group flex items-center justify-between gap-5 py-1.5 cursor-pointer select-none"
                   >
-                    <div className="flex flex-col gap-3">
-                      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-white transition-colors">
+                    <div className="flex flex-col gap-1.5">
+                      <h2
+                        className={cn(
+                          "font-sans text-[24px] sm:text-[28px] md:text-[32px] font-bold tracking-tight leading-[1.2] transition-colors duration-200",
+                          isExpanded ? "text-white" : "text-[#f0f0f0] group-hover:text-white"
+                        )}
+                      >
                         {title}
                       </h2>
-                      {/* Meta Pills */}
-                      <div className="flex flex-wrap items-center gap-2 text-xs">
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 text-gray-300 font-medium">
-                          <MapPin className="w-3.5 h-3.5 text-gray-400" />
-                          {meta.location}
-                        </span>
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 text-gray-300 font-medium">
-                          <Clock className="w-3.5 h-3.5 text-gray-400" />
-                          {meta.type}
-                        </span>
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-magenta/15 border border-magenta/30 text-white font-medium">
-                          <span className="w-1.5 h-1.5 rounded-full bg-magenta shadow-[0_0_6px_#8B253B]" />
-                          {meta.company}
-                        </span>
+                      <div className="text-[13px] text-[#888888] leading-[1.5]">
+                        <strong className="text-[#cccccc] font-medium">{meta.location}</strong> ·{" "}
+                        <strong className="text-[#cccccc] font-medium">{meta.type}</strong> ·{" "}
+                        <strong className="text-[#cccccc] font-medium">{meta.company}</strong>
                       </div>
                     </div>
 
-                    {/* Interactive Button / Chevron */}
-                    <div className="flex items-center gap-2.5 shrink-0 self-center">
-                      <span className="hidden sm:inline-block text-xs uppercase tracking-wider font-semibold text-gray-400 group-hover:text-white transition-colors">
-                        {isExpanded ? t.collapse : t.details}
-                      </span>
-                      <div
+                    <div className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.1em] uppercase text-[#777777] group-hover:text-white transition-colors duration-200 shrink-0">
+                      <span className="hidden sm:inline">{isExpanded ? t.collapse : t.details}</span>
+                      <span
                         className={cn(
-                          "w-10 h-10 rounded-full flex items-center justify-center border transition-all duration-300",
-                          isExpanded
-                            ? "bg-magenta text-white border-magenta shadow-[0_0_15px_rgba(139,37,59,0.5)] rotate-180"
-                            : "bg-white/[0.04] text-gray-400 border-white/10 group-hover:bg-white/[0.08] group-hover:text-white"
+                          "text-[18px] font-semibold inline-block leading-none transition-transform duration-300 font-mono",
+                          isExpanded ? "rotate-45 text-white" : "text-[#777777] group-hover:text-white"
                         )}
                       >
-                        <ChevronDown className="w-5 h-5 transition-transform duration-300" />
-                      </div>
+                        +
+                      </span>
                     </div>
                   </div>
 
                   {/* Expandable Body */}
-                  <AnimatePresence initial={false}>
-                    {isExpanded && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{
-                          height: "auto",
-                          opacity: 1,
-                          transition: {
-                            height: { duration: 0.35, ease: [0.04, 0.62, 0.23, 0.98] },
-                            opacity: { duration: 0.25 },
-                          },
-                        }}
-                        exit={{
-                          height: 0,
-                          opacity: 0,
-                          transition: {
-                            height: { duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] },
-                            opacity: { duration: 0.2 },
-                          },
-                        }}
-                        className="overflow-hidden border-t border-white/[0.08]"
-                      >
-                        <div className="p-6 md:p-8 pt-6 flex flex-col gap-8">
-                          {/* About Gennety */}
-                          <div className="flex flex-col gap-3">
-                            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-[#E891A5]">
-                              <span className="w-1.5 h-1.5 rounded-full bg-magenta shadow-[0_0_6px_rgba(139,37,59,0.9)]" />
-                              <span>{t.aboutGennetyTitle}</span>
-                            </div>
-                            <div className="rounded-xl bg-white/[0.03] border border-white/[0.08] p-4 md:p-5 text-gray-300 text-sm md:text-base leading-relaxed">
-                              {aboutGennety.startsWith("Gennety") ? (
-                                <>
-                                  <strong className="text-white font-semibold">Gennety</strong>
-                                  {aboutGennety.slice("Gennety".length)}
-                                </>
-                              ) : (
-                                aboutGennety
-                              )}
-                            </div>
-                          </div>
+                  {isExpanded && (
+                    <div className="mt-6 flex flex-col gap-7 pt-1 animate-fadeIn">
+                      {/* About Gennety */}
+                      <div className="flex flex-col gap-2.5">
+                        <h3 className="text-[11px] font-bold tracking-[0.14em] text-[#777777] uppercase">
+                          {t.aboutGennetyTitle}
+                        </h3>
+                        <p className="text-[14px] leading-[1.75] text-[#b8b8b8]">
+                          {aboutGennety.startsWith("Gennety") ? (
+                            <>
+                              <strong className="text-white font-semibold">Gennety</strong>
+                              {aboutGennety.slice("Gennety".length)}
+                            </>
+                          ) : (
+                            aboutGennety
+                          )}
+                        </p>
+                      </div>
 
-                          {/* About The Role */}
-                          <div className="flex flex-col gap-4">
-                            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-[#E891A5]">
-                              <span className="w-1.5 h-1.5 rounded-full bg-magenta shadow-[0_0_6px_rgba(139,37,59,0.9)]" />
-                              <span>{t.aboutRoleTitle}</span>
-                            </div>
-                            <p className="text-gray-300 text-sm md:text-base leading-relaxed">
-                              {aboutRole.summary}
-                            </p>
-                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                              <div className="bg-white/[0.03] border border-white/[0.08] rounded-xl p-3.5">
-                                <span className="text-[11px] uppercase tracking-wider font-semibold text-gray-400 block mb-1">
-                                  {t.format}
-                                </span>
-                                <span className="text-sm font-medium text-white">
-                                  {aboutRole.format}
-                                </span>
-                              </div>
-                              <div className="bg-white/[0.03] border border-white/[0.08] rounded-xl p-3.5">
-                                <span className="text-[11px] uppercase tracking-wider font-semibold text-gray-400 block mb-1">
-                                  {t.focus}
-                                </span>
-                                <span className="text-sm font-medium text-white">
-                                  {aboutRole.focus}
-                                </span>
-                              </div>
-                              <div className="bg-white/[0.03] border border-white/[0.08] rounded-xl p-3.5">
-                                <span className="text-[11px] uppercase tracking-wider font-semibold text-gray-400 block mb-1">
-                                  {t.startDate}
-                                </span>
-                                <span className="text-sm font-medium text-white">
-                                  {aboutRole.start}
-                                </span>
-                              </div>
-                            </div>
-                          </div>
+                      {/* About The Role */}
+                      <div className="flex flex-col gap-2.5">
+                        <h3 className="text-[11px] font-bold tracking-[0.14em] text-[#777777] uppercase">
+                          {t.aboutRoleTitle}
+                        </h3>
+                        <p className="text-[14px] leading-[1.75] text-[#b8b8b8]">
+                          {aboutRole.summary}
+                        </p>
+                        <p className="text-[14px] leading-[1.75] text-[#b8b8b8]">
+                          <strong className="text-white font-semibold">Format:</strong> {aboutRole.format}
+                          <br />
+                          <strong className="text-white font-semibold">Focus:</strong> {aboutRole.focus}
+                          <br />
+                          <strong className="text-white font-semibold">Start:</strong> {aboutRole.start}
+                        </p>
+                      </div>
 
-                          {/* What You'll Do */}
-                          <div className="flex flex-col gap-3">
-                            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-[#E891A5]">
-                              <span className="w-1.5 h-1.5 rounded-full bg-magenta shadow-[0_0_6px_rgba(139,37,59,0.9)]" />
-                              <span>{t.whatYouDoTitle}</span>
+                      {/* What You'll Do */}
+                      <div className="flex flex-col gap-2.5">
+                        <h3 className="text-[11px] font-bold tracking-[0.14em] text-[#777777] uppercase">
+                          {t.whatYouDoTitle}
+                        </h3>
+                        <ul className="list-none flex flex-col gap-2.5 p-0 m-0">
+                          {whatYouDo.map((item, idx) => {
+                            const colonIdx = item.indexOf(":");
+                            if (colonIdx !== -1) {
+                              const boldPart = item.substring(0, colonIdx + 1);
+                              const restPart = item.substring(colonIdx + 1);
+                              return (
+                                <li
+                                  key={idx}
+                                  className="text-[14px] leading-[1.7] text-[#b0b0b0] relative pl-[18px]"
+                                >
+                                  <span className="absolute left-0 text-[#666666] font-semibold">—</span>
+                                  <strong className="text-white font-semibold">{boldPart}</strong>
+                                  {restPart}
+                                </li>
+                              );
+                            }
+                            return (
+                              <li
+                                key={idx}
+                                className="text-[14px] leading-[1.7] text-[#b0b0b0] relative pl-[18px]"
+                              >
+                                <span className="absolute left-0 text-[#666666] font-semibold">—</span>
+                                {item}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+
+                      {/* What We're Looking For (2-column split) */}
+                      <div className="flex flex-col gap-2.5">
+                        <h3 className="text-[11px] font-bold tracking-[0.14em] text-[#777777] uppercase">
+                          {t.lookingForTitle}
+                        </h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
+                          <div>
+                            <div className="text-[11px] font-bold tracking-[0.1em] text-[#999999] mb-3 uppercase">
+                              {t.mustHave}
                             </div>
-                            <ul className="grid grid-cols-1 gap-3">
-                              {whatYouDo.map((item, idx) => {
+                            <ul className="list-none flex flex-col gap-2.5 p-0 m-0">
+                              {mustHave.map((item, idx) => {
                                 const colonIdx = item.indexOf(":");
-                                const boldPart = colonIdx !== -1 ? item.substring(0, colonIdx + 1) : null;
-                                const restPart = colonIdx !== -1 ? item.substring(colonIdx + 1) : item;
+                                if (colonIdx !== -1) {
+                                  const boldPart = item.substring(0, colonIdx + 1);
+                                  const restPart = item.substring(colonIdx + 1);
+                                  return (
+                                    <li
+                                      key={idx}
+                                      className="text-[14px] leading-[1.7] text-[#b0b0b0] relative pl-[18px]"
+                                    >
+                                      <span className="absolute left-0 text-[#666666] font-semibold">—</span>
+                                      <strong className="text-white font-semibold">{boldPart}</strong>
+                                      {restPart}
+                                    </li>
+                                  );
+                                }
                                 return (
                                   <li
                                     key={idx}
-                                    className="flex items-start gap-3 text-sm md:text-base text-gray-300 leading-relaxed"
+                                    className="text-[14px] leading-[1.7] text-[#b0b0b0] relative pl-[18px]"
                                   >
-                                    <span className="w-1.5 h-1.5 rounded-full bg-[#D44D6B] mt-2.5 shrink-0 shadow-[0_0_6px_rgba(139,37,59,0.8)]" />
-                                    <div>
-                                      {boldPart && (
-                                        <strong className="text-white font-semibold">{boldPart}</strong>
-                                      )}
-                                      <span>{restPart}</span>
-                                    </div>
+                                    <span className="absolute left-0 text-[#666666] font-semibold">—</span>
+                                    {item}
                                   </li>
                                 );
                               })}
                             </ul>
                           </div>
 
-                          {/* What We're Looking For (2-column split) */}
-                          <div className="flex flex-col gap-3">
-                            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-[#E891A5]">
-                              <span className="w-1.5 h-1.5 rounded-full bg-magenta shadow-[0_0_6px_rgba(139,37,59,0.9)]" />
-                              <span>{t.lookingForTitle}</span>
+                          <div>
+                            <div className="text-[11px] font-bold tracking-[0.1em] text-[#999999] mb-3 uppercase">
+                              {t.niceToHave}
                             </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                              {/* Must Have Card */}
-                              <div className="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-5 flex flex-col gap-3">
-                                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white">
-                                  <CheckCircle2 className="w-4 h-4 text-[#E06D85]" />
-                                  <span>{t.mustHave}</span>
-                                </div>
-                                <ul className="space-y-3">
-                                  {mustHave.map((item, idx) => {
-                                    const colonIdx = item.indexOf(":");
-                                    const boldPart = colonIdx !== -1 ? item.substring(0, colonIdx + 1) : null;
-                                    const restPart = colonIdx !== -1 ? item.substring(colonIdx + 1) : item;
-                                    return (
-                                      <li
-                                        key={idx}
-                                        className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-300 leading-relaxed"
-                                      >
-                                        <span className="text-gray-500 font-bold shrink-0 mt-0.5">•</span>
-                                        <div>
-                                          {boldPart && (
-                                            <strong className="text-white font-medium">{boldPart}</strong>
-                                          )}
-                                          <span>{restPart}</span>
-                                        </div>
-                                      </li>
-                                    );
-                                  })}
-                                </ul>
-                              </div>
-
-                              {/* Nice To Have Card */}
-                              <div className="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-5 flex flex-col gap-3">
-                                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-300">
-                                  <Sparkles className="w-4 h-4 text-gray-400" />
-                                  <span>{t.niceToHave}</span>
-                                </div>
-                                <ul className="space-y-3">
-                                  {niceToHave.map((item, idx) => {
-                                    const colonIdx = item.indexOf(":");
-                                    const boldPart = colonIdx !== -1 ? item.substring(0, colonIdx + 1) : null;
-                                    const restPart = colonIdx !== -1 ? item.substring(colonIdx + 1) : item;
-                                    return (
-                                      <li
-                                        key={idx}
-                                        className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-300 leading-relaxed"
-                                      >
-                                        <span className="text-gray-500 font-bold shrink-0 mt-0.5">•</span>
-                                        <div>
-                                          {boldPart && (
-                                            <strong className="text-white font-medium">{boldPart}</strong>
-                                          )}
-                                          <span>{restPart}</span>
-                                        </div>
-                                      </li>
-                                    );
-                                  })}
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* What We Offer */}
-                          <div className="flex flex-col gap-3">
-                            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-[#E891A5]">
-                              <span className="w-1.5 h-1.5 rounded-full bg-magenta shadow-[0_0_6px_rgba(139,37,59,0.9)]" />
-                              <span>{t.whatWeOfferTitle}</span>
-                            </div>
-                            <div className="bg-gradient-to-br from-magenta/20 via-white/[0.03] to-white/[0.01] border border-magenta/35 rounded-2xl p-5 md:p-6 flex flex-col gap-4">
-                              <div>
-                                <span className="text-[11px] uppercase tracking-wider font-semibold text-gray-400 block mb-1">
-                                  {t.baseSalary}
-                                </span>
-                                <div className="text-xl md:text-2xl font-bold text-white tracking-tight">
-                                  {whatWeOffer.base}
-                                </div>
-                              </div>
-
-                              {whatWeOffer.bonuses && whatWeOffer.bonuses.length > 0 && (
-                                <div className="space-y-2 pt-2 border-t border-white/10">
-                                  <span className="text-[11px] uppercase tracking-wider font-semibold text-gray-400 block">
-                                    {t.bonuses}
-                                  </span>
-                                  <ul className="space-y-1.5">
-                                    {whatWeOffer.bonuses.map((bonus, bIdx) => (
-                                      <li
-                                        key={bIdx}
-                                        className="flex items-start gap-2 text-xs sm:text-sm text-gray-300"
-                                      >
-                                        <span className="text-[#E06D85] font-bold shrink-0">✦</span>
-                                        <span className="text-white/95 font-medium">{bonus}</span>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              )}
-
-                              <div className="pt-2 border-t border-white/10">
-                                <span className="text-[11px] uppercase tracking-wider font-semibold text-gray-400 block mb-0.5">
-                                  {t.totalPotential}
-                                </span>
-                                <div className="text-base sm:text-lg font-bold text-white">
-                                  {whatWeOffer.potential}
-                                </div>
-                              </div>
-
-                              {whatWeOffer.perks && (
-                                <div className="pt-2 border-t border-white/10 text-xs sm:text-sm text-gray-300 leading-relaxed">
-                                  <strong className="text-white font-semibold">
-                                    {t.perks}:
-                                  </strong>{" "}
-                                  {whatWeOffer.perks}
-                                </div>
-                              )}
-                            </div>
-                          </div>
-
-                          {/* How To Apply */}
-                          <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-5 md:p-6 flex flex-col gap-5">
-                            <div className="flex flex-col gap-1">
-                              <h3 className="text-lg font-bold text-white tracking-tight">
-                                {t.howToApplyTitle}
-                              </h3>
-                              <p className="text-sm text-gray-300 leading-relaxed">
-                                {howToApply.intro}
-                              </p>
-                            </div>
-
-                            {/* Steps */}
-                            <div className="space-y-2">
-                              <span className="text-xs uppercase tracking-wider font-semibold text-gray-400 block">
-                                {t.includeInMessage}
-                              </span>
-                              <div className="space-y-2">
-                                {howToApply.steps.map((st, sIdx) => (
-                                  <div
-                                    key={sIdx}
-                                    className="flex items-start gap-3 text-sm text-gray-300 bg-black/30 border border-white/5 rounded-xl p-3"
+                            <ul className="list-none flex flex-col gap-2.5 p-0 m-0">
+                              {niceToHave.map((item, idx) => {
+                                const colonIdx = item.indexOf(":");
+                                if (colonIdx !== -1) {
+                                  const boldPart = item.substring(0, colonIdx + 1);
+                                  const restPart = item.substring(colonIdx + 1);
+                                  return (
+                                    <li
+                                      key={idx}
+                                      className="text-[14px] leading-[1.7] text-[#b0b0b0] relative pl-[18px]"
+                                    >
+                                      <span className="absolute left-0 text-[#666666] font-semibold">—</span>
+                                      <strong className="text-white font-semibold">{boldPart}</strong>
+                                      {restPart}
+                                    </li>
+                                  );
+                                }
+                                return (
+                                  <li
+                                    key={idx}
+                                    className="text-[14px] leading-[1.7] text-[#b0b0b0] relative pl-[18px]"
                                   >
-                                    <span className="w-6 h-6 rounded-full bg-white/10 text-white font-semibold text-xs flex items-center justify-center shrink-0">
-                                      {sIdx + 1}
-                                    </span>
-                                    <span className="leading-snug pt-0.5 text-white/90 font-medium">
-                                      {st}
-                                    </span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-
-                            {/* Action Buttons: Telegram + Email */}
-                            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
-                              <a
-                                href={TELEGRAM_SUPPORT_URL}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-full bg-[#8B253B] hover:bg-[#A3304A] text-white font-semibold text-sm transition-all shadow-neon-sm hover:shadow-neon cursor-pointer"
-                              >
-                                <TelegramIcon className="w-4 h-4 fill-current" />
-                                <span>{t.applyTelegram}</span>
-                              </a>
-                              <a
-                                href={`mailto:${CONTACT_EMAIL}?subject=Application: ${encodeURIComponent(title)}`}
-                                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-white text-sm font-medium transition-colors cursor-pointer"
-                              >
-                                <Mail className="w-4 h-4 text-gray-400" />
-                                <span>
-                                  {t.orEmail} {CONTACT_EMAIL}
-                                </span>
-                              </a>
-                            </div>
-
-                            <p className="text-xs text-gray-400 italic">
-                              {howToApply.note}
-                            </p>
+                                    <span className="absolute left-0 text-[#666666] font-semibold">—</span>
+                                    {item}
+                                  </li>
+                                );
+                              })}
+                            </ul>
                           </div>
                         </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                      </div>
+
+                      {/* What We Offer */}
+                      <div className="flex flex-col gap-2.5">
+                        <h3 className="text-[11px] font-bold tracking-[0.14em] text-[#777777] uppercase">
+                          {t.whatWeOfferTitle}
+                        </h3>
+                        <div className="text-[14px] leading-[1.75] text-[#b8b8b8]">
+                          <div>
+                            <strong className="text-white font-semibold">Base salary:</strong>{" "}
+                            <strong className="text-white font-semibold">{whatWeOffer.base}</strong>
+                          </div>
+                          <div className="mt-1.5">
+                            <strong className="text-white font-semibold">Performance bonuses:</strong>
+                            <br />
+                            {whatWeOffer.bonuses.map((bonus, bIdx) => (
+                              <div key={bIdx}>
+                                — <strong className="text-white font-semibold">{bonus}</strong>
+                              </div>
+                            ))}
+                          </div>
+                          <div className="mt-1.5">
+                            <strong className="text-white font-semibold">Total potential:</strong>{" "}
+                            <strong className="text-white font-semibold">{whatWeOffer.potential}</strong>
+                          </div>
+                          {whatWeOffer.perks && (
+                            <div className="mt-2 text-[#a8a8a8]">
+                              <strong className="text-white font-semibold">Perks:</strong> {whatWeOffer.perks}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* How To Apply */}
+                      <div className="border-t border-white/[0.08] pt-6 flex flex-col gap-3">
+                        <h3 className="text-[11px] font-bold tracking-[0.14em] text-[#777777] uppercase">
+                          {t.howToApplyTitle}
+                        </h3>
+                        <p className="text-[14px] leading-[1.75] text-[#b8b8b8]">
+                          Message us directly on Telegram:{" "}
+                          <a
+                            href={TELEGRAM_SUPPORT_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white font-semibold underline underline-offset-4 hover:text-[#D44D6B] transition-colors"
+                          >
+                            @gennetysupport
+                          </a>{" "}
+                          (or email{" "}
+                          <a
+                            href={`mailto:${CONTACT_EMAIL}`}
+                            className="text-white font-semibold underline underline-offset-4 hover:text-[#D44D6B] transition-colors"
+                          >
+                            {CONTACT_EMAIL}
+                          </a>
+                          ).
+                        </p>
+
+                        <div className="text-[14px] leading-[1.75] text-[#b8b8b8]">
+                          <strong className="text-white font-semibold">In your message, tell us:</strong>
+                          <ol className="list-decimal pl-5 mt-1 space-y-1">
+                            {howToApply.steps.map((st, sIdx) => (
+                              <li key={sIdx} className="text-[14px] text-[#b0b0b0]">
+                                <strong className="text-white font-semibold">{st}</strong>
+                              </li>
+                            ))}
+                          </ol>
+                        </div>
+
+                        <p className="mt-1.5 text-[13px] text-[#777777]">
+                          <strong className="text-[#999999]">Questions?</strong> {howToApply.note}
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </article>
               );
             })}
           </div>
 
-          {/* Careers Footer Note Card */}
-          <div className="rounded-2xl md:rounded-3xl bg-black/45 border border-white/[0.1] p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 backdrop-blur-xl">
-            <div className="max-w-xl">
-              <h3 className="text-lg font-bold text-white mb-1">{t.footerTitle}</h3>
-              <p className="text-sm text-gray-400 leading-relaxed">{t.footerNote}</p>
-            </div>
+          {/* Careers Footer Note */}
+          <div className="mt-5 border-t border-white/[0.06] pt-6 text-[13px] text-[#777777] leading-[1.6]">
+            {t.footerNote}
             <a
-              href={`mailto:${CONTACT_EMAIL}?subject=General Application`}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-gray-200 transition-colors shrink-0 shadow-sm cursor-pointer"
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="text-[#aaaaaa] underline underline-offset-4 hover:text-white transition-colors"
             >
-              <Mail className="w-4 h-4 text-black" />
-              <span>{t.footerContact}</span>
+              {t.footerContact}
             </a>
           </div>
         </div>
-      </div>
+      </section>
 
       <Footer theme="dark" />
     </main>
